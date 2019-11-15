@@ -44,21 +44,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\GeneratorOutput\CbOrm.cs" />
-    <Compile Include="Orm\Crypt\crypt.cs" />
-    <Compile Include="Orm\Fs\str.cs" />
-    <Compile Include="Orm\Idg\idg.cs" />
-    <Compile Include="Orm\MsSql\id.cs" />
-    <Compile Include="Orm\SysDataClient\stor.cs" />
-    <Compile Include="Orm\Rfl\rfl.cs" />
-    <Compile Include="Orm\Mta\mta.cs" />
-    <Compile Include="Orm\eno\eno.cs" />
-    <Compile Include="Orm\Ref\ref.cs" />
-    <Compile Include="Orm\Str\str.cs" />
-    <Compile Include="Orm\TSql\sql.cs" />
+    <Compile Include="App\Sys\sys.cs" />
+    <Compile Include="App\Web\web.cs" />
+    <Compile Include="Crypt\crypt.cs" />
+    <Compile Include="Fs\str.cs" />
+    <Compile Include="Idg\idg.cs" />
+    <Compile Include="MsSql\id.cs" />
+    <Compile Include="sch\sch.cs" />
+    <Compile Include="SysDataClient\stor.cs" />
+    <Compile Include="Rfl\rfl.cs" />
+    <Compile Include="Mta\mta.cs" />
+    <Compile Include="eno\eno.cs" />
+    <Compile Include="Ref\ref.cs" />
+    <Compile Include="Str\str.cs" />
+    <Compile Include="TSql\sql.cs" />
+    <Compile Include="ut\ut.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Orm\Gen\gen.cs" />
-    <Compile Include="Orm\Mdl\mdl.cs" />
+    <Compile Include="Gen\gen.cs" />
+    <Compile Include="Mdl\mdl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

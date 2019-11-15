@@ -1,5 +1,6 @@
 ﻿// This is the runtime for my 2nd generation ORM-Wrapper. (entity object sub system)
 
+using CbOrm.Mta;
 using CbOrm.Str;
 using System;
 using System.Collections;
@@ -34,7 +35,10 @@ namespace CbOrm.Eno
         {
         }
 
-        public dynamic Dynamic { get => throw new NotImplementedException(); }
+        public virtual IEnumerable<CProperty> GetProperties()
+        {
+            return new CProperty[] { };
+        }
     }
 
     public abstract class CLeaf 

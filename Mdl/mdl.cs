@@ -2,12 +2,12 @@
 // (Tool for generic (binary) remoting protocolls and orm code generation written by Karl-Michael Beck (c) Rehm GmbH.)
 // Here we used it as MDL (Model definition language)
 // As an input for my second generation ORM-Wrapper.
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
+using CbOrm.Ut;
 
 namespace CbOrm.Mdl
 {
@@ -125,6 +125,10 @@ namespace CbOrm.Mdl
         public string GetAttributeValue(string aAttributeName) => this.GetAttributeValue(aAttributeName, () => string.Empty);
 
         public string MetaTyp { get => this.GetAttributeValue("MetaTyp", ()=>string.Empty); }
+        public IEnumerable<CRflProperty> NamedProperties { get => this.Properties.Where(aPrp => aPrp.Name.Length > 0); }
+        public CRflProperty GetPropertyNullable(string aPropertyName) => this.GetProperty(aPropertyName, () => default(CRflProperty));
+        public string GetPropertyAttributeValue(string aPropertyName, string aAttributeName)=>this.GetPropertyNullable(aPropertyName).DefaultIfNull(()=>string.Empty, aProperty=>aProperty.GetAttributeValue(aAttributeName));
+        public string GetPropertyAttributeValue(string aAttributeName) => this.GetPropertyAttributeValue(string.Empty, aAttributeName);
     }
     public sealed class CRflProperty {
 
@@ -182,19 +186,14 @@ namespace CbOrm.Mdl
                            where aRow.Generate
                            select aRow
                                 ;
-            this.ClassesDic = (from aGroup in aGenRows.GroupBy(aRow => aRow.Class)
+            this.TypsDic = (from aGroup in aGenRows.GroupBy(aRow => aRow.Class)
                                select new CRflTyp(this, aGroup.Key, aGroup.ToArray())).OrderBy(aClass => aClass.Name).ToArray().ToDictionary(aForKey => aForKey.Name);
         }
         private IEnumerable<CRflRow> Rows;
-        public IEnumerable<CRflTyp> Classes { get => this.ClassesDic.Values; }
-        public readonly Dictionary<string, CRflTyp> ClassesDic;
-
-        internal CRflTyp GetTypByName(string aTypName)
-        {
-            if (this.ClassesDic.ContainsKey(aTypName))
-                return this.ClassesDic[aTypName];
-            else
-                throw new Exception("RflTyp '" + aTypName + "' not found.");
-        }
+        public IEnumerable<CRflTyp> Typs { get => this.TypsDic.Values; }
+        public readonly Dictionary<string, CRflTyp> TypsDic;
+        internal CRflTyp GetTypByName(string aTypName) => this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => new Exception("RflTyp '" + aTypName + "' not found.").Throw<CRflTyp>(), () => this.TypsDic[aTypName]);
+        internal string GetPropertyAttributeValue(string aTypName, string aPropertyName, string aAttributeName) => this.GetTypNullable(aTypName).DefaultIfNull(() => string.Empty, aTyp => aTyp.GetPropertyAttributeValue(aPropertyName, aAttributeName));
+        private CRflTyp GetTypNullable(string aTypName)=> this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => default(CRflTyp), () => this.TypsDic[aTypName]);
     }
 }
