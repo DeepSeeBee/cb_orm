@@ -2,10 +2,13 @@
 ORM Wrapper
 
 Planned Features:
+- ORM Wrapper optimized for Web Applications. (No WPF support for now)
 - Compact Model Definition Language
 - Database model population via mdl (no redundant code)
 - Customizeable Attribute Generation
 - Customizeable Field types.
+- Save on demand (only save what has changed)
+- ObjectCache (only one instance per id)
 - Storage in file system (XML based)
 - Optimization for loading 1:N Relations and 1:1 reverse navigation in file system storage
 - Storage in MS-SQL Server
