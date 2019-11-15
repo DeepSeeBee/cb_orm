@@ -25,7 +25,7 @@ Planned Features:
 
 -------------------
 - Maybe just for fun:
-- Binary Model
+- Compiler/Interpreter for Binary Model
 - Binary Storage
 - Lean and Mean C++ ORM Wrappers optimized for Embedded Systems
 
