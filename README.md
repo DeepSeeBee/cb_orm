@@ -2,7 +2,7 @@
 ORM Wrapper
 
 Planned Features:
-- Compact Model Description Language
+- Compact Model Definition Language
 - Database model population via mdl (no redundant code)
 - Customizeable Attribute Generation
 - Customizeable Field types.
