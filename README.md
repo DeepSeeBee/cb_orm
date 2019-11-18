@@ -19,13 +19,13 @@ Realized features:
 
 Planned Features: (~In this sequence)
 - Custom Enum Types in mdl.
-- Optimization for loading 1:1 reverse navigation in file system storage
-
 - Relation 1:1: Weak: Navigation from Parent to Child ***
+- Encryption (=>Saving passwords)
+
+- Optimization for loading 1:1 reverse navigation in file system storage
 - Relation 1:1: Weak: Navigation from Child to Parent
 - Relation 1:N: Weak: Navigation from Parent to Child
 - Relation 1:N: Weak: Navigation from Child to Parent
-- Encryption (=>Saving passwords)
 - Polymorphy by MultiTableInheritance
 - ObjectVersioning
 
