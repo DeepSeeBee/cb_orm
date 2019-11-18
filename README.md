@@ -3,10 +3,10 @@ ORM Wrapper
 
 Realized features:
 - Compact and extendable Model Definition Language
-- Save on demand (only save what has changed)
+- Save on demand (only save modified objects)
 - ObjectCache (only one instance per id)
 - Storage in file system (XML based)
-- Optimization for loading 1:N Relations and 1:1 reverse navigation in file system storage
+- Optimization for loading 1:N Relations in file system storage
 - Relation 1:N with cascade delete (on client side) (Navigation in both directions)
 
 Planned Features: (~In this sequence)
@@ -14,6 +14,7 @@ Planned Features: (~In this sequence)
 - Customizeable Attribute Generation
 - Customizeable Skalar-Field types/Type conversion chain for loading/saving.
 - Custom Enum Types in mdl.
+- Optimization for loading 1:1 reverse navigation in file system storage
 - Relation 1:1 with cascade delete (on client side) (Navigation in both directions)
 - Relation 1:1 Weak (Navigation in both directions)
 - Relation 1:N Weak (Navigation in both directions)

@@ -226,7 +226,8 @@ namespace CbOrm.Gen.Test
                 var aC = aP.C.GetByGuid(aChild1Id);
                 aP.C.Remove(aC);
                 var aSaved = aStorage.Save();
-                this.Test(aSaved >= 1, "09e639fd-7382-46d0-b5c7-3e2117102fc0"); /// TODO: >= 1...
+                var aExpectedSaveCount = aStorage.R1NCContainsChildList ? 2 : 1;
+                this.Test(aSaved == aExpectedSaveCount, "09e639fd-7382-46d0-b5c7-3e2117102fc0"); 
             }
             this.BeginTest("ef7f6093-8fa3-4d90-a8ff-a027ff7a281f");
             {

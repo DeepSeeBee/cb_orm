@@ -203,7 +203,6 @@ namespace CbOrm.Gen.Test
             }
         }
 
-
         public override void Run()
         {
             var aTestSequence = this.TestSequence;
