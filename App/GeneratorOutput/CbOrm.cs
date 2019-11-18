@@ -63,9 +63,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.UserNameM, null))
                 {
-                }
-                else
-                {
                     this.UserNameM = new CSkalarRef<Account, String>(this, Account._UserNameMetaInfo);
                 }
                 return this.UserNameM;
@@ -86,9 +83,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PasswordM, null))
                 {
-                }
-                else
-                {
                     this.PasswordM = new CSkalarRef<Account, String>(this, Account._PasswordMetaInfo);
                 }
                 return this.PasswordM;
@@ -108,9 +102,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.PublisherM, null))
-                {
-                }
-                else
                 {
                     this.PublisherM = new CR11CRef<Account, Publisher>(this, Account._PublisherMetaInfo);
                 }
@@ -190,9 +181,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailAccountM, null))
                 {
-                }
-                else
-                {
                     this.EmailAccountM = new CR1NCRef<Publisher, EmailAccount>(this, Publisher._EmailAccountMetaInfo);
                 }
                 return this.EmailAccountM;
@@ -212,9 +200,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.BackgroundImageM, null))
-                {
-                }
-                else
                 {
                     this.BackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BackgroundImageMetaInfo);
                 }
@@ -236,9 +221,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BluredBackgroundImageM, null))
                 {
-                }
-                else
-                {
                     this.BluredBackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BluredBackgroundImageMetaInfo);
                 }
                 return this.BluredBackgroundImageM;
@@ -258,9 +240,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.PreviewImageM, null))
-                {
-                }
-                else
                 {
                     this.PreviewImageM = new CR1NCRef<Publisher, Content>(this, Publisher._PreviewImageMetaInfo);
                 }
@@ -282,9 +261,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ListM, null))
                 {
-                }
-                else
-                {
                     this.ListM = new CSkalarRef<Publisher, Boolean>(this, Publisher._ListMetaInfo);
                 }
                 return this.ListM;
@@ -304,9 +280,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.GiftsM, null))
-                {
-                }
-                else
                 {
                     this.GiftsM = new CR1NCRef<Publisher, Gift>(this, Publisher._GiftsMetaInfo);
                 }
@@ -397,9 +370,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.UserM, null))
                 {
-                }
-                else
-                {
                     this.UserM = new CSkalarRef<EmailAccount, String>(this, EmailAccount._UserMetaInfo);
                 }
                 return this.UserM;
@@ -419,9 +389,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
-                {
-                }
-                else
                 {
                     this.EmailM = new CSkalarRef<EmailAccount, CEmailAdress>(this, EmailAccount._EmailMetaInfo);
                 }
@@ -443,9 +410,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PasswordM, null))
                 {
-                }
-                else
-                {
                     this.PasswordM = new CSkalarRef<EmailAccount, String>(this, EmailAccount._PasswordMetaInfo);
                 }
                 return this.PasswordM;
@@ -465,9 +429,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.SmtpHostM, null))
-                {
-                }
-                else
                 {
                     this.SmtpHostM = new CSkalarRef<EmailAccount, String>(this, EmailAccount._SmtpHostMetaInfo);
                 }
@@ -489,9 +450,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SmtpPortM, null))
                 {
-                }
-                else
-                {
                     this.SmtpPortM = new CSkalarRef<EmailAccount, UInt32>(this, EmailAccount._SmtpPortMetaInfo);
                 }
                 return this.SmtpPortM;
@@ -511,9 +469,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.Pop3HostM, null))
-                {
-                }
-                else
                 {
                     this.Pop3HostM = new CSkalarRef<EmailAccount, String>(this, EmailAccount._Pop3HostMetaInfo);
                 }
@@ -535,9 +490,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Pop3PortM, null))
                 {
-                }
-                else
-                {
                     this.Pop3PortM = new CSkalarRef<EmailAccount, UInt32>(this, EmailAccount._Pop3PortMetaInfo);
                 }
                 return this.Pop3PortM;
@@ -557,9 +509,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.UseSslM, null))
-                {
-                }
-                else
                 {
                     this.UseSslM = new CSkalarRef<EmailAccount, Boolean>(this, EmailAccount._UseSslMetaInfo);
                 }
@@ -676,9 +625,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                }
-                else
-                {
                     this.NameM = new CSkalarRef<Gift, String>(this, Gift._NameMetaInfo);
                 }
                 return this.NameM;
@@ -698,9 +644,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.HashtagM, null))
-                {
-                }
-                else
                 {
                     this.HashtagM = new CSkalarRef<Gift, String>(this, Gift._HashtagMetaInfo);
                 }
@@ -722,9 +665,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CoverM, null))
                 {
-                }
-                else
-                {
                     this.CoverM = new CR11CRef<Gift, Content>(this, Gift._CoverMetaInfo);
                 }
                 return this.CoverM;
@@ -744,9 +684,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.StatisticM, null))
-                {
-                }
-                else
                 {
                     this.StatisticM = new CR1NCRef<Gift, GiftStatistic>(this, Gift._StatisticMetaInfo);
                 }
@@ -768,9 +705,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownlaodFormatsM, null))
                 {
-                }
-                else
-                {
                     this.DownlaodFormatsM = new CR1NCRef<Gift, DownloadFormat>(this, Gift._DownlaodFormatsMetaInfo);
                 }
                 return this.DownlaodFormatsM;
@@ -790,9 +724,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.NotificationEmailM, null))
-                {
-                }
-                else
                 {
                     this.NotificationEmailM = new CSkalarRef<Gift, CEmailAdress>(this, Gift._NotificationEmailMetaInfo);
                 }
@@ -814,9 +745,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoGrantMaxCountIsDefinedM, null))
                 {
-                }
-                else
-                {
                     this.AutoGrantMaxCountIsDefinedM = new CSkalarRef<Gift, Boolean>(this, Gift._AutoGrantMaxCountIsDefinedMetaInfo);
                 }
                 return this.AutoGrantMaxCountIsDefinedM;
@@ -836,9 +764,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.AutoGrantMaxCountM, null))
-                {
-                }
-                else
                 {
                     this.AutoGrantMaxCountM = new CSkalarRef<Gift, UInt64>(this, Gift._AutoGrantMaxCountMetaInfo);
                 }
@@ -860,9 +785,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ReleaseNewsletterM, null))
                 {
-                }
-                else
-                {
                     this.ReleaseNewsletterM = new CR11CRef<Gift, Newsletter>(this, Gift._ReleaseNewsletterMetaInfo);
                 }
                 return this.ReleaseNewsletterM;
@@ -882,9 +804,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.CountersM, null))
-                {
-                }
-                else
                 {
                     this.CountersM = new CR11CRef<Gift, GiftCounters>(this, Gift._CountersMetaInfo);
                 }
@@ -906,9 +825,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BackgroundImageM, null))
                 {
-                }
-                else
-                {
                     this.BackgroundImageM = new CR1NCRef<Gift, Content>(this, Gift._BackgroundImageMetaInfo);
                 }
                 return this.BackgroundImageM;
@@ -928,9 +844,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.ListM, null))
-                {
-                }
-                else
                 {
                     this.ListM = new CSkalarRef<Gift, Boolean>(this, Gift._ListMetaInfo);
                 }
@@ -952,9 +865,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ListenUrlM, null))
                 {
-                }
-                else
-                {
                     this.ListenUrlM = new CSkalarRef<Gift, Uri>(this, Gift._ListenUrlMetaInfo);
                 }
                 return this.ListenUrlM;
@@ -974,9 +884,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.BuyUrlM, null))
-                {
-                }
-                else
                 {
                     this.BuyUrlM = new CSkalarRef<Gift, Uri>(this, Gift._BuyUrlMetaInfo);
                 }
@@ -1059,9 +966,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownloadedM, null))
                 {
-                }
-                else
-                {
                     this.DownloadedM = new CSkalarRef<GiftStatistic, UInt64>(this, GiftStatistic._DownloadedMetaInfo);
                 }
                 return this.DownloadedM;
@@ -1081,9 +985,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.NotDownloadedM, null))
-                {
-                }
-                else
                 {
                     this.NotDownloadedM = new CSkalarRef<GiftStatistic, UInt64>(this, GiftStatistic._NotDownloadedMetaInfo);
                 }
@@ -1105,9 +1006,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.OpenRequestsM, null))
                 {
-                }
-                else
-                {
                     this.OpenRequestsM = new CSkalarRef<GiftStatistic, UInt64>(this, GiftStatistic._OpenRequestsMetaInfo);
                 }
                 return this.OpenRequestsM;
@@ -1127,9 +1025,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.GrantedRequestM, null))
-                {
-                }
-                else
                 {
                     this.GrantedRequestM = new CSkalarRef<GiftStatistic, UInt64>(this, GiftStatistic._GrantedRequestMetaInfo);
                 }
@@ -1194,9 +1089,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                }
-                else
-                {
                     this.NameM = new CSkalarRef<DownloadFormat, String>(this, DownloadFormat._NameMetaInfo);
                 }
                 return this.NameM;
@@ -1216,9 +1108,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.ContentM, null))
-                {
-                }
-                else
                 {
                     this.ContentM = new CR1NCRef<DownloadFormat, Content>(this, DownloadFormat._ContentMetaInfo);
                 }
@@ -1276,9 +1165,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.AutoGrantCountCurM, null))
-                {
-                }
-                else
                 {
                     this.AutoGrantCountCurM = new CSkalarRef<GiftCounters, UInt64>(this, GiftCounters._AutoGrantCountCurMetaInfo);
                 }
@@ -1360,9 +1246,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.WebSiteM, null))
                 {
-                }
-                else
-                {
                     this.WebSiteM = new CSkalarRef<VoucherRequest, Uri>(this, VoucherRequest._WebSiteMetaInfo);
                 }
                 return this.WebSiteM;
@@ -1382,9 +1265,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.SubscribeRequestM, null))
-                {
-                }
-                else
                 {
                     this.SubscribeRequestM = new CR11CRef<VoucherRequest, SubscribeRequest>(this, VoucherRequest._SubscribeRequestMetaInfo);
                 }
@@ -1406,9 +1286,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
                 {
-                }
-                else
-                {
                     this.EmailM = new CSkalarRef<VoucherRequest, CEmailAdress>(this, VoucherRequest._EmailMetaInfo);
                 }
                 return this.EmailM;
@@ -1428,9 +1305,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.PresentingPlatformNameM, null))
-                {
-                }
-                else
                 {
                     this.PresentingPlatformNameM = new CSkalarRef<VoucherRequest, String>(this, VoucherRequest._PresentingPlatformNameMetaInfo);
                 }
@@ -1452,9 +1326,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PresentingPlatformWebsiteM, null))
                 {
-                }
-                else
-                {
                     this.PresentingPlatformWebsiteM = new CSkalarRef<VoucherRequest, Uri>(this, VoucherRequest._PresentingPlatformWebsiteMetaInfo);
                 }
                 return this.PresentingPlatformWebsiteM;
@@ -1475,9 +1346,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MessageM, null))
                 {
-                }
-                else
-                {
                     this.MessageM = new CSkalarRef<VoucherRequest, String>(this, VoucherRequest._MessageMetaInfo);
                 }
                 return this.MessageM;
@@ -1497,9 +1365,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.GiftM, null))
-                {
-                }
-                else
                 {
                     this.GiftM = new CR11WRef<VoucherRequest, Gift>(this, VoucherRequest._GiftMetaInfo);
                 }
@@ -1567,9 +1432,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.IsDownloadedM, null))
                 {
-                }
-                else
-                {
                     this.IsDownloadedM = new CSkalarRef<Voucher, Boolean>(this, Voucher._IsDownloadedMetaInfo);
                 }
                 return this.IsDownloadedM;
@@ -1589,9 +1451,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.RecipientM, null))
-                {
-                }
-                else
                 {
                     this.RecipientM = new CSkalarRef<Voucher, CEmailAdress>(this, Voucher._RecipientMetaInfo);
                 }
@@ -1678,9 +1537,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MomentM, null))
                 {
-                }
-                else
-                {
                     this.MomentM = new CSkalarRef<LocationInfo, DateTime>(this, LocationInfo._MomentMetaInfo);
                 }
                 return this.MomentM;
@@ -1700,9 +1556,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.IpAdressM, null))
-                {
-                }
-                else
                 {
                     this.IpAdressM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._IpAdressMetaInfo);
                 }
@@ -1724,9 +1577,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.TimezoneM, null))
                 {
-                }
-                else
-                {
                     this.TimezoneM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._TimezoneMetaInfo);
                 }
                 return this.TimezoneM;
@@ -1746,9 +1596,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.CountryM, null))
-                {
-                }
-                else
                 {
                     this.CountryM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._CountryMetaInfo);
                 }
@@ -1770,9 +1617,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.RegionM, null))
                 {
-                }
-                else
-                {
                     this.RegionM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._RegionMetaInfo);
                 }
                 return this.RegionM;
@@ -1792,9 +1636,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.PostalM, null))
-                {
-                }
-                else
                 {
                     this.PostalM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._PostalMetaInfo);
                 }
@@ -1816,9 +1657,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CityM, null))
                 {
-                }
-                else
-                {
                     this.CityM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._CityMetaInfo);
                 }
                 return this.CityM;
@@ -1838,9 +1676,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.OrganisationM, null))
-                {
-                }
-                else
                 {
                     this.OrganisationM = new CSkalarRef<LocationInfo, String>(this, LocationInfo._OrganisationMetaInfo);
                 }
@@ -1913,9 +1748,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                }
-                else
-                {
                     this.NameM = new CSkalarRef<Campaign, String>(this, Campaign._NameMetaInfo);
                 }
                 return this.NameM;
@@ -1936,9 +1768,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherCountM, null))
                 {
-                }
-                else
-                {
                     this.VoucherCountM = new CSkalarRef<Campaign, Int32>(this, Campaign._VoucherCountMetaInfo);
                 }
                 return this.VoucherCountM;
@@ -1958,9 +1787,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.VouchersM, null))
-                {
-                }
-                else
                 {
                     this.VouchersM = new CR1NWRef<Campaign, Voucher>(this, Campaign._VouchersMetaInfo);
                 }
@@ -2032,9 +1858,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MomentM, null))
                 {
-                }
-                else
-                {
                     this.MomentM = new CSkalarRef<Newsletter, DateTime>(this, Newsletter._MomentMetaInfo);
                 }
                 return this.MomentM;
@@ -2054,9 +1877,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.HeadM, null))
-                {
-                }
-                else
                 {
                     this.HeadM = new CSkalarRef<Newsletter, String>(this, Newsletter._HeadMetaInfo);
                 }
@@ -2078,9 +1898,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BodyM, null))
                 {
-                }
-                else
-                {
                     this.BodyM = new CSkalarRef<Newsletter, String>(this, Newsletter._BodyMetaInfo);
                 }
                 return this.BodyM;
@@ -2100,9 +1917,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.SentM, null))
-                {
-                }
-                else
                 {
                     this.SentM = new CSkalarRef<Newsletter, Boolean>(this, Newsletter._SentMetaInfo);
                 }
@@ -2162,9 +1976,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.SubscribeM, null))
-                {
-                }
-                else
                 {
                     this.SubscribeM = new CSkalarRef<SubscribeRequest, Boolean>(this, SubscribeRequest._SubscribeMetaInfo);
                 }
@@ -2226,9 +2037,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.UnsubscribeM, null))
                 {
-                }
-                else
-                {
                     this.UnsubscribeM = new CSkalarRef<UnsubscribeRequest, Boolean>(this, UnsubscribeRequest._UnsubscribeMetaInfo);
                 }
                 return this.UnsubscribeM;
@@ -2248,9 +2056,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.ReasonM, null))
-                {
-                }
-                else
                 {
                     this.ReasonM = new CSkalarRef<UnsubscribeRequest, String>(this, UnsubscribeRequest._ReasonMetaInfo);
                 }
@@ -2313,9 +2118,6 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.FileNameM, null))
                 {
-                }
-                else
-                {
                     this.FileNameM = new CSkalarRef<Content, String>(this, Content._FileNameMetaInfo);
                 }
                 return this.FileNameM;
@@ -2335,9 +2137,6 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 if (Object.ReferenceEquals(this.RedirectTargetM, null))
-                {
-                }
-                else
                 {
                     this.RedirectTargetM = new CSkalarRef<Content, String>(this, Content._RedirectTargetMetaInfo);
                 }

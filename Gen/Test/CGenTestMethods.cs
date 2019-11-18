@@ -172,6 +172,24 @@ namespace CbOrm.Gen.Test
         public void Test_c91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b()
         {
             // Generate SkalarField
+            this.Schema = Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.TestSchema.Singleton;
+            var aTestData = "ad5533b2-2eb1-4c84-8b7b-7ba2669b8fec";
+
+            this.BeginTest("8e6db121-0105-450e-957a-1179f956f9fc");
+            {
+                var aStorage = this.Storage;
+                var aC = aStorage.CreateObject<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C>();
+                aStorage.Save();
+                aC.P.Value = aTestData;
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 1, "1c43d383-da4f-48b6-9111-1be312cee6c4");
+            }
+            this.BeginTest("d228502f-600f-4676-9105-5df0df2605a3");
+            {
+                var aStorage = this.Storage;
+                var aC = aStorage.LoadObjects<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C>().Single();
+                this.Test(aC.P.Value == aTestData, "ac533f4a-5837-4ea1-bc80-3837a054f1a3");
+            }
         }
 
         public void Test_cfd975a9_b348_4085_9306_bbea67fc771e()

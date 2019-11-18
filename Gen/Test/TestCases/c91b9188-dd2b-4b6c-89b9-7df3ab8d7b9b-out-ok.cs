@@ -54,9 +54,6 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
             {
                 if (Object.ReferenceEquals(this.PM, null))
                 {
-                }
-                else
-                {
                     this.PM = new CSkalarRef<C, String>(this, C._PMetaInfo);
                 }
                 return this.PM;

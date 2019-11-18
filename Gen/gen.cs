@@ -205,7 +205,7 @@ namespace CbOrm.Gen
                                                       new CodePrimitiveExpression(null)
                                                       );
             var aLdStm = new CodeAssignStatement(aCdFldRef, aLdExp);
-            var aLdIFStm = new CodeConditionStatement(aLdCond, new CodeStatement[] { }, new CodeStatement[] { aLdStm });
+            var aLdIFStm = new CodeConditionStatement(aLdCond, new CodeStatement[] { aLdStm }, new CodeStatement[] {  });
             var aRetStm = new CodeMethodReturnStatement(aCdFldRef);
             var aCdPrp = new CodeMemberProperty();
             aCdPrp.Name = aName;
