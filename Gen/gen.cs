@@ -1,23 +1,18 @@
 ﻿// This is my 2nd generation ORM-Wrapper. (code generator)
 // TODO:
-// - R1NPRef.Guid WriteProtected.
 // - xdl.Import, populate web.xdl 
-// - xdl comment rows.
 // - Optionale ReverseNavigation Extending
 // - Optionale ID Extending
-// - AutoCreate
 // - WeakRef
 // - Base=Mdl.Enum
 // - ExpandIds
-// - ExpandCrossreferences
 // - MultiTableInheritance
 // - ObjectVersion
-// - Factor Output/Input
-// - Mta obsolete?
 // - Meta-New in static ctor / lazyload ? performance improvement?
-// - Testing
 // - Support structs/classes as skalar fields?
-
+// . throw own Exceotionclasses 
+//
+// - Property.WriteProtection: final check for all props.
 
 using System;
 using System.Collections.Generic;

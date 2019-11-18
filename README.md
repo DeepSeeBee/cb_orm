@@ -6,7 +6,7 @@ Realized features:
 - Save on demand (only save modified objects)
 - ObjectCache (only one instance per id)
 - Storage in file system (XML based)
-- Optimization for loading 1:N Relations in file system storage
+- Blops for huge Binary Data.
 - Relation 1:N: Navigation from Parent to Child
 - Relation 1:N: Navigation from Child to Parent
 - Relation 1:N: cascade delete (on client side) 
@@ -14,9 +14,9 @@ Realized features:
 - Relation 1:1: Navigation from Parent to Child
 - Relation 1:1: cascade delete (on client side)
 - Relation 1:1: cascade create
+- Optimization for loading 1:N Relations in file system storage
 
 Planned Features: (~In this sequence)
-- Blops for huge Binary Data.
 - Custom Enum Types in mdl.
 - Optimization for loading 1:1 reverse navigation in file system storage
 - Relation 1:1: Navigation from Child To Parent

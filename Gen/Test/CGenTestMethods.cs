@@ -227,7 +227,8 @@ namespace CbOrm.Gen.Test
                 aChild1Id = aP.C.Add().Guid.Value;
                 aChild2Id = aP.C.Add().Guid.Value;
                 var aSaved = aStorage.Save();
-                this.Test(aSaved == 3, "52ef2740-d6d9-4304-8e23-48b9b7d0dc46");                
+                this.Test(aSaved == 3, "52ef2740-d6d9-4304-8e23-48b9b7d0dc46");
+                this.TestThrows<Exception>(() => aP.C.Value = null, "05225688-cf50-4896-be63-18e89cbad2ee");
             }
 
             this.BeginTest("d895ce33-8445-4519-8ece-6d4b28dd1277");
