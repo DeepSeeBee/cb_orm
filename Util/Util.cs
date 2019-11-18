@@ -106,5 +106,14 @@ namespace CbOrm.Util
             }
             aDirectory.Delete();
         }
+
+        public static IEnumerable<FileInfo> GetFilesRecursive(this DirectoryInfo aDirectory)
+        {
+            foreach(var aSubDir in aDirectory.GetDirectories())
+                foreach (var aFile in aSubDir.GetFilesRecursive())
+                    yield return aFile;
+            foreach (var aFile in aDirectory.GetFiles())
+                yield return aFile;
+        }
     }
 }

@@ -145,12 +145,27 @@ namespace CbOrm.Gen.Test
                 aObjectid = aC.GuidValue;
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 1, "5a762bc4-b38b-4342-baa9-3b08f078f182");
+                this.Test(this.FileSystemStorage.DirectoryInfo.GetFilesRecursive().Count() == 2, "c4076989-2eeb-4491-8f27-b9ddb55eec8a");
             }
             this.BeginTest("a278c706-c441-40b7-bd38-16f5a1308a85");
             {
                 var aStorage = this.Storage;
                 var aC = aStorage.LoadObject<Testf1c0d6f6_cc10_4afb_bc8f_a3a940b5ac4d.C>(aObjectid);
                 this.Test(!aC.IsNullRef(), "856494a4-2641-4d93-a98d-244ca83896e8");
+            }
+            this.BeginTest("080c44a5-39f3-4c95-afb5-370dca6098a0");
+            {
+                var aStorage = this.Storage;
+                var aCs = aStorage.LoadObjects<Testf1c0d6f6_cc10_4afb_bc8f_a3a940b5ac4d.C>();
+                this.Test(aCs.Count() == 1, "3064a4ff-9768-4577-ac50-32cfbc754178");
+                var aC = aCs.Single();
+                aC.Delete();
+                this.Test(this.FileSystemStorage.DirectoryInfo.GetFilesRecursive().Count() == 2, "2fd57c03-51f7-4fde-a0b9-417b369b0749");
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 1, "cbf18b45-e9fd-40e1-8c89-4214d1e07358");
+                var aCs2 = aStorage.LoadObjects<Testf1c0d6f6_cc10_4afb_bc8f_a3a940b5ac4d.C>();
+                this.Test(aCs2.Count() == 0, "9c371e6f-d7c9-45fd-971f-0fe394d3ed3c");
+                this.Test(this.FileSystemStorage.DirectoryInfo.GetFilesRecursive().Count() == 0, "ce09d4ef-d2df-4be0-bb7d-dbce7c960fde");
             }
         }
 

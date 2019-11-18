@@ -89,8 +89,6 @@ namespace CbOrm.Storage
         //public virtual IEnumerable<TChild> LoadObjects<TParent, TChild>(CObject aParent, CR1NRefOptions<TParent, TChild> aR1NRefOptions) where TParent : CObject where TChild : CObject
         //=> from aTest in this.LoadObjects<TChild>() where aR1NRefOptions.GetForeignKey(aTest) == aParent.Guid select aTest;
 
-
-        internal abstract void Delete(CObject aObject);
         internal abstract bool IsPersistent(CObject aObject);
 
         internal CObject Load(XmlElement aChildElement)

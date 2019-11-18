@@ -58,7 +58,6 @@
     <None Include="Gen\Test\TestCases\cb9fb56f-38ef-439b-af0c-3df00ba1d611-in.xdl" />
     <None Include="Gen\Test\TestCases\cfd975a9-b348-4085-9306-bbea67fc771e-in.xdl" />
     <Compile Include="Gen\Test\CGenTestMethods.cs" />
-    <Compile Include="Gen\Test\DirectoryIno.cs" />
     <Compile Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-ok.cs" />
     <None Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-test.cs" />
     <Compile Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-out-ok.cs" />

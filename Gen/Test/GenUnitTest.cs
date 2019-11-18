@@ -14,7 +14,7 @@ using System.Dynamic;
 namespace CbOrm.Gen.Test
 {
     using CTestCase = CRflTyp;
-    using CTestFileCombo = Tuple<FileInfo, FileInfo>; // In, OutTest, OutOk
+    using CTestFileCombo = Tuple<FileInfo, FileInfo>; // In, Out
     using CTestRun = Tuple<CGenUnitTest, CRflTyp>; // ..., TestCase
     using CReport = CRflRowList;
     using CTestResult = ExpandoObject;

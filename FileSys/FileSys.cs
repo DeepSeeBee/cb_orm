@@ -167,21 +167,12 @@ namespace CbOrm.FileSys
             // Not sure if we need some special actions for databases.
         }
 
-        internal override void Delete(CObject aObject)
-        {
-            if (aObject.IsPersistent)
-            {
-                var aFileInfo = this.GetObjectFileInfo(aObject, false);
-                aFileInfo.Delete();
-            }
-        }
         internal override void Save(CEntityObject aEntityObject, CTyp aAspect)
         {
             var aFileInfo = this.GetObjectFileInfo(aAspect, aEntityObject.Guid.Value);
-            if(aEntityObject.IsDeleted)
-            {
-                throw new NotImplementedException();
-                //aFileInfo.Delete();
+            if(aEntityObject.IsLocallyDeleted)
+            {                
+                aFileInfo.Delete();
             }
             else
             {

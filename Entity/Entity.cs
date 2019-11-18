@@ -83,7 +83,7 @@ namespace CbOrm.Entity
             {
                 // Nicht cachen, erst wenn CreateAufrruf erfolgt.s
             }
-            else if (this.IsDeleted)
+            else if (this.IsRemoteDeleted)
             {
                 this.IsCached = true;
             }
@@ -119,8 +119,13 @@ namespace CbOrm.Entity
             this.Storage.Save();
         }
 
+        internal bool IsLocallyDeleted { get; private set; }
 
-        internal virtual void Delete() => this.Storage.Delete(this);
+        internal virtual void Delete()
+        {
+            this.IsLocallyDeleted = true;
+            this.Modify();
+        }
         internal bool IsPersistent { get => this.Storage.IsPersistent(this); }
 
         internal void CreateGuid()
@@ -129,7 +134,7 @@ namespace CbOrm.Entity
             this.GuidValue = this.Storage.NewObjectId();
         }
         public bool GuidIsNull { get => this.GuidValue == new Guid(); }
-        public bool IsDeleted { get => this.GuidValue == DeletedObjectGuid; }
+        public bool IsRemoteDeleted { get => this.GuidValue == DeletedObjectGuid; }
         internal void CheckNotGuidIsNull()
         {
             if (this.GuidIsNull)
