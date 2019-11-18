@@ -104,7 +104,7 @@ namespace CbOrm.Attributes
         public override IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty)
         {
             var aCTyp = aProperty.DeclaringTyp;
-            var aCTypNme = aModelInterpreter.GetTypName(aCTyp);
+            var aCTypNme = aModelInterpreter.GetTypName(aCTyp,false);
             var aCdTypRef = new CodeTypeReference(aCTypNme);
             var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
             var aFldNme = aModelInterpreter.Tok.Trg_C_Mta_Pfx + aProperty.Name + aModelInterpreter.Tok.Trg_C_Fk_P_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
@@ -120,7 +120,7 @@ namespace CbOrm.Attributes
         public override IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty)
         {
             var aCTyp = aModelInterpreter.GetReturnTyp(aProperty);
-            var aCTypNme = aModelInterpreter.GetTypName(aCTyp);
+            var aCTypNme = aModelInterpreter.GetTypName(aCTyp, false);
             var aCdTypRef = new CodeTypeReference(aCTypNme);
             var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
             var aFldNme = aProperty.Name.TrimStart(aModelInterpreter.Tok.Trg_P_Parent_Pfx).TrimStart(aCTypNme) + aModelInterpreter.Tok.Trg_C_Fk_P_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
@@ -137,7 +137,7 @@ namespace CbOrm.Attributes
             var aGenarateReverseNavigation = aCTyp.Interpret(() => bool.Parse(aCTyp.GetAttributeValue(aModelInterpreter.Tok.Mdl_T_A_GenerateReverseNavigation, () => true.ToString())));
             if (aGenarateReverseNavigation)
             {
-                var aCTypNme = aModelInterpreter.GetTypName(aCTyp);
+                var aCTypNme = aModelInterpreter.GetTypName(aCTyp, true);
                 var aCdTypRef = new CodeTypeReference(aCTypNme);
                 var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
                 var aPrpNme = aModelInterpreter.Tok.GetRelationyMetaInfoPropertyName(aModelInterpreter.GetR11CReverseNavigationRefName(aProperty));

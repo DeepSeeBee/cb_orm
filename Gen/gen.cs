@@ -151,7 +151,11 @@ namespace CbOrm.Gen
         public CGenModelInterpreter() : this(new CGenTokens()) { }
 
         public virtual string GetSchema(CRflModel aMdl) => aMdl.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
-        public virtual string GetTypName(CRflTyp aRflClass) => aRflClass.Name;
+        public virtual string GetClrNamespace(CRflModel aModel) => aModel.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
+        public virtual string GetClrNamespace(CRflTyp aTyp) =>aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs, ()=>this.GetClrNamespace(aTyp.Model));
+        public virtual string GetTypName(CRflTyp aRflClass, bool aWithNamespace) => aWithNamespace
+                                                                                 ? this.GetClrNamespace(aRflClass) + "." + aRflClass.Name
+                                                                                 : aRflClass.Name;
         public virtual string GetBase(CRflTyp aRflClass) => aRflClass.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Base);
         public virtual string GetReturnTypName(CRflProperty aPrp) => aPrp.Name.Length == 0 ? string.Empty : aPrp.GetAttributeValue(this.Tok.MDl_O_A_Typ_Nme).DefaultIfEmpty(() => aPrp.Name);
         public virtual CRflTyp GetReturnTyp(CRflProperty aPrp) => aPrp.DeclaringTyp.Model.GetTypByName(GetReturnTypName(aPrp));
@@ -260,7 +264,7 @@ namespace CbOrm.Gen
         public CGenTokens Tok;
 
         public virtual CodeTypeReference NewCodeTypeRefFromModel(string aName) => new CodeTypeReference(aName);
-        public virtual CodeTypeReference NewCodeTypeRef(CRflTyp aTyp) => this.NewCodeTypeRefFromModel(this.Idl.GetTypName(aTyp));
+        public virtual CodeTypeReference NewCodeTypeRef(CRflTyp aTyp) => this.NewCodeTypeRefFromModel(this.Idl.GetTypName(aTyp, true));
         public virtual CodeExpression NewNameOfPrpertyExpression(string aPrpName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aPrpName + ")");
         public virtual CodeExpression NewNameOTypeExpression(string aTypName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aTypName + ")");
 
@@ -453,7 +457,7 @@ namespace CbOrm.Gen
             var aModel = aProperty.Model;
             var aModelInterpreter = this.ModelInterpreter;
             var aCodeDomBuilder = this.CodeDomBuilder;
-            var aPTypNme = this.ModelInterpreter.GetTypName(aPTyp);
+            var aPTypNme = this.ModelInterpreter.GetTypName(aPTyp, true);
             var aCdPTypRef = new CodeTypeReference(aPTypNme);
             var aCdPTypRefExp = new CodeTypeReferenceExpression(aCdPTypRef);
             var aCTyp = this.ModelInterpreter.GetReturnTyp(aProperty);
@@ -489,7 +493,7 @@ namespace CbOrm.Gen
             else
             {
                 // SkalarFields: "Simple" DataTypes (May be also struct on certain sql servers - support it?)
-                var aPrpTypNme = this.ModelInterpreter.GetTypName(aCTyp);
+                var aPrpTypNme = this.ModelInterpreter.GetTypName(aCTyp, true);
                 var aPrpTyp = new CodeTypeReference(aPrpTypNme);
                 var aCdFldNme = this.Tok.GetFieldName(aPrpNme);
                 var aInit = this.ModelInterpreter.GetInit(aProperty);
@@ -567,7 +571,7 @@ namespace CbOrm.Gen
             var aGetSchemaMthNme = this.Tok.GetGetSchemaFuncName();
 
             // Class
-            var aClassName = this.ModelInterpreter.GetTypName(aRflTyp);
+            var aClassName = this.ModelInterpreter.GetTypName(aRflTyp, false);
             var aCdTypDecl = new CodeTypeDeclaration(aClassName);
             var aCdTypRef = new CodeTypeReference(aClassName);
             var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
@@ -696,7 +700,7 @@ namespace CbOrm.Gen
             // TODO: throw new NotImplementedException();
         }
         private CodeStatement NewAddPrototypeStatement(CRflTyp aTyp) => 
-            new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.AddTyp_Name, this.CodeDomBuilder.NewTypMetaInfoFieldRefExp(this.ModelInterpreter.GetTypName(aTyp))));
+            new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.AddTyp_Name, this.CodeDomBuilder.NewTypMetaInfoFieldRefExp(this.ModelInterpreter.GetTypName(aTyp, false))));
         private CodeConstructor NewSchemaConstructor(CRflModel aMdl)
         {
             var aCtor = new CodeConstructor();

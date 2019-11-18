@@ -24,13 +24,13 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
         
         public static CbOrm.Meta.CTyp _P_TypM = new CbOrm.Meta.CTyp(typeof(P), new System.Guid("00000000-0000-0000-0000-000000000000"), P._GetProperties);
         
-        private CSkalarRef<P, Guid> BGuidM;
+        private CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid> BGuidM;
         
-        private static CSkalarRefMetaInfo _BGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(P), nameof(BGuid));
+        private static CSkalarRefMetaInfo _BGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(BGuid));
         
-        private CR11CRef<P, CBlop> BM;
+        private CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop> BM;
         
-        private static CR11CRefMetaInfo _BMetaInfoM = new CR11CRefMetaInfo(typeof(P), nameof(B));
+        private static CR11CRefMetaInfo _BMetaInfoM = new CR11CRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(B));
         
         public P(CStorage aStorage) : 
                 base(aStorage)
@@ -55,13 +55,13 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
         
         [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("B")]
-        public CSkalarRef<P, Guid> BGuid
+        public CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid> BGuid
         {
             get
             {
                 if (Object.ReferenceEquals(this.BGuidM, null))
                 {
-                    this.BGuidM = new CSkalarRef<P, Guid>(this, P._BGuidMetaInfo);
+                    this.BGuidM = new CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuidMetaInfo);
                 }
                 return this.BGuidM;
             }
@@ -71,17 +71,17 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
         {
             get
             {
-                return P._BGuidMetaInfoM;
+                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuidMetaInfoM;
             }
         }
         
-        public CR11CRef<P, CBlop> B
+        public CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop> B
         {
             get
             {
                 if (Object.ReferenceEquals(this.BM, null))
                 {
-                    this.BM = new CR11CRef<P, CBlop>(this, P._BMetaInfo);
+                    this.BM = new CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BMetaInfo);
                 }
                 return this.BM;
             }
@@ -91,7 +91,7 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
         {
             get
             {
-                return P._BMetaInfoM;
+                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BMetaInfoM;
             }
         }
         

@@ -23,9 +23,9 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
         
         public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
         
-        private CSkalarRef<C, String> PM;
+        private CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string> PM;
         
-        private static CSkalarRefMetaInfo _PMetaInfoM = new CSkalarRefMetaInfo(typeof(C), nameof(P));
+        private static CSkalarRefMetaInfo _PMetaInfoM = new CSkalarRefMetaInfo(typeof(Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C), nameof(P));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -48,13 +48,13 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
             }
         }
         
-        public CSkalarRef<C, String> P
+        public CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string> P
         {
             get
             {
                 if (Object.ReferenceEquals(this.PM, null))
                 {
-                    this.PM = new CSkalarRef<C, String>(this, C._PMetaInfo);
+                    this.PM = new CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string>(this, Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._PMetaInfo);
                 }
                 return this.PM;
             }
@@ -64,7 +64,7 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
         {
             get
             {
-                return C._PMetaInfoM;
+                return Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._PMetaInfoM;
             }
         }
         

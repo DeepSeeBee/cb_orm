@@ -239,6 +239,7 @@ namespace CbOrm.Gen.Test
                 this.Test(aGuids.Contains(aChild1Id), "0ea65cb3-6f51-4569-9f0e-c08b1a32ceee");
                 this.Test(aGuids.Contains(aChild2Id), "b31e1f7e-8fd2-4ad4-8108-14c145f3cc60");
                 var aC1 = aP.C.GetByGuid(aChild1Id);
+                this.Test(aC1.Guid.Value == aChild1Id, "bdf65e90-a281-4d47-91a9-2ed77ed66d71");
                 this.Test(object.ReferenceEquals(aC1.Parent_P_C.Value, aP), "178476f0-a21d-4a68-a4d2-5b7649767823");
                 var aC2 = aP.C.GetByGuid(aChild2Id);
                 this.Test(object.ReferenceEquals(aC2.Parent_P_C.Value, aP), "7088e743-1eb2-43ac-a26f-0425e1999a9f");
@@ -299,7 +300,7 @@ namespace CbOrm.Gen.Test
                 var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
                 this.Test(!object.ReferenceEquals(aP.Nc.Value.Parent_P_Ac.Value, aP), "2fa1bcc6-d17c-4db2-bcb7-417046e5c5d2");
                 aP.Nc.Create();
-                this.Test(object.ReferenceEquals(aP.Nc.Value.Parent_P_Ac.Value, aP), "9a819bb5-3fec-4bc2-ad15-713f9a72b2f8");
+                this.Test(object.ReferenceEquals(aP.Nc.Value.Parent_P_Nc.Value, aP), "9a819bb5-3fec-4bc2-ad15-713f9a72b2f8");
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 2, "0e189f15-6b20-476d-a093-c10744caaaef");
             }

@@ -23,21 +23,21 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         
         public static CbOrm.Meta.CTyp _P_TypM = new CbOrm.Meta.CTyp(typeof(P), new System.Guid("00000000-0000-0000-0000-000000000000"), P._GetProperties);
         
-        private CSkalarRef<P, Guid> AcGuidM;
+        private CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> AcGuidM;
         
-        private static CSkalarRefMetaInfo _AcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(P), nameof(AcGuid));
+        private static CSkalarRefMetaInfo _AcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P), nameof(AcGuid));
         
-        private CSkalarRef<P, Guid> NcGuidM;
+        private CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> NcGuidM;
         
-        private static CSkalarRefMetaInfo _NcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(P), nameof(NcGuid));
+        private static CSkalarRefMetaInfo _NcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P), nameof(NcGuid));
         
-        private CR11CRef<P, C> AcM;
+        private CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> AcM;
         
-        private static CR11CRefMetaInfo _AcMetaInfoM = new CR11CRefMetaInfo(typeof(P), nameof(Ac));
+        private static CR11CRefMetaInfo _AcMetaInfoM = new CR11CRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P), nameof(Ac));
         
-        private CR11CRef<P, C> NcM;
+        private CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> NcM;
         
-        private static CR11CRefMetaInfo _NcMetaInfoM = new CR11CRefMetaInfo(typeof(P), nameof(Nc));
+        private static CR11CRefMetaInfo _NcMetaInfoM = new CR11CRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P), nameof(Nc));
         
         public P(CStorage aStorage) : 
                 base(aStorage)
@@ -62,13 +62,13 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         
         [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Ac")]
-        public CSkalarRef<P, Guid> AcGuid
+        public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> AcGuid
         {
             get
             {
                 if (Object.ReferenceEquals(this.AcGuidM, null))
                 {
-                    this.AcGuidM = new CSkalarRef<P, Guid>(this, P._AcGuidMetaInfo);
+                    this.AcGuidM = new CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.P._AcGuidMetaInfo);
                 }
                 return this.AcGuidM;
             }
@@ -78,19 +78,19 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return P._AcGuidMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.P._AcGuidMetaInfoM;
             }
         }
         
         [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Nc")]
-        public CSkalarRef<P, Guid> NcGuid
+        public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> NcGuid
         {
             get
             {
                 if (Object.ReferenceEquals(this.NcGuidM, null))
                 {
-                    this.NcGuidM = new CSkalarRef<P, Guid>(this, P._NcGuidMetaInfo);
+                    this.NcGuidM = new CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.P._NcGuidMetaInfo);
                 }
                 return this.NcGuidM;
             }
@@ -100,17 +100,17 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return P._NcGuidMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.P._NcGuidMetaInfoM;
             }
         }
         
-        public CR11CRef<P, C> Ac
+        public CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> Ac
         {
             get
             {
                 if (Object.ReferenceEquals(this.AcM, null))
                 {
-                    this.AcM = new CR11CRef<P, C>(this, P._AcMetaInfo, C._Parent_P_AcMetaInfo);
+                    this.AcM = new CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.P._AcMetaInfo, Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_AcMetaInfo);
                 }
                 return this.AcM;
             }
@@ -120,18 +120,18 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return P._AcMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.P._AcMetaInfoM;
             }
         }
         
         [CbOrm.Attributes.CAutoCreateAttribute(false)]
-        public CR11CRef<P, C> Nc
+        public CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> Nc
         {
             get
             {
                 if (Object.ReferenceEquals(this.NcM, null))
                 {
-                    this.NcM = new CR11CRef<P, C>(this, P._NcMetaInfo, C._Parent_P_NcMetaInfo);
+                    this.NcM = new CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.P._NcMetaInfo, Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_NcMetaInfo);
                 }
                 return this.NcM;
             }
@@ -141,7 +141,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return P._NcMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.P._NcMetaInfoM;
             }
         }
         
@@ -159,13 +159,13 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         
         public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
         
-        private CR11PRef<C, P> Parent_P_AcM;
+        private CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_AcM;
         
-        private static CR11PRefMetaInfo _Parent_P_AcMetaInfoM = new CR11PRefMetaInfo(typeof(C), nameof(Parent_P_Ac));
+        private static CR11PRefMetaInfo _Parent_P_AcMetaInfoM = new CR11PRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.C), nameof(Parent_P_Ac));
         
-        private CR11PRef<C, P> Parent_P_NcM;
+        private CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_NcM;
         
-        private static CR11PRefMetaInfo _Parent_P_NcMetaInfoM = new CR11PRefMetaInfo(typeof(C), nameof(Parent_P_Nc));
+        private static CR11PRefMetaInfo _Parent_P_NcMetaInfoM = new CR11PRefMetaInfo(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.C), nameof(Parent_P_Nc));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -188,13 +188,13 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        public CR11PRef<C, P> Parent_P_Ac
+        public CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_Ac
         {
             get
             {
                 if (Object.ReferenceEquals(this.Parent_P_AcM, null))
                 {
-                    this.Parent_P_AcM = new CR11PRef<C, P>(this, C._Parent_P_AcMetaInfo, P._AcGuidMetaInfo);
+                    this.Parent_P_AcM = new CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_AcMetaInfo, P._AcGuidMetaInfo);
                 }
                 return this.Parent_P_AcM;
             }
@@ -204,17 +204,17 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return C._Parent_P_AcMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_AcMetaInfoM;
             }
         }
         
-        public CR11PRef<C, P> Parent_P_Nc
+        public CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_Nc
         {
             get
             {
                 if (Object.ReferenceEquals(this.Parent_P_NcM, null))
                 {
-                    this.Parent_P_NcM = new CR11PRef<C, P>(this, C._Parent_P_NcMetaInfo, P._NcGuidMetaInfo);
+                    this.Parent_P_NcM = new CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P>(this, Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_NcMetaInfo, P._NcGuidMetaInfo);
                 }
                 return this.Parent_P_NcM;
             }
@@ -224,7 +224,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         {
             get
             {
-                return C._Parent_P_NcMetaInfoM;
+                return Test2dff5efa_d964_42c5_98af_d418ede035b9.C._Parent_P_NcMetaInfoM;
             }
         }
         

@@ -241,6 +241,13 @@
 +|TestResult|TestMethod|Value|cfd975a9-b348-4085-9306-bbea67fc771e||
 +|TestResult|Ok|Value|True||
 +|TestResult|FirstDiffRowNr|Value|||
++|TestResult|Text|Value|bdf65e90-a281-4d47-91a9-2ed77ed66d71||
++|||EndObject|TestResult||
++|||BeginObject|TestResult||
++|TestResult|TestCase|Value|cfd975a9-b348-4085-9306-bbea67fc771e||
++|TestResult|TestMethod|Value|cfd975a9-b348-4085-9306-bbea67fc771e||
++|TestResult|Ok|Value|True||
++|TestResult|FirstDiffRowNr|Value|||
 +|TestResult|Text|Value|178476f0-a21d-4a68-a4d2-5b7649767823||
 +|||EndObject|TestResult||
 +|||BeginObject|TestResult||

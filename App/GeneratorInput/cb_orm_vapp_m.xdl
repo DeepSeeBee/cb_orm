@@ -89,6 +89,7 @@
 +|Voucher||Base|CEntityObject
 +|Voucher|IsDownloaded|Typ|Boolean
 +|Voucher|Recipient|Typ|CEmailAdress
++|VoucherDownload||Base|CEntityObject
 +|VoucherDownload|DownloadFormat|Cardinality|11W
 -|VoucherDownload|SubscriptionRequest|Cardinality|11C
 +|VoucherDownload|LocationInfo|Cardinality|11C
