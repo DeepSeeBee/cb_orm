@@ -31,7 +31,7 @@ namespace CbOrm.FileSys
 
         internal override Stream NewBlopInputStream(CBlop aBlop)
         {
-            var aFileInfo = this.GetObjectFileInfo(aBlop, false);
+            var aFileInfo = this.GetObjectFileInfo(aBlop);
             if (aFileInfo.IsNullRef())
                 return Stream.Null;
             aFileInfo.Refresh();
@@ -53,7 +53,7 @@ namespace CbOrm.FileSys
 
         internal override long GetBlopLength(CBlop aBlop)
         {
-            var aFileInfo = this.GetObjectFileInfo(aBlop, false);
+            var aFileInfo = this.GetObjectFileInfo(aBlop);
             var aLength = aFileInfo.Exists
                      ? aFileInfo.Length
                      : 0
@@ -141,25 +141,9 @@ namespace CbOrm.FileSys
             return this.GetObjectDirectory(aType.TableName);
         }
 
-        private FileInfo GetObjectFileInfo(CObject aObject, Guid aGuid)
+        private FileInfo GetObjectFileInfo(CObject aObject)
         {
-            var aType = aObject.Typ;
-            var aFileInfo = this.GetObjectFileInfo(aType, aGuid);
-            return aFileInfo;
-        }
-
-        //TODO: PARamter CrateGuidOnDemand is obsolte.
-        private FileInfo GetObjectFileInfo(CObject aObject, bool aCreateGuidOnDemand = false)
-        {
-            if (aCreateGuidOnDemand)
-            {
-                if (aObject.GuidIsNull)
-                {
-                    throw new Exception("Internal error.");
-                    //aObject.CreateGuidOnDemand();
-                }
-            }
-            return this.GetObjectFileInfo(aObject, aObject.GuidValue);
+            return this.GetObjectFileInfo(aObject.Typ, aObject.GuidValue);
         }
 
         internal override void Load(CBlop aBlop)
@@ -183,19 +167,6 @@ namespace CbOrm.FileSys
                 aXmlDocument.Save(aFileInfo.FullName);
             }
         }
-
-        //internal override void Load(CObject aObject)
-        //{
-        //    var aFileInfo = this.GetObjectFileInfo(aObject);
-        //    if (!aFileInfo.Exists)
-        //    {
-        //        throw new CObjectDeletedException();
-        //    }
-        //    var aXmlDocument = new XmlDocument();
-        //    aXmlDocument.Load(aFileInfo.FullName);
-        //    aObject.Load(aXmlDocument.DocumentElement);
-        //}
-
 
         public override CStorage CloneStorage(bool aConnect) => new CFileSystemStorage(this.Schema, this.DirectoryInfo);
 

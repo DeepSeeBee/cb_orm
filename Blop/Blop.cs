@@ -40,7 +40,6 @@ namespace CbOrm.Blop
         internal override bool IsStructureReflected => true;
         private Guid GuidM;
         public override Guid GuidValue { get => this.GuidM; internal set { this.CheckNotCached(); this.GuidM = value; } }
-        internal override void Load(XmlElement aObjectElement) => throw new NotImplementedException();
         public override CTyp Typ => throw new NotImplementedException();
         internal Stream NewInputStream()
         {

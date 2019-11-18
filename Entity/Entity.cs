@@ -55,7 +55,6 @@ namespace CbOrm.Entity
         internal CSchema Schema { get => this.Storage.Schema; }
         internal abstract void AcceptSave();
 
-        internal abstract void Load(XmlElement aObjectElement);
         internal abstract void AcceptLoad();
         internal virtual void LoadTemplate() => this.AcceptLoad();
 
@@ -81,7 +80,7 @@ namespace CbOrm.Entity
             this.CheckNotCached();
             if (this.GuidValue == default(Guid))
             {
-                // Nicht cachen, erst wenn CreateAufrruf erfolgt.s
+                // Nicht cachen, erst wenn CreateAufrruf erfolgt.
             }
             else if (this.IsRemoteDeleted)
             {
@@ -201,13 +200,6 @@ namespace CbOrm.Entity
         #endregion
         internal override void AcceptLoad() => this.Storage.VisitLoad(this);
         internal override void AcceptSave()=> this.Storage.VisitSave(this);
-        //internal override CRef GetRefByGuid(Guid aGuid)
-        //{
-        //    return (from aTest in this.Refs
-        //            where aTest.RefOptions.RefGuid == aGuid
-        //            select aTest).Single();
-        //}
-
         internal override void Create()
         {
             foreach (var aComposition in this.Refs)
@@ -246,8 +238,6 @@ namespace CbOrm.Entity
         }
         #endregion
         #region TypeName
-        //internal static string TypeAttributeName = nameof(TypName);
-
         private static readonly CSkalarRefMetaInfo _TypNameMetaInfoM = new CSkalarRefMetaInfo(typeof(CEntityObject), nameof(TypName));
         public static CSkalarRefMetaInfo _TypNameMetaInfo { get => _TypNameMetaInfoM; }
         private readonly CAccessKey TypNameWriteKey = new CAccessKey();
@@ -286,20 +276,6 @@ namespace CbOrm.Entity
             aXmlDocument.AppendChild(aElement);
             return aXmlDocument;
         }
-        internal override void Load(XmlElement aObjectElement)
-        {
-            throw new NotImplementedException();
-            //var aType = this.Type;
-            //var aObject = this;
-            //var aProperties = aType.Properties;
-            //var aValuesDic = this.ValueDic;
-            //foreach (var aProperty in aProperties.Values)
-            //{
-            //    aProperty.Load(aObjectElement, aObject);
-            //}
-        }
-
-
     }
 
      
