@@ -279,6 +279,9 @@ namespace CbOrm.Gen.Test
                 this.Test(!aP.Ac.Value.GuidIsNull, "954514b4-08a0-4add-b96c-ad5c8897b207");
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 2, "08408d70-c405-40d7-b015-afdc5455a6f5");
+
+                this.Test(object.ReferenceEquals(aP.Ac.Value.Parent_P_Ac.Value, aP), "cb3891e3-6e71-433a-9927-2ce0cb20420a");
+
             }
 
             this.BeginTest("8df9df94-cdb8-4f24-8915-6509d8f781ad");
@@ -294,7 +297,9 @@ namespace CbOrm.Gen.Test
             {
                 var aStorage = this.Storage;
                 var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
+                this.Test(!object.ReferenceEquals(aP.Nc.Value.Parent_P_Ac.Value, aP), "2fa1bcc6-d17c-4db2-bcb7-417046e5c5d2");
                 aP.Nc.Create();
+                this.Test(object.ReferenceEquals(aP.Nc.Value.Parent_P_Ac.Value, aP), "9a819bb5-3fec-4bc2-ad15-713f9a72b2f8");
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 2, "0e189f15-6b20-476d-a093-c10744caaaef");
             }

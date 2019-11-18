@@ -259,11 +259,9 @@ namespace CbOrm.Meta
         }
         internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement)
         {
-            throw new NotImplementedException();
         }
         internal override void LoadXml(CObject aEntityObject, XmlElement aXmlElement)
         {
-            throw new NotImplementedException();
         }
     }
     public sealed class CR1NCRefMetaInfo : CRefMetaInfo

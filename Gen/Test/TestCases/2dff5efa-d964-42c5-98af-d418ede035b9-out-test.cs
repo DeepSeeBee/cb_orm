@@ -110,7 +110,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             {
                 if (Object.ReferenceEquals(this.AcM, null))
                 {
-                    this.AcM = new CR11CRef<P, C>(this, P._AcMetaInfo);
+                    this.AcM = new CR11CRef<P, C>(this, P._AcMetaInfo, C._Parent_P_AcMetaInfo);
                 }
                 return this.AcM;
             }
@@ -131,7 +131,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             {
                 if (Object.ReferenceEquals(this.NcM, null))
                 {
-                    this.NcM = new CR11CRef<P, C>(this, P._NcMetaInfo);
+                    this.NcM = new CR11CRef<P, C>(this, P._NcMetaInfo, C._Parent_P_NcMetaInfo);
                 }
                 return this.NcM;
             }
@@ -159,6 +159,14 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         
         public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
         
+        private CR11PRef<C, P> Parent_P_AcM;
+        
+        private static CR11PRefMetaInfo _Parent_P_AcMetaInfoM = new CR11PRefMetaInfo(typeof(C), nameof(Parent_P_Ac));
+        
+        private CR11PRef<C, P> Parent_P_NcM;
+        
+        private static CR11PRefMetaInfo _Parent_P_NcMetaInfoM = new CR11PRefMetaInfo(typeof(C), nameof(Parent_P_Nc));
+        
         public C(CStorage aStorage) : 
                 base(aStorage)
         {
@@ -180,8 +188,50 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        public CR11PRef<C, P> Parent_P_Ac
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_P_AcM, null))
+                {
+                    this.Parent_P_AcM = new CR11PRef<C, P>(this, C._Parent_P_AcMetaInfo, P._AcGuidMetaInfo);
+                }
+                return this.Parent_P_AcM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_P_AcMetaInfo
+        {
+            get
+            {
+                return C._Parent_P_AcMetaInfoM;
+            }
+        }
+        
+        public CR11PRef<C, P> Parent_P_Nc
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_P_NcM, null))
+                {
+                    this.Parent_P_NcM = new CR11PRef<C, P>(this, C._Parent_P_NcMetaInfo, P._NcGuidMetaInfo);
+                }
+                return this.Parent_P_NcM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_P_NcMetaInfo
+        {
+            get
+            {
+                return C._Parent_P_NcMetaInfoM;
+            }
+        }
+        
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
+            aAddProperty.Invoke(C._Parent_P_AcMetaInfo);
+            aAddProperty.Invoke(C._Parent_P_NcMetaInfo);
         }
     }
     

@@ -205,6 +205,19 @@ namespace CbOrm.Xdl
         public CRflProperty GetPropertyNullable(string aPropertyName) => this.GetProperty(aPropertyName, () => default(CRflProperty));
         public string GetPropertyAttributeValue(string aPropertyName, string aAttributeName)=>this.GetPropertyNullable(aPropertyName).DefaultIfNull(()=>string.Empty, aProperty=>aProperty.GetAttributeValue(aAttributeName));
         public string GetPropertyAttributeValue(string aAttributeName) => this.GetPropertyAttributeValue(string.Empty, aAttributeName);
+
+        internal T Interpret<T>(Func<T> aFunc)
+        {
+            try
+            {
+                return aFunc();
+            }
+            catch (Exception aExc)
+            {
+                throw new Exception("Error evaluating type '" + this.FullName + "'. " + aExc.Message, aExc);
+            }
+        }
+
         public string FullName { get => this.Model.FullName + "." + this.Name; }
     }
     public sealed class CRflProperty

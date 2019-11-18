@@ -1,4 +1,5 @@
 ﻿+|CBlop||ClrNamespace|CbOrm.Blop
++|CBlop||GenerateReverseNavigation|false
 +|Guid||ClrNamespace|System
 +|P||Base|CEntityObject
 +|P|B|Typ|CBlop

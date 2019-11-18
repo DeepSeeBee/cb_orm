@@ -85,7 +85,7 @@
     <Compile Include="App\Sys\rfl.cs" />
     <Compile Include="Meta\Meta.cs" />
     <Compile Include="Entity\Entity.cs" />
-    <Compile Include="Ref\ref.cs" />
+    <Compile Include="Ref\Ref.cs" />
     <Compile Include="Storage\Storage.cs" />
     <Compile Include="Test\Test.cs" />
     <Compile Include="TSql\TSql.cs" />

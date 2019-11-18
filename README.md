@@ -12,6 +12,7 @@ Realized features:
 - Relation 1:N: cascade delete (on client side) 
 - Relation 1:N: cascade create
 - Relation 1:1: Navigation from Parent to Child
+- Relation 1:1: Navigation from Child To Parent
 - Relation 1:1: cascade delete (on client side)
 - Relation 1:1: cascade create
 - Optimization for loading 1:N Relations in file system storage
@@ -19,7 +20,7 @@ Realized features:
 Planned Features: (~In this sequence)
 - Custom Enum Types in mdl.
 - Optimization for loading 1:1 reverse navigation in file system storage
-- Relation 1:1: Navigation from Child To Parent
+
 - Relation 1:1: Weak: Navigation from Parent to Child
 - Relation 1:1: Weak: Navigation from Child to Parent
 - Relation 1:N: Weak: Navigation from Parent to Child

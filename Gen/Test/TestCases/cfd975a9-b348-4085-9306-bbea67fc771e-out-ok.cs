@@ -74,7 +74,6 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyPropertyNameAttribute("Parent_P_C_Guid")]
         public CR1NPRef<C, P> Parent_P_C
         {
             get

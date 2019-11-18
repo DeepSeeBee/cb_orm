@@ -82,21 +82,25 @@ namespace CbOrm.Ref
             {
                 case CCardinalityEnum.R11C:
                     return typeof(CR11CRef<CEntityObject, CObject>).GetGenericTypeDefinition();
-
                 case CCardinalityEnum.R11P:
-                    return null;
-                    //return typeof(CR11PRef>)
+                    return typeof(CR11PRef<CEntityObject, CEntityObject>).GetGenericTypeDefinition();
                 case CCardinalityEnum.R11W:
-                    return null;
+                    return typeof(CR11WRef<CEntityObject, CObject>).GetGenericTypeDefinition();
                 case CCardinalityEnum.R1NC:
-                    return null;
+                    return typeof(CR1NCRef<CEntityObject, CEntityObject>).GetGenericTypeDefinition();
                 case CCardinalityEnum.R1NP:
                     return typeof(CR1NPRef<CEntityObject, CEntityObject>).GetGenericTypeDefinition();
                 case CCardinalityEnum.R1NW:
+                    return typeof(CR1NWRef<CEntityObject, CEntityObject>).GetGenericTypeDefinition();
                 case CCardinalityEnum.Skalar:
+                    return typeof(CSkalarRef<CEntityObject, object>).GetGenericTypeDefinition();
                 default:
-                    return null;
+                    throw new ArgumentException();
             }
+        }
+
+        public virtual void RefreshValue()
+        {
         }
     }
 
@@ -107,8 +111,9 @@ namespace CbOrm.Ref
 
         }
 
-        protected void RefreshValue()
+        public override void RefreshValue()
         {
+            base.RefreshValue();
             this.ValueM = default(T);
             this.ValueLoaded = false;
             this.OnValueChanged();
@@ -371,14 +376,16 @@ namespace CbOrm.Ref
         internal override IEnumerable<Guid> TargetGuids => throw new InvalidOperationException();
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
     }
+    [CGenR11CRefCtorArgsBuilderAttribute]
     public sealed class CR11CRef<TParent, TChild> : CR11Ref<TParent, TChild>
     where TParent : CEntityObject
     where TChild : CObject
     {
-        public CR11CRef(CEntityObject aParentEntityObject, CR11CRefMetaInfo aSkalarRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aSkalarRefMetaInfo, aWriteKeyNullable)
+        public CR11CRef(CEntityObject aParentEntityObject, CR11CRefMetaInfo aSkalarRefMetaInfoNullable, CR11PRefMetaInfo aReverseNaviRefNullable = null) : base(aParentEntityObject, aSkalarRefMetaInfoNullable)
         {
-
+            this.ReverseNaviRefMetaInfoNullable = aReverseNaviRefNullable;
         }
+        private CR11PRefMetaInfo ReverseNaviRefMetaInfoNullable;
         private bool IsAutoCreateEnabled
         {
             get => this.RefMetaInfo.IsDefined<CAutoCreateAttribute>()
@@ -396,7 +403,7 @@ namespace CbOrm.Ref
                                 ? aStorage.CreateObject<TChild>()
                                 : aStorage.CreateNullObject<TChild>()
                                 ;
-                this.Value = aRefObject;
+                this.SetValueObj(aRefObject, this.WriteKeyNullable);
             }
         }
         internal override void DeleteCascade()
@@ -421,6 +428,23 @@ namespace CbOrm.Ref
         protected override void DropValue(TChild aValue)
         {
             aValue.Delete();
+        }
+        protected override void SetForeignKey(Guid aForeignKey)
+        {
+            base.SetForeignKey(aForeignKey);
+            if (!this.ReverseNaviRefMetaInfoNullable.IsNullRef())
+            {
+                var aValue = this.Value;
+                var aReverseNaviRef = this.ReverseNaviRefMetaInfoNullable.GetRef(aValue);
+                aReverseNaviRef.SetValueObj(this.ParentEntityObject, aReverseNaviRef.WriteKeyNullable);
+                //aReverseNaviRef.RefreshValue();
+            }
+        }
+        internal override void OnValueChanged()
+        {
+            base.OnValueChanged();
+
+
         }
     }
     public abstract class CR11Ref<TParent, TChild> : CRx1Ref<TParent, TChild>
@@ -455,14 +479,29 @@ namespace CbOrm.Ref
 
     }
 
-    [CGenR1NPRefCtorArgsBuilder]
-    public sealed class CR1NPRef<TChild, TParent> 
+    public abstract class CRx1PRef<TChild, TParent>
     :
         CRx1Ref<TChild, TParent>
         where TChild : CEntityObject
         where TParent : CEntityObject
     {
-        public CR1NPRef(CEntityObject aParentEntityObject, CR1NPRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
+        public CRx1PRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
+        {
+
+        }
+
+    }
+
+
+    [CGenR1NPRefCtorArgsBuilder]
+    public sealed class CR1NPRef<TChild, TParent>
+    :
+        CRx1PRef<TChild, TParent>
+        where TChild : CEntityObject
+        where TParent : CEntityObject
+    {
+        public CR1NPRef(CEntityObject aParentEntityObject, CR1NPRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) 
+            : base(aParentEntityObject, aRefMetaInfo, aFkRefMetaInfo)
         {
             this.FkRefMetaInfo = aFkRefMetaInfo;
             this.FkRef = aFkRefMetaInfo.GetRef(aParentEntityObject);
@@ -485,5 +524,25 @@ namespace CbOrm.Ref
         }
     }
 
+    [CGenR11PRefCtorArgsBuilder]
+    public sealed class CR11PRef<TChild, TParent>
+    :
+        CRx1PRef<TChild, TParent>
+        where TChild : CEntityObject
+        where TParent : CEntityObject
+    {
+        public CR11PRef(CEntityObject aParentEntityObject, CR11PRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo)
+            : base(aParentEntityObject, aRefMetaInfo, aFkRefMetaInfo)
+        {
+
+        }
+        protected override void SetForeignKey(Guid aForeignKey)
+        {
+        }
+        private void OnFkRefValueChanged(object aSender, EventArgs aArgs)
+        {
+            this.RefreshValue();
+        }
+    }
 
 }
