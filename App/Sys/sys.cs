@@ -9,7 +9,18 @@ namespace CbOrm.App.Sys
     public enum TriStateEnum
     {
         False,
-        True,        
+        True,
         Maybe
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class CSaveConverterAttribute : Attribute
+    {
+        public CSaveConverterAttribute(string aConverterId)
+        {
+            this.ConverterId = aConverterId;
+        }
+        public string ConverterId;
+    }
+
 }

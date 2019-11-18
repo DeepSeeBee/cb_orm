@@ -5,6 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CbOrm.Orm
+namespace CbOrm.Crypt
 {
 }

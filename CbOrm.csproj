@@ -44,33 +44,70 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\GeneratorOutput\CbOrm.cs" />
-    <Compile Include="App\Sys\sys.cs" />
+    <Compile Include="App\Sys\Sys.cs" />
     <Compile Include="App\Web\web.cs" />
-    <Compile Include="Crypt\crypt.cs" />
-    <Compile Include="Fs\str.cs" />
-    <Compile Include="Idg\idg.cs" />
+    <Compile Include="Attributes\Attributes.cs" />
+    <Compile Include="Blop\Blop.cs" />
+    <Compile Include="Compiler\Compiler.cs" />
+    <Compile Include="Converters\Converters.cs" />
+    <Compile Include="Crypt\Crypt.cs" />
+    <Compile Include="FileSys\FileSys.cs" />
+    <None Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-in.xdl" />
+    <None Include="Gen\Test\TestCases\b7141ae5-956e-4fdb-9e28-b9754b8563c3-in.xdl" />
+    <None Include="Gen\Test\TestCases\c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b-in.xdl" />
+    <None Include="Gen\Test\TestCases\cb9fb56f-38ef-439b-af0c-3df00ba1d611-in.xdl" />
+    <None Include="Gen\Test\TestCases\cfd975a9-b348-4085-9306-bbea67fc771e-in.xdl" />
+    <Compile Include="Gen\Test\CGenTestMethods.cs" />
+    <Compile Include="Gen\Test\DirectoryIno.cs" />
+    <Compile Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\b7141ae5-956e-4fdb-9e28-b9754b8563c3-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\b7141ae5-956e-4fdb-9e28-b9754b8563c3-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\cb9fb56f-38ef-439b-af0c-3df00ba1d611-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\cb9fb56f-38ef-439b-af0c-3df00ba1d611-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\cfd975a9-b348-4085-9306-bbea67fc771e-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\cfd975a9-b348-4085-9306-bbea67fc771e-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\d9774a1c-5e45-41d9-b259-9b33f0876267-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\d9774a1c-5e45-41d9-b259-9b33f0876267-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d-out-test.cs" />
+    <Compile Include="IdGen\IdGen.cs" />
+    <Compile Include="Loader\Loader.cs" />
     <Compile Include="MsSql\id.cs" />
-    <Compile Include="sch\sch.cs" />
+    <Compile Include="Schema\Schema.cs" />
     <Compile Include="SysDataClient\stor.cs" />
-    <Compile Include="Rfl\rfl.cs" />
-    <Compile Include="Mta\mta.cs" />
-    <Compile Include="eno\eno.cs" />
+    <Compile Include="App\Sys\rfl.cs" />
+    <Compile Include="Meta\Meta.cs" />
+    <Compile Include="Entity\Entity.cs" />
     <Compile Include="Ref\ref.cs" />
-    <Compile Include="Str\str.cs" />
-    <Compile Include="TSql\sql.cs" />
-    <Compile Include="ut\ut.cs" />
+    <Compile Include="Storage\Storage.cs" />
+    <Compile Include="Test\Test.cs" />
+    <Compile Include="TSql\TSql.cs" />
+    <Compile Include="Gen\Test\GenUnitTest.cs" />
+    <Compile Include="Util\Util.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Gen\gen.cs" />
-    <Compile Include="Mdl\mdl.cs" />
+    <Compile Include="Xdl\Xdl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App\DotNet\DotNet.xdl" />
+    <None Include="App\Sys\Sys.xdl" />
+    <None Include="App\Web\Web.xdl" />
+    <None Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-in.xdl" />
+    <None Include="Gen\Test\TestCases\d9774a1c-5e45-41d9-b259-9b33f0876267-in.xdl" />
+    <None Include="Gen\Test\TestCases\f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d-in.xdl" />
+    <None Include="Gen\Test\TestSequence.xdl" />
+    <None Include="Gen\Test\TestSequence.xdl-report.xdl" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\GeneratorInput\orm_model.txt" />
-    <Content Include="App\GeneratorInput\orm_model_ids.txt" />
+    <None Include="App\GeneratorInput\cb_orm_vapp_m.xdl" />
+    <None Include="App\GeneratorInput\cb_orm_vapp_id.xdl" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

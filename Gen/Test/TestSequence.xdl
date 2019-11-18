@@ -1,0 +1,20 @@
+﻿+|d9774a1c-5e45-41d9-b259-9b33f0876267|||||Generate Nothing; Comment
++|b442b4a1-e615-42ea-ab87-0ea0b994e370|||||Generate Nothing; RowIgnored
++|f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d|||||Generate EntityObjectClass
++|c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b|||||Generate SkalarField
++|cfd975a9-b348-4085-9306-bbea67fc771e|||||Generate 1:NC Relation (Cardinality 1:N, Parent->Child)
++|2dff5efa-d964-42c5-98af-d418ede035b9|||||Generate 1:1C Relation (Cardinality 1:1, Parent->Child)
++|b7141ae5-956e-4fdb-9e28-b9754b8563c3|||||Generate 1:NW Relation (Cardinality 1:N, Weak)
++|cb9fb56f-38ef-439b-af0c-3df00ba1d611|||||Generate 1:1W Relation (Cardinality 1:1, Weak)
+-|4ad321b6-1455-4852-978b-277ca323e7c7
+-|dcdd34a6-a44a-401e-8c2b-e27b3966d984
+-|0c2e970c-f003-403e-a90f-f2acedb344ed
+-|3c33e931-2902-4d22-a6f7-05daa01389b7
+-|4aabaf80-96d2-40c4-9b46-99e5a445919c
+-|5163a372-1d89-4d37-8179-6fb912f9c1a2
+-|5c7577c8-6180-4b63-9291-daeb6484935c
+-|cfec4546-780f-425d-91b5-b8d5b5c4005f
+-|6a0ec979-3ea6-4757-a487-e2bdb2e0666d
+-|12021948-b074-4e13-9846-47862052930a
+-|19bd233e-9965-44b7-8877-2f3b516d4109
+-|f6ff979c-7d82-4fc2-8109-29804c707ea0

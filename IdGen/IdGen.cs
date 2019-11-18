@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CbOrm.App.Web
+namespace CbOrm.IdgGen
 {
-
-    public struct CEmailAdress
+    public class CIdGen
     {
-
+        public virtual object GenerateModelId() => Guid.NewGuid();
     }
 }

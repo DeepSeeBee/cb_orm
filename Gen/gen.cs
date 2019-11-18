@@ -1,5 +1,10 @@
 ﻿// This is my 2nd generation ORM-Wrapper. (code generator)
+// TODO:
 // - Clone
+// - xdl.Import, populate web.xdl 
+// - xdl comment rows.
+// - Optionale ReverseNavigation Extending
+// - Optionale ID Extending
 // - AutoCreate
 // - WeakRef
 // - Base=Mdl.Enum
@@ -11,6 +16,7 @@
 // - Mta obsolete?
 // - Meta-New in static ctor / lazyload ? performance improvement?
 // - Testing
+// - Support structs/classes as skalar fields?
 
 using System;
 using System.Collections.Generic;
@@ -18,14 +24,14 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using System.CodeDom;
-using CbOrm.Orm;
 using System.CodeDom.Compiler;
-using CbOrm.Mdl;
+using CbOrm.Xdl;
 using System.Collections;
-using CbOrm.Mta;
-using CbOrm.Eno;
-using CbOrm.Ut;
-using CbOrm.sch;
+using CbOrm.Meta;
+using CbOrm.Entity;
+using CbOrm.Util;
+using CbOrm.Schema;
+using CbOrm.Loader;
 
 namespace CbOrm.Gen
 {
@@ -33,27 +39,31 @@ namespace CbOrm.Gen
 
     public enum CCardinalityEnum
     {
+        Skalar,
         R11C,
         R11P,
         R1NC,
         R1NP,
         R1NW,
-        R11W,
+        R11W,        
     }
 
-    public class CIdentifierTokens
+    public class CGenTokens : CRflTokens
     {
+
         // ModelDefinitionLange Identifier tokens
-        public string Mdl_G_A_Namespace = "Namespace";
         public string Mdl_G_A_Schema = "Schema";
 
         public string Mdl_P_A_Nme_Init = "init";
         public string Mdl_P_A_Nme_Crd = "Cardinality";
-        public string Mdl_P_A_Nme_DomA = "a.";
+        public string Mdl_P_A_Nme_DomAGen = "a?:";
+        public string Mdl_P_A_Nme_DomAExst = "a:";
+        public string Dom_P_Singleton_Nme = "Singleton";
 
         public string Mdl_T_A_Nme_Base = "Base";
         public string Mdl_T_A_Nme_Init = "Init";
         public string Mdl_T_A_Nme_ClrNs = "ClrNamespace";
+        public string Mdl_T_A_Guid_Nme = "Guid";
 
         // CodeDOM Identifier tokens
         public string Dom_A_Cls_Sfx = "Attribute";
@@ -64,41 +74,39 @@ namespace CbOrm.Gen
         public string Dom_C_Var = "var";
 
         public string Dom_F_Sfx = "M";
-        public string Dom_F_MtaP_Sfx = "Prop";
+        public string Dom_F_Mta_P_Sfx = "MetaInfo";
 
         public string Dom_O_NameOf_Nme = "nameof";
         public string Dom_O_TypeOf_Nme = "typeof";
 
         public string Dom_P_NewValNme = "value";
-        public string Dom_P_Ref_Sfx = "Ref";
+        public string Dom_P_Ref_Sfx = ""; // Ref
 
         public string Dom_Tmpl_IEnumerable = nameof(IEnumerable);
 
         // Target identfiier Tokens (Target=.NET Framework)
-        public string Trg_C_Obj_Nsp = typeof(Eno.CObject).Namespace;
-        public string Trg_C_Obj_Nme = nameof(Eno.CObject);
-        public string Trg_C_Eno_Nsp = typeof(Eno.CEntityObject).Namespace;
-        public string Trg_C_Eno_Nme = nameof(Eno.CEntityObject);
-        public string Trg_C_Str_Nsp = typeof(Str.CStorage).Namespace;
-        public string Trg_C_Str_Nme = nameof(Str.CStorage);
-        public string Trg_C_Ref_Nme = typeof(Ref.CR1NCRef<Eno.CEntityObject, Eno.CObject>).Namespace;
+        public string Trg_C_Obj_Nsp = typeof(Entity.CObject).Namespace;
+        public string Trg_C_Obj_Nme = nameof(Entity.CObject);
+        public string Trg_C_Eno_Nsp = typeof(Entity.CEntityObject).Namespace;
+        public string Trg_C_Eno_Nme = nameof(Entity.CEntityObject);
+        public string Trg_C_Str_Nsp = typeof(Storage.CStorage).Namespace;
+        public string Trg_C_Str_Nme = nameof(Storage.CStorage);
+        public string Trg_C_Ref_Nme = typeof(Ref.CR1NCRef<Entity.CEntityObject, Entity.CObject>).Namespace;
 
-        public string Trg_N_GetPrps_Nme = "GetProperties";
+        public string Trg_N_GetPrps_Nme = "_GetProperties";
 
-        // Target Identoifier Tokens (Target=.NET Framework, CbOrmMetaInfo)
+        // Target Identifier Tokens (Target=.NET Framework, CbOrmMetaInfo)
         public string Trg_C_Mta_Pfx = "_";
-        public string Trg_C_Mta_P_Fld_Nsp = typeof(Mta.CFieldProperty).Namespace;
-        public string Trg_C_Mta_P_Fld_Nme = nameof(Mta.CFieldProperty);
+        public string Trg_C_Mta_P_Fld_Nsp = typeof(Meta.CSkalarRefMetaInfo).Namespace;
+        public string Trg_C_Mta_P_Fld_Nme = nameof(Meta.CSkalarRefMetaInfo);
+        public string Trg_C_Mta_P_Rel_Sfx = "MetaInfo";
+        public string Trg_C_Schema_M_GetSchmema = "GetSingleton";
 
         public virtual IEnumerable<Type> NativeTypes
         {
             get
             {
-                //yield return typeof(object);
-                //yield return typeof(string);
-                //yield return typeof(bool);
-                //yield return typeof(Int32);
-                yield return typeof(Rfl.CSaveConverterAttribute);
+                //yield return typeof(Rfl.CSaveConverterAttribute);
                 yield return typeof(IEnumerable<object>).GetGenericTypeDefinition();
             }
         }
@@ -120,20 +128,24 @@ namespace CbOrm.Gen
                                                                                                 + aModelClassName
                                                                                                 + this.Dom_A_Cls_Sfx;
         public virtual string GetClrClassNameFromModel(string aModelClassName) => this.Dom_C_Pfx + aModelClassName;
-        public virtual string GetMemberFieldName(string aPrpNme) => aPrpNme + this.Dom_F_Sfx;
-        public virtual string GetMetaPropertyPropertyName(string aPrpNme) => this.Trg_C_Mta_Pfx + aPrpNme + this.Dom_F_MtaP_Sfx;
-        internal string GetSchemaClassName(string aSchNme) => aSchNme + this.Dom_C_Sch_Sfx;
+        public virtual string GetFieldName(string aPrpNme) => aPrpNme + this.Dom_F_Sfx;
+        public virtual string GetRelationyMetaInfoPropertyName(string aPrpNme) => this.Trg_C_Mta_Pfx + aPrpNme + this.Dom_F_Mta_P_Sfx;
+        public virtual string GetRelationMetaInfoFieldName(string aPropertyName) => this.GetFieldName(this.GetRelationyMetaInfoPropertyName(aPropertyName));
+        public virtual string GetSchemaClassName(string aSchNme) => aSchNme.Length == 0 ? string.Empty : aSchNme + this.Dom_C_Sch_Sfx;
+        public virtual string GeRelationMetaInfoTypName(string aRelTypName) => aRelTypName + this.Trg_C_Mta_P_Rel_Sfx;
+        public virtual string GetGetSchemaFuncName() => this.Trg_C_Schema_M_GetSchmema;
+
     }
 
  
 
-    public class CMdlInterpreter
+    public class CMdlInterpreter : CRflModelInterpreter
     {
-        public CIdentifierTokens Tok;
-        public CMdlInterpreter(CIdentifierTokens aTok) { this.Tok = aTok; }
-        public CMdlInterpreter() : this(new CIdentifierTokens()) { }
+        public readonly new CGenTokens Tok;
+        public override CRflTokens Tokens => this.Tok;
+        public CMdlInterpreter(CGenTokens aTok) { this.Tok = aTok; }
+        public CMdlInterpreter() : this(new CGenTokens()) { }
 
-        public virtual string GetNamespace(CRflModel aMdl) => aMdl.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Namespace);
         public virtual string GetSchema(CRflModel aMdl) => aMdl.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
         public virtual string GetTypName(CRflTyp aRflClass) => aRflClass.Name;
         public virtual string GetBase(CRflTyp aRflClass) => aRflClass.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Base);
@@ -142,35 +154,37 @@ namespace CbOrm.Gen
         public virtual bool GetIsEntityObject(CRflTyp aTyp) => GetBase(aTyp).Length > 0;
         public virtual string GetInit(CRflTyp aTyo) => aTyo.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Init);
         public virtual string GetInit(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Init).DefaultIfEmpty(() => this.GetInit(this.GetReturnTyp(aPrp)));
-        public virtual IEnumerable<CRflAttribute> GetAttributes(CRflProperty aPrp) => aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomA);
-        public virtual CCardinalityEnum GetCardinality(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Crd).DefaultIfEmpty(aCardinalityText => ("R" + aCardinalityText.Replace(":", string.Empty)).ParseEnum<CCardinalityEnum>(), () => CCardinalityEnum.R1NC);
+        public virtual IEnumerable<CRflAttribute> GetAttributes(CRflProperty aPrp) => aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAGen);
+        public virtual CCardinalityEnum GetCardinality(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Crd).DefaultIfEmpty(aCardinalityText => ("R" + aCardinalityText.Replace(":", string.Empty)).ParseEnum<CCardinalityEnum>(), () => this.GetIsEntityObject(this.GetReturnTyp(aPrp)) ? CCardinalityEnum.R1NC : CCardinalityEnum.Skalar);
         public virtual string GetClassName(CCardinalityEnum aCardinality) => this.Tok.Dom_C_Pfx + aCardinality.ToString() + this.Tok.Dom_C_Ref_Sfx;
         public virtual string GetEntityRefPropertyName(CRflProperty aPrp) => aPrp.Name + this.Tok.Dom_P_Ref_Sfx;
-        public IEnumerable<CRflTyp> GetEntityObjectClasses(CRflModel aMdl) => from aTest in aMdl.Typs where this.GetBase(aTest) == this.Tok.Trg_C_Eno_Nme select aTest;
-        internal IEnumerable<string> GetClrNamespaces(CRflModel aMdl) => (from aTyp in aMdl.Typs
+        public virtual IEnumerable<CRflTyp> GetEntityObjectClasses(CRflModel aMdl) => from aTest in aMdl.Typs where this.GetBase(aTest) == this.Tok.Trg_C_Eno_Nme select aTest;
+        internal virtual IEnumerable<string> GetClrNamespaces(CRflModel aMdl) => (from aTyp in aMdl.Typs
                                                                           where aTyp.Name.Length > 0
                                                                           select aTyp.GetPropertyAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs)).Where(aNs => aNs.Length > 0);
+        internal virtual Guid GetGuid(CRflTyp aTyp) => aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Guid_Nme).DefaultIfEmpty<Guid>(s => new Guid(s), () => default(Guid));
     }
 
     public class CCodeDomBuilder
     {
-        public CCodeDomBuilder(CMdlInterpreter aIdl, CIdentifierTokens aTok)
+        public CCodeDomBuilder(CMdlInterpreter aIdl, CGenTokens aTok)
         {
             this.Idl = aIdl;
             this.Tok = aTok;
         }
-        public CCodeDomBuilder() : this(new CMdlInterpreter(), new CIdentifierTokens()) { }
+        public CCodeDomBuilder() : this(new CMdlInterpreter(), new CGenTokens()) { }
 
         public CMdlInterpreter Idl;
-        public CIdentifierTokens Tok;
+        public CGenTokens Tok;
 
         public virtual CodeTypeReference NewCodeTypeRefFromModel(string aName) => new CodeTypeReference(aName);
         public virtual CodeTypeReference NewCodeTypeRef(CRflTyp aTyp) => this.NewCodeTypeRefFromModel(this.Idl.GetTypName(aTyp));
         public virtual CodeExpression NewNameOfPrpertyExpression(string aPrpName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aPrpName + ")");
+        public virtual CodeExpression NewNameOTypeExpression(string aTypName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aTypName + ")");
         public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDecls(CRflProperty aPrp)
-            => from aAttribute in aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomA)
+            => from aAttribute in aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAGen)
                select new CodeAttributeDeclaration(
-                   new CodeTypeReference(this.Tok.GetClrAttributeClassNameFromModel(aAttribute.Name.TrimStart(this.Tok.Mdl_P_A_Nme_DomA))),
+                   new CodeTypeReference(this.Tok.GetClrAttributeClassNameFromModel(aAttribute.Name.TrimStart(this.Tok.Mdl_P_A_Nme_DomAGen))),
                     new CodeAttributeArgument(new CodePrimitiveExpression(aAttribute.Value)));
 
         public virtual Tuple<CodeMemberProperty, CodeMemberField> NewLazyLoadPrperty(CodeTypeReference aCdRetTyp,
@@ -181,7 +195,7 @@ namespace CbOrm.Gen
                                                                        )
         {
             // MemberField
-            var aCdFldNme = this.Tok.GetMemberFieldName(aName);
+            var aCdFldNme = this.Tok.GetFieldName(aName);
             var aCdFld = new CodeMemberField(aCdRetTyp, aCdFldNme);
             var aCdFldRef = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), aCdFldNme);
             var aEqMNme = aIsClass ? nameof(object.ReferenceEquals) : nameof(object.Equals);
@@ -210,45 +224,26 @@ namespace CbOrm.Gen
             yield return new CodeSnippetStatement("foreach(var aItem in base." + aMethodName + "()) ");
             yield return new CodeSnippetStatement(this.NewYieldReturnStatementSnippet("aItem"));
         }
-
         internal virtual CodeTypeReference NewCodeTypeRef<T>() => new CodeTypeReference(typeof(T));
+        internal CodeFieldReferenceExpression NewTypMetaInfoFieldRefExp(string aClassName) => new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(aClassName), this.GetTypMetaInfoFieldName(aClassName));
+        internal string GetTypMetaInfoPropName(string aClassName)=> "_" + aClassName + "_" + "Typ";
+        internal string GetTypMetaInfoFieldName(string aClassName) => this.Tok.GetFieldName(this.GetTypMetaInfoPropName(aClassName));
     } 
 
-    public class CModelExpander
-    {
-        public virtual CRflModel Expand(CRflModel aMdl) => aMdl;
-    }
-
-    public sealed class NewIdsModelExpander : CModelExpander
-    {
-        public override CRflModel Expand(CRflModel aMdl)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public sealed class CNewCrossRefModelExpander : CModelExpander
-    {
-        public override CRflModel Expand(CRflModel aMdl)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     public sealed class CCodeGenerator
     {
-        public CModelExpander Exp;
-        public CMdlInterpreter MdlI;
-        public CIdentifierTokens Tok;
+        public CChainedModelExpander Exp = new CChainedModelExpander();
+        public CMdlInterpreter ModelInterpreter;
+        public CGenTokens Tok;
         public CCodeDomBuilder DomI;
 
         public CCodeGenerator(FileInfo aModelInputFileInfo,
                                 FileInfo aIdsInputFileInfo,
                                 FileInfo aModelOutputFileInfo,
                                 FileInfo aIdsOutputFileInfo)
-            : this(new CModelExpander(),
-                   new CMdlInterpreter(),
-                   new CIdentifierTokens(),
+            : this(new CMdlInterpreter(),
+                   new CGenTokens(),
                    new CCodeDomBuilder(),
                    aModelInputFileInfo,
                    aIdsInputFileInfo,
@@ -257,28 +252,26 @@ namespace CbOrm.Gen
         {
         }
 
-        public CCodeGenerator(CModelExpander aExp,
-                              CMdlInterpreter aMdlInterpreter,
-                              CIdentifierTokens aTok,
+        public CCodeGenerator(CMdlInterpreter aMdlInterpreter,
+                              CGenTokens aTok,
                               CCodeDomBuilder aDom,
                               FileInfo aModelInputFileInfo,
                               FileInfo aIdsInputFileInfo,
                               FileInfo aModelOutputFileInfo,
                               FileInfo aIdsOutputFileInfo)
         {
-            this.Exp = aExp;
-            this.MdlI = aMdlInterpreter;
+            this.ModelInterpreter = aMdlInterpreter;
             this.Tok = aTok;
             this.DomI = aDom;
 
             this.ModelInputFileInfo = aModelInputFileInfo;
-            this.IdsInputFileInfo = aIdsInputFileInfo;
+            this.IdsInputFileInfoNullable = aIdsInputFileInfo;
             this.ModelOutputFileInfo = aModelOutputFileInfo;
             this.IdsOutputFileInfo = aIdsOutputFileInfo;
         }
 
         public readonly FileInfo ModelInputFileInfo;
-        public readonly FileInfo IdsInputFileInfo;
+        public readonly FileInfo IdsInputFileInfoNullable;
         public readonly FileInfo ModelOutputFileInfo;
         public readonly FileInfo IdsOutputFileInfo;
 
@@ -307,28 +300,39 @@ namespace CbOrm.Gen
         }
 
 
-        private void AddMembers(CRflTyp aPTyp, CodeTypeDeclaration aCdTypDcl, CRflProperty aPrp)
+        private void AddMembers(CRflTyp aPTyp, CodeTypeDeclaration aCdTypDcl, CRflProperty aProperty)
         {
-            var aPTypNme = this.MdlI.GetTypName(aPTyp);
-            var aCTyp = this.MdlI.GetReturnTyp(aPrp);
-            var aPrpNme = aPrp.Name;
-            if (this.MdlI.GetIsEntityObject(aCTyp))
+            var aModel = aProperty.Model;
+            var aPTypNme = this.ModelInterpreter.GetTypName(aPTyp);
+            var aCdPTypRef = new CodeTypeReference(aPTypNme);
+            var aCdPTypRefExp = new CodeTypeReferenceExpression(aCdPTypRef);
+            var aCTyp = this.ModelInterpreter.GetReturnTyp(aProperty);
+            var aPrpNme = aProperty.Name;
+            string aMtaFldTypNme;
+            var aMtaPrpNme = this.Tok.GetRelationyMetaInfoPropertyName(aPrpNme);
+            var aMtaPrpRefExp = new CodePropertyReferenceExpression(aCdPTypRefExp, aMtaPrpNme);
+            var aHasRelationObject = true; //this.ModelInterpreter.GetIsEntityObject(aCTyp)
+
+            if (aHasRelationObject)
             {
-                var aCrd = this.MdlI.GetCardinality(aPrp);
-                var aRTypName = this.MdlI.GetClassName(aCrd);
-                var aCdRTypRef = new CodeTypeReference(aRTypName, this.DomI.NewCodeTypeRef(aPTyp), this.DomI.NewCodeTypeRef(aCTyp));
-                var aNewExp = new CodeObjectCreateExpression(aCdRTypRef);
+                // Relations-Objects
+                var aCrd = this.ModelInterpreter.GetCardinality(aProperty);
+                var aRelTypName = this.ModelInterpreter.GetClassName(aCrd);
+                var aCdRTypRef = new CodeTypeReference(aRelTypName, this.DomI.NewCodeTypeRef(aPTyp), this.DomI.NewCodeTypeRef(aCTyp));
+                var aNewExp = new CodeObjectCreateExpression(aCdRTypRef, new CodeThisReferenceExpression(), aMtaPrpRefExp);
                 var aIsClass = true;
-                var aLazyPrp = this.DomI.NewLazyLoadPrperty(aCdRTypRef, aIsClass, this.MdlI.GetEntityRefPropertyName(aPrp), aNewExp, MemberAttributes.Public | MemberAttributes.Final);
+                var aLazyPrp = this.DomI.NewLazyLoadPrperty(aCdRTypRef, aIsClass, this.ModelInterpreter.GetEntityRefPropertyName(aProperty), aNewExp, MemberAttributes.Public | MemberAttributes.Final);
                 aCdTypDcl.Members.Add(aLazyPrp.Item1);
                 aCdTypDcl.Members.Add(aLazyPrp.Item2);
+                aMtaFldTypNme = this.Tok.GeRelationMetaInfoTypName(aRelTypName);
             }
             else
             {
-                var aPrpTypNme = this.MdlI.GetTypName(aCTyp);
+                // SkalarFields: "Simple" DataTypes (May be also struct on certain sql servers - support it?)
+                var aPrpTypNme = this.ModelInterpreter.GetTypName(aCTyp);
                 var aPrpTyp = new CodeTypeReference(aPrpTypNme);
-                var aCdFldNme = this.Tok.GetMemberFieldName(aPrpNme);
-                var aInit = this.MdlI.GetInit(aPrp);
+                var aCdFldNme = this.Tok.GetFieldName(aPrpNme);
+                var aInit = this.ModelInterpreter.GetInit(aProperty);
                 var aCdFldRefExp = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), aCdFldNme);
 
                 // MemberVar
@@ -346,7 +350,7 @@ namespace CbOrm.Gen
                 aCdTypDcl.Members.Add(aCdPrp);
 
                 // Property.Set
-                var aNewValExp = new CodeVariableReferenceExpression(this.MdlI.Tok.Dom_P_NewValNme);
+                var aNewValExp = new CodeVariableReferenceExpression(this.ModelInterpreter.Tok.Dom_P_NewValNme);
                 var aEqExp = new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(object).Name),
                                                             nameof(object.Equals),
                                                             aCdFldRefExp,
@@ -357,39 +361,116 @@ namespace CbOrm.Gen
                 aCdPrp.SetStatements.Add(aIfExp);
 
                 // Property.Attributes
-                var aCdAs = this.DomI.NewCodeAttributeDecls(aPrp);
+                var aCdAs = this.DomI.NewCodeAttributeDecls(aProperty);
                 aCdPrp.CustomAttributes.AddRange(aCdAs.ToArray());
 
-                // CbOrm-NetaInfo
-                var aMtaFldNme = this.Tok.GetMetaPropertyPropertyName(aPrpNme);
-                var aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
-                var aCdMtaFldTypRef = new CodeTypeReference(aMtaFldTypNme);
-                var aCdMtaPrpFldDcl = new CodeMemberField(aMtaFldTypNme, aMtaFldNme);
-                var aCdMtaPrpInitExp = new CodeObjectCreateExpression(aCdMtaFldTypRef,
-                                                                      this.DomI.NewTypeOfExpression(aPTypNme),
-                                                                      this.DomI.NewTypeOfExpression(aPrpTypNme),
-                                                                      this.DomI.NewNameOfPrpertyExpression(aPrpNme));
-                aCdMtaPrpFldDcl.Type = aCdMtaFldTypRef;
-                aCdMtaPrpFldDcl.Attributes = MemberAttributes.Static
-                                         | MemberAttributes.Const
-                                         | MemberAttributes.Public
-                                         ;
-                aCdMtaPrpFldDcl.InitExpression = aCdMtaPrpInitExp;
-                aCdTypDcl.Members.Add(aCdMtaPrpFldDcl);
+                aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
+
             }
+            // Property.NetaInfo.Field
+            var aMtaFldNme = this.Tok.GetRelationMetaInfoFieldName(aPrpNme);
+            //aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
+            var aCdMtaFldTypRef = new CodeTypeReference(aMtaFldTypNme);
+            var aCdMtaPrpFldDcl = new CodeMemberField(aMtaFldTypNme, aMtaFldNme);
+            var aCdMtaPrpInitExp = new CodeObjectCreateExpression(aCdMtaFldTypRef,
+                                                                  this.DomI.NewTypeOfExpression(aPTypNme),
+                                                                  this.DomI.NewNameOfPrpertyExpression(aPrpNme)                                                                  
+                                                                  );
+            aCdMtaPrpFldDcl.Type = aCdMtaFldTypRef;
+            aCdMtaPrpFldDcl.Attributes = MemberAttributes.Static
+                                     | MemberAttributes.Private
+                                     ;
+            aCdMtaPrpFldDcl.InitExpression = aCdMtaPrpInitExp;
+            aCdTypDcl.Members.Add(aCdMtaPrpFldDcl);
+
+            var aCdMtaFldRefExp = new CodeFieldReferenceExpression(aCdPTypRefExp, aMtaFldNme);
+
+            // Property.MetaInfo.Property
+            var aCdMtaPrp = new CodeMemberProperty();
+            aCdMtaPrp.Name = aMtaPrpNme;
+            aCdMtaPrp.Type = aCdMtaFldTypRef;
+            aCdMtaPrp.Attributes = MemberAttributes.Static
+                                 | MemberAttributes.Public
+                                 ;
+            aCdMtaPrp.HasGet = true;
+            aCdMtaPrp.GetStatements.Add(new CodeMethodReturnStatement(aCdMtaFldRefExp));
+            aCdTypDcl.Members.Add(aCdMtaPrp);
+
         }
 
-        private CodeTypeDeclaration NewEntityObjectClass(CRflTyp aRflTyp)
+        private CodeTypeDeclaration NewCodeEntityObjectClass(CRflTyp aRflTyp)
         {
-            var aClassName = this.MdlI.GetTypName(aRflTyp);
+            var aModel = aRflTyp.Model;
+            var aSchemaClsNme = this.Tok.GetSchemaClassName(this.ModelInterpreter.GetSchema(aModel));
+            var aGetSchemaMthNme = this.Tok.GetGetSchemaFuncName();
+
+            // Class
+            var aClassName = this.ModelInterpreter.GetTypName(aRflTyp);
             var aCdTypDecl = new CodeTypeDeclaration(aClassName);
+            var aCdTypRef = new CodeTypeReference(aClassName);
+            var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
             aCdTypDecl.BaseTypes.Add(this.NewCodeTypeReference(this.Tok.Trg_C_Eno_Nme));
+
+            var aGetPrpsMthdNme = this.Tok.Trg_N_GetPrps_Nme;
+            var aGetPrpsMthActionArgNme = "aAddProperty";
+            var aCdGetPrpsMthdRefExp = new CodeMethodReferenceExpression(aCdTypRefExp, aGetPrpsMthdNme);
+
+            // Typ.Field
+            var aTypTypRef = this.DomI.NewCodeTypeRef<CTyp>();
+            var aTypFldNme = this.DomI.GetTypMetaInfoFieldName(aClassName); //  "_" + aClassName + "_" + "Typ";
+            var aCdTypFldDcl = new CodeMemberField(aTypTypRef, aTypFldNme);
+            var aCdTypeOfExp = this.DomI.NewTypeOfExpression(aClassName);
+            var aCdNameOfExp = this.DomI.NewNameOTypeExpression(aClassName);
+            var aGuid = this.ModelInterpreter.GetGuid(aRflTyp);
+            var aCdGuidTypeRef = new CodeTypeReference(typeof(Guid));
+            var aCdGuidExp = new CodeObjectCreateExpression(aCdGuidTypeRef, new CodePrimitiveExpression(aGuid.ToString()));
+            var aCdPrototypeExp = new CodeObjectCreateExpression(aCdTypRef, new CodePrimitiveExpression(null));
+            var aCdAddPrpsMthdRef = new CodeMethodReferenceExpression(aCdTypRefExp, aGetPrpsMthdNme);
+            aCdTypFldDcl.Attributes = MemberAttributes.Public
+                                  | MemberAttributes.Static
+                                  ;
+            aCdTypFldDcl.InitExpression = new CodeObjectCreateExpression(aTypTypRef, aCdTypeOfExp, aCdGuidExp, aCdGetPrpsMthdRefExp);
+            aCdTypDecl.Members.Add(aCdTypFldDcl);
+
+            var aTypFldRefExp = new CodeFieldReferenceExpression(aCdTypRefExp, aTypFldNme);
+
+            // Typ.Property._Static
+            var aTypPrpNme = this.DomI.GetTypMetaInfoPropName(aClassName);
+            var aCdTypPrp = new CodeMemberProperty();
+            aCdTypPrp.Name = aTypPrpNme;
+            aCdTypPrp.Attributes = MemberAttributes.Static
+                                 | MemberAttributes.Public
+                                 ;
+            aCdTypPrp.Type = aTypTypRef;
+            aCdTypPrp.GetStatements.Add(new CodeMethodReturnStatement(aTypFldRefExp));
+            aCdTypPrp.HasGet = true;
+            aCdTypDecl.Members.Add(aCdTypPrp);
+
+            var aCdTypPrpRefExp = new CodePropertyReferenceExpression(aCdTypRefExp, aTypPrpNme);
+
+            // Typ.Property.Get.Override
+            var aOverrideTypPrpName = nameof(CObject.Typ);
+            var aCdOverrideTypPrp = new CodeMemberProperty();
+            aCdOverrideTypPrp.Attributes = MemberAttributes.Public
+                                         | MemberAttributes.Override
+                                         ;
+            aCdOverrideTypPrp.Type = aTypTypRef;
+            aCdOverrideTypPrp.Name = aOverrideTypPrpName;
+            aCdOverrideTypPrp.GetStatements.Add(new CodeMethodReturnStatement(aCdTypPrpRefExp));
+            aCdOverrideTypPrp.HasGet = true;
+            aCdTypDecl.Members.Add(aCdOverrideTypPrp);
+
+            // Constructor
             var aCodeConstructor = new CodeConstructor();
             aCodeConstructor.Attributes = MemberAttributes.Public;
             var aStorageArgName = "aStorage";
             aCodeConstructor.Parameters.Add(new CodeParameterDeclarationExpression(this.NewCodeTypeReference(this.Tok.Trg_C_Str_Nme), aStorageArgName));
             aCodeConstructor.BaseConstructorArgs.Add(new CodeVariableReferenceExpression(aStorageArgName));
             aCdTypDecl.Members.Add(aCodeConstructor);
+
+            
+
+            // Properties
             var aNmePrps = aRflTyp.NamedProperties;
             foreach (var aPrp in aNmePrps)
             {
@@ -397,13 +478,25 @@ namespace CbOrm.Gen
             }
 
             // CObject.GetProperties
+            var aActionOfPropertyType = typeof(Action<CRefMetaInfo>);
+            var aCdActionOfPropertyTypRef = new CodeTypeReference(aActionOfPropertyType);
             var aCdGetPrpsMth = new CodeMemberMethod();
-            aCdGetPrpsMth.Name = this.Tok.Trg_N_GetPrps_Nme;
-            aCdGetPrpsMth.ReturnType = new CodeTypeReference(this.Tok.Dom_Tmpl_IEnumerable, this.DomI.NewCodeTypeRef<CProperty>());
-            aCdGetPrpsMth.Attributes = MemberAttributes.Public | MemberAttributes.Override;
-            aCdGetPrpsMth.Statements.AddRange(this.DomI.NewYieldReturnBaseItemsStatements(nameof(CEntityObject.GetProperties)).ToArray());
-            aCdGetPrpsMth.Statements.AddRange((from aPrp in aNmePrps where !this.MdlI.GetIsEntityObject(this.MdlI.GetReturnTyp(aPrp)) select new CodeSnippetStatement(this.DomI.NewYieldReturnStatementSnippet("this." + this.Tok.GetMetaPropertyPropertyName(aPrp.Name)))).ToArray());
+            aCdGetPrpsMth.Name = aGetPrpsMthdNme;
+            aCdGetPrpsMth.Attributes = MemberAttributes.Static 
+                                     | MemberAttributes.Private
+                                     ;
+            aCdGetPrpsMth.Parameters.Add(new CodeParameterDeclarationExpression(aCdActionOfPropertyTypRef, aGetPrpsMthActionArgNme));
+            foreach(var aNmePrp in aNmePrps)
+            {
+                var aPrpNme = aNmePrp.Name;
+                var aMtaPrpNme = this.Tok.GetRelationyMetaInfoPropertyName(aPrpNme);
+                var aMtaPrpRefExp = new CodePropertyReferenceExpression(aCdTypRefExp, aMtaPrpNme);
+                var aArgRefExp = new CodeArgumentReferenceExpression(aGetPrpsMthActionArgNme);
+                var aCdCallExpnew = new CodeMethodInvokeExpression(aArgRefExp, nameof(Action.Invoke), aMtaPrpRefExp);
+                aCdGetPrpsMth.Statements.Add(aCdCallExpnew);
+            }
             aCdTypDecl.Members.Add(aCdGetPrpsMth);
+
             return aCdTypDecl;
         }
 
@@ -411,47 +504,102 @@ namespace CbOrm.Gen
         {
             var aMdl = this.Model;
             var aNamespace = new CodeNamespace();
-            var aEnoClss = this.MdlI.GetEntityObjectClasses(aMdl);
-            var aEnoTyps = (from aRflClass in aEnoClss select this.NewEntityObjectClass(aRflClass)).ToArray();
+            var aEnoClss = this.ModelInterpreter.GetEntityObjectClasses(aMdl);
+            var aEnoTyps = (from aRflClass in aEnoClss select this.NewCodeEntityObjectClass(aRflClass)).ToArray();
             var aCompileUnit = new CodeCompileUnit();
-            var aSchemaClass = this.NewSchemaClass(aMdl);
+            var aSchemaClass = this.NewSchemaClasses(aMdl);
 
-            aNamespace.Name = this.MdlI.GetNamespace(aMdl);
+            aNamespace.Name = this.ModelInterpreter.GetNamespace(aMdl);
             aCompileUnit.Namespaces.Add(aNamespace);
-            aNamespace.Imports.AddRange((from aNs in this.Tok.Trg_Nsps.Concat(this.MdlI.GetClrNamespaces(aMdl)).NewWithoutDuplicates() select new CodeNamespaceImport(aNs)).ToArray());
+            aNamespace.Imports.AddRange((from aNs in this.Tok.Trg_Nsps.Concat(this.ModelInterpreter.GetClrNamespaces(aMdl)).NewWithoutDuplicates() select new CodeNamespaceImport(aNs)).ToArray());
             aNamespace.Types.AddRange(aEnoTyps);
-            aNamespace.Types.Add(aSchemaClass);
+            aNamespace.Types.AddRange(aSchemaClass.ToArray());
 
             var aCodeDomProvider = CodeDomProvider.CreateProvider("CSharp");
             var aMemoryStream = new MemoryStream();
-            var aStreamWriter = new StreamWriter(aMemoryStream);
-            var aCodeGeneratorOptions = new CodeGeneratorOptions();
-            aCodeGeneratorOptions.BracingStyle = "C";
-            aCodeDomProvider.GenerateCodeFromCompileUnit(aCompileUnit, aStreamWriter, aCodeGeneratorOptions);
-            aStreamWriter.Flush();
-            aMemoryStream.Position = 0;
-            using (var aFileStream = this.ModelOutputFileInfo.OpenWrite())
+            using (var aStreamWriter = new StreamWriter(aMemoryStream))
             {
-                aMemoryStream.CopyTo(aFileStream);
+                var aCodeGeneratorOptions = new CodeGeneratorOptions();
+                aCodeGeneratorOptions.BracingStyle = "C";
+                aCodeDomProvider.GenerateCodeFromCompileUnit(aCompileUnit, aStreamWriter, aCodeGeneratorOptions);
+                aStreamWriter.Flush();
+                aMemoryStream.Position = 0;
+                using (var aFileStream = this.ModelOutputFileInfo.OpenWrite())
+                {
+                    aMemoryStream.CopyTo(aFileStream);
+                    aFileStream.SetLength(aFileStream.Position);
+                    aFileStream.Flush();
+                }
             }
-
-            //throw new NotImplementedException();
+            // TODO: throw new NotImplementedException();
         }
-        private CodeStatement NewAddPrototypeStatement(CRflTyp aTyp) => new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.AddPrototype_Name, new CodeObjectCreateExpression(this.DomI.NewCodeTypeRef(aTyp), new CodePrimitiveExpression(null))));
+        private CodeStatement NewAddPrototypeStatement(CRflTyp aTyp) => 
+            new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.AddTyp_Name, this.DomI.NewTypMetaInfoFieldRefExp(this.ModelInterpreter.GetTypName(aTyp))));
         private CodeConstructor NewSchemaConstructor(CRflModel aMdl)
-        { //// TODO: Why does the syntax 15f7953c-1584-41de-90d4-827c062ca7a1 not work on CodeConstructor.Statements ? We wanna go functional...
+        {
             var aCtor = new CodeConstructor();
-            aCtor.Statements.AddRange((from aEnoCls in this.MdlI.GetEntityObjectClasses(aMdl) select this.NewAddPrototypeStatement(aEnoCls)).ToArray());
+            aCtor.Statements.AddRange((from aEnoCls in this.ModelInterpreter.GetEntityObjectClasses(aMdl) select this.NewAddPrototypeStatement(aEnoCls)).ToArray());
+            aCtor.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.NameOf_Init));
             return aCtor;
         }
-        private CodeTypeDeclaration NewSchemaClass(CRflModel aMdl)
-            => new CodeTypeDeclaration
-            {
-                Name = this.Tok.GetSchemaClassName(this.MdlI.GetSchema(aMdl)),
-                BaseTypes = { this.DomI.NewCodeTypeRef<CSchema>() },
-                Members = { this.NewSchemaConstructor(aMdl) } // 15f7953c-1584-41de-90d4-827c062ca7a1
-            };
 
-        private void LoadInput() => this.Model = this.Exp.Expand(new CRflModel(CRflRow.NewFromTextFile(this.ModelInputFileInfo).Concat(CRflRow.NewFromTextFile(this.IdsInputFileInfo)).ToArray()));
+        private IEnumerable<CodeTypeMember> NewSchemaSingletonMembers(CRflModel aModel, string aSchemaClassName)
+        {
+            var aCdPrpNme = this.Tok.Dom_P_Singleton_Nme;
+            var aFieldName = this.Tok.GetFieldName(aCdPrpNme);
+            var aCdFieldType = new CodeTypeReference(aSchemaClassName);
+            var aCdFieldDecl = new CodeMemberField(aCdFieldType, aFieldName);
+            aCdFieldDecl.Attributes = MemberAttributes.Public
+                                    | MemberAttributes.Static
+                                    ;
+            aCdFieldDecl.InitExpression = new CodeObjectCreateExpression(aCdFieldType);
+            var aCdPrpDecl = new CodeMemberProperty();
+            aCdPrpDecl.Name = aCdPrpNme;
+            aCdPrpDecl.Type = aCdFieldType;
+            aCdPrpDecl.Attributes = MemberAttributes.Public
+                                            | MemberAttributes.Static
+                                            ;
+            var aCdTypeRefExp = new CodeTypeReferenceExpression(aSchemaClassName);
+            var aCdFldRefExp = new CodeFieldReferenceExpression(aCdTypeRefExp, aFieldName);
+            var aRetStm = new CodeMethodReturnStatement(aCdFldRefExp);
+            aCdPrpDecl.GetStatements.Add(aRetStm);
+
+            var aCdFieldTypeRef = new CodeTypeReferenceExpression(aSchemaClassName);
+
+            var aGetSchemaMthNme = this.Tok.GetGetSchemaFuncName();
+            var aCdGetSchemaMth = new CodeMemberMethod();
+            aCdGetSchemaMth.Name = aGetSchemaMthNme;
+            aCdGetSchemaMth.ReturnType = this.DomI.NewCodeTypeRef<CSchema>();
+            aCdGetSchemaMth.Attributes = MemberAttributes.Static
+                                       | MemberAttributes.Public
+                                       ;
+            aCdGetSchemaMth.Statements.Add(new CodeMethodReturnStatement(aCdFldRefExp));
+
+            yield return aCdFieldDecl;
+            yield return aCdPrpDecl;
+            yield return aCdGetSchemaMth;
+        }
+
+        private IEnumerable<CodeTypeMember> NewSchemaMembers(CRflModel aModel, string aSchemaClassName)
+        {
+            yield return this.NewSchemaConstructor(aModel);
+            foreach (var aMember in this.NewSchemaSingletonMembers(aModel, aSchemaClassName))
+                yield return aMember;
+        }
+
+        private IEnumerable<CodeTypeDeclaration> NewSchemaClasses(CRflModel aModel)
+        {
+            var aSchemaClsNme = this.Tok.GetSchemaClassName(this.ModelInterpreter.GetSchema(aModel));
+            if (aSchemaClsNme.Length > 0)
+            {
+                var aCdSchemaClassDecl = new CodeTypeDeclaration();
+                aCdSchemaClassDecl.Name = aSchemaClsNme;
+                aCdSchemaClassDecl.BaseTypes.Add(this.DomI.NewCodeTypeRef<CSchema>());
+                aCdSchemaClassDecl.Members.AddRange(this.NewSchemaMembers(aModel, aSchemaClsNme).ToArray());
+                yield return aCdSchemaClassDecl;
+            }
+        }
+
+        private void LoadInput() => this.Model = this.Exp.Expand(new CRflModel(this.ModelInterpreter, CRflRow.NewFromTextFile(this.ModelInputFileInfo).Concat(this.IdsInputFileInfoNullable.IsNullRef()  ? new CRflRow[] { } : CRflRow.NewFromTextFile(this.IdsInputFileInfoNullable)).ToArray()));
     }
 }
