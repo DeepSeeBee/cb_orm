@@ -24,9 +24,6 @@ namespace CbOrm.Storage
 
         public readonly CSchema Schema;
 
-
-
-
         internal readonly Dictionary<Guid, CObject> Cache = new Dictionary<Guid, CObject>();
 
         internal abstract bool R1NCContainsChildList { get; }
@@ -60,7 +57,7 @@ namespace CbOrm.Storage
         }
         public abstract void Load(CBlop aBlop);
 
-        internal CObject LoadOnDemand(Guid aGuid, Func<CObject> aLoad)
+        protected CObject LoadOnDemand(Guid aGuid, Func<CObject> aLoad)
         {
             if (this.Cache.ContainsKey(aGuid))
             {
@@ -73,8 +70,7 @@ namespace CbOrm.Storage
                 return aLoaded;
             }
         }
-
-        internal T LoadObject<T>(Guid aGuid) where T : CObject
+        public T LoadObject<T>(Guid aGuid) where T : CObject
         {
             return (T)this.LoadOnDemand(aGuid,
                 () =>
@@ -85,24 +81,7 @@ namespace CbOrm.Storage
                     return aObject;
                 });
         }
-
         public IEnumerable<T> LoadObjects<T>() where T : CObject => this.LoadObjects(typeof(T)).Cast<T>();
-
-        //public virtual IEnumerable<TChild> LoadObjects<TParent, TChild>(CObject aParent, CR1NRefOptions<TParent, TChild> aR1NRefOptions) where TParent : CObject where TChild : CObject
-        //=> from aTest in this.LoadObjects<TChild>() where aR1NRefOptions.GetForeignKey(aTest) == aParent.Guid select aTest;
-
-        internal CObject Load(XmlElement aChildElement)
-        {
-            throw new NotImplementedException();
-            //var aObjectStorage = this;
-            //var aTypName = aChildElement.GetAttribute(CObject.TypeAttributeName);
-            //var aTyp = aObjectStorage.Schema.GetTypeByName(aTypName);
-            //var aObject = aTyp.NewObject(aObjectStorage);
-            //aObject.Load(aChildElement);
-            //return aObject;
-        }
-
-
         public abstract IEnumerable<CObject> LoadObjects(CTyp aType);
         public abstract CObject LoadObject(CTyp aType, Guid aGuid);
 
@@ -171,6 +150,7 @@ namespace CbOrm.Storage
 
     }
 
+    /// TODO
     internal sealed class CObjectDeletedException : Exception
     {
 

@@ -35,14 +35,15 @@ Planned Features: (~In this sequence)
 - Extensible for other SQL Dialects, Databases and Storages.
 - Database model population via mdl (no redundant user code)
 - Model Update Definition Language (mud for changing DB Structure)
-- Support for struct or class as skalar fields?
+- Support for struct or class as skalar fields? (MS-SQL Server)
 
 -------------------
 - Maybe just for fun: (No usage atm)
 - Compiler/Interpreter for Binary Model
 - Binary Storage
 - Lean and Mean C++ ORM Wrappers optimized for Embedded Systems
-
+- Protobuf adapter
+- Soap adapter
 --------------------
 LAAAAAAAAAAAAAAATER
 - Gui for Model editor
