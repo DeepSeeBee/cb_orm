@@ -56,6 +56,21 @@ namespace CbOrm.Gen.Test
                 throw new CTestFailExc(aTestResult);
             }
         }
+        private void TestThrows<T>(Action aAction, string aId) where T : Exception
+        {
+            bool aOk;
+            try
+            {
+                aAction();
+                aOk = false;
+            }
+            catch(T)
+            {
+                aOk = true;
+            }
+            this.Test(aOk, aId);
+        }
+
         public Exception RunTests(CTestCase aTestCase)
         {
             this.TestCase = aTestCase;
@@ -110,6 +125,7 @@ namespace CbOrm.Gen.Test
                     var aTestResult = CTestResultBuilder.NewTestResult(aTestCase, false, default, aExc.Message, aTestMethodId);
                     this.TestResults.Add(aTestResult);
                     aOk = false;
+                    throw;
                 }
                 finally
                 {
@@ -242,18 +258,57 @@ namespace CbOrm.Gen.Test
         public void Test_2dff5efa_d964_42c5_98af_d418ede035b9()
         {
             // Generate 1:1C Relation (Cardinality 1:1, Parent->Child)
+            this.Schema = Test2dff5efa_d964_42c5_98af_d418ede035b9.TestSchema.Singleton;
+
+            this.BeginTest("7af6fcec-4568-4a30-84ab-f53250dc039a");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.CreateObject<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>();
+                this.Test(!aP.Ac.Value.GuidIsNull, "954514b4-08a0-4add-b96c-ad5c8897b207");
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 2, "08408d70-c405-40d7-b015-afdc5455a6f5");
+            }
+
+            this.BeginTest("8df9df94-cdb8-4f24-8915-6509d8f781ad");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
+                this.Test(!aP.Ac.Value.GuidIsNull, "4564ea44-2c07-4f5a-9371-e509f4614179");
+                var aNc = aP.Nc.Value;
+                this.Test(aNc.GuidIsNull, "32d4d01d-f060-447c-b209-548f2e0f02a9");
+                this.TestThrows<Exception>(() => aP.Nc.Value.Create(), "ede296b2-6513-4f7a-a6a1-e4195e53ebea");
+            }
+            this.BeginTest("08004494-e473-4e31-a873-a4fc6f1d68ee");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
+                aP.Nc.Create();
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 2, "0e189f15-6b20-476d-a093-c10744caaaef");
+            }
+            this.BeginTest("0e1a4716-de01-49d5-9777-14d28392de09");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
+                aP.Delete();
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 3, "2465cbfc-c90b-4c1f-adbf-04e125494b41");
+            }
         }
+
 
         public void Test_b7141ae5_956e_4fdb_9e28_b9754b8563c3()
         {
             // Generate 1:NW Relation (Cardinality 1:N, Weak)
+            throw new NotImplementedException();
         }
 
         public void Test_cb9fb56f_38ef_439b_af0c_3df00ba1d611()
         {
             // Generate 1:1W Relation (Cardinality 1:1, Weak)
+            throw new NotImplementedException();
         }
 
-
+         
     }
 }

@@ -1,0 +1,8 @@
++|Guid||ClrNamespace|System
++|P||Base|CEntityObject
++|C||Base|CEntityObject
++|P|Ac|Typ|C
++|P|Ac|Cardinality|11C
++|P|Nc|Typ|C
++|P|Nc|Cardinality|11C
++|P|Nc|AutoCreate|False

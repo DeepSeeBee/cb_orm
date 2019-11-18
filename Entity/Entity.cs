@@ -67,8 +67,24 @@ namespace CbOrm.Entity
                 this.LoadTemplate();
                 this.Unmodify();
             }
+            if(this.GuidIsNull)
+            {
+                this.Seal();
+            }
         }
 
+        private bool Sealed { get; set; }
+        private void Seal()
+        {
+            this.Sealed = true;
+        }
+        private void CheckNotSealed()
+        {
+            if(this.Sealed)
+            {
+                throw new InvalidOperationException();
+            }
+        }
         #region Cache
         internal bool IsCached { get; private set; }
         internal void CheckNotCached()
@@ -119,11 +135,16 @@ namespace CbOrm.Entity
         }
 
         internal bool IsLocallyDeleted { get; private set; }
-
-        internal virtual void Delete()
+        private void DeleteCascade()
         {
+            foreach (var aRef in this.Refs)
+                aRef.DeleteCascade();
+        }
+        internal void Delete()
+        {
+            this.DeleteCascade();
             this.IsLocallyDeleted = true;
-            this.Modify();
+            this.Modify();            
         }
         internal bool IsPersistent { get => this.Storage.IsPersistent(this); }
 
@@ -149,14 +170,20 @@ namespace CbOrm.Entity
                 this.CreateGuid();
             }
         }
-
-        internal virtual void Create()
+        private void CreateCascade()
         {
+            foreach (var aComposition in this.Refs)
+                aComposition.CreateCascade();
+        }
+        internal void Create()
+        {
+            this.CheckNotSealed();
             if (this.GuidIsNull)
             {
                 this.TypNameValue = this.StaticTypName;
                 this.CreateGuid();
                 this.AddToCache();
+                this.CreateCascade();
             }
             else
             {
@@ -165,6 +192,18 @@ namespace CbOrm.Entity
         }
 
         internal virtual bool SaveIsOk { get => true; }
+
+        internal virtual IEnumerable<CRef> Refs
+        {
+            get
+            {
+                var aObject = this;
+                var aTyp = this.Typ;
+                var aTyps = this.Schema.GetHirarchy(this.Typ);
+                var aRefs = from aTest in aTyps from aProperty in aTest.Properties select aProperty.GetRef(aObject);
+                return aRefs;
+            }
+        }
     }
 
     public abstract class CEntityObject 
@@ -200,21 +239,6 @@ namespace CbOrm.Entity
         #endregion
         internal override void AcceptLoad() => this.Storage.VisitLoad(this);
         internal override void AcceptSave()=> this.Storage.VisitSave(this);
-        internal override void Create()
-        {
-            foreach (var aComposition in this.Refs)
-                aComposition.CreateCascade();
-            base.Create();
-        }
-
-        internal virtual IEnumerable<CRef> Refs { get => new CRef[] { }; }
-        internal override void Delete()
-        {
-            foreach (var aComposition in this.Refs)
-                aComposition.DeleteCascade();
-
-            base.Delete();
-        }
 
         public virtual CSchema GetSchema()
         {
@@ -233,7 +257,7 @@ namespace CbOrm.Entity
             get => this.Guid.Value;
             internal set
             {
-                this.Guid.SetValue(value, GuidWriteKey);
+                this.Guid.ChangeValue(value, GuidWriteKey);
             }
         }
         #endregion
@@ -253,7 +277,7 @@ namespace CbOrm.Entity
             set
             {
                 base.TypNameValue = value;
-                this.TypName.SetValue(value, TypNameWriteKey);
+                this.TypName.ChangeValue(value, TypNameWriteKey);
             }
         }
         #endregion

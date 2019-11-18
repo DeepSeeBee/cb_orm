@@ -18,6 +18,173 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
     using System.Collections.Generic;
     
     
+    public class P : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _P_TypM = new CbOrm.Meta.CTyp(typeof(P), new System.Guid("00000000-0000-0000-0000-000000000000"), P._GetProperties);
+        
+        private CSkalarRef<P, Guid> AcGuidM;
+        
+        private static CSkalarRefMetaInfo _AcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(P), nameof(AcGuid));
+        
+        private CSkalarRef<P, Guid> NcGuidM;
+        
+        private static CSkalarRefMetaInfo _NcGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(P), nameof(NcGuid));
+        
+        private CR11CRef<P, C> AcM;
+        
+        private static CR11CRefMetaInfo _AcMetaInfoM = new CR11CRefMetaInfo(typeof(P), nameof(Ac));
+        
+        private CR11CRef<P, C> NcM;
+        
+        private static CR11CRefMetaInfo _NcMetaInfoM = new CR11CRefMetaInfo(typeof(P), nameof(Nc));
+        
+        public P(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _P_Typ
+        {
+            get
+            {
+                return P._P_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return P._P_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Ac")]
+        public CSkalarRef<P, Guid> AcGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.AcGuidM, null))
+                {
+                    this.AcGuidM = new CSkalarRef<P, Guid>(this, P._AcGuidMetaInfo);
+                }
+                return this.AcGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _AcGuidMetaInfo
+        {
+            get
+            {
+                return P._AcGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Nc")]
+        public CSkalarRef<P, Guid> NcGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.NcGuidM, null))
+                {
+                    this.NcGuidM = new CSkalarRef<P, Guid>(this, P._NcGuidMetaInfo);
+                }
+                return this.NcGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _NcGuidMetaInfo
+        {
+            get
+            {
+                return P._NcGuidMetaInfoM;
+            }
+        }
+        
+        public CR11CRef<P, C> Ac
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.AcM, null))
+                {
+                    this.AcM = new CR11CRef<P, C>(this, P._AcMetaInfo);
+                }
+                return this.AcM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _AcMetaInfo
+        {
+            get
+            {
+                return P._AcMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CAutoCreateAttribute(false)]
+        public CR11CRef<P, C> Nc
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.NcM, null))
+                {
+                    this.NcM = new CR11CRef<P, C>(this, P._NcMetaInfo);
+                }
+                return this.NcM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _NcMetaInfo
+        {
+            get
+            {
+                return P._NcMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(P._AcGuidMetaInfo);
+            aAddProperty.Invoke(P._NcGuidMetaInfo);
+            aAddProperty.Invoke(P._AcMetaInfo);
+            aAddProperty.Invoke(P._NcMetaInfo);
+        }
+    }
+    
+    public class C : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
+        
+        public C(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _C_Typ
+        {
+            get
+            {
+                return C._C_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return C._C_Typ;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+        }
+    }
+    
     public class TestSchema : CbOrm.Schema.CSchema
     {
         
@@ -25,6 +192,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
         
         private TestSchema()
         {
+            this.AddTyp(P._P_TypM);
+            this.AddTyp(C._C_TypM);
             this.Init();
         }
         

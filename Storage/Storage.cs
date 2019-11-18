@@ -132,7 +132,7 @@ namespace CbOrm.Storage
             return aObj;
         }
 
-
+        internal T CreateNullObject<T>() where T : CObject => this.NewObject<T>();
 
         internal abstract long GetBlopLength(CBlop aBlop);
 

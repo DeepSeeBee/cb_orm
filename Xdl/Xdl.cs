@@ -232,6 +232,7 @@ namespace CbOrm.Xdl
 
         public CRflModel Model { get => this.DeclaringTyp.Model; }
         public CRflAttribute GetAttribute(string aAttributeName, Func<CRflAttribute> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName] : default(CRflAttribute);
+        public CRflAttribute GetAttribute(string aAttributeName) => this.GetAttribute(aAttributeName, () => throw new InvalidOperationException());
         public string GetAttributeValue(string aAttributeName, Func<string> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName].Value : aDefault();
         public string GetAttributeValue(string aAttributeName) => this.GetAttributeValue(aAttributeName, ()=>string.Empty);
 
@@ -257,6 +258,18 @@ namespace CbOrm.Xdl
 
         public string FullName { get => this.RflProperty.FullName + "." + this.Name; }
         public override string ToString() => this.FullName + "=" + this.Value.AvoidNullString();
+
+        internal T Interpret<T>(Func<T> aFunc)
+        {
+            try
+            {
+                return aFunc();
+            }
+            catch(Exception aExc)
+            {
+                throw new Exception("Error evaluating Attribute '" + this.FullName + "'. " + aExc.Message);
+            }
+        }
     }
 
     public sealed class CRflModel

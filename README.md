@@ -7,7 +7,12 @@ Realized features:
 - ObjectCache (only one instance per id)
 - Storage in file system (XML based)
 - Optimization for loading 1:N Relations in file system storage
-- Relation 1:N with cascade delete (on client side) (Navigation in both directions)
+- Relation 1:N Navigation from Parent to Child
+- Relation 1:N cascade delete (on client side) 
+- Relation 1:N cascade create
+- Relation 1:1 Navigation from Parent to Child
+- Relation 1:1 cascade delete (on client side)
+- Relation 1:1 cascade create
 
 Planned Features: (~In this sequence)
 - ORM Wrapper optimized for Web Applications. (No WPF support for now)
@@ -15,9 +20,12 @@ Planned Features: (~In this sequence)
 - Customizeable Skalar-Field types/Type conversion chain for loading/saving.
 - Custom Enum Types in mdl.
 - Optimization for loading 1:1 reverse navigation in file system storage
-- Relation 1:1 with cascade delete (on client side) (Navigation in both directions)
-- Relation 1:1 Weak (Navigation in both directions)
-- Relation 1:N Weak (Navigation in both directions)
+- Relation 1:N with cascade delete (on client side) (Navigation from Child to Parent)
+- Relation 1:1 with cascade delete (on client side) (Navigation from Child To Parent)
+- Relation 1:1 Weak (Navigation from Parent to Child)
+- Relation 1:1 Weak (Navigation from Child to Parent)
+- Relation 1:N Weak (Navigation from Parent to Child)
+- Relation 1:N Weak (Navigation from Child to Parent)
 - Encryption (=>Saving passwords)
 - Polymorphy by MultiTableInheritance
 - ObjectVersioning

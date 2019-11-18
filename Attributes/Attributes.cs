@@ -28,6 +28,16 @@ namespace CbOrm.Attributes
         }
     }
 
+
+    public sealed class CAttributBoolBalueTypeAttribute : CAttributeValueTypeAttribute
+    {
+        public override IEnumerable<CodeAttributeArgument> NewCodeAttributeArguments(string aAttributeValue)
+        {
+            yield return new CodeAttributeArgument(new CodePrimitiveExpression(bool.Parse(aAttributeValue)));
+        }
+    }
+
+
     public sealed class CSpreadAcrossTablesAttribute : Attribute
     {
         public CSpreadAcrossTablesAttribute(bool aValue)
@@ -64,6 +74,17 @@ namespace CbOrm.Attributes
             this.Value = aValue;
         }
         internal readonly string Value;
+        public override object ValueObj => this.Value;
+    }
+
+    [CAttributBoolBalueType]
+    public sealed class CAutoCreateAttribute :CValueAttribute
+    {
+        public CAutoCreateAttribute(bool aValue)
+        {
+            this.Value = aValue;
+        }
+        public readonly bool Value;
         public override object ValueObj => this.Value;
     }
 

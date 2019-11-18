@@ -34,12 +34,10 @@ namespace CbOrm.Ref
 
         internal virtual void CreateCascade()
         {
-            throw new NotImplementedException();
         }
 
-        internal void DeleteCascade()
-        {
-            throw new NotImplementedException();
+        internal virtual void DeleteCascade()
+        {    
         }
 
 
@@ -57,6 +55,7 @@ namespace CbOrm.Ref
         internal readonly CAccessKey WriteKeyNullable;
 
         public abstract object ValueObj { get; }
+        internal T GetValue<T>() => (T)this.ValueObj;
         internal Type ValueType { get=>this.ValueObj.IsNullRef() ? this.DeclaredValueType : this.ValueObj.GetType(); }
         internal abstract Type DeclaredValueType { get; }
         public abstract Type DeclaredTargetType { get; }
@@ -65,41 +64,76 @@ namespace CbOrm.Ref
         public CStorage Storage { get => this.ParentEntityObject.Storage; }
         public CSchema Schema { get => this.Storage.Schema; }
         internal abstract IEnumerable<Guid> TargetGuids { get; }
+        internal abstract Guid TargetGuid { get;  }
         internal abstract void Load(IEnumerable<Guid> aGuids);
+        internal abstract void Load(Guid aGuid);
     }
 
-    public abstract class CRef<T> : CRef
+    public abstract class CRef<T> : CRef 
     {
         public CRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CAccessKey aWriteKeyNullable) : base(aParentEntityObject, aRefMetaInfo, aWriteKeyNullable)
         {
 
         }
 
+        protected void RefreshValue()
+        {
+            this.ValueM = default(T);
+            this.ValueLoaded = false;
+        }
+
+        private bool ValueLoaded;
+        protected virtual T LoadValue() => default(T);
         public T Value
         {
-            get => this.ValueM;
+            get
+            {
+                if(!this.ValueLoaded)
+                {
+                    this.ValueM = this.LoadValue();
+                    this.ValueLoaded = true;
+                }
+                return this.ValueM;
+            }
             set
             {
-                this.SetValue(value);
+                this.ChangeValue(value);
             }
         }
+        protected virtual void DropValue(T aValue) { }
         public override object ValueObj => this.Value;
-
-        public void SetValue(T aValue, CAccessKey aWriteKeyNullable = null, bool aModify = true)
+        protected virtual void SetValueBuffer(T aValue)
         {
-            this.CheckWriteable(aWriteKeyNullable);
             if (!object.Equals(aValue, this.ValueM))
             {
+                if (!this.ValueM.IsNullRef())
+                { 
+                    this.DropValue(this.ValueM);
+                }
                 this.ValueM = aValue;
+                this.ValueLoaded = true;
+            }
+        }
+        public void ChangeValue(T aValue, CAccessKey aWriteKeyNullable = null, bool aModify = true)
+        {
+            this.CheckWriteable(aWriteKeyNullable);
+            
+            if (!object.Equals(aValue, this.ValueM))
+            {
+                this.SetValueBuffer(aValue);
                 if (aModify)
                 {
                     this.ParentEntityObject.Modify();
                 }
             }
+            else
+            {
+                this.ValueLoaded = true;
+            }
         }
         internal override void SetValueObj(object aModelValue, CAccessKey aWriteKeyNullable)
         {
-            this.SetValue((T)aModelValue, aWriteKeyNullable);
+            this.ChangeValue((T)aModelValue, aWriteKeyNullable);
         }
         private T ValueM;
         internal override Type DeclaredValueType => typeof(T);
@@ -176,7 +210,7 @@ namespace CbOrm.Ref
         protected CNRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
         {
             this.Collection = aRefMetaInfo.NewCollection<TRef>();
-            this.SetValue(this.Collection, this.WriteKeyNullable, false);
+            this.ChangeValue(this.Collection, this.WriteKeyNullable, false);
         }
         protected readonly CCollection<TRef> Collection;
         protected void SetForeignKey(TRef aObject)
@@ -185,21 +219,25 @@ namespace CbOrm.Ref
             this.SetForeignKey(aObject, aParentId);
         }
         internal override IEnumerable<Guid> TargetGuids => this.Collection.Guids;
+        internal override Guid TargetGuid => throw new InvalidOperationException();
         public override Type DeclaredTargetType => typeof(TRef);
 
         private CTyp TargetTypM;
         internal CTyp TargetTyp { get => CLazyLoad.Get(ref this.TargetTypM, () => this.Schema.Typs.GetBySystemType(this.DeclaredTargetType)); }
 
         internal CSkalarRefMetaInfo ForeignKeyMetaInfoM;
-        private CSkalarRefMetaInfo ForeignKeyMetaInfo { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM,
-                                                             () => (from aProperty in this.TargetTyp.Properties
-                                                                    where aProperty.IsDefined<CForeignKeyParentTypeAttribute>()
-                                                                    where aProperty.IsDefined<CForeignKeyParentPropertyNameAttribute>()
-                                                                    where aProperty.GetAttribute<CForeignKeyParentTypeAttribute>().Value == this.RefMetaInfo.OwnerType
-                                                                    where aProperty.GetAttribute<CForeignKeyParentPropertyNameAttribute>().Value == this.RefMetaInfo.PropertyInfo.Name
-                                                                    select aProperty).Cast<CSkalarRefMetaInfo>().Single()
-                                                             );
-                                                              } /// TODO_OPT
+        private CSkalarRefMetaInfo ForeignKeyMetaInfo
+            { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM, () => this.TargetTyp.GetforeignKey(this.RefMetaInfo.OwnerType, this.RefMetaInfo.PropertyInfo.Name)); }
+
+        //private CSkalarRefMetaInfo ForeignKeyMetaInfo { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM,
+        //                                                     () => (from aProperty in this.TargetTyp.Properties
+        //                                                            where aProperty.IsDefined<CForeignKeyParentTypeAttribute>()
+        //                                                            where aProperty.IsDefined<CForeignKeyParentPropertyNameAttribute>()
+        //                                                            where aProperty.GetAttribute<CForeignKeyParentTypeAttribute>().Value == this.RefMetaInfo.OwnerType
+        //                                                            where aProperty.GetAttribute<CForeignKeyParentPropertyNameAttribute>().Value == this.RefMetaInfo.PropertyInfo.Name
+        //                                                            select aProperty).Cast<CSkalarRefMetaInfo>().Single()
+        //                                                     );
+        //                                                      } /// TODO_OPT
 
 
         protected void SetForeignKey(TRef aObject, Guid aForeignKey)
@@ -215,6 +253,7 @@ namespace CbOrm.Ref
         public TRef GetByGuid(Guid aGuid) => (from aTest in this where aTest.Guid.Value == aGuid select aTest).Single(); /// TODO_OPT
         public virtual bool Contains(TRef aRef)=> this.Collection.Contains(aRef); /// TODO_OPT
         internal override void Load(IEnumerable<Guid> aGuids) => this.Collection.Load(this.ParentEntityObject.Storage, aGuids);
+        internal override void Load(Guid aGuid) => throw new InvalidOperationException();
     }
 
     public class CSkalarRef<TParent, TChild>: CRef<TChild>
@@ -226,7 +265,9 @@ namespace CbOrm.Ref
         }
         public override Type DeclaredTargetType => typeof(TChild);
         internal override IEnumerable<Guid> TargetGuids => throw new InvalidOperationException();
+        internal override Guid TargetGuid => throw new InvalidOperationException();
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
+        internal override void Load(Guid aGuid) => throw new InvalidOperationException();
     }
 
     public class CR1NCRef<TParent, TChild> : CNRef<TChild>
@@ -287,31 +328,112 @@ namespace CbOrm.Ref
     {
         public CRx1Ref(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aRefMetaInfo, aWriteKeyNullable)
         {
-
+            this.ObjectProxy = new CObjectProxy<TChild>(aParentEntityObject.Storage, default(Guid));
         }
         public override Type DeclaredTargetType => typeof(TChild);
+        private CObjectProxy<TChild> ObjectProxy;
+        protected override TChild LoadValue()
+        {
+            return this.ObjectProxy.IsNullRef() ? default(TChild) : this.ObjectProxy.Object;
+        }
+
+        internal override void Load(Guid aGuid)
+        {
+            this.ObjectProxy = new CObjectProxy<TChild>(this.ParentEntityObject.Storage, aGuid);
+            this.RefreshValue();
+        }
+        protected abstract void SetForeignKey(Guid aForeignKey);
+        protected override void SetValueBuffer(TChild aValue)
+        {
+            base.SetValueBuffer(aValue);
+            this.ObjectProxy = new CObjectProxy<TChild>(aValue);
+            this.SetForeignKey(aValue.GuidValue);
+        }
+        internal override Guid TargetGuid => this.ObjectProxy.IsNullRef() ? default(Guid) : this.ObjectProxy.Guid;
         internal override IEnumerable<Guid> TargetGuids => throw new InvalidOperationException();
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
     }
-
-    public sealed class CR11CRef<TParent, TChild> : CRx1Ref<TParent, TChild>
+    public sealed class CR11CRef<TParent, TChild> : CR11Ref<TParent, TChild>
     where TParent : CEntityObject
     where TChild : CObject
     {
-
         public CR11CRef(CEntityObject aParentEntityObject, CR11CRefMetaInfo aSkalarRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aSkalarRefMetaInfo, aWriteKeyNullable)
         {
 
         }
+        private bool IsAutoCreateEnabled
+        {
+            get => this.RefMetaInfo.IsDefined<CAutoCreateAttribute>()
+                 ? this.RefMetaInfo.GetAttribute<CAutoCreateAttribute>().Value
+                 : true;
+        }
+        internal override void CreateCascade()
+        {
+            base.CreateCascade();
+            var aAutoCreate = this.IsAutoCreateEnabled;
+            if (aAutoCreate)
+            {
+                var aStorage = this.Storage;
+                var aRefObject = aAutoCreate
+                                ? aStorage.CreateObject<TChild>()
+                                : aStorage.CreateNullObject<TChild>()
+                                ;
+                this.Value = aRefObject;
+            }
+        }
+        internal override void DeleteCascade()
+        {
+            if (!this.Value.GuidIsNull)
+            {
+                this.ChangeValue(this.Storage.CreateNullObject<TChild>(), this.WriteKeyNullable);
+            }
+            base.DeleteCascade();
+        }
+        internal T Create<T>() where T : TChild
+        {
+            if (!this.Value.GuidIsNull)
+            {
+                throw new InvalidOperationException();
+            }
+            var aObject = this.Storage.CreateObject<T>();
+            this.Value = aObject;
+            return aObject;
+        }
+        internal TChild Create() => this.Create<TChild>();
+        protected override void DropValue(TChild aValue)
+        {
+            aValue.Delete();
+        }
+    }
+    public abstract class CR11Ref<TParent, TChild> : CRx1Ref<TParent, TChild>
+    where TParent : CEntityObject
+    where TChild : CObject
+    {
+
+        public CR11Ref(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aRefMetaInfo, aWriteKeyNullable)
+        {
+
+        }
+
+        private CSkalarRefMetaInfo ForeignKeyMetaInfoM;
+        private CSkalarRefMetaInfo ForeignKeyMetaInfo
+            { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM, () => this.ParentEntityObject.Typ.GetforeignKey(this.RefMetaInfo.OwnerType, this.RefMetaInfo.PropertyInfo.Name)); }
+        private CRef FkRef { get=> this.ForeignKeyMetaInfo.GetRef(this.ParentEntityObject); }
+        protected override void SetForeignKey(Guid aForeignKey) => this.FkRef.SetValueObj(aForeignKey, this.FkRef.WriteKeyNullable);
+        protected override TChild LoadValue() => this.Storage.LoadObject<TChild>(this.FkRef.GetValue<Guid>());
     }
 
-    public sealed class CR11WRef<TParent, TChild> : CRx1Ref<TParent, TChild>
+    public sealed class CR11WRef<TParent, TChild> : CR11Ref<TParent, TChild>
     where TParent : CEntityObject
     where TChild : CObject
     {
         public CR11WRef(CEntityObject aParentEntityObject, CR11WRefMetaInfo aRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aRefMetaInfo, aWriteKeyNullable)
         {
 
+        }
+        protected override void SetForeignKey(Guid aForeignKey)
+        {
+            throw new NotImplementedException();
         }
     }
 }

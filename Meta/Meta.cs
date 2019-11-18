@@ -14,6 +14,7 @@ using System.Text;
 
 namespace CbOrm.Meta
 {
+    using CbOrm.Attributes;
     using System.Xml;
     using CGetPropertiesFunc = Action<Action<CRefMetaInfo>>;
 
@@ -133,6 +134,15 @@ namespace CbOrm.Meta
         }
         //private Func<CSchema> GetSchema;
         //internal CSchema Schema { get=>this.GetSchema(); }
+
+        internal CSkalarRefMetaInfo GetforeignKey(Type aOwnerType, string aPropertyName)
+         => (from aProperty in this.Properties
+             where aProperty.IsDefined<CForeignKeyParentTypeAttribute>()
+             where aProperty.IsDefined<CForeignKeyParentPropertyNameAttribute>()
+             where aProperty.GetAttribute<CForeignKeyParentTypeAttribute>().Value == aOwnerType
+             where aProperty.GetAttribute<CForeignKeyParentPropertyNameAttribute>().Value == aPropertyName
+             select aProperty).Cast<CSkalarRefMetaInfo>().Single(); /// TODO_OPT
+
     }
 
 
@@ -218,13 +228,12 @@ namespace CbOrm.Meta
                   string aPropertyName) : base(aOwnerType, aPropertyName)
         {
         }
+
         internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement)
-        {
-            throw new NotImplementedException();
+        {        
         }
-        internal override void LoadXml(CObject aEntityObject, XmlElement aXmlElement)
+        internal override void LoadXml(CObject aObject, XmlElement aXmlElement)
         {
-            throw new NotImplementedException();
         }
     }
     public sealed class CR11WRefMetaInfo : CRefMetaInfo
