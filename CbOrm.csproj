@@ -53,6 +53,7 @@
     <Compile Include="Crypt\Crypt.cs" />
     <Compile Include="FileSys\FileSys.cs" />
     <None Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-in.xdl" />
+    <None Include="Gen\Test\TestCases\4aabaf80-96d2-40c4-9b46-99e5a445919c-in.xdl" />
     <None Include="Gen\Test\TestCases\b7141ae5-956e-4fdb-9e28-b9754b8563c3-in.xdl" />
     <None Include="Gen\Test\TestCases\c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b-in.xdl" />
     <None Include="Gen\Test\TestCases\cb9fb56f-38ef-439b-af0c-3df00ba1d611-in.xdl" />
@@ -60,6 +61,8 @@
     <Compile Include="Gen\Test\CGenTestMethods.cs" />
     <Compile Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-ok.cs" />
     <None Include="Gen\Test\TestCases\2dff5efa-d964-42c5-98af-d418ede035b9-out-test.cs" />
+    <Compile Include="Gen\Test\TestCases\4aabaf80-96d2-40c4-9b46-99e5a445919c-out-ok.cs" />
+    <None Include="Gen\Test\TestCases\4aabaf80-96d2-40c4-9b46-99e5a445919c-out-test.cs" />
     <Compile Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-out-ok.cs" />
     <None Include="Gen\Test\TestCases\b442b4a1-e615-42ea-ab87-0ea0b994e370-out-test.cs" />
     <Compile Include="Gen\Test\TestCases\b7141ae5-956e-4fdb-9e28-b9754b8563c3-out-ok.cs" />

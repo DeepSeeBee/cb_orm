@@ -33,15 +33,34 @@ namespace CbOrm.Blop
 
     public sealed class CBlop : CObject
     {
-        internal CBlop(CStorage aStorage) : base(aStorage)
+        public CBlop(CStorage aStorage) : base(aStorage)
         {
             this.GuidValue = default(Guid);
         }
+        #region Typ
+        private static void _GetProperties(Action<CRefMetaInfo> aAddProperty)
+        {
+        }
+        private static CTyp _CBlop_TymM = new CTyp(typeof(CBlop), new Guid("2bc8fa06-ab32-4d6e-aa39-8001fd025f5a"), _GetProperties);
+        public static CTyp _CBlop_Typ { get => _CBlop_TymM; }
+        #endregion
         internal override bool IsStructureReflected => true;
         private Guid GuidM;
         public override Guid GuidValue { get => this.GuidM; internal set { this.CheckNotCached(); this.GuidM = value; } }
-        public override CTyp Typ => throw new NotImplementedException();
-        internal Stream NewInputStream()
+        public override CTyp Typ => _CBlop_Typ;
+        public void SetByteArray(byte[] aByteArray) => this.SetStream(new MemoryStream(aByteArray));
+        public byte[] NewByteArray()
+        {
+            using (var aInputStream = this.NewInputStream())
+            {
+                var aLength = this.Length;
+                var aBytes = new byte[aLength];
+                aInputStream.Read(aBytes, 0, (int)aLength);
+                return aBytes;
+            }
+        }
+        
+        public Stream NewInputStream()
         {
             if (this.SaveStreamNullable == null)
             {

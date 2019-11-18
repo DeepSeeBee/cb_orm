@@ -1,0 +1,5 @@
+﻿+|CBlop||ClrNamespace|CbOrm.Blop
++|Guid||ClrNamespace|System
++|P||Base|CEntityObject
++|P|B|Typ|CBlop
++|P|B|Cardinality|11C

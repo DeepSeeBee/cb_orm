@@ -58,7 +58,7 @@ namespace CbOrm.Storage
                 this.Load(aEntityObject, aAspect);
             }
         }
-        internal abstract void Load(CBlop aBlop);
+        public abstract void Load(CBlop aBlop);
 
         internal CObject LoadOnDemand(Guid aGuid, Func<CObject> aLoad)
         {
@@ -90,8 +90,6 @@ namespace CbOrm.Storage
 
         //public virtual IEnumerable<TChild> LoadObjects<TParent, TChild>(CObject aParent, CR1NRefOptions<TParent, TChild> aR1NRefOptions) where TParent : CObject where TChild : CObject
         //=> from aTest in this.LoadObjects<TChild>() where aR1NRefOptions.GetForeignKey(aTest) == aParent.Guid select aTest;
-
-        internal abstract bool IsPersistent(CObject aObject);
 
         internal CObject Load(XmlElement aChildElement)
         {
@@ -150,13 +148,21 @@ namespace CbOrm.Storage
                 this.Save(aEntityObject, aAspect);
             }
         }
-        internal abstract void Save(CEntityObject aEntityObject, CTyp aAspect);
+        protected abstract void Save(CEntityObject aEntityObject, CTyp aAspect);
+        protected abstract void Delete(CBlop aBlop);
         internal void VisitSave(CBlop aBlop, Stream aStream)
         {
-            using (var aBlopOutputStream = this.NewBlopOutputStream(aBlop))
+            if (aBlop.IsLocallyDeleted)
             {
-                aStream.CopyTo(aBlopOutputStream.Stream);
-                aBlopOutputStream.Commit();
+                this.Delete(aBlop);
+            }
+            else
+            {
+                using (var aBlopOutputStream = this.NewBlopOutputStream(aBlop))
+                {
+                    aStream.CopyTo(aBlopOutputStream.Stream);
+                    aBlopOutputStream.Commit();
+                }
             }
         }
 

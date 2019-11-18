@@ -146,8 +146,6 @@ namespace CbOrm.Entity
             this.IsLocallyDeleted = true;
             this.Modify();            
         }
-        internal bool IsPersistent { get => this.Storage.IsPersistent(this); }
-
         internal void CreateGuid()
         {
             this.CheckNotCached();

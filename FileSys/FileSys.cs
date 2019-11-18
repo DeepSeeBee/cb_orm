@@ -46,6 +46,7 @@ namespace CbOrm.FileSys
         protected override CBlopOutputStream NewBlopOutputStream(CBlop aBlop)
         {
             var aFileInfo = this.GetObjectFileInfo(aBlop);
+            aFileInfo.Directory.Create();
             var aStream = File.OpenWrite(aFileInfo.FullName);
             var aBlopOutputStream = new CFileSystemBlopOutputStream(aStream);
             return aBlopOutputStream;
@@ -122,20 +123,10 @@ namespace CbOrm.FileSys
             var aObjects = from aFile in aFiles select this.LoadObject(aType, aFile);
             return aObjects;
         }
-
-        internal override bool IsPersistent(CObject aObject)
-        {
-            var aObjectFileInfo = this.GetObjectFileInfo(aObject);
-            var aIsPersistent = aObjectFileInfo.Exists;
-            return aIsPersistent;
-        }
-
-        internal DirectoryInfo GetObjectDirectory(string aObjectTypeName)
+        private DirectoryInfo GetObjectDirectory(string aObjectTypeName)
         {
             return new DirectoryInfo(Path.Combine(this.DirectoryInfo.FullName, aObjectTypeName));
         }
-
-
         internal DirectoryInfo GetObjectDirectory(CTyp aType)
         {
             return this.GetObjectDirectory(aType.TableName);
@@ -146,13 +137,13 @@ namespace CbOrm.FileSys
             return this.GetObjectFileInfo(aObject.Typ, aObject.GuidValue);
         }
 
-        internal override void Load(CBlop aBlop)
+        public override void Load(CBlop aBlop)
         {
             // The blop will request the input stream or the length as soon as it is used.
             // Not sure if we need some special actions for databases.
         }
 
-        internal override void Save(CEntityObject aEntityObject, CTyp aAspect)
+        protected override void Save(CEntityObject aEntityObject, CTyp aAspect)
         {
             var aFileInfo = this.GetObjectFileInfo(aAspect, aEntityObject.Guid.Value);
             if(aEntityObject.IsLocallyDeleted)
@@ -169,7 +160,10 @@ namespace CbOrm.FileSys
         }
 
         public override CStorage CloneStorage(bool aConnect) => new CFileSystemStorage(this.Schema, this.DirectoryInfo);
-
+        protected override void Delete(CBlop aBlop)
+        {
+            this.GetObjectFileInfo(aBlop).Delete();
+        }
     }
 
 

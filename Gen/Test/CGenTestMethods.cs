@@ -1,4 +1,5 @@
-﻿using CbOrm.FileSys;
+﻿using CbOrm.Blop;
+using CbOrm.FileSys;
 using CbOrm.Schema;
 using CbOrm.Storage;
 using CbOrm.Util;
@@ -296,6 +297,38 @@ namespace CbOrm.Gen.Test
             }
         }
 
+        public void Test_4aabaf80_96d2_40c4_9b46_99e5a445919c()
+        {
+            // Blop
+            this.Schema = Test4aabaf80_96d2_40c4_9b46_99e5a445919c.TestSchema.Singleton;
+
+            var aTestData = new Guid("95c5a487-02b4-4f3a-a4e7-15b937049da5");
+            Guid aBlopGuid;
+            this.BeginTest("2daf7caf-761e-46e9-a0ed-386ea23125a6");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.CreateObject<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P>();
+                this.Test(!aP.B.Value.GuidIsNull, "034e78c4-e94f-4cbd-80bb-e503e4d0b60a");
+                aBlopGuid = aP.B.Value.GuidValue;
+                aP.B.Value.SetByteArray(aTestData.ToByteArray());
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 2, "f0dbefcf-4c3c-46e0-9fa5-e863abd86dc1");
+                this.Test(aStorage.LoadObjects<CBlop>().Count() == 1, "7a733f79-493f-4bad-aee2-c60e301f9dfc");
+
+            }
+            this.BeginTest("ee0e53ae-c45b-4c63-8b76-d74834a8014d");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P>().Single();
+                this.Test(aP.B.Value.GuidValue == aBlopGuid, "ad6641a5-4a48-47ea-9c0b-796c6f1a5296");
+                this.Test(new Guid(aP.B.Value.NewByteArray()) == aTestData, "afc1f2dc-33d9-4e36-bff5-0c1b8ca536b9");
+                aP.Delete();
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 2, "04c2c719-06a9-4fec-97c8-455a16fb92a1");
+                this.Test(aStorage.LoadObjects<CBlop>().Count() == 0, "0c1407b0-ab4b-483a-8a37-d4d174524654");
+                this.Test(aStorage.LoadObjects<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P>().Count() == 0, "b36fec28-fdfe-4cb8-9b35-a5511eb5d6c4");
+            }
+        }
 
         public void Test_b7141ae5_956e_4fdb_9e28_b9754b8563c3()
         {

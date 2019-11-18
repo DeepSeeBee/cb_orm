@@ -1,5 +1,6 @@
 ﻿// This is the runtime for my 2nd generation ORM-Wrapper. (Schema subsystem)
 using CbOrm.Attributes;
+using CbOrm.Blop;
 using CbOrm.Converters;
 using CbOrm.Entity;
 using CbOrm.Meta;
@@ -17,6 +18,7 @@ namespace CbOrm.Schema
         protected CSchema()
         {
             this.AddTyp(CEntityObject._CEntityObject_Typ);
+            this.AddTyp(CBlop._CBlop_Typ);
         }
 
         internal const string AddTyp_Name = nameof(AddTyp);
