@@ -24,7 +24,7 @@ namespace CbOrm.Loader
     }
     public sealed class NewIdsModelExpander : CModelExpander
     {
-        public override CRflModel Expand(CRflModel Model)
+        public override CRflModel Expand(CRflModel aModel)
         {
             throw new NotImplementedException();
         }
@@ -69,6 +69,8 @@ namespace CbOrm.Loader
             return aTmpModel;
         }
     }
+
+
 
     public sealed class CRowsExpander : CModelExpander
     {

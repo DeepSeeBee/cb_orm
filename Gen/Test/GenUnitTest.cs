@@ -125,7 +125,7 @@ namespace CbOrm.Gen.Test
 
             if (aInModelFileInfo.Exists)
             {
-                var aGenerator = new CCodeGenerator(new CMdlInterpreter(),
+                var aGenerator = new CCodeGenerator(new CGenModelInterpreter(),
                                                     new CGenTokens(),
                                                     new CCodeDomBuilder(),
                                                     aInModelFileInfo,

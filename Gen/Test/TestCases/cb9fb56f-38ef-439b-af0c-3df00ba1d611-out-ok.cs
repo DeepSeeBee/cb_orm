@@ -10,6 +10,7 @@
 
 namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
 {
+    using System;
     using CbOrm.Entity;
     using CbOrm.Storage;
     using CbOrm.Ref;

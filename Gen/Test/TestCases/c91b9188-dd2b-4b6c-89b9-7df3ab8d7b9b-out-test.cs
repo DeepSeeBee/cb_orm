@@ -10,12 +10,12 @@
 
 namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
 {
+    using System;
     using CbOrm.Entity;
     using CbOrm.Storage;
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
-    using System;
     
     
     public class C : CEntityObject

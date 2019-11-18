@@ -10,12 +10,127 @@
 
 namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
 {
+    using System;
     using CbOrm.Entity;
     using CbOrm.Storage;
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
     
+    
+    public class C : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
+        
+        private CSkalarRef<C, Guid> P_CGuidM;
+        
+        private static CSkalarRefMetaInfo _P_CGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(C), nameof(P_CGuid));
+        
+        public C(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _C_Typ
+        {
+            get
+            {
+                return C._C_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return C._C_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("C")]
+        public CSkalarRef<C, Guid> P_CGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.P_CGuidM, null))
+                {
+                    this.P_CGuidM = new CSkalarRef<C, Guid>(this, C._P_CGuidMetaInfo);
+                }
+                return this.P_CGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _P_CGuidMetaInfo
+        {
+            get
+            {
+                return C._P_CGuidMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(C._P_CGuidMetaInfo);
+        }
+    }
+    
+    public class P : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _P_TypM = new CbOrm.Meta.CTyp(typeof(P), new System.Guid("00000000-0000-0000-0000-000000000000"), P._GetProperties);
+        
+        private CR1NCRef<P, C> CM;
+        
+        private static CR1NCRefMetaInfo _CMetaInfoM = new CR1NCRefMetaInfo(typeof(P), nameof(C));
+        
+        public P(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _P_Typ
+        {
+            get
+            {
+                return P._P_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return P._P_Typ;
+            }
+        }
+        
+        public CR1NCRef<P, C> C
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.CM, null))
+                {
+                    this.CM = new CR1NCRef<P, C>(this, P._CMetaInfo);
+                }
+                return this.CM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _CMetaInfo
+        {
+            get
+            {
+                return P._CMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(P._CMetaInfo);
+        }
+    }
     
     public class TestSchema : CbOrm.Schema.CSchema
     {
@@ -24,6 +139,8 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
         
         private TestSchema()
         {
+            this.AddTyp(C._C_TypM);
+            this.AddTyp(P._P_TypM);
             this.Init();
         }
         

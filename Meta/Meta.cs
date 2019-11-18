@@ -150,12 +150,12 @@ namespace CbOrm.Meta
         public readonly PropertyInfo PropertyInfo;
         internal const string ObjectElementName = "Object";
         internal readonly CIdentifier Id;
-        internal CCollection<T> NewCollection<T>() => new CListCollection<T>();
+        internal CCollection<T> NewCollection<T>() where T : CObject => new CListCollection<T>();
         public bool IsDefined<TAttribute>() where TAttribute : Attribute => this.PropertyInfo.IsDefined(typeof(TAttribute));
         public TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute => this.PropertyInfo.GetCustomAttributes<TAttribute>().Last();
-        internal abstract void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement);
+        internal abstract void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aXmlElement);
         internal CRef GetRef(CObject aObject) => (CRef)this.PropertyInfo.GetValue(aObject);
-        internal abstract void LoadXml(CObject aEntityObject, XmlElement aXmlElement);
+        internal abstract void LoadXml(CObject aObject, XmlElement aXmlElement);
     }
     public sealed class CSkalarRefMetaInfo : CRefMetaInfo
     {
@@ -164,7 +164,7 @@ namespace CbOrm.Meta
                             ) : base(aOwnerType, aPropertyName)
         {
         }
-        internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement)
+        internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aXmlElement)
         {
             var aProperty = this;
             var aRef = aProperty.GetRef(aObject);
@@ -174,7 +174,7 @@ namespace CbOrm.Meta
             var aSaveConverter = aSchema.GetSaveXmlConverter(aValueType);
             var aXmlValue = aSaveConverter.Convert<string>(aValue);
             var aPropertyName = aProperty.Id.Name;
-            aElement.SetAttribute(aPropertyName, aXmlValue.ToString());
+            aXmlElement.SetAttribute(aPropertyName, aXmlValue.ToString());
         }
         internal override void LoadXml(CObject aObject, XmlElement aXmlElement)
         {
@@ -187,7 +187,6 @@ namespace CbOrm.Meta
             var aXmlValue = aXmlElement.GetAttribute(aPropertyName);
             var aModelValue = aSaveConverter.ConvertBack(aXmlValue);
             aRef.SetValueObj(aModelValue, aRef.WriteKeyNullable);
-
         }
     }
     public abstract class CObjectRefMetaInfo : CRefMetaInfo
@@ -264,13 +263,32 @@ namespace CbOrm.Meta
                             string aPropertyName) : base(aOwnerType, aPropertyName)
         {
         }
-        internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement)
+        private const string ItemElementName = "Item";
+        internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aXmlElement)
         {
-            throw new NotImplementedException();
+            var aRefMetaInfo = this;
+            var aPropertyName = aRefMetaInfo.PropertyInfo.Name;
+            var aAttributeElement = aXmlDocument.CreateElement(aPropertyName);
+            var aRef = aRefMetaInfo.GetRef(aObject);
+            var aRefGuids = aRef.TargetGuids;
+            foreach(var aRefGuid in aRefGuids)
+            {
+                var aGuidElement = aXmlDocument.CreateElement(ItemElementName);
+                aGuidElement.InnerText = aRefGuid.ToString();
+                aAttributeElement.AppendChild(aGuidElement);
+            }
+            aXmlElement.AppendChild(aAttributeElement);
         }
         internal override void LoadXml(CObject aEntityObject, XmlElement aXmlElement)
         {
-            throw new NotImplementedException();
+            var aRefMetaInfo = this;
+            var aPropertyName = aRefMetaInfo.PropertyInfo.Name;
+            var aAttributeElement = aXmlElement.SelectNodes(aPropertyName).Cast<XmlElement>().Single();
+            var aItemElements = aAttributeElement.SelectNodes(ItemElementName).Cast<XmlElement>();
+            var aItemGuids = from aItemElement in aItemElements select new Guid(aItemElement.InnerText.Trim());
+            var aRef = aRefMetaInfo.GetRef(aEntityObject);
+            aRef.Load(aItemGuids);
+           // throw new NotImplementedException();
         }
     }
     public sealed class CR1NWRefMetaInfo : CRefMetaInfo

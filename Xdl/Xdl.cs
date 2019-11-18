@@ -211,7 +211,7 @@ namespace CbOrm.Xdl
     {
         internal CRflProperty(CRflTyp aRflClass, string aName, CRflRow[] aRows)
         {
-            this.Typ = aRflClass;
+            this.DeclaringTyp = aRflClass;
             this.Name = aName;
 
             var aAttributesDic = new Dictionary<string, CRflAttribute>(aRows.Length);
@@ -230,17 +230,17 @@ namespace CbOrm.Xdl
             this.AttributesDic = aAttributesDic;           
         }
 
-        public CRflModel Model { get => this.Typ.Model; }
+        public CRflModel Model { get => this.DeclaringTyp.Model; }
         public CRflAttribute GetAttribute(string aAttributeName, Func<CRflAttribute> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName] : default(CRflAttribute);
         public string GetAttributeValue(string aAttributeName, Func<string> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName].Value : aDefault();
         public string GetAttributeValue(string aAttributeName) => this.GetAttributeValue(aAttributeName, ()=>string.Empty);
 
         internal IEnumerable<CRflAttribute> GetAttributesWithPrefix(string aPrefix) => from aAttribute in this.AttributesDic.Values where aAttribute.Name.StartsWith(aPrefix) select aAttribute;
 
-        public readonly CRflTyp Typ;
+        public readonly CRflTyp DeclaringTyp;
         public readonly string Name;
         public readonly Dictionary<string, CRflAttribute> AttributesDic;
-        public string FullName { get => this.Typ.FullName + "." + this.Name; }
+        public string FullName { get => this.DeclaringTyp.FullName + "." + this.Name; }
 
     }
     public sealed class CRflAttribute

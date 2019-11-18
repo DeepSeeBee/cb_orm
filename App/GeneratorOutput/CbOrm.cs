@@ -10,306 +10,23 @@
 
 namespace CbVoucherApp.Code.Domain
 {
+    using System;
     using CbOrm.Entity;
     using CbOrm.Storage;
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
-    using System;
     using CbOrm.App.Web;
     
-    
-    public class Account : CEntityObject
-    {
-        
-        public static CbOrm.Meta.CTyp _Account_TypM = new CbOrm.Meta.CTyp(typeof(Account), new System.Guid("00000000-0000-0000-0000-000000000000"), Account._GetProperties);
-        
-        private CSkalarRef<Account, String> UserNameM;
-        
-        private static CSkalarRefMetaInfo _UserNameMetaInfoM = new CSkalarRefMetaInfo(typeof(Account), nameof(UserName));
-        
-        private CSkalarRef<Account, String> PasswordM;
-        
-        private static CSkalarRefMetaInfo _PasswordMetaInfoM = new CSkalarRefMetaInfo(typeof(Account), nameof(Password));
-        
-        private CR11CRef<Account, Publisher> PublisherM;
-        
-        private static CR11CRefMetaInfo _PublisherMetaInfoM = new CR11CRefMetaInfo(typeof(Account), nameof(Publisher));
-        
-        public Account(CStorage aStorage) : 
-                base(aStorage)
-        {
-        }
-        
-        public static CbOrm.Meta.CTyp _Account_Typ
-        {
-            get
-            {
-                return Account._Account_TypM;
-            }
-        }
-        
-        public override CbOrm.Meta.CTyp Typ
-        {
-            get
-            {
-                return Account._Account_Typ;
-            }
-        }
-        
-        public CSkalarRef<Account, String> UserName
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.UserNameM, null))
-                {
-                    this.UserNameM = new CSkalarRef<Account, String>(this, Account._UserNameMetaInfo);
-                }
-                return this.UserNameM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _UserNameMetaInfo
-        {
-            get
-            {
-                return Account._UserNameMetaInfoM;
-            }
-        }
-        
-        public CSkalarRef<Account, String> Password
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.PasswordM, null))
-                {
-                    this.PasswordM = new CSkalarRef<Account, String>(this, Account._PasswordMetaInfo);
-                }
-                return this.PasswordM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _PasswordMetaInfo
-        {
-            get
-            {
-                return Account._PasswordMetaInfoM;
-            }
-        }
-        
-        public CR11CRef<Account, Publisher> Publisher
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.PublisherM, null))
-                {
-                    this.PublisherM = new CR11CRef<Account, Publisher>(this, Account._PublisherMetaInfo);
-                }
-                return this.PublisherM;
-            }
-        }
-        
-        public static CR11CRefMetaInfo _PublisherMetaInfo
-        {
-            get
-            {
-                return Account._PublisherMetaInfoM;
-            }
-        }
-        
-        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
-        {
-            aAddProperty.Invoke(Account._UserNameMetaInfo);
-            aAddProperty.Invoke(Account._PasswordMetaInfo);
-            aAddProperty.Invoke(Account._PublisherMetaInfo);
-        }
-    }
-    
-    public class Publisher : CEntityObject
-    {
-        
-        public static CbOrm.Meta.CTyp _Publisher_TypM = new CbOrm.Meta.CTyp(typeof(Publisher), new System.Guid("00000000-0000-0000-0000-000000000000"), Publisher._GetProperties);
-        
-        private CR1NCRef<Publisher, EmailAccount> EmailAccountM;
-        
-        private static CR1NCRefMetaInfo _EmailAccountMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(EmailAccount));
-        
-        private CR1NCRef<Publisher, Content> BackgroundImageM;
-        
-        private static CR1NCRefMetaInfo _BackgroundImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(BackgroundImage));
-        
-        private CR1NCRef<Publisher, Content> BluredBackgroundImageM;
-        
-        private static CR1NCRefMetaInfo _BluredBackgroundImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(BluredBackgroundImage));
-        
-        private CR1NCRef<Publisher, Content> PreviewImageM;
-        
-        private static CR1NCRefMetaInfo _PreviewImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(PreviewImage));
-        
-        private CSkalarRef<Publisher, Boolean> ListM;
-        
-        private static CSkalarRefMetaInfo _ListMetaInfoM = new CSkalarRefMetaInfo(typeof(Publisher), nameof(List));
-        
-        private CR1NCRef<Publisher, Gift> GiftsM;
-        
-        private static CR1NCRefMetaInfo _GiftsMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(Gifts));
-        
-        public Publisher(CStorage aStorage) : 
-                base(aStorage)
-        {
-        }
-        
-        public static CbOrm.Meta.CTyp _Publisher_Typ
-        {
-            get
-            {
-                return Publisher._Publisher_TypM;
-            }
-        }
-        
-        public override CbOrm.Meta.CTyp Typ
-        {
-            get
-            {
-                return Publisher._Publisher_Typ;
-            }
-        }
-        
-        public CR1NCRef<Publisher, EmailAccount> EmailAccount
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.EmailAccountM, null))
-                {
-                    this.EmailAccountM = new CR1NCRef<Publisher, EmailAccount>(this, Publisher._EmailAccountMetaInfo);
-                }
-                return this.EmailAccountM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _EmailAccountMetaInfo
-        {
-            get
-            {
-                return Publisher._EmailAccountMetaInfoM;
-            }
-        }
-        
-        public CR1NCRef<Publisher, Content> BackgroundImage
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.BackgroundImageM, null))
-                {
-                    this.BackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BackgroundImageMetaInfo);
-                }
-                return this.BackgroundImageM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _BackgroundImageMetaInfo
-        {
-            get
-            {
-                return Publisher._BackgroundImageMetaInfoM;
-            }
-        }
-        
-        public CR1NCRef<Publisher, Content> BluredBackgroundImage
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.BluredBackgroundImageM, null))
-                {
-                    this.BluredBackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BluredBackgroundImageMetaInfo);
-                }
-                return this.BluredBackgroundImageM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _BluredBackgroundImageMetaInfo
-        {
-            get
-            {
-                return Publisher._BluredBackgroundImageMetaInfoM;
-            }
-        }
-        
-        public CR1NCRef<Publisher, Content> PreviewImage
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.PreviewImageM, null))
-                {
-                    this.PreviewImageM = new CR1NCRef<Publisher, Content>(this, Publisher._PreviewImageMetaInfo);
-                }
-                return this.PreviewImageM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _PreviewImageMetaInfo
-        {
-            get
-            {
-                return Publisher._PreviewImageMetaInfoM;
-            }
-        }
-        
-        public CSkalarRef<Publisher, Boolean> List
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.ListM, null))
-                {
-                    this.ListM = new CSkalarRef<Publisher, Boolean>(this, Publisher._ListMetaInfo);
-                }
-                return this.ListM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _ListMetaInfo
-        {
-            get
-            {
-                return Publisher._ListMetaInfoM;
-            }
-        }
-        
-        public CR1NCRef<Publisher, Gift> Gifts
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.GiftsM, null))
-                {
-                    this.GiftsM = new CR1NCRef<Publisher, Gift>(this, Publisher._GiftsMetaInfo);
-                }
-                return this.GiftsM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _GiftsMetaInfo
-        {
-            get
-            {
-                return Publisher._GiftsMetaInfoM;
-            }
-        }
-        
-        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
-        {
-            aAddProperty.Invoke(Publisher._EmailAccountMetaInfo);
-            aAddProperty.Invoke(Publisher._BackgroundImageMetaInfo);
-            aAddProperty.Invoke(Publisher._BluredBackgroundImageMetaInfo);
-            aAddProperty.Invoke(Publisher._PreviewImageMetaInfo);
-            aAddProperty.Invoke(Publisher._ListMetaInfo);
-            aAddProperty.Invoke(Publisher._GiftsMetaInfo);
-        }
-    }
     
     public class EmailAccount : CEntityObject
     {
         
         public static CbOrm.Meta.CTyp _EmailAccount_TypM = new CbOrm.Meta.CTyp(typeof(EmailAccount), new System.Guid("00000000-0000-0000-0000-000000000000"), EmailAccount._GetProperties);
+        
+        private CSkalarRef<EmailAccount, Guid> Publisher_EmailAccountGuidM;
+        
+        private static CSkalarRefMetaInfo _Publisher_EmailAccountGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(EmailAccount), nameof(Publisher_EmailAccountGuid));
         
         private CSkalarRef<EmailAccount, String> UserM;
         
@@ -361,6 +78,28 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 return EmailAccount._EmailAccount_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Publisher))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("EmailAccount")]
+        public CSkalarRef<EmailAccount, Guid> Publisher_EmailAccountGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Publisher_EmailAccountGuidM, null))
+                {
+                    this.Publisher_EmailAccountGuidM = new CSkalarRef<EmailAccount, Guid>(this, EmailAccount._Publisher_EmailAccountGuidMetaInfo);
+                }
+                return this.Publisher_EmailAccountGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Publisher_EmailAccountGuidMetaInfo
+        {
+            get
+            {
+                return EmailAccount._Publisher_EmailAccountGuidMetaInfoM;
             }
         }
         
@@ -526,6 +265,7 @@ namespace CbVoucherApp.Code.Domain
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
+            aAddProperty.Invoke(EmailAccount._Publisher_EmailAccountGuidMetaInfo);
             aAddProperty.Invoke(EmailAccount._UserMetaInfo);
             aAddProperty.Invoke(EmailAccount._EmailMetaInfo);
             aAddProperty.Invoke(EmailAccount._PasswordMetaInfo);
@@ -537,10 +277,230 @@ namespace CbVoucherApp.Code.Domain
         }
     }
     
+    public class Content : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _Content_TypM = new CbOrm.Meta.CTyp(typeof(Content), new System.Guid("00000000-0000-0000-0000-000000000000"), Content._GetProperties);
+        
+        private CSkalarRef<Content, Guid> Publisher_BackgroundImageGuidM;
+        
+        private static CSkalarRefMetaInfo _Publisher_BackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(Publisher_BackgroundImageGuid));
+        
+        private CSkalarRef<Content, Guid> Publisher_BluredBackgroundImageGuidM;
+        
+        private static CSkalarRefMetaInfo _Publisher_BluredBackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(Publisher_BluredBackgroundImageGuid));
+        
+        private CSkalarRef<Content, Guid> Publisher_PreviewImageGuidM;
+        
+        private static CSkalarRefMetaInfo _Publisher_PreviewImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(Publisher_PreviewImageGuid));
+        
+        private CSkalarRef<Content, Guid> Gift_BackgroundImageGuidM;
+        
+        private static CSkalarRefMetaInfo _Gift_BackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(Gift_BackgroundImageGuid));
+        
+        private CSkalarRef<Content, Guid> DownloadFormat_ContentGuidM;
+        
+        private static CSkalarRefMetaInfo _DownloadFormat_ContentGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(DownloadFormat_ContentGuid));
+        
+        private CSkalarRef<Content, String> FileNameM;
+        
+        private static CSkalarRefMetaInfo _FileNameMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(FileName));
+        
+        private CSkalarRef<Content, String> RedirectTargetM;
+        
+        private static CSkalarRefMetaInfo _RedirectTargetMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(RedirectTarget));
+        
+        public Content(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _Content_Typ
+        {
+            get
+            {
+                return Content._Content_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return Content._Content_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Publisher))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("BackgroundImage")]
+        public CSkalarRef<Content, Guid> Publisher_BackgroundImageGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Publisher_BackgroundImageGuidM, null))
+                {
+                    this.Publisher_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Publisher_BackgroundImageGuidMetaInfo);
+                }
+                return this.Publisher_BackgroundImageGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Publisher_BackgroundImageGuidMetaInfo
+        {
+            get
+            {
+                return Content._Publisher_BackgroundImageGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Publisher))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("BluredBackgroundImage")]
+        public CSkalarRef<Content, Guid> Publisher_BluredBackgroundImageGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Publisher_BluredBackgroundImageGuidM, null))
+                {
+                    this.Publisher_BluredBackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Publisher_BluredBackgroundImageGuidMetaInfo);
+                }
+                return this.Publisher_BluredBackgroundImageGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Publisher_BluredBackgroundImageGuidMetaInfo
+        {
+            get
+            {
+                return Content._Publisher_BluredBackgroundImageGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Publisher))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("PreviewImage")]
+        public CSkalarRef<Content, Guid> Publisher_PreviewImageGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Publisher_PreviewImageGuidM, null))
+                {
+                    this.Publisher_PreviewImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Publisher_PreviewImageGuidMetaInfo);
+                }
+                return this.Publisher_PreviewImageGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Publisher_PreviewImageGuidMetaInfo
+        {
+            get
+            {
+                return Content._Publisher_PreviewImageGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Gift))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("BackgroundImage")]
+        public CSkalarRef<Content, Guid> Gift_BackgroundImageGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Gift_BackgroundImageGuidM, null))
+                {
+                    this.Gift_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Gift_BackgroundImageGuidMetaInfo);
+                }
+                return this.Gift_BackgroundImageGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Gift_BackgroundImageGuidMetaInfo
+        {
+            get
+            {
+                return Content._Gift_BackgroundImageGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(DownloadFormat))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Content")]
+        public CSkalarRef<Content, Guid> DownloadFormat_ContentGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.DownloadFormat_ContentGuidM, null))
+                {
+                    this.DownloadFormat_ContentGuidM = new CSkalarRef<Content, Guid>(this, Content._DownloadFormat_ContentGuidMetaInfo);
+                }
+                return this.DownloadFormat_ContentGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _DownloadFormat_ContentGuidMetaInfo
+        {
+            get
+            {
+                return Content._DownloadFormat_ContentGuidMetaInfoM;
+            }
+        }
+        
+        public CSkalarRef<Content, String> FileName
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.FileNameM, null))
+                {
+                    this.FileNameM = new CSkalarRef<Content, String>(this, Content._FileNameMetaInfo);
+                }
+                return this.FileNameM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _FileNameMetaInfo
+        {
+            get
+            {
+                return Content._FileNameMetaInfoM;
+            }
+        }
+        
+        public CSkalarRef<Content, String> RedirectTarget
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.RedirectTargetM, null))
+                {
+                    this.RedirectTargetM = new CSkalarRef<Content, String>(this, Content._RedirectTargetMetaInfo);
+                }
+                return this.RedirectTargetM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _RedirectTargetMetaInfo
+        {
+            get
+            {
+                return Content._RedirectTargetMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(Content._Publisher_BackgroundImageGuidMetaInfo);
+            aAddProperty.Invoke(Content._Publisher_BluredBackgroundImageGuidMetaInfo);
+            aAddProperty.Invoke(Content._Publisher_PreviewImageGuidMetaInfo);
+            aAddProperty.Invoke(Content._Gift_BackgroundImageGuidMetaInfo);
+            aAddProperty.Invoke(Content._DownloadFormat_ContentGuidMetaInfo);
+            aAddProperty.Invoke(Content._FileNameMetaInfo);
+            aAddProperty.Invoke(Content._RedirectTargetMetaInfo);
+        }
+    }
+    
     public class Gift : CEntityObject
     {
         
         public static CbOrm.Meta.CTyp _Gift_TypM = new CbOrm.Meta.CTyp(typeof(Gift), new System.Guid("00000000-0000-0000-0000-000000000000"), Gift._GetProperties);
+        
+        private CSkalarRef<Gift, Guid> Publisher_GiftsGuidM;
+        
+        private static CSkalarRefMetaInfo _Publisher_GiftsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Gift), nameof(Publisher_GiftsGuid));
         
         private CSkalarRef<Gift, String> NameM;
         
@@ -616,6 +576,28 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 return Gift._Gift_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Publisher))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Gifts")]
+        public CSkalarRef<Gift, Guid> Publisher_GiftsGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Publisher_GiftsGuidM, null))
+                {
+                    this.Publisher_GiftsGuidM = new CSkalarRef<Gift, Guid>(this, Gift._Publisher_GiftsGuidMetaInfo);
+                }
+                return this.Publisher_GiftsGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Publisher_GiftsGuidMetaInfo
+        {
+            get
+            {
+                return Gift._Publisher_GiftsGuidMetaInfoM;
             }
         }
         
@@ -901,6 +883,7 @@ namespace CbVoucherApp.Code.Domain
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
+            aAddProperty.Invoke(Gift._Publisher_GiftsGuidMetaInfo);
             aAddProperty.Invoke(Gift._NameMetaInfo);
             aAddProperty.Invoke(Gift._HashtagMetaInfo);
             aAddProperty.Invoke(Gift._CoverMetaInfo);
@@ -922,6 +905,10 @@ namespace CbVoucherApp.Code.Domain
     {
         
         public static CbOrm.Meta.CTyp _GiftStatistic_TypM = new CbOrm.Meta.CTyp(typeof(GiftStatistic), new System.Guid("00000000-0000-0000-0000-000000000000"), GiftStatistic._GetProperties);
+        
+        private CSkalarRef<GiftStatistic, Guid> Gift_StatisticGuidM;
+        
+        private static CSkalarRefMetaInfo _Gift_StatisticGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(GiftStatistic), nameof(Gift_StatisticGuid));
         
         private CSkalarRef<GiftStatistic, UInt64> DownloadedM;
         
@@ -957,6 +944,28 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 return GiftStatistic._GiftStatistic_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Gift))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Statistic")]
+        public CSkalarRef<GiftStatistic, Guid> Gift_StatisticGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Gift_StatisticGuidM, null))
+                {
+                    this.Gift_StatisticGuidM = new CSkalarRef<GiftStatistic, Guid>(this, GiftStatistic._Gift_StatisticGuidMetaInfo);
+                }
+                return this.Gift_StatisticGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Gift_StatisticGuidMetaInfo
+        {
+            get
+            {
+                return GiftStatistic._Gift_StatisticGuidMetaInfoM;
             }
         }
         
@@ -1042,6 +1051,7 @@ namespace CbVoucherApp.Code.Domain
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
+            aAddProperty.Invoke(GiftStatistic._Gift_StatisticGuidMetaInfo);
             aAddProperty.Invoke(GiftStatistic._DownloadedMetaInfo);
             aAddProperty.Invoke(GiftStatistic._NotDownloadedMetaInfo);
             aAddProperty.Invoke(GiftStatistic._OpenRequestsMetaInfo);
@@ -1053,6 +1063,10 @@ namespace CbVoucherApp.Code.Domain
     {
         
         public static CbOrm.Meta.CTyp _DownloadFormat_TypM = new CbOrm.Meta.CTyp(typeof(DownloadFormat), new System.Guid("00000000-0000-0000-0000-000000000000"), DownloadFormat._GetProperties);
+        
+        private CSkalarRef<DownloadFormat, Guid> Gift_DownlaodFormatsGuidM;
+        
+        private static CSkalarRefMetaInfo _Gift_DownlaodFormatsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(DownloadFormat), nameof(Gift_DownlaodFormatsGuid));
         
         private CSkalarRef<DownloadFormat, String> NameM;
         
@@ -1080,6 +1094,28 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 return DownloadFormat._DownloadFormat_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(Gift))]
+        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("DownlaodFormats")]
+        public CSkalarRef<DownloadFormat, Guid> Gift_DownlaodFormatsGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Gift_DownlaodFormatsGuidM, null))
+                {
+                    this.Gift_DownlaodFormatsGuidM = new CSkalarRef<DownloadFormat, Guid>(this, DownloadFormat._Gift_DownlaodFormatsGuidMetaInfo);
+                }
+                return this.Gift_DownlaodFormatsGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Gift_DownlaodFormatsGuidMetaInfo
+        {
+            get
+            {
+                return DownloadFormat._Gift_DownlaodFormatsGuidMetaInfoM;
             }
         }
         
@@ -1125,8 +1161,296 @@ namespace CbVoucherApp.Code.Domain
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
+            aAddProperty.Invoke(DownloadFormat._Gift_DownlaodFormatsGuidMetaInfo);
             aAddProperty.Invoke(DownloadFormat._NameMetaInfo);
             aAddProperty.Invoke(DownloadFormat._ContentMetaInfo);
+        }
+    }
+    
+    public class Account : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _Account_TypM = new CbOrm.Meta.CTyp(typeof(Account), new System.Guid("00000000-0000-0000-0000-000000000000"), Account._GetProperties);
+        
+        private CSkalarRef<Account, String> UserNameM;
+        
+        private static CSkalarRefMetaInfo _UserNameMetaInfoM = new CSkalarRefMetaInfo(typeof(Account), nameof(UserName));
+        
+        private CSkalarRef<Account, String> PasswordM;
+        
+        private static CSkalarRefMetaInfo _PasswordMetaInfoM = new CSkalarRefMetaInfo(typeof(Account), nameof(Password));
+        
+        private CR11CRef<Account, Publisher> PublisherM;
+        
+        private static CR11CRefMetaInfo _PublisherMetaInfoM = new CR11CRefMetaInfo(typeof(Account), nameof(Publisher));
+        
+        public Account(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _Account_Typ
+        {
+            get
+            {
+                return Account._Account_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return Account._Account_Typ;
+            }
+        }
+        
+        public CSkalarRef<Account, String> UserName
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.UserNameM, null))
+                {
+                    this.UserNameM = new CSkalarRef<Account, String>(this, Account._UserNameMetaInfo);
+                }
+                return this.UserNameM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _UserNameMetaInfo
+        {
+            get
+            {
+                return Account._UserNameMetaInfoM;
+            }
+        }
+        
+        public CSkalarRef<Account, String> Password
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.PasswordM, null))
+                {
+                    this.PasswordM = new CSkalarRef<Account, String>(this, Account._PasswordMetaInfo);
+                }
+                return this.PasswordM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _PasswordMetaInfo
+        {
+            get
+            {
+                return Account._PasswordMetaInfoM;
+            }
+        }
+        
+        public CR11CRef<Account, Publisher> Publisher
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.PublisherM, null))
+                {
+                    this.PublisherM = new CR11CRef<Account, Publisher>(this, Account._PublisherMetaInfo);
+                }
+                return this.PublisherM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _PublisherMetaInfo
+        {
+            get
+            {
+                return Account._PublisherMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(Account._UserNameMetaInfo);
+            aAddProperty.Invoke(Account._PasswordMetaInfo);
+            aAddProperty.Invoke(Account._PublisherMetaInfo);
+        }
+    }
+    
+    public class Publisher : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _Publisher_TypM = new CbOrm.Meta.CTyp(typeof(Publisher), new System.Guid("00000000-0000-0000-0000-000000000000"), Publisher._GetProperties);
+        
+        private CR1NCRef<Publisher, EmailAccount> EmailAccountM;
+        
+        private static CR1NCRefMetaInfo _EmailAccountMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(EmailAccount));
+        
+        private CR1NCRef<Publisher, Content> BackgroundImageM;
+        
+        private static CR1NCRefMetaInfo _BackgroundImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(BackgroundImage));
+        
+        private CR1NCRef<Publisher, Content> BluredBackgroundImageM;
+        
+        private static CR1NCRefMetaInfo _BluredBackgroundImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(BluredBackgroundImage));
+        
+        private CR1NCRef<Publisher, Content> PreviewImageM;
+        
+        private static CR1NCRefMetaInfo _PreviewImageMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(PreviewImage));
+        
+        private CSkalarRef<Publisher, Boolean> ListM;
+        
+        private static CSkalarRefMetaInfo _ListMetaInfoM = new CSkalarRefMetaInfo(typeof(Publisher), nameof(List));
+        
+        private CR1NCRef<Publisher, Gift> GiftsM;
+        
+        private static CR1NCRefMetaInfo _GiftsMetaInfoM = new CR1NCRefMetaInfo(typeof(Publisher), nameof(Gifts));
+        
+        public Publisher(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _Publisher_Typ
+        {
+            get
+            {
+                return Publisher._Publisher_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return Publisher._Publisher_Typ;
+            }
+        }
+        
+        public CR1NCRef<Publisher, EmailAccount> EmailAccount
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.EmailAccountM, null))
+                {
+                    this.EmailAccountM = new CR1NCRef<Publisher, EmailAccount>(this, Publisher._EmailAccountMetaInfo);
+                }
+                return this.EmailAccountM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _EmailAccountMetaInfo
+        {
+            get
+            {
+                return Publisher._EmailAccountMetaInfoM;
+            }
+        }
+        
+        public CR1NCRef<Publisher, Content> BackgroundImage
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.BackgroundImageM, null))
+                {
+                    this.BackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BackgroundImageMetaInfo);
+                }
+                return this.BackgroundImageM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _BackgroundImageMetaInfo
+        {
+            get
+            {
+                return Publisher._BackgroundImageMetaInfoM;
+            }
+        }
+        
+        public CR1NCRef<Publisher, Content> BluredBackgroundImage
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.BluredBackgroundImageM, null))
+                {
+                    this.BluredBackgroundImageM = new CR1NCRef<Publisher, Content>(this, Publisher._BluredBackgroundImageMetaInfo);
+                }
+                return this.BluredBackgroundImageM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _BluredBackgroundImageMetaInfo
+        {
+            get
+            {
+                return Publisher._BluredBackgroundImageMetaInfoM;
+            }
+        }
+        
+        public CR1NCRef<Publisher, Content> PreviewImage
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.PreviewImageM, null))
+                {
+                    this.PreviewImageM = new CR1NCRef<Publisher, Content>(this, Publisher._PreviewImageMetaInfo);
+                }
+                return this.PreviewImageM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _PreviewImageMetaInfo
+        {
+            get
+            {
+                return Publisher._PreviewImageMetaInfoM;
+            }
+        }
+        
+        public CSkalarRef<Publisher, Boolean> List
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.ListM, null))
+                {
+                    this.ListM = new CSkalarRef<Publisher, Boolean>(this, Publisher._ListMetaInfo);
+                }
+                return this.ListM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _ListMetaInfo
+        {
+            get
+            {
+                return Publisher._ListMetaInfoM;
+            }
+        }
+        
+        public CR1NCRef<Publisher, Gift> Gifts
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.GiftsM, null))
+                {
+                    this.GiftsM = new CR1NCRef<Publisher, Gift>(this, Publisher._GiftsMetaInfo);
+                }
+                return this.GiftsM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _GiftsMetaInfo
+        {
+            get
+            {
+                return Publisher._GiftsMetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(Publisher._EmailAccountMetaInfo);
+            aAddProperty.Invoke(Publisher._BackgroundImageMetaInfo);
+            aAddProperty.Invoke(Publisher._BluredBackgroundImageMetaInfo);
+            aAddProperty.Invoke(Publisher._PreviewImageMetaInfo);
+            aAddProperty.Invoke(Publisher._ListMetaInfo);
+            aAddProperty.Invoke(Publisher._GiftsMetaInfo);
         }
     }
     
@@ -2078,87 +2402,6 @@ namespace CbVoucherApp.Code.Domain
         }
     }
     
-    public class Content : CEntityObject
-    {
-        
-        public static CbOrm.Meta.CTyp _Content_TypM = new CbOrm.Meta.CTyp(typeof(Content), new System.Guid("00000000-0000-0000-0000-000000000000"), Content._GetProperties);
-        
-        private CSkalarRef<Content, String> FileNameM;
-        
-        private static CSkalarRefMetaInfo _FileNameMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(FileName));
-        
-        private CSkalarRef<Content, String> RedirectTargetM;
-        
-        private static CSkalarRefMetaInfo _RedirectTargetMetaInfoM = new CSkalarRefMetaInfo(typeof(Content), nameof(RedirectTarget));
-        
-        public Content(CStorage aStorage) : 
-                base(aStorage)
-        {
-        }
-        
-        public static CbOrm.Meta.CTyp _Content_Typ
-        {
-            get
-            {
-                return Content._Content_TypM;
-            }
-        }
-        
-        public override CbOrm.Meta.CTyp Typ
-        {
-            get
-            {
-                return Content._Content_Typ;
-            }
-        }
-        
-        public CSkalarRef<Content, String> FileName
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.FileNameM, null))
-                {
-                    this.FileNameM = new CSkalarRef<Content, String>(this, Content._FileNameMetaInfo);
-                }
-                return this.FileNameM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _FileNameMetaInfo
-        {
-            get
-            {
-                return Content._FileNameMetaInfoM;
-            }
-        }
-        
-        public CSkalarRef<Content, String> RedirectTarget
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.RedirectTargetM, null))
-                {
-                    this.RedirectTargetM = new CSkalarRef<Content, String>(this, Content._RedirectTargetMetaInfo);
-                }
-                return this.RedirectTargetM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _RedirectTargetMetaInfo
-        {
-            get
-            {
-                return Content._RedirectTargetMetaInfoM;
-            }
-        }
-        
-        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
-        {
-            aAddProperty.Invoke(Content._FileNameMetaInfo);
-            aAddProperty.Invoke(Content._RedirectTargetMetaInfo);
-        }
-    }
-    
     public class CbVoucherSchema : CbOrm.Schema.CSchema
     {
         
@@ -2166,12 +2409,13 @@ namespace CbVoucherApp.Code.Domain
         
         private CbVoucherSchema()
         {
-            this.AddTyp(Account._Account_TypM);
-            this.AddTyp(Publisher._Publisher_TypM);
             this.AddTyp(EmailAccount._EmailAccount_TypM);
+            this.AddTyp(Content._Content_TypM);
             this.AddTyp(Gift._Gift_TypM);
             this.AddTyp(GiftStatistic._GiftStatistic_TypM);
             this.AddTyp(DownloadFormat._DownloadFormat_TypM);
+            this.AddTyp(Account._Account_TypM);
+            this.AddTyp(Publisher._Publisher_TypM);
             this.AddTyp(GiftCounters._GiftCounters_TypM);
             this.AddTyp(VoucherRequest._VoucherRequest_TypM);
             this.AddTyp(Voucher._Voucher_TypM);
@@ -2180,7 +2424,6 @@ namespace CbVoucherApp.Code.Domain
             this.AddTyp(Newsletter._Newsletter_TypM);
             this.AddTyp(SubscribeRequest._SubscribeRequest_TypM);
             this.AddTyp(UnsubscribeRequest._UnsubscribeRequest_TypM);
-            this.AddTyp(Content._Content_TypM);
             this.Init();
         }
         

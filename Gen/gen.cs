@@ -1,6 +1,6 @@
 ﻿// This is my 2nd generation ORM-Wrapper. (code generator)
 // TODO:
-// - Clone
+// - R1NPRef.Guid WriteProtected.
 // - xdl.Import, populate web.xdl 
 // - xdl comment rows.
 // - Optionale ReverseNavigation Extending
@@ -18,6 +18,7 @@
 // - Testing
 // - Support structs/classes as skalar fields?
 
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,6 +33,7 @@ using CbOrm.Entity;
 using CbOrm.Util;
 using CbOrm.Schema;
 using CbOrm.Loader;
+using CbOrm.Attributes;
 
 namespace CbOrm.Gen
 {
@@ -59,6 +61,7 @@ namespace CbOrm.Gen
         public string Mdl_P_A_Nme_DomAGen = "a?:";
         public string Mdl_P_A_Nme_DomAExst = "a:";
         public string Dom_P_Singleton_Nme = "Singleton";
+        public string MDl_O_A_Typ_Nme = "Typ";
 
         public string Mdl_T_A_Nme_Base = "Base";
         public string Mdl_T_A_Nme_Init = "Init";
@@ -85,13 +88,14 @@ namespace CbOrm.Gen
         public string Dom_Tmpl_IEnumerable = nameof(IEnumerable);
 
         // Target identfiier Tokens (Target=.NET Framework)
+        public string Trg_C_SysObj_Nsp = typeof(object).Namespace;
         public string Trg_C_Obj_Nsp = typeof(Entity.CObject).Namespace;
         public string Trg_C_Obj_Nme = nameof(Entity.CObject);
         public string Trg_C_Eno_Nsp = typeof(Entity.CEntityObject).Namespace;
         public string Trg_C_Eno_Nme = nameof(Entity.CEntityObject);
         public string Trg_C_Str_Nsp = typeof(Storage.CStorage).Namespace;
         public string Trg_C_Str_Nme = nameof(Storage.CStorage);
-        public string Trg_C_Ref_Nme = typeof(Ref.CR1NCRef<Entity.CEntityObject, Entity.CObject>).Namespace;
+        public string Trg_C_Ref_Nme = typeof(Ref.CR1NCRef<Entity.CEntityObject, CEntityObject>).Namespace;
 
         public string Trg_N_GetPrps_Nme = "_GetProperties";
 
@@ -101,7 +105,7 @@ namespace CbOrm.Gen
         public string Trg_C_Mta_P_Fld_Nme = nameof(Meta.CSkalarRefMetaInfo);
         public string Trg_C_Mta_P_Rel_Sfx = "MetaInfo";
         public string Trg_C_Schema_M_GetSchmema = "GetSingleton";
-
+        public string Trg_C_Fk_P_Sfx = "Guid";
         public virtual IEnumerable<Type> NativeTypes
         {
             get
@@ -114,6 +118,7 @@ namespace CbOrm.Gen
         {
             get
             {
+                yield return this.Trg_C_SysObj_Nsp;
                 yield return this.Trg_C_Obj_Nsp;
                 yield return this.Trg_C_Eno_Nsp;
                 yield return this.Trg_C_Str_Nsp;
@@ -139,18 +144,18 @@ namespace CbOrm.Gen
 
  
 
-    public class CMdlInterpreter : CRflModelInterpreter
+    public class CGenModelInterpreter : CRflModelInterpreter
     {
         public readonly new CGenTokens Tok;
         public override CRflTokens Tokens => this.Tok;
-        public CMdlInterpreter(CGenTokens aTok) { this.Tok = aTok; }
-        public CMdlInterpreter() : this(new CGenTokens()) { }
+        public CGenModelInterpreter(CGenTokens aTok) { this.Tok = aTok; }
+        public CGenModelInterpreter() : this(new CGenTokens()) { }
 
         public virtual string GetSchema(CRflModel aMdl) => aMdl.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
         public virtual string GetTypName(CRflTyp aRflClass) => aRflClass.Name;
         public virtual string GetBase(CRflTyp aRflClass) => aRflClass.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Base);
-        public virtual string GetReturnTypName(CRflProperty aPrp) => aPrp.Name.Length == 0 ? string.Empty : aPrp.GetAttributeValue("Typ").DefaultIfEmpty(() => aPrp.Name);
-        public virtual CRflTyp GetReturnTyp(CRflProperty aPrp) => aPrp.Typ.Model.GetTypByName(GetReturnTypName(aPrp));
+        public virtual string GetReturnTypName(CRflProperty aPrp) => aPrp.Name.Length == 0 ? string.Empty : aPrp.GetAttributeValue(this.Tok.MDl_O_A_Typ_Nme).DefaultIfEmpty(() => aPrp.Name);
+        public virtual CRflTyp GetReturnTyp(CRflProperty aPrp) => aPrp.DeclaringTyp.Model.GetTypByName(GetReturnTypName(aPrp));
         public virtual bool GetIsEntityObject(CRflTyp aTyp) => GetBase(aTyp).Length > 0;
         public virtual string GetInit(CRflTyp aTyo) => aTyo.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Init);
         public virtual string GetInit(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Init).DefaultIfEmpty(() => this.GetInit(this.GetReturnTyp(aPrp)));
@@ -159,33 +164,64 @@ namespace CbOrm.Gen
         public virtual string GetClassName(CCardinalityEnum aCardinality) => this.Tok.Dom_C_Pfx + aCardinality.ToString() + this.Tok.Dom_C_Ref_Sfx;
         public virtual string GetEntityRefPropertyName(CRflProperty aPrp) => aPrp.Name + this.Tok.Dom_P_Ref_Sfx;
         public virtual IEnumerable<CRflTyp> GetEntityObjectClasses(CRflModel aMdl) => from aTest in aMdl.Typs where this.GetBase(aTest) == this.Tok.Trg_C_Eno_Nme select aTest;
-        internal virtual IEnumerable<string> GetClrNamespaces(CRflModel aMdl) => (from aTyp in aMdl.Typs
+        public virtual IEnumerable<string> GetClrNamespaces(CRflModel aMdl) => (from aTyp in aMdl.Typs
                                                                           where aTyp.Name.Length > 0
                                                                           select aTyp.GetPropertyAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs)).Where(aNs => aNs.Length > 0);
-        internal virtual Guid GetGuid(CRflTyp aTyp) => aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Guid_Nme).DefaultIfEmpty<Guid>(s => new Guid(s), () => default(Guid));
+        public virtual Guid GetGuid(CRflTyp aTyp) => aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Guid_Nme).DefaultIfEmpty<Guid>(s => new Guid(s), () => default(Guid));
+
+        public virtual string GetR1NCForeignKeyPropertyName(CRflProperty aR1NPProperty) => aR1NPProperty.DeclaringTyp.Name + "_" + aR1NPProperty.Name + this.Tok.Trg_C_Fk_P_Sfx;
+        internal IEnumerable<CRflRow> NewR1NCForeignKeyRows(CRflProperty aR1NPProperty)
+        {
+            var aR1NPTyp = aR1NPProperty.DeclaringTyp;
+            var aR1NCTyp = this.GetReturnTyp(aR1NPProperty);
+            var aPropertyName = this.GetR1NCForeignKeyPropertyName(aR1NPProperty);
+            var aGeneratedComment = "Generated by " + nameof(CGenModelInterpreter) + "." + nameof(NewR1NCForeignKeyRows);
+            var aFkPropertyRow = CRflRow.New(aR1NCTyp.Name, aPropertyName, this.Tok.MDl_O_A_Typ_Nme, nameof(System.Guid), string.Empty, aGeneratedComment);
+            var aFkParentTypeAttributeType = typeof(CForeignKeyParentTypeAttribute).FullName;
+            var aFkParentTypeAttributeValue = aR1NPTyp.Name;
+            var aFkParentTypeAttributeRow = CRflRow.New(aR1NCTyp.Name, aPropertyName, this.Tok.Mdl_P_A_Nme_DomAExst + aFkParentTypeAttributeType, aFkParentTypeAttributeValue, string.Empty, aGeneratedComment);
+            var aFkParentPropertyAttributeType = typeof(CForeignKeyParentPropertyNameAttribute).FullName;
+            var aFkParentPropertyAttributeValue = aR1NPProperty.Name;
+            var aFkParentPropertyAttributeRow = CRflRow.New(aR1NCTyp.Name, aPropertyName, this.Tok.Mdl_P_A_Nme_DomAExst + aFkParentPropertyAttributeType, aFkParentPropertyAttributeValue, string.Empty, aGeneratedComment);
+            yield return aFkPropertyRow;
+            yield return aFkParentTypeAttributeRow;
+            yield return aFkParentPropertyAttributeRow;
+        }
     }
 
     public class CCodeDomBuilder
     {
-        public CCodeDomBuilder(CMdlInterpreter aIdl, CGenTokens aTok)
+        public CCodeDomBuilder(CGenModelInterpreter aIdl, CGenTokens aTok)
         {
             this.Idl = aIdl;
             this.Tok = aTok;
         }
-        public CCodeDomBuilder() : this(new CMdlInterpreter(), new CGenTokens()) { }
+        public CCodeDomBuilder() : this(new CGenModelInterpreter(), new CGenTokens()) { }
 
-        public CMdlInterpreter Idl;
+        public CGenModelInterpreter Idl;
         public CGenTokens Tok;
 
         public virtual CodeTypeReference NewCodeTypeRefFromModel(string aName) => new CodeTypeReference(aName);
         public virtual CodeTypeReference NewCodeTypeRef(CRflTyp aTyp) => this.NewCodeTypeRefFromModel(this.Idl.GetTypName(aTyp));
         public virtual CodeExpression NewNameOfPrpertyExpression(string aPrpName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aPrpName + ")");
         public virtual CodeExpression NewNameOTypeExpression(string aTypName) => new CodeSnippetExpression(this.Tok.Dom_O_NameOf_Nme + "(" + aTypName + ")");
-        public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDecls(CRflProperty aPrp)
-            => from aAttribute in aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAGen)
+
+        public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDeclsGen(CRflProperty aProperty)
+            => from aAttribute in aProperty.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAGen)
                select new CodeAttributeDeclaration(
                    new CodeTypeReference(this.Tok.GetClrAttributeClassNameFromModel(aAttribute.Name.TrimStart(this.Tok.Mdl_P_A_Nme_DomAGen))),
                     new CodeAttributeArgument(new CodePrimitiveExpression(aAttribute.Value)));
+
+        public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDeclsExist(CRflProperty aProperty)
+            => from aAttribute in aProperty.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAExst)
+               select new CodeAttributeDeclaration
+               (
+                   new CodeTypeReference(aAttribute.Name.TrimStart(this.Tok.Mdl_P_A_Nme_DomAExst)),
+                   System.Type.GetType(aAttribute.Name.TrimStart(this.Tok.Mdl_P_A_Nme_DomAExst)).GetCustomAttribute<CAttributeValueTypeAttribute>().NewCodeAttributeArguments(aAttribute.Value).ToArray()
+               );
+
+        public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDecls(CRflProperty aProperty) =>
+            this.NewCodeAttributeDeclsGen(aProperty).Concat(this.NewCodeAttributeDeclsExist(aProperty));
 
         public virtual Tuple<CodeMemberProperty, CodeMemberField> NewLazyLoadPrperty(CodeTypeReference aCdRetTyp,
                                                                                       bool aIsClass,
@@ -217,7 +253,8 @@ namespace CbOrm.Gen
             return new CLazyLoadPrp(aCdPrp, aCdFld);
         }
 
-        internal CodeExpression NewTypeOfExpression(object aNme) => new CodeSnippetExpression(this.Tok.Dom_O_TypeOf_Nme + "(" + aNme + ")");
+        internal CodeExpression NewTypeOfExpression(object aSystemTypeName) => new CodeSnippetExpression(this.NewTypeOfSnippet(aSystemTypeName));
+        internal string NewTypeOfSnippet(object aSystemTypName) => this.Tok.Dom_O_TypeOf_Nme + "(" + aSystemTypName + ")";
         internal string NewYieldReturnStatementSnippet(string aItem) => "yield return " + aItem + ";";
         internal IEnumerable<CodeStatement> NewYieldReturnBaseItemsStatements(string aMethodName)
         {
@@ -228,13 +265,37 @@ namespace CbOrm.Gen
         internal CodeFieldReferenceExpression NewTypMetaInfoFieldRefExp(string aClassName) => new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(aClassName), this.GetTypMetaInfoFieldName(aClassName));
         internal string GetTypMetaInfoPropName(string aClassName)=> "_" + aClassName + "_" + "Typ";
         internal string GetTypMetaInfoFieldName(string aClassName) => this.Tok.GetFieldName(this.GetTypMetaInfoPropName(aClassName));
-    } 
-
+    }
+    internal sealed class CR1NForeignKeyExpander : CModelExpander
+    {
+        internal CR1NForeignKeyExpander(CGenModelInterpreter aGenModelInterpreter)
+        {
+            this.ModelInterpreter = aGenModelInterpreter;
+        }
+        private readonly CGenModelInterpreter ModelInterpreter;
+        public override CRflModel Expand(CRflModel aModel)
+        {
+            var aModelInterpreter = this.ModelInterpreter;
+            var aTyps = aModel.Typs;
+            var aProperties = from aTyp in aModel.Typs
+                               from aProperty in aTyp.NamedProperties
+                               where this.ModelInterpreter.GetCardinality(aProperty) == CCardinalityEnum.R1NC
+                               select aProperty;
+            var aRows1 = (from aProperty in aProperties
+                          from aRow in aModelInterpreter.NewR1NCForeignKeyRows(aProperty)
+                          select aRow).ToArray()
+                        ;
+            var aRows2 = aModel.Rows.ToArray();
+            var aRows3 = aRows1.Concat(aRows2).ToArray();
+            var aOutModel = new CRflModel(aModelInterpreter, aRows3);
+            return aOutModel;
+        }
+    }
 
     public sealed class CCodeGenerator
     {
         public CChainedModelExpander Exp = new CChainedModelExpander();
-        public CMdlInterpreter ModelInterpreter;
+        public CGenModelInterpreter ModelInterpreter;
         public CGenTokens Tok;
         public CCodeDomBuilder DomI;
 
@@ -242,7 +303,7 @@ namespace CbOrm.Gen
                                 FileInfo aIdsInputFileInfo,
                                 FileInfo aModelOutputFileInfo,
                                 FileInfo aIdsOutputFileInfo)
-            : this(new CMdlInterpreter(),
+            : this(new CGenModelInterpreter(),
                    new CGenTokens(),
                    new CCodeDomBuilder(),
                    aModelInputFileInfo,
@@ -252,7 +313,7 @@ namespace CbOrm.Gen
         {
         }
 
-        public CCodeGenerator(CMdlInterpreter aMdlInterpreter,
+        public CCodeGenerator(CGenModelInterpreter aMdlInterpreter,
                               CGenTokens aTok,
                               CCodeDomBuilder aDom,
                               FileInfo aModelInputFileInfo,
@@ -268,6 +329,8 @@ namespace CbOrm.Gen
             this.IdsInputFileInfoNullable = aIdsInputFileInfo;
             this.ModelOutputFileInfo = aModelOutputFileInfo;
             this.IdsOutputFileInfo = aIdsOutputFileInfo;
+
+            this.Exp.ChainedExpanders.Add(new CR1NForeignKeyExpander(this.ModelInterpreter));
         }
 
         public readonly FileInfo ModelInputFileInfo;
@@ -312,6 +375,7 @@ namespace CbOrm.Gen
             var aMtaPrpNme = this.Tok.GetRelationyMetaInfoPropertyName(aPrpNme);
             var aMtaPrpRefExp = new CodePropertyReferenceExpression(aCdPTypRefExp, aMtaPrpNme);
             var aHasRelationObject = true; //this.ModelInterpreter.GetIsEntityObject(aCTyp)
+            CodeMemberProperty aCdPrp;
 
             if (aHasRelationObject)
             {
@@ -324,7 +388,9 @@ namespace CbOrm.Gen
                 var aLazyPrp = this.DomI.NewLazyLoadPrperty(aCdRTypRef, aIsClass, this.ModelInterpreter.GetEntityRefPropertyName(aProperty), aNewExp, MemberAttributes.Public | MemberAttributes.Final);
                 aCdTypDcl.Members.Add(aLazyPrp.Item1);
                 aCdTypDcl.Members.Add(aLazyPrp.Item2);
+                aCdPrp = aLazyPrp.Item1;
                 aMtaFldTypNme = this.Tok.GeRelationMetaInfoTypName(aRelTypName);
+
             }
             else
             {
@@ -341,7 +407,7 @@ namespace CbOrm.Gen
                 aCdTypDcl.Members.Add(aCdFld);
 
                 // Property.Get
-                var aCdPrp = new CodeMemberProperty();
+                aCdPrp = new CodeMemberProperty();
                 aCdPrp.Name = aPrpNme;
                 aCdPrp.HasGet = true;
                 aCdPrp.Attributes = MemberAttributes.Public | MemberAttributes.Final;
@@ -360,13 +426,15 @@ namespace CbOrm.Gen
                 var aIfExp = new CodeConditionStatement(aEqExp, aAsgStm);
                 aCdPrp.SetStatements.Add(aIfExp);
 
-                // Property.Attributes
-                var aCdAs = this.DomI.NewCodeAttributeDecls(aProperty);
-                aCdPrp.CustomAttributes.AddRange(aCdAs.ToArray());
 
                 aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
 
             }
+
+            // Property.Attributes
+            var aCdAs = this.DomI.NewCodeAttributeDecls(aProperty);
+            aCdPrp.CustomAttributes.AddRange(aCdAs.ToArray());
+
             // Property.NetaInfo.Field
             var aMtaFldNme = this.Tok.GetRelationMetaInfoFieldName(aPrpNme);
             //aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
@@ -417,7 +485,7 @@ namespace CbOrm.Gen
 
             // Typ.Field
             var aTypTypRef = this.DomI.NewCodeTypeRef<CTyp>();
-            var aTypFldNme = this.DomI.GetTypMetaInfoFieldName(aClassName); //  "_" + aClassName + "_" + "Typ";
+            var aTypFldNme = this.DomI.GetTypMetaInfoFieldName(aClassName);
             var aCdTypFldDcl = new CodeMemberField(aTypTypRef, aTypFldNme);
             var aCdTypeOfExp = this.DomI.NewTypeOfExpression(aClassName);
             var aCdNameOfExp = this.DomI.NewNameOTypeExpression(aClassName);

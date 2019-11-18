@@ -29,6 +29,8 @@ namespace CbOrm.Storage
 
         internal readonly Dictionary<Guid, CObject> Cache = new Dictionary<Guid, CObject>();
 
+        internal abstract bool R1NCContainsChildList { get; }
+
         public int Save()
         {
             var aCount = 0;

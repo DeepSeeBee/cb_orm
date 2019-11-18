@@ -42,6 +42,7 @@ namespace CbOrm.FileSys
             return aStream;
         }
 
+        internal override bool R1NCContainsChildList => true;
         protected override CBlopOutputStream NewBlopOutputStream(CBlop aBlop)
         {
             var aFileInfo = this.GetObjectFileInfo(aBlop);

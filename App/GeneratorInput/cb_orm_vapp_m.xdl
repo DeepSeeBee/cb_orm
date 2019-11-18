@@ -4,7 +4,7 @@
 +|||Namespace|CbVoucherApp.Code.Domain
 +|||Schema|CbVoucher
 
-+||CSaveConverterAttribute|ClrNamespace|CbOrm
+-||CSaveConverterAttribute|ClrNamespace|CbOrm
 +|String||ClrNamespace|System
 +|String||Init|String.Empty
 +|Boolean||ClrNamespace|System
@@ -14,6 +14,7 @@
 +|DateTime||ClrNamespace|System
 +|TriStateEnum||Base|Enum
 +|TriStateEnum||CbOrm.App.Sys
++|Guid||ClrNamespace|System
 
 +|Uri||ClrNamespace|System
 +|CEmailAdress||ClrNamespace|CbOrm.App.Web

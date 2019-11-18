@@ -195,6 +195,47 @@ namespace CbOrm.Gen.Test
         public void Test_cfd975a9_b348_4085_9306_bbea67fc771e()
         {
             // Generate 1:NC Relation (Cardinality 1:N, Parent->Child)
+            this.Schema = Testcfd975a9_b348_4085_9306_bbea67fc771e.TestSchema.Singleton;
+
+            Guid aChild1Id;
+            Guid aChild2Id;
+
+            this.BeginTest("d2b2584b-4d51-4ab5-8125-f7ca1501fbb1");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.CreateObject<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>();
+                aChild1Id = aP.C.Add().Guid.Value;
+                aChild2Id = aP.C.Add().Guid.Value;
+                var aSaved = aStorage.Save();
+                this.Test(aSaved == 3, "52ef2740-d6d9-4304-8e23-48b9b7d0dc46");
+            }
+
+            this.BeginTest("d895ce33-8445-4519-8ece-6d4b28dd1277");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>().Single();
+                var aGuids = from aTest in aP.C select aTest.Guid.Value;
+                this.Test(aGuids.Contains(aChild1Id), "0ea65cb3-6f51-4569-9f0e-c08b1a32ceee");
+                this.Test(aGuids.Contains(aChild2Id), "b31e1f7e-8fd2-4ad4-8108-14c145f3cc60");
+            }
+
+            this.BeginTest("6d75f770-3d3e-4c80-8d89-497c62e95d09");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>().Single();
+                var aC = aP.C.GetByGuid(aChild1Id);
+                aP.C.Remove(aC);
+                var aSaved = aStorage.Save();
+                this.Test(aSaved >= 1, "09e639fd-7382-46d0-b5c7-3e2117102fc0"); /// TODO: >= 1...
+            }
+            this.BeginTest("ef7f6093-8fa3-4d90-a8ff-a027ff7a281f");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>().Single();
+                var aCs = aP.C.Value;
+                this.Test(aCs.Count() == 1, "5c0d5c3a-dbb8-4fbd-be82-44bc71d124f0");
+                this.Test(aCs.Single().Guid.Value == aChild2Id, "db9ba7d4-940f-4d5d-9a44-d5c3893c6ac4");
+            }
         }
 
         public void Test_2dff5efa_d964_42c5_98af_d418ede035b9()

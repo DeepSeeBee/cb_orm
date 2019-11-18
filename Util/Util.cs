@@ -115,5 +115,8 @@ namespace CbOrm.Util
             foreach (var aFile in aDirectory.GetFiles())
                 yield return aFile;
         }
+
+        public static TAttribute GetCustomAttribute<TAttribute>(this Type aType, bool aInherit = false) where TAttribute : Attribute
+            => aType.GetCustomAttributes(typeof(TAttribute), aInherit).Cast<TAttribute>().Last();
     }
 }

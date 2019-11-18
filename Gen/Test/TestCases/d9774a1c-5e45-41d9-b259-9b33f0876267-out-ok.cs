@@ -10,12 +10,12 @@
 
 namespace Testd9774a1c_5e45_41d9_b259_9b33f0876267
 {
+    using System;
     using CbOrm.Entity;
     using CbOrm.Storage;
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
-    using System;
     
     
     public class TestSchema : CbOrm.Schema.CSchema
