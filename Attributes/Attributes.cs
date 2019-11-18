@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CbOrm.Gen;
+using CbOrm.Xdl;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,9 +58,9 @@ namespace CbOrm.Attributes
 
 
     [CAttributeTypeValueType]
-    public sealed class CForeignKeyParentTypeAttribute  : CValueAttribute
+    public sealed class CForeignKeyCounterpartTypeAttribute  : CValueAttribute
     {
-        public CForeignKeyParentTypeAttribute(Type aValue)
+        public CForeignKeyCounterpartTypeAttribute(Type aValue)
         {
             this.Value = aValue;
         }
@@ -67,9 +69,19 @@ namespace CbOrm.Attributes
     }
 
     [CAttributeStringValueType]
-    public sealed class CForeignKeyParentPropertyNameAttribute : CValueAttribute
+    public sealed class CForeignKeyCounterpartPropertyNameAttribute : CValueAttribute
     {
-        public CForeignKeyParentPropertyNameAttribute(string aValue)
+        public CForeignKeyCounterpartPropertyNameAttribute(string aValue)
+        {
+            this.Value = aValue;
+        }
+        internal readonly string Value;
+        public override object ValueObj => this.Value;
+    }
+    [CAttributeStringValueType]
+    public sealed class CForeignKeyPropertyNameAttribute : CValueAttribute
+    {
+        public CForeignKeyPropertyNameAttribute(string aValue)
         {
             this.Value = aValue;
         }
@@ -86,6 +98,28 @@ namespace CbOrm.Attributes
         }
         public readonly bool Value;
         public override object ValueObj => this.Value;
+    }
+
+    public abstract class CGenCtorArgsBuilderAttribute : Attribute
+    {
+        public abstract IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty);
+    }
+
+    public sealed class CGenR1NPRefCtorArgsBuilderAttribute : CGenCtorArgsBuilderAttribute
+    {
+        public CGenR1NPRefCtorArgsBuilderAttribute()
+        {
+        }
+        public override IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty)
+        {
+            var aCTyp = aProperty.DeclaringTyp;
+            var aCTypNme = aModelInterpreter.GetTypName(aCTyp);
+            var aCdTypRef = new CodeTypeReference(aCTypNme);
+            var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
+            var aFldNme = aModelInterpreter.Tok.Trg_C_Mta_Pfx + aProperty.Name + aModelInterpreter.Tok.Trg_C_Fk_P_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
+            var aFldRefExp = new CodeFieldReferenceExpression(aCdTypRefExp, aFldNme);
+            yield return aFldRefExp;
+        }
     }
 
 }

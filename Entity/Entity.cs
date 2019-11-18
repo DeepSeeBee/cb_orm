@@ -37,8 +37,8 @@ namespace CbOrm.Entity
         {
             return new CRefMetaInfo[] { };
         }
-
-        internal static readonly Guid DeletedObjectGuid = new Guid("00000000-dead-dead-dead-000000000000");
+        /// TODO - Remove this hack.
+        internal static readonly Guid DeletedObjectGuid = new Guid("00000000-beef-dead-beef-000000000000");
         private string StaticTypName { get => this.Typ.Name; }
         internal virtual string TypNameValue
         {

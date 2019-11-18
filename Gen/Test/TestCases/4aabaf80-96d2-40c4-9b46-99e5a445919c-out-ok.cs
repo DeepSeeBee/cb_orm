@@ -53,8 +53,8 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("B")]
+        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("B")]
         public CSkalarRef<P, Guid> BGuid
         {
             get

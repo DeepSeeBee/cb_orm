@@ -1,6 +1,6 @@
 ﻿-|||Include|App\Web\web.xdl
--|||ReverseNavigation|-
--|||ExtendIds|-
+-|||ReverseNavigation|false
+-|||ExtendIds|false
 +|||Namespace|CbVoucherApp.Code.Domain
 +|||Schema|CbVoucher
 
@@ -15,6 +15,7 @@
 +|TriStateEnum||Base|Enum
 +|TriStateEnum||CbOrm.App.Sys
 +|Guid||ClrNamespace|System
+-|Enum||ClrNamespace|System
 
 +|Uri||ClrNamespace|System
 +|CEmailAdress||ClrNamespace|CbOrm.App.Web
@@ -49,13 +50,14 @@
 +|Gift|Cover|Typ|Content
 +|Gift|Cover|Cardinality|11C
 +|Gift|Statistic|Typ|GiftStatistic
++|Gift|Statistic|Cardinality|11C
 +|Gift|DownlaodFormats|Typ|DownloadFormat
 +|Gift|NotificationEmail|Typ|CEmailAdress
 +|Gift|AutoGrantMaxCountIsDefined|Typ|Boolean
 +|Gift|AutoGrantMaxCount|Typ|UInt64
 +|Gift|ReleaseNewsletter|Typ|Newsletter
 +|Gift|ReleaseNewsletter|Cardinality|11C
-+|Gift|ReleaseNewsletter|AutoCreate|-
++|Gift|ReleaseNewsletter|AutoCreate|false
 +|Gift|Counters|Typ|GiftCounters
 +|Gift|Counters|Cardinality|11C
 +|Gift|BackgroundImage|Typ|Content
@@ -88,7 +90,7 @@
 +|Voucher|IsDownloaded|Typ|Boolean
 +|Voucher|Recipient|Typ|CEmailAdress
 +|VoucherDownload|DownloadFormat|Cardinality|11W
-+|VoucherDownload|SubscriptionRequest|Cardinality|11C
+-|VoucherDownload|SubscriptionRequest|Cardinality|11C
 +|VoucherDownload|LocationInfo|Cardinality|11C
 +|LocationInfo||Base|CEntityObject
 +|LocationInfo|Moment|Typ|DateTime
@@ -126,6 +128,6 @@
 -|Content|ContentKind|Typ|ContentKindEnum
 +|Content|RedirectTarget|Typ|String
 -|Content|Blop|Typ|CBlop
--|ContentKindEnum||IsEnum|+
+-|ContentKindEnum||Base|Enum
 -|ContentKindEnum|Redirect
 -|ContentKindEnum|Blop

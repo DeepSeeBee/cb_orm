@@ -137,10 +137,10 @@ namespace CbOrm.Meta
 
         internal CSkalarRefMetaInfo GetforeignKey(Type aOwnerType, string aPropertyName)
          => (from aProperty in this.Properties
-             where aProperty.IsDefined<CForeignKeyParentTypeAttribute>()
-             where aProperty.IsDefined<CForeignKeyParentPropertyNameAttribute>()
-             where aProperty.GetAttribute<CForeignKeyParentTypeAttribute>().Value == aOwnerType
-             where aProperty.GetAttribute<CForeignKeyParentPropertyNameAttribute>().Value == aPropertyName
+             where aProperty.IsDefined<CForeignKeyCounterpartTypeAttribute>()
+             where aProperty.IsDefined<CForeignKeyCounterpartPropertyNameAttribute>()
+             where aProperty.GetAttribute<CForeignKeyCounterpartTypeAttribute>().Value == aOwnerType
+             where aProperty.GetAttribute<CForeignKeyCounterpartPropertyNameAttribute>().Value == aPropertyName
              select aProperty).Cast<CSkalarRefMetaInfo>().Single(); /// TODO_OPT
 
     }
@@ -323,11 +323,9 @@ namespace CbOrm.Meta
         }
         internal override void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aElement)
         {
-            throw new NotImplementedException();
         }
         internal override void LoadXml(CObject aEntityObject, XmlElement aXmlElement)
         {
-            throw new NotImplementedException();
         }
     }
 }

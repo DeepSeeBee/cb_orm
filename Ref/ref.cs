@@ -2,6 +2,7 @@
 
 using CbOrm.Attributes;
 using CbOrm.Entity;
+using CbOrm.Gen;
 using CbOrm.Meta;
 using CbOrm.Schema;
 using CbOrm.Storage;
@@ -31,7 +32,7 @@ namespace CbOrm.Ref
             this.WriteKeyNullable = aWriteKeyNullable;
         }
 
-
+        internal CTyp DeclaringTyp { get => this.ParentEntityObject.Typ; }
         internal virtual void CreateCascade()
         {
         }
@@ -67,6 +68,36 @@ namespace CbOrm.Ref
         internal abstract Guid TargetGuid { get;  }
         internal abstract void Load(IEnumerable<Guid> aGuids);
         internal abstract void Load(Guid aGuid);
+        internal event EventHandler ValueChanged;
+        internal virtual void OnValueChanged()
+        {
+            if(!this.ValueChanged.IsNullRef())
+            {
+                this.ValueChanged(this, default(EventArgs));
+            }
+        }
+        internal static Type GetRefClass(CCardinalityEnum aCrd)
+        { // TODO
+            switch(aCrd)
+            {
+                case CCardinalityEnum.R11C:
+                    return typeof(CR11CRef<CEntityObject, CObject>).GetGenericTypeDefinition();
+
+                case CCardinalityEnum.R11P:
+                    return null;
+                    //return typeof(CR11PRef>)
+                case CCardinalityEnum.R11W:
+                    return null;
+                case CCardinalityEnum.R1NC:
+                    return null;
+                case CCardinalityEnum.R1NP:
+                    return typeof(CR1NPRef<CEntityObject, CEntityObject>).GetGenericTypeDefinition();
+                case CCardinalityEnum.R1NW:
+                case CCardinalityEnum.Skalar:
+                default:
+                    return null;
+            }
+        }
     }
 
     public abstract class CRef<T> : CRef 
@@ -80,6 +111,7 @@ namespace CbOrm.Ref
         {
             this.ValueM = default(T);
             this.ValueLoaded = false;
+            this.OnValueChanged();
         }
 
         private bool ValueLoaded;
@@ -112,6 +144,7 @@ namespace CbOrm.Ref
                 }
                 this.ValueM = aValue;
                 this.ValueLoaded = true;
+                this.OnValueChanged();
             }
         }
         public void ChangeValue(T aValue, CAccessKey aWriteKeyNullable = null, bool aModify = true)
@@ -229,17 +262,6 @@ namespace CbOrm.Ref
         private CSkalarRefMetaInfo ForeignKeyMetaInfo
             { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM, () => this.TargetTyp.GetforeignKey(this.RefMetaInfo.OwnerType, this.RefMetaInfo.PropertyInfo.Name)); }
 
-        //private CSkalarRefMetaInfo ForeignKeyMetaInfo { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM,
-        //                                                     () => (from aProperty in this.TargetTyp.Properties
-        //                                                            where aProperty.IsDefined<CForeignKeyParentTypeAttribute>()
-        //                                                            where aProperty.IsDefined<CForeignKeyParentPropertyNameAttribute>()
-        //                                                            where aProperty.GetAttribute<CForeignKeyParentTypeAttribute>().Value == this.RefMetaInfo.OwnerType
-        //                                                            where aProperty.GetAttribute<CForeignKeyParentPropertyNameAttribute>().Value == this.RefMetaInfo.PropertyInfo.Name
-        //                                                            select aProperty).Cast<CSkalarRefMetaInfo>().Single()
-        //                                                     );
-        //                                                      } /// TODO_OPT
-
-
         protected void SetForeignKey(TRef aObject, Guid aForeignKey)
         {
             var aRef = this;
@@ -269,7 +291,6 @@ namespace CbOrm.Ref
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
         internal override void Load(Guid aGuid) => throw new InvalidOperationException();
     }
-
     public class CR1NCRef<TParent, TChild> : CNRef<TChild>
     where TParent : CEntityObject
     where TChild : CEntityObject
@@ -307,7 +328,6 @@ namespace CbOrm.Ref
             }
         }
     }
-
     public class CR1NWRef<TParent, TChild> : CNRef<TChild>
     where TParent : CEntityObject
     where TChild : CEntityObject
@@ -318,8 +338,6 @@ namespace CbOrm.Ref
 
         }
     }
-
-
     public abstract class CRx1Ref<TParent, TChild> 
     : 
         CRef<TChild>
@@ -422,7 +440,6 @@ namespace CbOrm.Ref
         protected override void SetForeignKey(Guid aForeignKey) => this.FkRef.SetValueObj(aForeignKey, this.FkRef.WriteKeyNullable);
         protected override TChild LoadValue() => this.Storage.LoadObject<TChild>(this.FkRef.GetValue<Guid>());
     }
-
     public sealed class CR11WRef<TParent, TChild> : CR11Ref<TParent, TChild>
     where TParent : CEntityObject
     where TChild : CObject
@@ -435,5 +452,38 @@ namespace CbOrm.Ref
         {
             throw new NotImplementedException();
         }
+
     }
+
+    [CGenR1NPRefCtorArgsBuilder]
+    public sealed class CR1NPRef<TChild, TParent> 
+    :
+        CRx1Ref<TChild, TParent>
+        where TChild : CEntityObject
+        where TParent : CEntityObject
+    {
+        public CR1NPRef(CEntityObject aParentEntityObject, CR1NPRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
+        {
+            this.FkRefMetaInfo = aFkRefMetaInfo;
+            this.FkRef = aFkRefMetaInfo.GetRef(aParentEntityObject);
+            this.FkRef.ValueChanged += this.OnFkRefValueChanged;
+        }
+        private readonly CSkalarRefMetaInfo FkRefMetaInfo;
+        private readonly CRef FkRef;
+        private void OnFkRefValueChanged(object aSender, EventArgs aArgs)
+        {
+            this.RefreshValue();
+        }
+
+        protected override void SetForeignKey(Guid aForeignKey)
+        {
+            throw new InvalidOperationException();
+        }
+        protected override TParent LoadValue()
+        {
+            return this.Storage.LoadObject<TParent>(this.FkRef.GetValue<Guid>());
+        }
+    }
+
+
 }

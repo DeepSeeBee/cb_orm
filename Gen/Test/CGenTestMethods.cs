@@ -234,14 +234,19 @@ namespace CbOrm.Gen.Test
                 var aGuids = from aTest in aP.C select aTest.Guid.Value;
                 this.Test(aGuids.Contains(aChild1Id), "0ea65cb3-6f51-4569-9f0e-c08b1a32ceee");
                 this.Test(aGuids.Contains(aChild2Id), "b31e1f7e-8fd2-4ad4-8108-14c145f3cc60");
+                var aC1 = aP.C.GetByGuid(aChild1Id);
+                this.Test(object.ReferenceEquals(aC1.Parent_P_C.Value, aP), "178476f0-a21d-4a68-a4d2-5b7649767823");
+                var aC2 = aP.C.GetByGuid(aChild2Id);
+                this.Test(object.ReferenceEquals(aC2.Parent_P_C.Value, aP), "7088e743-1eb2-43ac-a26f-0425e1999a9f");
             }
 
             this.BeginTest("6d75f770-3d3e-4c80-8d89-497c62e95d09");
             {
                 var aStorage = this.Storage;
                 var aP = aStorage.LoadObjects<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>().Single();
-                var aC = aP.C.GetByGuid(aChild1Id);
-                aP.C.Remove(aC);
+                var aC1 = aP.C.GetByGuid(aChild1Id);
+                aP.C.Remove(aC1);
+                this.Test(aC1.Parent_P_C.Value.GuidIsNull, "661fc07c-6236-48f9-acdc-0258094f287b");
                 var aSaved = aStorage.Save();
                 var aExpectedSaveCount = aStorage.R1NCContainsChildList ? 2 : 1;
                 this.Test(aSaved == aExpectedSaveCount, "09e639fd-7382-46d0-b5c7-3e2117102fc0"); 

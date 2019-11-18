@@ -23,9 +23,13 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
         
         public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
         
-        private CSkalarRef<C, Guid> P_CGuidM;
+        private CSkalarRef<C, Guid> Parent_P_CGuidM;
         
-        private static CSkalarRefMetaInfo _P_CGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(C), nameof(P_CGuid));
+        private static CSkalarRefMetaInfo _Parent_P_CGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(C), nameof(Parent_P_CGuid));
+        
+        private CR1NPRef<C, P> Parent_P_CM;
+        
+        private static CR1NPRefMetaInfo _Parent_P_CMetaInfoM = new CR1NPRefMetaInfo(typeof(C), nameof(Parent_P_C));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -48,31 +52,53 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("C")]
-        public CSkalarRef<C, Guid> P_CGuid
+        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("C")]
+        public CSkalarRef<C, Guid> Parent_P_CGuid
         {
             get
             {
-                if (Object.ReferenceEquals(this.P_CGuidM, null))
+                if (Object.ReferenceEquals(this.Parent_P_CGuidM, null))
                 {
-                    this.P_CGuidM = new CSkalarRef<C, Guid>(this, C._P_CGuidMetaInfo);
+                    this.Parent_P_CGuidM = new CSkalarRef<C, Guid>(this, C._Parent_P_CGuidMetaInfo);
                 }
-                return this.P_CGuidM;
+                return this.Parent_P_CGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _P_CGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_P_CGuidMetaInfo
         {
             get
             {
-                return C._P_CGuidMetaInfoM;
+                return C._Parent_P_CGuidMetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CForeignKeyPropertyNameAttribute("Parent_P_C_Guid")]
+        public CR1NPRef<C, P> Parent_P_C
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_P_CM, null))
+                {
+                    this.Parent_P_CM = new CR1NPRef<C, P>(this, C._Parent_P_CMetaInfo, C._Parent_P_CGuidMetaInfo);
+                }
+                return this.Parent_P_CM;
+            }
+        }
+        
+        public static CR1NPRefMetaInfo _Parent_P_CMetaInfo
+        {
+            get
+            {
+                return C._Parent_P_CMetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(C._P_CGuidMetaInfo);
+            aAddProperty.Invoke(C._Parent_P_CGuidMetaInfo);
+            aAddProperty.Invoke(C._Parent_P_CMetaInfo);
         }
     }
     

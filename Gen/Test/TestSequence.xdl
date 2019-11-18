@@ -2,15 +2,13 @@
 +|d9774a1c-5e45-41d9-b259-9b33f0876267|||||Nothing; RowIgnored
 +|f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d|||||EntityObjectClass
 +|c91b9188-dd2b-4b6c-89b9-7df3ab8d7b9b|||||SkalarField
-+|cfd975a9-b348-4085-9306-bbea67fc771e|||||1:NC Relation (Cardinality 1:N: Composition: Parent->Child)
-+|2dff5efa-d964-42c5-98af-d418ede035b9|||||1:1C Relation (Cardinality 1:1: Composition: Parent->Child)
--|4ad321b6-1455-4852-978b-277ca323e7c7|||||1:NC Relation (Cardinality 1:N: Composition: Child->Parent)
--|dcdd34a6-a44a-401e-8c2b-e27b3966d984|||||1:1C Relation (Cardinality 1:1: Composition: Child->Parent)
--|b7141ae5-956e-4fdb-9e28-b9754b8563c3|||||1:NW Relation (Cardinality 1:N: WeakRef    : Parent->Child)
--|0c2e970c-f003-403e-a90f-f2acedb344ed|||||1:NW Relation (Cardinality 1:N, WeakRef    : Child->Parent)
--|cb9fb56f-38ef-439b-af0c-3df00ba1d611|||||1:1W Relation (Cardinality 1:1, WeakRef    : Parent->Child)
--|3c33e931-2902-4d22-a6f7-05daa01389b7|||||1:1W Relation (Cardinality 1:1, WeakRef    : Child->Parent)
 +|4aabaf80-96d2-40c4-9b46-99e5a445919c|||||Blop
++|cfd975a9-b348-4085-9306-bbea67fc771e|||||1:NC Relation (Cardinality 1:N: Composition 
++|2dff5efa-d964-42c5-98af-d418ede035b9|||||1:1C Relation (Cardinality 1:1: Composition
+-|b7141ae5-956e-4fdb-9e28-b9754b8563c3|||||1:NW Relation (Cardinality 1:N: WeakRef
+-|0c2e970c-f003-403e-a90f-f2acedb344ed|||||1:NW Relation (Cardinality 1:N, WeakRef
+-|cb9fb56f-38ef-439b-af0c-3df00ba1d611
+-|3c33e931-2902-4d22-a6f7-05daa01389b7
 -|5163a372-1d89-4d37-8179-6fb912f9c1a2
 -|5c7577c8-6180-4b63-9291-daeb6484935c
 -|cfec4546-780f-425d-91b5-b8d5b5c4005f
@@ -18,3 +16,5 @@
 -|12021948-b074-4e13-9846-47862052930a
 -|19bd233e-9965-44b7-8877-2f3b516d4109
 -|f6ff979c-7d82-4fc2-8109-29804c707ea0
+-|4ad321b6-1455-4852-978b-277ca323e7c7
+-|dcdd34a6-a44a-401e-8c2b-e27b3966d984

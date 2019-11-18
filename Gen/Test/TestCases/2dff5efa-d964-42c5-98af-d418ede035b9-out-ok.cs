@@ -60,8 +60,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Ac")]
+        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Ac")]
         public CSkalarRef<P, Guid> AcGuid
         {
             get
@@ -82,8 +82,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyParentTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyParentPropertyNameAttribute("Nc")]
+        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Nc")]
         public CSkalarRef<P, Guid> NcGuid
         {
             get
