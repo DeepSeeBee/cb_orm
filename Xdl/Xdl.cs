@@ -229,7 +229,17 @@ namespace CbOrm.Xdl
             }
             this.AttributesDic = aAttributesDic;           
         }
-
+        public T Interpret<T>(Func<T> aFunc)
+        {
+            try
+            {
+                return aFunc();
+            }
+            catch(Exception aExc)
+            {
+                throw new Exception("Error evaluating property '" + this.FullName + "'. " + aExc.Message, aExc);
+            }
+        }
         public CRflModel Model { get => this.DeclaringTyp.Model; }
         public CRflAttribute GetAttribute(string aAttributeName, Func<CRflAttribute> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName] : default(CRflAttribute);
         public CRflAttribute GetAttribute(string aAttributeName) => this.GetAttribute(aAttributeName, () => throw new InvalidOperationException());

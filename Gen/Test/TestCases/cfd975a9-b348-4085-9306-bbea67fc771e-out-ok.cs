@@ -60,7 +60,7 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             {
                 if (Object.ReferenceEquals(this.Parent_P_CGuidM, null))
                 {
-                    this.Parent_P_CGuidM = new CSkalarRef<C, Guid>(this, C._Parent_P_CGuidMetaInfo);
+                    this.Parent_P_CGuidM = new CSkalarRef<C, Guid>(this, C._Parent_P_CGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_P_CGuidM;
             }

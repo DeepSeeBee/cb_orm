@@ -160,9 +160,12 @@ namespace CbOrm.Gen.Test
                 var aStorage = this.Storage;
                 var aC = aStorage.CreateObject<Testf1c0d6f6_cc10_4afb_bc8f_a3a940b5ac4d.C>();
                 aObjectid = aC.GuidValue;
+                this.Test(aC.GuidValue != default(Guid), "0bd6aeff-c10f-4e8d-8239-b90821792fbd");
+                this.TestThrows<Exception>(() => aC.Guid.Value = default(Guid), "d2480477-a105-4b3a-ab34-97d1b568f733");
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 1, "5a762bc4-b38b-4342-baa9-3b08f078f182");
                 this.Test(this.FileSystemStorage.DirectoryInfo.GetFilesRecursive().Count() == 2, "c4076989-2eeb-4491-8f27-b9ddb55eec8a");
+                
             }
             this.BeginTest("a278c706-c441-40b7-bd38-16f5a1308a85");
             {
@@ -224,7 +227,7 @@ namespace CbOrm.Gen.Test
                 aChild1Id = aP.C.Add().Guid.Value;
                 aChild2Id = aP.C.Add().Guid.Value;
                 var aSaved = aStorage.Save();
-                this.Test(aSaved == 3, "52ef2740-d6d9-4304-8e23-48b9b7d0dc46");
+                this.Test(aSaved == 3, "52ef2740-d6d9-4304-8e23-48b9b7d0dc46");                
             }
 
             this.BeginTest("d895ce33-8445-4519-8ece-6d4b28dd1277");
@@ -238,6 +241,8 @@ namespace CbOrm.Gen.Test
                 this.Test(object.ReferenceEquals(aC1.Parent_P_C.Value, aP), "178476f0-a21d-4a68-a4d2-5b7649767823");
                 var aC2 = aP.C.GetByGuid(aChild2Id);
                 this.Test(object.ReferenceEquals(aC2.Parent_P_C.Value, aP), "7088e743-1eb2-43ac-a26f-0425e1999a9f");
+                this.TestThrows<Exception>(() => aC1.Parent_P_CGuid.Value = default(Guid), "dd086a55-339b-4479-97d8-874669c4c5bf");
+                this.TestThrows<Exception>(() => aC1.Parent_P_C.Value = null, "a4f4a2f1-4dba-4899-8abf-8ea442fe0261");
             }
 
             this.BeginTest("6d75f770-3d3e-4c80-8d89-497c62e95d09");

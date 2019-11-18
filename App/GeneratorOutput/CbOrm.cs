@@ -93,7 +93,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_EmailAccountGuidM, null))
                 {
-                    this.Parent_Publisher_EmailAccountGuidM = new CSkalarRef<EmailAccount, Guid>(this, EmailAccount._Parent_Publisher_EmailAccountGuidMetaInfo);
+                    this.Parent_Publisher_EmailAccountGuidM = new CSkalarRef<EmailAccount, Guid>(this, EmailAccount._Parent_Publisher_EmailAccountGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_EmailAccountGuidM;
             }
@@ -385,7 +385,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_BackgroundImageGuidM, null))
                 {
-                    this.Parent_Publisher_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_BackgroundImageGuidMetaInfo);
+                    this.Parent_Publisher_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_BackgroundImageGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_BackgroundImageGuidM;
             }
@@ -407,7 +407,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_BluredBackgroundImageGuidM, null))
                 {
-                    this.Parent_Publisher_BluredBackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_BluredBackgroundImageGuidMetaInfo);
+                    this.Parent_Publisher_BluredBackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_BluredBackgroundImageGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_BluredBackgroundImageGuidM;
             }
@@ -429,7 +429,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_PreviewImageGuidM, null))
                 {
-                    this.Parent_Publisher_PreviewImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_PreviewImageGuidMetaInfo);
+                    this.Parent_Publisher_PreviewImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Publisher_PreviewImageGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_PreviewImageGuidM;
             }
@@ -451,7 +451,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_BackgroundImageGuidM, null))
                 {
-                    this.Parent_Gift_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Gift_BackgroundImageGuidMetaInfo);
+                    this.Parent_Gift_BackgroundImageGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_Gift_BackgroundImageGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Gift_BackgroundImageGuidM;
             }
@@ -473,7 +473,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_DownloadFormat_ContentGuidM, null))
                 {
-                    this.Parent_DownloadFormat_ContentGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_DownloadFormat_ContentGuidMetaInfo);
+                    this.Parent_DownloadFormat_ContentGuidM = new CSkalarRef<Content, Guid>(this, Content._Parent_DownloadFormat_ContentGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_DownloadFormat_ContentGuidM;
             }
@@ -763,7 +763,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_GiftsGuidM, null))
                 {
-                    this.Parent_Publisher_GiftsGuidM = new CSkalarRef<Gift, Guid>(this, Gift._Parent_Publisher_GiftsGuidMetaInfo);
+                    this.Parent_Publisher_GiftsGuidM = new CSkalarRef<Gift, Guid>(this, Gift._Parent_Publisher_GiftsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_GiftsGuidM;
             }
@@ -1242,7 +1242,7 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_DownlaodFormatsGuidM, null))
                 {
-                    this.Parent_Gift_DownlaodFormatsGuidM = new CSkalarRef<DownloadFormat, Guid>(this, DownloadFormat._Parent_Gift_DownlaodFormatsGuidMetaInfo);
+                    this.Parent_Gift_DownlaodFormatsGuidM = new CSkalarRef<DownloadFormat, Guid>(this, DownloadFormat._Parent_Gift_DownlaodFormatsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Gift_DownlaodFormatsGuidM;
             }
