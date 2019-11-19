@@ -1,6 +1,7 @@
 ﻿// This is my 2nd generation ORM-Wrapper. (code generator)
 // TODO:
 // - if(!ModelPopulated) PopulateModel auch für filesystemstorage
+// - XDL DOcType und version.
 // - Optionale ReverseNavigation Extending
 // - Optionale ID Extending
 // - WeakRef

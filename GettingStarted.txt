@@ -2,9 +2,8 @@
 
 Step 1: Define a model:
 
-	<!DOCTYPE CbXdl>
-	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment
-	v|1        |             |             |                        |       | Version of Model definition language
+	<!DOCTYPE CbXdl_V1>
+	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment	
 	+|         |             |Include      |../DotNet/DotNet.xdl    |       | Include definitions for .NET Framework
 	+|         |             |Namespace	   |MyCbOrmApp              |       | Define the namespace for the model
 	+|MyParent |             |Base         |CEntityObject           |       | Define class    'MyParent'   of basetype    'EntityObject'
