@@ -1,0 +1,62 @@
+﻿Note: This tutorial does not work yet. Still under construction.
+
+Step 1: Define a model:
+
+	<!DOCTYPE CbXdl>
+	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment
+	v|1        |             |             |                        |       | Version of Model definition language
+	+|         |             |Include      |../DotNet/DotNet.xdl    |       | Include definitions for .NET Framework
+	+|         |             |Namespace	   |MyCbOrmApp              |       | Define the namespace for the model
+	+|MyParent |             |Base         |CEntityObject           |       | Define class    'MyParent'   of basetype    'EntityObject'
+	+|MyParent |MyString     |Typ          |String                  |       | Define property 'MyString'   of type        'String'  in class 'MyParent'
+	+|MyParent |MyChildren   |Typ          |MyChild                 |       | Define property 'MyChildren' of type        'MyChild' in class 'MyParent'
+	+|MyParent |MyChild      |Typ          |MyChild                 |       | Define property 'MyChild'    of type        'MyChild' in class 'MyParent'
+	+|MyParent |MyChild      |Cardinality  |11C                     |       | Define property 'MyChild'    of cardinality '1:1'
+	+|MyChild  |             |Base         |CEntityObject           |       | Define class    'MyChild'    of basetype    'EntityObject'
+	+|MyChild  |MyProperty   |Typ          |Boolean                 |       | Define property 'MyBoolean'  of typ         'Boolean'
+
+Step 2: Save the model definition in folder CbOrm\App\MyCbOrmApp\GeneratorInput\MyCbOrmApp.xdl
+
+Step 3: Run the cb_orm.exe. It will generate the code in CbOrm\App\MyCbOrmApp\GeneratorOutput
+
+	- Either from the development environment: Just run the exe through the VS-IDE
+	- Or     from commandline: 
+		cb_orm.exe Command="GenerateOrm" ModelInput="App\MyCbOrmApp\GeneratorInput\MyCbOrmApp.xdl"
+
+Step 4: Write some test code to work with the generated code.
+
+	// c# Code:
+	using CbOrm.FileSys;
+	using MyCbOrmApp;
+	using System.IO;
+
+	class Program
+	{
+		static void main()
+		{
+			var aDirectoryInfo = new DirectoryInfo(@"C:\Temp\MyAppStorage");
+			var aTestString = "Hello world";
+			var aTestBool1 = true;
+			var aTestBool2 = false;
+
+			{ // Create some objects
+				var aObjectStorage = new CFileSystemStorage(MyCbOrmAppSchema.Singleton, aDirectoryInfo);
+				aObjectStorage.Connect();
+				aObjectStorage.Clear();
+				var aMyParent = aObjectStorage.CreateObject<MyParent>();
+				aMyParent.MyString = aTestString;
+				aMyParent.MyChild.MyBoolean = aTestBool1;
+				var aMyChildItem = aMyParent.MyChildren.Add();	
+				aMYChildItem.TestBoolean = aTestBool2;
+				aObjectStorage.Save();
+			}
+
+			{ // Load objects and check the data
+				var aObjectStorage = new CFileSystemStorage(MyCbOrmAppSchema.Singleton, aDirectoryInfo);
+				var aMyParent = aObjectStorage.LoadObjects<MyParent>().Single();
+				Assert(aMyParent.MyString == aTestString);
+				Assert(aMyParent.MyChild.MyBoolean1 = aTestBool1);
+				Assert(aMyParent.MyChildren.Single().MyBoolean == aTestBool2);
+			}
+		}
+	 }

@@ -1,6 +1,6 @@
 ﻿// This is my 2nd generation ORM-Wrapper. (code generator)
 // TODO:
-// - xdl.Import, populate web.xdl 
+// - if(!ModelPopulated) PopulateModel auch für filesystemstorage
 // - Optionale ReverseNavigation Extending
 // - Optionale ID Extending
 // - WeakRef
