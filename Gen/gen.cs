@@ -33,6 +33,8 @@ using CbOrm.Ref;
 
 namespace CbOrm.Gen
 {
+    using CInclude = Tuple<CRflRow, FileInfo>;
+
     using CLazyLoadPrp = Tuple<CodeMemberProperty, CodeMemberField>;
 
     public enum CCardinalityEnum
@@ -51,6 +53,7 @@ namespace CbOrm.Gen
 
         // ModelDefinitionLange Identifier tokens
         public string Mdl_G_A_Schema = "Schema";
+        public string Mdl_G_A_Include = "Include";
 
         public string Mdl_P_A_Nme_Init = "init";
         public string Mdl_P_A_Nme_Crd = "Cardinality";
@@ -143,15 +146,18 @@ namespace CbOrm.Gen
 
     }
 
-    public class CGenModelInterpreter : CRflModelInterpreter
+    public class CGenModelInterpreter 
+    : 
+        CRflModelInterpreter
+    ,   CIncludeModelExpander.IModelInterpreter
     {
         public readonly new CGenTokens Tok;
         public override CRflTokens Tokens => this.Tok;
         public CGenModelInterpreter(CGenTokens aTok) { this.Tok = aTok; }
         public CGenModelInterpreter() : this(new CGenTokens()) { }
 
-        public virtual string GetSchema(CRflModel aMdl) => aMdl.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
-        public virtual string GetClrNamespace(CRflModel aModel) => aModel.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
+        public virtual string GetSchema(CRflModel aMdl) => aMdl.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
+        public virtual string GetClrNamespace(CRflModel aModel) => aModel.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
         public virtual string GetClrNamespace(CRflTyp aTyp) =>aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs, ()=>this.GetClrNamespace(aTyp.Model));
         public virtual string GetTypName(CRflTyp aRflClass, bool aWithNamespace) => aWithNamespace
                                                                                  ? this.GetClrNamespace(aRflClass) + "." + aRflClass.Name
@@ -249,6 +255,8 @@ namespace CbOrm.Gen
             yield return aRefCardinalityRow;
         }
 
+        public IEnumerable<CInclude> GetIncludes(CRflModel aModel) => from aAttribute in aModel.GetAttributes(string.Empty, string.Empty, this.Tok.Mdl_G_A_Include) select new CInclude(aAttribute.Row, new FileInfo(Path.Combine(aModel.FileInfo.Directory.FullName, aAttribute.Value)));
+        public CRflModel NewIncludedModel(FileInfo aFileInfo) => CRflModel.NewFromTextFile(this, aFileInfo);
     }
 
     public class CCodeDomBuilder
@@ -374,7 +382,7 @@ namespace CbOrm.Gen
                                    select aRow;
             var aOrgRows = aModel.Rows;
             var aNewRows = aR1NCFkRows.Concat(aR1NCRevereRows).Concat(aR11CFkRows).Concat(aR11CReverseRows).Concat(aOrgRows);
-            var aOutModel = new CRflModel(aModelInterpreter, aNewRows);
+            var aOutModel = new CRflModel(aModelInterpreter, aModel.FileInfo, aNewRows);
             return aOutModel;
         }
     }
@@ -419,6 +427,7 @@ namespace CbOrm.Gen
             this.ModelOutputFileInfo = aModelOutputFileInfo;
             this.IdsOutputFileInfo = aIdsOutputFileInfo;
 
+            this.Exp.ChainedExpanders.Add(new CIncludeModelExpander(this.ModelInterpreter));
             this.Exp.ChainedExpanders.Add(new CCrossReferenceExpander(this.ModelInterpreter));
         }
 
@@ -765,7 +774,6 @@ namespace CbOrm.Gen
                 yield return aCdSchemaClassDecl;
             }
         }
-
-        private void LoadInput() => this.Model = this.Exp.Expand(new CRflModel(this.ModelInterpreter, CRflRow.NewFromTextFile(this.ModelInputFileInfo).Concat(this.IdsInputFileInfoNullable.IsNullRef()  ? new CRflRow[] { } : CRflRow.NewFromTextFile(this.IdsInputFileInfoNullable)).ToArray()));
+        private void LoadInput() => this.Model = this.Exp.Expand(CRflModel.NewFromTextFile(this.ModelInterpreter, this.ModelInputFileInfo));
     }
 }

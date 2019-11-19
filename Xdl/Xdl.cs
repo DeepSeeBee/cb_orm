@@ -9,6 +9,7 @@ using System.Text;
 using System.Linq;
 using CbOrm.Util;
 using System.Dynamic;
+using CbOrm.Gen;
 
 namespace CbOrm.Xdl
 {
@@ -169,8 +170,8 @@ namespace CbOrm.Xdl
         public void Add(CRflRowList aRows, IDictionary<string, object> aDic, string aTypName)=>aRows.AddRange(this.GetRows(aDic, aTypName).ToArray());
         private CRflRow NewBeginObjectRow(string aTypName) => CRflRow.New(string.Empty, string.Empty, this.Tok.Mdl_G_A_Beg_Nme, aTypName);
         private CRflRow NewEndObjectRow(string aTypName) => CRflRow.New(string.Empty, string.Empty, this.Tok.Mdl_G_A_End_Nme, aTypName);
-        public virtual string GetName(CRflModel aModel) => aModel.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nme_Nme);
-        public virtual string GetNamespace(CRflModel aModel) => aModel.GetPropertyAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
+        public virtual string GetName(CRflModel aModel) => aModel.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nme_Nme);
+        public virtual string GetNamespace(CRflModel aModel) => aModel.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
 
     }
 
@@ -219,6 +220,8 @@ namespace CbOrm.Xdl
         }
 
         public string FullName { get => this.Model.FullName + "." + this.Name; }
+
+        internal CRflProperty GetProperty(string aPropertyName) => this.GetProperty(aPropertyName, () => new Exception("Property '" + aPropertyName + "' does not exist.").Throw<CRflProperty>());
     }
     public sealed class CRflProperty
     {
@@ -227,20 +230,10 @@ namespace CbOrm.Xdl
             this.DeclaringTyp = aRflClass;
             this.Name = aName;
 
-            var aAttributesDic = new Dictionary<string, CRflAttribute>(aRows.Length);
-            foreach (var aRow in aRows)
-            {
-                var aAttributeName = aRow.AttributeName;
-                if (aAttributesDic.ContainsKey(aAttributeName))
-                {
-                    aRow.Interpret<object>(() => throw new Exception("Ambiguous attribute name '" + aAttributeName + "'."));
-                }
-                else
-                {
-                    aAttributesDic.Add(aAttributeName, new CRflAttribute(this, aRow));
-                }
-            }
-            this.AttributesDic = aAttributesDic;           
+            var aAttributesDic = new Dictionary<string, IEnumerable<CRflAttribute>>(aRows.Length);
+            var aGroups = aRows.GroupBy(aRow => aRow.AttributeName);
+            var aDic = aGroups.ToDictionary(aForKey => aForKey.Key, aForVal => (from aRow in aForVal select new CRflAttribute(this, aRow)).ToArray().AsEnumerable());
+            this.AttributesDic = aDic;
         }
         public T Interpret<T>(Func<T> aFunc)
         {
@@ -254,30 +247,45 @@ namespace CbOrm.Xdl
             }
         }
         public CRflModel Model { get => this.DeclaringTyp.Model; }
-        public CRflAttribute GetAttribute(string aAttributeName, Func<CRflAttribute> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName] : default(CRflAttribute);
+        private CRflAttribute GetSingleAttribute(string aAttributeName)
+        {
+            var aAttributes = this.AttributesDic.ContainsKey(aAttributeName)
+                            ? this.AttributesDic[aAttributeName]
+                            : new CRflAttribute[] { };
+            if (aAttributes.Count() == 1)
+                return aAttributes.Single();
+            else if (aAttributes.Count() > 1)
+                throw new Exception("Attribute is ambiguous: '" + aAttributeName + "'");
+            else
+                throw new Exception("Attribute does not exist: '" + aAttributeName + "'");
+        }
+        public CRflAttribute GetAttribute(string aAttributeName, Func<CRflAttribute> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.GetSingleAttribute(aAttributeName) : default(CRflAttribute);
         public CRflAttribute GetAttribute(string aAttributeName) => this.GetAttribute(aAttributeName, () => throw new InvalidOperationException());
-        public string GetAttributeValue(string aAttributeName, Func<string> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName].Value : aDefault();
+        public string GetAttributeValue(string aAttributeName, Func<string> aDefault) => this.AttributesDic.ContainsKey(aAttributeName) ? this.GetSingleAttribute(aAttributeName).Value : aDefault();
         public string GetAttributeValue(string aAttributeName) => this.GetAttributeValue(aAttributeName, ()=>string.Empty);
 
-        internal IEnumerable<CRflAttribute> GetAttributesWithPrefix(string aPrefix) => from aAttribute in this.AttributesDic.Values where aAttribute.Name.StartsWith(aPrefix) select aAttribute;
+        internal IEnumerable<CRflAttribute> GetAttributesWithPrefix(string aPrefix) => from aAttributes in this.AttributesDic.Values
+                                                                                       from aAttribute in aAttributes
+                                                                                       where aAttribute.Name.StartsWith(aPrefix) select aAttribute;
 
         public readonly CRflTyp DeclaringTyp;
         public readonly string Name;
-        public readonly Dictionary<string, CRflAttribute> AttributesDic;
+        public readonly Dictionary<string, IEnumerable<CRflAttribute>> AttributesDic;
         public string FullName { get => this.DeclaringTyp.FullName + "." + this.Name; }
 
+        internal IEnumerable<CRflAttribute> GetAttributes(string aAttributeName) => this.AttributesDic.ContainsKey(aAttributeName) ? this.AttributesDic[aAttributeName] : new CRflAttribute[] { };
     }
     public sealed class CRflAttribute
     {
         public CRflAttribute(CRflProperty aRflProperty, CRflRow aRflRow)
         {
             this.RflProperty = aRflProperty;
-            this.RflRow = aRflRow;
+            this.Row = aRflRow;
         }
         public readonly CRflProperty RflProperty;
-        public readonly CRflRow RflRow;
-        public string Name { get => this.RflRow.AttributeName; }
-        public string Value { get => this.RflRow.Value; }
+        public readonly CRflRow Row;
+        public string Name { get => this.Row.AttributeName; }
+        public string Value { get => this.Row.Value; }
 
         public string FullName { get => this.RflProperty.FullName + "." + this.Name; }
         public override string ToString() => this.FullName + "=" + this.Value.AvoidNullString();
@@ -293,13 +301,15 @@ namespace CbOrm.Xdl
                 throw new Exception("Error evaluating Attribute '" + this.FullName + "'. " + aExc.Message);
             }
         }
+
     }
 
     public sealed class CRflModel
     {
-        public CRflModel(CRflModelInterpreter aModelInterpreter, IEnumerable<CRflRow> aRows)
+        public CRflModel(CRflModelInterpreter aModelInterpreter, FileInfo aFileInfo, IEnumerable<CRflRow> aRows)
         {
             this.ModelInterpreter = aModelInterpreter;
+            this.FileInfo = aFileInfo;
             this.Rows = aRows;
             var aGenRows = from aRow in aRows
                            where aRow.RecognizeBool
@@ -309,13 +319,15 @@ namespace CbOrm.Xdl
                                select new CRflTyp(this, aGroup.Key, aGroup.ToArray())).ToArray().ToDictionary(aForKey => aForKey.Name);
         }
         public readonly CRflModelInterpreter ModelInterpreter;
+        public readonly FileInfo FileInfo;
         public readonly IEnumerable<CRflRow> Rows;
         public IEnumerable<CRflTyp> Typs { get => this.TypsDic.Values; }
         public readonly Dictionary<string, CRflTyp> TypsDic;
         public CRflTyp GetTypByName(string aTypName) => this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => new Exception("RflTyp '" + aTypName + "' not found.").Throw<CRflTyp>(), () => this.TypsDic[aTypName]);
-        public string GetPropertyAttributeValue(string aTypName, string aPropertyName, string aAttributeName) => this.GetTypNullable(aTypName).DefaultIfNull(() => string.Empty, aTyp => aTyp.GetPropertyAttributeValue(aPropertyName, aAttributeName));
+        public string GetAttributeValue(string aTypName, string aPropertyName, string aAttributeName) => this.GetTypNullable(aTypName).DefaultIfNull(() => string.Empty, aTyp => aTyp.GetPropertyAttributeValue(aPropertyName, aAttributeName));
+        public IEnumerable<CRflAttribute> GetAttributes(string aTypName, string aPropertyName, string aAttributeName) => this.TypsDic.ContainsKey(aTypName) ? this.GetTypByName(aTypName).GetProperty(aPropertyName).GetAttributes(aAttributeName) : new CRflAttribute[] { };
         private CRflTyp GetTypNullable(string aTypName)=> this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => default(CRflTyp), () => this.TypsDic[aTypName]);
-        public static CRflModel NewFromTextFile(CRflModelInterpreter aInterpreter, FileInfo aFileInfo) => new CRflModel(aInterpreter, CRflRow.NewFromTextFile(aFileInfo));
+        public static CRflModel NewFromTextFile(CRflModelInterpreter aInterpreter, FileInfo aFileInfo) => new CRflModel(aInterpreter, aFileInfo, CRflRow.NewFromTextFile(aFileInfo));
         public string Name { get => this.ModelInterpreter.GetName(this); }
         public string Namespace { get => this.ModelInterpreter.GetNamespace(this); }
         public string FullName { get => this.Namespace + "." + this.Name; }

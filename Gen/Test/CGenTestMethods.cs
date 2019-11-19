@@ -353,12 +353,18 @@ namespace CbOrm.Gen.Test
             throw new NotImplementedException();
         }
 
-        public void Test_cb9fb56f_38ef_439b_af0c_3df00ba1d611()
+        public void Test_0c2e970c_f003_403e_a90f_f2acedb344ed()
         {
             // Generate 1:1W Relation (Cardinality 1:1, Weak)
             throw new NotImplementedException();
         }
 
-         
+        public void Test_cb9fb56f_38ef_439b_af0c_3df00ba1d611()
+        {
+            // ModelDefinition-Includes
+            // (Tested by generator output only)
+        }
+
+
     }
 }
