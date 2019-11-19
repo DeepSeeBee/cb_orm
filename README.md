@@ -1,6 +1,9 @@
 # cb_orm
 ORM Wrapper
 
+GettingStarted
+- See the GettingStarted.txt in the root folder.
+
 Concept:
 - ORM Wrapper for loading and saving object models consisting of composed, polymorph entity objects
 - Compact and extendable Model Definition Language
