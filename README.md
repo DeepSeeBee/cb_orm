@@ -5,6 +5,7 @@ GettingStarted
 - See the GettingStarted.txt in the root folder.
 
 Concept:
+- Similar to Microsoft EntityFramework
 - ORM Wrapper for loading and saving object models consisting of composed, polymorph entity objects
 - Compact and extendable Model Definition Language
 - Code Generation for Model classes, SQL-Queries and database table population
@@ -16,6 +17,8 @@ Concept:
 Restrictions:
 - Each object is identified by a Guid, also in the database tables.
 - Cache doesnt use weak references. So loaded objects will stay in ram until the objectcontext is closed. (Suitable for WebApplications or DesktopApps using Lifetime per Workflow pattern or less)
+- To avoid name conflicts you should avoid identifiers with underscore ("_") for class names and property names.
+- Your database model should be normalized to allow creation of composed objects, however you can use weak references to break these rule.
 
 Realized features:
 - Compact and extendable Model Definition Language

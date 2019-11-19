@@ -2,6 +2,7 @@
 // TODO:
 // - if(!ModelPopulated) PopulateModel auch für filesystemstorage
 // - XDL DOcType und version.
+// - CStorage.Load should return CObjectProxies collection.
 // - Optionale ReverseNavigation Extending
 // - Optionale ID Extending
 // - WeakRef
@@ -12,6 +13,7 @@
 // - Meta-New in static ctor / lazyload ? performance improvement?
 // - Support structs/classes as skalar fields?
 // . throw own Exceotionclasses 
+
 //
 // - Property.WriteProtection: final check for all props.
 

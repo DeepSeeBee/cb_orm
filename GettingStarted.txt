@@ -5,7 +5,7 @@ Step 1: Define a model:
 	<!DOCTYPE CbXdl_V1>
 	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment	
 	+|         |             |Include      |../DotNet/DotNet.xdl    |       | Include definitions for .NET Framework
-	+|         |             |Namespace	   |MyCbOrmApp              |       | Define the namespace for the model
+	+|         |             |Namespace    |MyCbOrmApp              |       | Define the namespace for the model
 	+|MyParent |             |Base         |CEntityObject           |       | Define class    'MyParent'   of basetype    'EntityObject'
 	+|MyParent |MyString     |Typ          |String                  |       | Define property 'MyString'   of type        'String'  in class 'MyParent'
 	+|MyParent |MyChildren   |Typ          |MyChild                 |       | Define property 'MyChildren' of type        'MyChild' in class 'MyParent'
@@ -20,7 +20,7 @@ Step 3: Run the cb_orm.exe. It will generate the code in CbOrm\App\MyCbOrmApp\Ge
 
 	- Either from the development environment: Just run the exe through the VS-IDE
 	- Or     from commandline: 
-		cb_orm.exe Command="GenerateOrm" ModelInput="App\MyCbOrmApp\GeneratorInput\MyCbOrmApp.xdl"
+		cb_orm.exe Command="GenerateOrm" ModelInputFile="App\MyCbOrmApp\GeneratorInput\MyCbOrmApp.xdl"
 
 Step 4: Write some test code to work with the generated code.
 
@@ -38,7 +38,7 @@ Step 4: Write some test code to work with the generated code.
 			var aTestBool1 = true;
 			var aTestBool2 = false;
 
-			{ // Create some objects
+			{ // Create some persistent objects 
 				var aObjectStorage = new CFileSystemStorage(MyCbOrmAppSchema.Singleton, aDirectoryInfo);
 				aObjectStorage.Connect();
 				aObjectStorage.Clear();
@@ -56,6 +56,14 @@ Step 4: Write some test code to work with the generated code.
 				Assert(aMyParent.MyString == aTestString);
 				Assert(aMyParent.MyChild.MyBoolean1 = aTestBool1);
 				Assert(aMyParent.MyChildren.Single().MyBoolean == aTestBool2);
+			}
+			
+			{ // Delete the objects.
+				var aObjectStorage = new CFileSystemStorage(MyCbOrmAppSchema.Singleton, aDirectoryInfo);
+				var aMyParent = aObjectStorage.LoadObjects<MyParent>().Single();
+				aMyParent.Delete();
+				aObjectStorage.Save();
+				Assert(aObjectStorage.LoadObjects<CEntityObject>().Count() == 0);			
 			}
 		}
 	 }
