@@ -48,7 +48,7 @@ Planned Features: (~In this sequence)
 - Relation 1:N: Weak: Navigation from Parent to Child
 - Relation 1:N: Weak: Navigation from Child to Parent
 - Polymorphy by MultiTableInheritance
-- ObjectVersioning
+- ObjectVersioning (Protection against concurrent overwrites of modified data)
 
 - Customizeable Attribute Generation
 - Customizeable Skalar-Field types/Type conversion chain for loading/saving.
