@@ -58,39 +58,6 @@ namespace CbOrm.Attributes
 
 
 
-    [CAttributeTypeValueType]
-    public sealed class CForeignKeyCounterpartTypeAttribute  : CValueAttribute
-    {
-        public CForeignKeyCounterpartTypeAttribute(Type aValue)
-        {
-            this.Value = aValue;
-        }
-        internal readonly Type Value;
-        public override object ValueObj => this.Value;
-    }
-
-    [CAttributeStringValueType]
-    public sealed class CForeignKeyCounterpartPropertyNameAttribute : CValueAttribute
-    {
-        public CForeignKeyCounterpartPropertyNameAttribute(string aValue)
-        {
-            this.Value = aValue;
-        }
-        internal readonly string Value;
-        public override object ValueObj => this.Value;
-    }
-
-    [CAttributBoolBalueType]
-    public sealed class CAutoCreateAttribute :CValueAttribute
-    {
-        public CAutoCreateAttribute(bool aValue)
-        {
-            this.Value = aValue;
-        }
-        public readonly bool Value;
-        public override object ValueObj => this.Value;
-    }
-
     public abstract class CGenCtorArgsBuilderAttribute : Attribute
     {
         public abstract IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty);

@@ -16,6 +16,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
+    using CbOrm.Blop;
+    using CbOrm.App.Sys;
     
     
     public class P : CEntityObject
@@ -60,8 +62,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Ac")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Ac")]
         public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> AcGuid
         {
             get
@@ -82,8 +84,8 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Nc")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Nc")]
         public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> NcGuid
         {
             get
@@ -124,7 +126,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
-        [CbOrm.Attributes.CAutoCreateAttribute(false)]
+        [CbOrm.App.Sys.CAutoCreateAttribute(false)]
         public CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> Nc
         {
             get

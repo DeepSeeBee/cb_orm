@@ -135,7 +135,7 @@ namespace CbOrm.Gen.Test
                 var aTestCaseId = aTestCase.Name;
                 var aNamespace = "Test" + aTestCaseId.Replace("-", "_");
                 var aNamespaceRow = CRflRow.New(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme, aNamespace);
-                var aSchemaRow = CRflRow.New(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema, "Test");
+                var aSchemaRow = CRflRow.New(string.Empty, string.Empty, this.Tok.Mdl_G_A_ModelName, "Test");
                 aGenerator.Exp.ChainedExpanders.Add(new CRowsExpander(aNamespaceRow, aSchemaRow));
                 aGenerator.GenerateCode();
 

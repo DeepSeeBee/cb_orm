@@ -1,5 +1,6 @@
 ﻿// This is the runtime for my 2nd generation ORM-Wrapper. (entity relation sub system)
 
+using CbOrm.App.Sys;
 using CbOrm.Attributes;
 using CbOrm.Entity;
 using CbOrm.Gen;

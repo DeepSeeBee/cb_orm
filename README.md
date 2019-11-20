@@ -36,9 +36,10 @@ Realized features:
 - Relation 1:1: cascade delete (on client side)
 - Relation 1:1: cascade create
 - Optimization for loading 1:N Relations in file system storage
+- Custom Enum Types in mdl by using existing enums.
+- Custom Enum Types in mdl with code generation
 
 Planned Features: (~In this sequence)
-- Custom Enum Types in mdl.
 - Relation 1:1: Weak: Navigation from Parent to Child ***
 - Encryption (=>Saving passwords)
 

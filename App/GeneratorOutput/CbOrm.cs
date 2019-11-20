@@ -93,8 +93,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Publishers")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Publishers")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid> Parent_Account_PublishersGuid
         {
             get
@@ -418,8 +418,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("EmailAccount")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("EmailAccount")]
         public CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid> Parent_Publisher_EmailAccountGuid
         {
             get
@@ -713,8 +713,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("BackgroundImage")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("BackgroundImage")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BackgroundImageGuid
         {
             get
@@ -735,8 +735,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("BluredBackgroundImage")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("BluredBackgroundImage")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BluredBackgroundImageGuid
         {
             get
@@ -757,8 +757,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("PreviewImage")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("PreviewImage")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_PreviewImageGuid
         {
             get
@@ -779,8 +779,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("BackgroundImage")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("BackgroundImage")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Gift_BackgroundImageGuid
         {
             get
@@ -801,8 +801,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(DownloadFormat))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Content")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(DownloadFormat))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Content")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_DownloadFormat_ContentGuid
         {
             get
@@ -1115,8 +1115,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Gifts")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Gifts")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> Parent_Publisher_GiftsGuid
         {
             get
@@ -1157,8 +1157,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Cover")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Cover")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> CoverGuid
         {
             get
@@ -1179,8 +1179,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Statistic")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Statistic")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> StatisticGuid
         {
             get
@@ -1201,8 +1201,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("ReleaseNewsletter")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("ReleaseNewsletter")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> ReleaseNewsletterGuid
         {
             get
@@ -1223,8 +1223,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Counters")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Counters")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> CountersGuid
         {
             get
@@ -1405,7 +1405,7 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CAutoCreateAttribute(false)]
+        [CbOrm.App.Sys.CAutoCreateAttribute(false)]
         public CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Newsletter> ReleaseNewsletter
         {
             get
@@ -1631,8 +1631,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Subscribers")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Subscribers")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, System.Guid> Parent_Publisher_SubscribersGuid
         {
             get
@@ -1755,8 +1755,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Newsletters")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Newsletters")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid> Parent_Publisher_NewslettersGuid
         {
             get
@@ -1947,8 +1947,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("TextTemplates")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("TextTemplates")]
         public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid> Parent_Publisher_TextTemplatesGuid
         {
             get
@@ -2059,8 +2059,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("DownlaodFormats")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("DownlaodFormats")]
         public CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid> Parent_Gift_DownlaodFormatsGuid
         {
             get
@@ -2196,8 +2196,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("Campaigns")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Campaigns")]
         public CSkalarRef<CbVoucherApp.Code.Domain.Campaign, System.Guid> Parent_Gift_CampaignsGuid
         {
             get
@@ -2362,8 +2362,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("VoucherRequests")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Gift))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("VoucherRequests")]
         public CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid> Parent_Gift_VoucherRequestsGuid
         {
             get
@@ -2558,8 +2558,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(Subscriber))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("SubscriptionRequests")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Subscriber))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("SubscriptionRequests")]
         public CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.Guid> Parent_Subscriber_SubscriptionRequestsGuid
         {
             get
@@ -2691,8 +2691,8 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(VoucherDownload))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("LocationInfo")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(VoucherDownload))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("LocationInfo")]
         public CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid> LocationInfoGuid
         {
             get

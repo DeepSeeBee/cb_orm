@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CbOrm.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,37 @@ namespace CbOrm.App.Sys
         Maybe
     }
 
-    [AttributeUsage(AttributeTargets.Property)]
-    public class CSaveConverterAttribute : Attribute
+    [CAttributeTypeValueType]
+    public sealed class CForeignKeyCounterpartTypeAttribute : CValueAttribute
     {
-        public CSaveConverterAttribute(string aConverterId)
+        public CForeignKeyCounterpartTypeAttribute(Type aValue)
         {
-            this.ConverterId = aConverterId;
+            this.Value = aValue;
         }
-        public string ConverterId;
+        internal readonly Type Value;
+        public override object ValueObj => this.Value;
+    }
+
+    [CAttributeStringValueType]
+    public sealed class CForeignKeyCounterpartPropertyNameAttribute : CValueAttribute
+    {
+        public CForeignKeyCounterpartPropertyNameAttribute(string aValue)
+        {
+            this.Value = aValue;
+        }
+        internal readonly string Value;
+        public override object ValueObj => this.Value;
+    }
+
+    [CAttributBoolBalueType]
+    public sealed class CAutoCreateAttribute : CValueAttribute
+    {
+        public CAutoCreateAttribute(bool aValue)
+        {
+            this.Value = aValue;
+        }
+        public readonly bool Value;
+        public override object ValueObj => this.Value;
     }
 
 }

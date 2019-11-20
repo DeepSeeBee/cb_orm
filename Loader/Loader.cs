@@ -149,8 +149,8 @@ namespace CbOrm.Loader
                                ;
             var aR1NCRevereRows = from aProperty in aR1NCProperties
                                   from aRow in aModelInterpreter.NewR1NCReverseNavigationRows(aProperty)
-                                  select aRow;
-
+                                  select aRow
+                                  ;
             var aR11CProperties = from aProperty in aEntityObjectProperties
                                   where aModelInterpreter.GetCardinality(aProperty) == CCardinalityEnum.R11C
                                   select aProperty;

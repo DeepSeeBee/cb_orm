@@ -16,6 +16,8 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
+    using CbOrm.Blop;
+    using CbOrm.App.Sys;
     
     
     public class C : CEntityObject
@@ -52,8 +54,8 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
-        [CbOrm.Attributes.CForeignKeyCounterpartTypeAttribute(typeof(P))]
-        [CbOrm.Attributes.CForeignKeyCounterpartPropertyNameAttribute("C")]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("C")]
         public CSkalarRef<Testcfd975a9_b348_4085_9306_bbea67fc771e.C, System.Guid> Parent_P_CGuid
         {
             get

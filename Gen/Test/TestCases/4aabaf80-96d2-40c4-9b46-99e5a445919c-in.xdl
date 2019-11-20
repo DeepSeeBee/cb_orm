@@ -1,5 +1,4 @@
-﻿+|CBlop||ClrNamespace|CbOrm.Blop
-+|CBlop||GenerateReverseNavigation|false
+﻿+|||Include|../../../App/Sys/Sys.xdl
 +|Guid||ClrNamespace|System
 +|P||Base|CEntityObject
 +|P|B|Typ|CBlop

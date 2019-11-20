@@ -222,6 +222,11 @@ namespace CbOrm.Xdl
         public string FullName { get => this.Model.FullName + "." + this.Name; }
 
         internal CRflProperty GetProperty(string aPropertyName) => this.GetProperty(aPropertyName, () => new Exception("Property '" + aPropertyName + "' does not exist.").Throw<CRflProperty>());
+
+        internal IEnumerable<CRflAttribute> GetPropertyAttributes(string aPropertyName, string aAttributeName)
+            => this.PropertiesDic.ContainsKey(aPropertyName)
+             ? this.PropertiesDic[aPropertyName].GetAttributes(aAttributeName)
+             : new CRflAttribute[] { };
     }
     public sealed class CRflProperty
     {
@@ -325,7 +330,7 @@ namespace CbOrm.Xdl
         public readonly Dictionary<string, CRflTyp> TypsDic;
         public CRflTyp GetTypByName(string aTypName) => this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => new Exception("RflTyp '" + aTypName + "' not found.").Throw<CRflTyp>(), () => this.TypsDic[aTypName]);
         public string GetAttributeValue(string aTypName, string aPropertyName, string aAttributeName) => this.GetTypNullable(aTypName).DefaultIfNull(() => string.Empty, aTyp => aTyp.GetPropertyAttributeValue(aPropertyName, aAttributeName));
-        public IEnumerable<CRflAttribute> GetAttributes(string aTypName, string aPropertyName, string aAttributeName) => this.TypsDic.ContainsKey(aTypName) ? this.GetTypByName(aTypName).GetProperty(aPropertyName).GetAttributes(aAttributeName) : new CRflAttribute[] { };
+        public IEnumerable<CRflAttribute> GetAttributes(string aTypName, string aPropertyName, string aAttributeName) => this.TypsDic.ContainsKey(aTypName) ? this.GetTypByName(aTypName).GetPropertyAttributes(aPropertyName, aAttributeName) : new CRflAttribute[] { };
         private CRflTyp GetTypNullable(string aTypName)=> this.TypsDic.ContainsKey(aTypName).DefaultIfFalse(() => default(CRflTyp), () => this.TypsDic[aTypName]);
         public static CRflModel NewFromTextFile(CRflModelInterpreter aInterpreter, FileInfo aFileInfo) => new CRflModel(aInterpreter, aFileInfo, CRflRow.NewFromTextFile(aFileInfo));
         public string Name { get => this.ModelInterpreter.GetName(this); }

@@ -1,0 +1,3 @@
+﻿+|CForeignKeyCounterpartTypeAttribute||ClrNamespace|CbOrm.App.Sys
++|CForeignKeyCounterpartPropertyNameAttribute||ClrNamespace|CbOrm.App.Sys
++|CAutoCreateAttribute||ClrNamespace|CbOrm.App.Sys

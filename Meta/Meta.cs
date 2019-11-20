@@ -14,6 +14,7 @@ using System.Text;
 
 namespace CbOrm.Meta
 {
+    using CbOrm.App.Sys;
     using CbOrm.Attributes;
     using System.Xml;
     using CGetPropertiesFunc = Action<Action<CRefMetaInfo>>;
@@ -137,9 +138,9 @@ namespace CbOrm.Meta
 
         internal CSkalarRefMetaInfo GetforeignKey(Type aOwnerType, string aPropertyName)
          => (from aProperty in this.Properties
-             where aProperty.IsDefined<CForeignKeyCounterpartTypeAttribute>()
+             where aProperty.IsDefined<CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute>()
              where aProperty.IsDefined<CForeignKeyCounterpartPropertyNameAttribute>()
-             where aProperty.GetAttribute<CForeignKeyCounterpartTypeAttribute>().Value == aOwnerType
+             where aProperty.GetAttribute<CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute>().Value == aOwnerType
              where aProperty.GetAttribute<CForeignKeyCounterpartPropertyNameAttribute>().Value == aPropertyName
              select aProperty).Cast<CSkalarRefMetaInfo>().Single(); /// TODO_OPT
 

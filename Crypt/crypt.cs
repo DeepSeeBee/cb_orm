@@ -349,6 +349,16 @@ namespace CbOrm.Crypt
             }
             return aDecryptedValue;
         }
-
     }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class CEncryptAttribute : Attribute
+    {
+        public CEncryptAttribute(bool aEncrypt)
+        {
+            this.Encrypt = aEncrypt;
+        }
+        internal readonly bool Encrypt;
+    }
+
 }

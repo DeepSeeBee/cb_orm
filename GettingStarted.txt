@@ -5,6 +5,8 @@ Step 1: Define a model:
 	<!DOCTYPE CbXdl_V1>
 	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment	
 	+|         |             |Include      |../DotNet/DotNet.xdl    |       | Include definitions for .NET Framework
+	+|         |             |Include      |../Sys/Sys.xdl			|       | Include definitions for Entity-System
+	+|         |             |ModelName    |MyCbOrmApp              |       | Define the name of the model.
 	+|         |             |Namespace    |MyCbOrmApp              |       | Define the namespace for the model
 	+|MyParent |             |Base         |CEntityObject           |       | Define class    'MyParent'   of basetype    'EntityObject'
 	+|MyParent |MyString     |Typ          |String                  |       | Define property 'MyString'   of type        'String'  in class 'MyParent'

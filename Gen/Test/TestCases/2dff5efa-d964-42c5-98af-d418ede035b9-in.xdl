@@ -1,3 +1,4 @@
++|||Include|../../../App/Sys/Sys.xdl
 +|Guid||ClrNamespace|System
 +|P||Base|CEntityObject
 +|C||Base|CEntityObject

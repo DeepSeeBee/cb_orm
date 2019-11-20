@@ -1,0 +1,6 @@
+﻿+|String||ClrNamespace|System
++|CEncryptAttribute||ClrNamespace|CbOrm.Crypt
++|CEncryptAttribute||Generate|false
++|P||Base|CEntityObject
++|P|S|Typ|String
++|P|S|a:CEncryptAttribute|true
