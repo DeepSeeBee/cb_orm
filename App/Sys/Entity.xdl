@@ -1,3 +1,4 @@
-﻿+|CForeignKeyCounterpartTypeAttribute||ClrNamespace|CbOrm.App.Sys
+﻿<!DOCTYPE CbXdl_V1>
++|CForeignKeyCounterpartTypeAttribute||ClrNamespace|CbOrm.App.Sys
 +|CForeignKeyCounterpartPropertyNameAttribute||ClrNamespace|CbOrm.App.Sys
 +|CAutoCreateAttribute||ClrNamespace|CbOrm.App.Sys

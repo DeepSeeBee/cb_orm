@@ -15,18 +15,19 @@ namespace CbOrm.Xdl
 {
     public sealed class CRflRowId
     {
-        private CRflRowId(FileInfo aFileInfo, int aLineNr1Based)
+        private CRflRowId(FileInfo aFileInfo, int aLineIdx)
         {
             this.FileInfoNullable = aFileInfo;
-            this.LineNr = aLineNr1Based;
+            this.LineIdx = aLineIdx;
         }
         public FileInfo FileInfoNullable { get; set; }
-        public int LineNr { get; set; }
+        public int LineIdx { get; set; }
+        public int LineNr { get => this.LineIdx + 1; }
         public override string ToString()
         {
             return "In Line " + this.LineNr.ToString() + " in file '" + this.FileInfoNullable.FullName + "'";
         }
-        public static CRflRowId New(FileInfo aFileInfo, int aLineNr1Based) => new CRflRowId(aFileInfo, aLineNr1Based);
+        public static CRflRowId New(FileInfo aFileInfo, int aLineIdx) => new CRflRowId(aFileInfo, aLineIdx);
         public static CRflRowId New(int aLineNr1Based) => new CRflRowId(null, aLineNr1Based);
     }
 
@@ -47,7 +48,7 @@ namespace CbOrm.Xdl
         {
             RecognizeModelRow,
             IgnoreModelRow,
-            IgnoreComment            
+            IgnoreComment
         }
         public const string RecognizeModelRowText = "+";
         public const string IgnoreModelRowText = "-";
@@ -64,11 +65,11 @@ namespace CbOrm.Xdl
         }
         public static string GetRecognizeText(CRecognizeEnum aRecognizeEnum)
         {
-            switch(aRecognizeEnum)
+            switch (aRecognizeEnum)
             {
                 case CRecognizeEnum.RecognizeModelRow: return RecognizeModelRowText;
                 case CRecognizeEnum.IgnoreModelRow: return IgnoreModelRowText;
-                case CRecognizeEnum.IgnoreComment:return IgnoreCommentText;
+                case CRecognizeEnum.IgnoreComment: return IgnoreCommentText;
                 default: throw new ArgumentException();
             }
         }
@@ -77,16 +78,16 @@ namespace CbOrm.Xdl
         private string GetString(string s) => s == null ? string.Empty : s.Trim();
         public CRflRow(CRflRowId aRowId,
                     CRecognizeEnum aRecognizeEnum,
-                    string aClass, 
-                    string aProperty, 
-                    string aAttribute = null, 
-                    string aValue = null, 
-                    string aValueSource = null, 
+                    string aClass,
+                    string aProperty,
+                    string aAttribute = null,
+                    string aValue = null,
+                    string aValueSource = null,
                     string aComment = null
                     )
         {
             this.RowId = aRowId;
-            this.RecognizeEnum = aRecognizeEnum; 
+            this.RecognizeEnum = aRecognizeEnum;
             this.TypName = GetString(this.GetString(aClass));
             this.PropertyName = GetString(aProperty);
             this.AttributeName = GetString(aAttribute);
@@ -96,14 +97,92 @@ namespace CbOrm.Xdl
         }
         public static CRflRow New(string aTypName, string aPropertyName, string aAttributeName, string aAttributeValue, string aValueSource = null, string aComment = null)
             => new CRflRow(null, CRecognizeEnum.RecognizeModelRow, aTypName, aPropertyName, aAttributeName, aAttributeValue, aValueSource, aComment);
-        public override string ToString()=> new string[] { this.RecognizeText, this.TypName, this.PropertyName, this.AttributeName, this.Value, this.ValueSource, this.Comment }.JoinString(ColSeperator.ToString());
+        public override string ToString() => new string[] { this.RecognizeText, this.TypName, this.PropertyName, this.AttributeName, this.Value, this.ValueSource, this.Comment }.JoinString(ColSeperator.ToString());
         private static string GetPart(string[] aParts, int aIdx) => aIdx < aParts.Length ? aParts[aIdx] : default(string);
-        public CRflRow(CRflRowId aRowId, string aLine, string[] aParts) :this(aRowId, CRflRow.GetRecognizeEnum(GetPart(aParts, 0)), GetPart(aParts, 1), GetPart(aParts, 2), GetPart(aParts, 3), GetPart(aParts, 4), GetPart(aParts, 5), GetPart(aParts, 6)) {}
+        public CRflRow(CRflRowId aRowId, string aLine, string[] aParts) : this(aRowId, CRflRow.GetRecognizeEnum(GetPart(aParts, 0)), GetPart(aParts, 1), GetPart(aParts, 2), GetPart(aParts, 3), GetPart(aParts, 4), GetPart(aParts, 5), GetPart(aParts, 6)) { }
         public const char ColSeperator = '|';
-        public static CRflRow NewFromLine(CRflRowId aRowId, string aLine) => new CRflRow(aRowId, aLine, aLine.Split(ColSeperator));        
-        public static CRflRow[] NewFromLines(string[] aLines, FileInfo aFileInfo) => (from aIdx in Enumerable.Range(0, aLines.Length)
-                                                                  where aLines[aIdx].Trim().Length > 0
-                                                                  select CRflRow.NewFromLine(CRflRowId.New(aFileInfo, aIdx + 1), aLines[aIdx])).ToArray();
+        public static CRflRow NewFromLine(CRflRowId aRowId, string aLine) => new CRflRow(aRowId, aLine, aLine.Split(ColSeperator));
+
+        private static int GetDocVersion(string aLine)
+        {
+            var aPrefix = "<!DOCTYPE";
+            var aRestOfLine = aLine.AvoidNullString().Trim();
+            if (!aRestOfLine.StartsWith(aPrefix))
+            {
+                throw new Exception("DOCTYPE tag missing.");
+            }
+            aRestOfLine = aRestOfLine.TrimStart(aPrefix).Trim();
+            var aDocTypePrefix = "CbXdl_V";
+            if (!aRestOfLine.StartsWith(aDocTypePrefix))
+            {
+                throw new Exception("Not a valid doc type for this parser.");
+            }
+            aRestOfLine = aRestOfLine.TrimStart(aDocTypePrefix);
+            var aClosePos = aRestOfLine.IndexOf(">");
+            if (aClosePos == -1)
+            {
+                throw new Exception("Close bracket missing in DocType line.");
+            }
+            var aVersionText = aRestOfLine.Substring(0, aClosePos);
+            UInt32 aVersionUInt32;
+            if (!UInt32.TryParse(aVersionText, out aVersionUInt32))
+            {
+                throw new Exception("Not a valid version number");
+            }
+            aRestOfLine = aRestOfLine.Substring(aClosePos+ 1, aRestOfLine.Length - aClosePos-1);
+            if (aRestOfLine.Trim().Length > 0)
+            {
+                throw new Exception("Invalid characters after Close-Bracket of DOCTYPE line.");
+            }
+            return unchecked((int)aVersionUInt32);
+        }
+
+        private static CRflRow[] NewFromLines(UInt32 aVersion, 
+                                              string[] aLines, 
+                                              FileInfo aFileInfo,
+                                              int aLindeOffset)
+        {
+            switch (aVersion)
+            {
+                case 1:
+                    return NewFromLinesV1(aLines, aFileInfo, aLindeOffset);
+
+                default:
+                    throw new Exception("DocType version '" + aVersion.ToString() + "' not supported.");
+            }
+        }
+
+        private static CRflRow[] NewFromLinesV1(string[] aLines, FileInfo aFileInfo, int aLineOffset)
+            => (from aIdx in Enumerable.Range(0, aLines.Length)
+                where aLines[aIdx].Trim().Length > 0
+                select CRflRow.NewFromLine(CRflRowId.New(aFileInfo, aIdx + aLineOffset), aLines[aIdx])).ToArray();
+
+        public static CRflRow[] NewFromLines(string[] aLines, FileInfo aFileInfo)
+        {
+            return aFileInfo.Interpret(() =>
+            {
+                {
+                    var aLineIdx = 0;
+                    var aLinesTmp = aLines.AsEnumerable();
+                    while (aLinesTmp.FirstOrDefault().AvoidNullString().Trim().Length == 0)
+                    {
+                        ++aLineIdx;
+                        aLinesTmp = aLinesTmp.Skip(1);
+                    }
+                    if (aLines.IsEmpty())
+                    {
+                        return new CRflRow[] { };
+                    }
+                    else
+                    {
+                        var aVersion = GetDocVersion(aLines.First());
+                        ++aLineIdx;
+                        var aRows = NewFromLinesV1(aLines.Skip(1).ToArray(), aFileInfo, aLineIdx);
+                        return aRows;
+                    }
+                }
+            });
+        }
         public static CRflRow[] NewFromTextFile(FileInfo aFileInfo) => NewFromLines(File.ReadAllLines(aFileInfo.FullName), aFileInfo);
         public T Interpret<T>(Func<T> aFunc)
         {
@@ -130,10 +209,12 @@ namespace CbOrm.Xdl
         }
         public void SaveAsText(FileInfo aFileInfo)
         {
-            var aTexts = from aRow in this select aRow.ToString();
+            var aTexts1 = new string[] { "<DOCTYPE CbXdl_V1>" };
+            var aTexts2 = from aRow in this select aRow.ToString();
+            var aTexts3 = aTexts1.Concat(aTexts2);
+            var aTexts = aTexts3;
             File.WriteAllLines(aFileInfo.FullName, aTexts.ToArray());
         }
-
     }
 
     public class CRflTokens

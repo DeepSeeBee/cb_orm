@@ -1,4 +1,5 @@
-﻿+|MyEnum||Base|Enum
+﻿<!DOCTYPE CbXdl_V1>
++|MyEnum||Base|Enum
 +|MyEnum|MyField0
 +|MyEnum|MyField1
 +|C||Base|CEntityObject

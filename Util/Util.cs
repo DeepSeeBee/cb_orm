@@ -125,5 +125,23 @@ namespace CbOrm.Util
 
         public static TAttribute GetCustomAttribute<TAttribute>(this Type aType, bool aInherit = false) where TAttribute : Attribute
             => aType.GetCustomAttributes(typeof(TAttribute), aInherit).Cast<TAttribute>().Last();
+
+        public static bool IsEmpty(this IEnumerable<object> aItems)
+        {
+            var aEnumerator = aItems.GetEnumerator();
+            return !aEnumerator.MoveNext();
+        }
+
+        public static T Interpret<T>(this FileInfo aFileInfo, Func<T> aFunc)
+        {
+            try
+            {
+                return aFunc();
+            }
+            catch(Exception aExc)
+            {
+                throw new Exception("Error reading file '" + aFileInfo.FullName + "'. " + aExc.Message);
+            }
+        }
     }
 }

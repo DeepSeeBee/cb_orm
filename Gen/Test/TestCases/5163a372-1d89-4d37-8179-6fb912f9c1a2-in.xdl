@@ -1,4 +1,5 @@
-﻿+|String||ClrNamespace|System
+﻿<!DOCTYPE CbXdl_V1>
++|String||ClrNamespace|System
 +|CEncryptAttribute||ClrNamespace|CbOrm.Crypt
 +|CEncryptAttribute||Generate|false
 +|P||Base|CEntityObject

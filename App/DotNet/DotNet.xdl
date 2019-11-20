@@ -1,4 +1,5 @@
-﻿+|String||ClrNamespace|System
+﻿<!DOCTYPE CbXdl_V1>
++|String||ClrNamespace|System
 +|String||Init|String.Empty
 +|Boolean||ClrNamespace|System
 +|Int32||ClrNamespace|System
