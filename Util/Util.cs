@@ -9,6 +9,13 @@ namespace CbOrm.Util
 {
     public static class CLazyLoad
     {
+        public static T Get<T> (ref T? aVar, Func<T> aLoad) where T : struct
+        {
+            if (!aVar.HasValue)
+                aVar = aLoad();
+            return aVar.Value;
+        }
+
         public static T Get<T>(ref T aVar, Func<T> aLoad) where T : class
         {
             if (aVar.IsNullRef())

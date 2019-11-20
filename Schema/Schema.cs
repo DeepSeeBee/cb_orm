@@ -57,6 +57,13 @@ namespace CbOrm.Schema
 
 
         private Dictionary<CTyp, IEnumerable<CRefMetaInfo>> PersistentProperties;
+        internal const string RegisterEnumType_Name = "RegisterEnumType";
+
+        protected void RegisterEnumType(Type aEnumType)
+        {
+            this.SaveXmlValueConverters.Register(aEnumType, new CSaveXmlEnumConverter(aEnumType));
+        }
+
         private CTyp CalcBaseTypNullable(CTyp aTyp)
         {
             var aSystemType = aTyp.SystemType;
@@ -123,7 +130,7 @@ namespace CbOrm.Schema
         private readonly CConverters SaveXmlValueConverters = new CConverters();
         internal CConverter GetSaveXmlConverter(Type aValueType)
         {
-            return this.SaveXmlValueConverters[aValueType];
+            return this.SaveXmlValueConverters.GetConverter(aValueType);
         }
 
     }

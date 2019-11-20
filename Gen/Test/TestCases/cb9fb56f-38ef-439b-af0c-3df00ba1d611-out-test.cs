@@ -16,6 +16,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
+    using CbOrm.App.Sys;
     
     
     public class C : CEntityObject
@@ -82,6 +83,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
         private TestSchema()
         {
             this.AddTyp(C._C_TypM);
+            this.RegisterEnumType(typeof(CbOrm.App.Sys.TriStateEnum));
             this.Init();
         }
         

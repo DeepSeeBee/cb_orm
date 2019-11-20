@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CbOrm.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,16 +18,40 @@ namespace CbOrm.Converters
 
     }
 
-    internal sealed class CConverters : Dictionary<Type, CConverter>
+    internal sealed class CConverters 
     {
+        private Dictionary<Type, CConverter> Dic = new Dictionary<Type, CConverter>();
         internal void Register(Type aType, CConverter aValueConverter)
         {
-            if(!this.ContainsKey(aType))
+            if(!this.Dic.ContainsKey(aType))
             {
-                this.Add(aType, aValueConverter);
+                this.Dic.Add(aType, aValueConverter);
             }
         }
 
+        internal CConverter GetConverter(Type aType)
+        {
+            var aTmpType = aType;
+            do
+            {
+                if (this.Dic.ContainsKey(aTmpType))
+                    return this.Dic[aTmpType];
+                aTmpType = aTmpType.BaseType;
+            }
+            while (aTmpType != null);
+            throw new Exception("No converter found for Type '" + aType.FullName + "'.");
+        }
+
+    }
+    internal sealed class CSaveXmlEnumConverter : CConverter
+    {
+        private readonly Type EnumType;
+        internal CSaveXmlEnumConverter(Type aEnumType)
+        {
+            this.EnumType = aEnumType;
+        }
+        public override object Convert(object aValue) => aValue.ToString();
+        public override object ConvertBack(object aValue) => aValue.IsNullRef() ? default(Enum) : ((string)aValue).Length == 0 ? default(Enum) : Enum.Parse(this.EnumType, (string)aValue);
     }
 
     internal sealed class CXmlConverters : CConverter
@@ -45,6 +70,7 @@ namespace CbOrm.Converters
             aRegister(typeof(FileInfo), FileInfoConverter);
             aRegister(typeof(Guid), GuidConverter);
         }
+
 
         private readonly Func<object, string> ConvertFunc;
         private readonly Func<string, object> ConvertBackFunc;

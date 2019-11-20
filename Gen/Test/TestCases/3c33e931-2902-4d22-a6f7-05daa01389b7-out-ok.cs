@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
+namespace Test3c33e931_2902_4d22_a6f7_05daa01389b7
 {
     using System;
     using CbOrm.Entity;
@@ -16,17 +16,24 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
-    using CbOrm.App.Sys;
     
+    
+    public enum MyEnum
+    {
+        
+        MyField0,
+        
+        MyField1,
+    }
     
     public class C : CEntityObject
     {
         
         public static CbOrm.Meta.CTyp _C_TypM = new CbOrm.Meta.CTyp(typeof(C), new System.Guid("00000000-0000-0000-0000-000000000000"), C._GetProperties);
         
-        private CSkalarRef<Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C, string> PM;
+        private CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum> MyEnumPropertyM;
         
-        private static CSkalarRefMetaInfo _PMetaInfoM = new CSkalarRefMetaInfo(typeof(Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C), nameof(P));
+        private static CSkalarRefMetaInfo _MyEnumPropertyMetaInfoM = new CSkalarRefMetaInfo(typeof(Test3c33e931_2902_4d22_a6f7_05daa01389b7.C), nameof(MyEnumProperty));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -49,29 +56,29 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
             }
         }
         
-        public CSkalarRef<Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C, string> P
+        public CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum> MyEnumProperty
         {
             get
             {
-                if (Object.ReferenceEquals(this.PM, null))
+                if (Object.ReferenceEquals(this.MyEnumPropertyM, null))
                 {
-                    this.PM = new CSkalarRef<Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C, string>(this, Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C._PMetaInfo);
+                    this.MyEnumPropertyM = new CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum>(this, Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumPropertyMetaInfo);
                 }
-                return this.PM;
+                return this.MyEnumPropertyM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PMetaInfo
+        public static CSkalarRefMetaInfo _MyEnumPropertyMetaInfo
         {
             get
             {
-                return Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C._PMetaInfoM;
+                return Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumPropertyMetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(C._PMetaInfo);
+            aAddProperty.Invoke(C._MyEnumPropertyMetaInfo);
         }
     }
     
@@ -83,7 +90,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
         private TestSchema()
         {
             this.AddTyp(C._C_TypM);
-            this.RegisterEnumType(typeof(CbOrm.App.Sys.TriStateEnum));
+            this.RegisterEnumType(typeof(Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum));
             this.Init();
         }
         

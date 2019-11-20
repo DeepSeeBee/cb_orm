@@ -6,4 +6,5 @@
 +|UInt64||ClrNamespace|System
 +|DateTime||ClrNamespace|System
 +|TriStateEnum||Base|Enum
-+|TriStateEnum||CbOrm.App.Sys
++|TriStateEnum||Generate|false
++|TriStateEnum||ClrNamespace|CbOrm.App.Sys

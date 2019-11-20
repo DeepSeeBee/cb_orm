@@ -33,6 +33,7 @@ using CbOrm.Schema;
 using CbOrm.Loader;
 using CbOrm.Attributes;
 using CbOrm.Ref;
+using CbOrm.Blop;
 
 namespace CbOrm.Gen
 {
@@ -70,6 +71,7 @@ namespace CbOrm.Gen
         public string Mdl_T_A_Nme_ClrNs = "ClrNamespace";
         public string Mdl_T_A_Guid_Nme = "Guid";
         public string Mdl_T_A_GenerateReverseNavigation = "GenerateReverseNavigation";
+        public string Mdl_T_A_Generate = "Generate";
 
         // CodeDOM Identifier tokens
         public string Dom_A_Cls_Sfx = "Attribute";
@@ -149,10 +151,10 @@ namespace CbOrm.Gen
 
     }
 
-    public class CGenModelInterpreter 
-    : 
+    public class CGenModelInterpreter
+    :
         CRflModelInterpreter
-    ,   CIncludeModelExpander.IModelInterpreter
+    , CIncludeModelExpander.IModelInterpreter
     {
         public readonly new CGenTokens Tok;
         public override CRflTokens Tokens => this.Tok;
@@ -161,21 +163,35 @@ namespace CbOrm.Gen
 
         public virtual string GetSchema(CRflModel aMdl) => aMdl.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Schema);
         public virtual string GetClrNamespace(CRflModel aModel) => aModel.GetAttributeValue(string.Empty, string.Empty, this.Tok.Mdl_G_A_Nsp_Nme);
-        public virtual string GetClrNamespace(CRflTyp aTyp) =>aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs, ()=>this.GetClrNamespace(aTyp.Model));
+        public virtual string GetClrNamespace(CRflTyp aTyp) => aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs, () => this.GetClrNamespace(aTyp.Model));
         public virtual string GetTypName(CRflTyp aRflClass, bool aWithNamespace) => aWithNamespace
                                                                                  ? this.GetClrNamespace(aRflClass) + "." + aRflClass.Name
                                                                                  : aRflClass.Name;
         public virtual string GetBase(CRflTyp aRflClass) => aRflClass.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Base);
-        public virtual string GetReturnTypName(CRflProperty aPrp) => aPrp.Name.Length == 0 ? string.Empty : aPrp.GetAttributeValue(this.Tok.MDl_O_A_Typ_Nme).DefaultIfEmpty(() => aPrp.Name);
+        public virtual bool GetIsEnum(CRflTyp aTyp) => this.GetBase(aTyp).Equals(nameof(Enum));
+        public virtual string GetReturnTypName(CRflProperty aPrp) => this.GetIsEnum(aPrp.DeclaringTyp)
+                                                                   ? aPrp.DeclaringTyp.Name
+                                                                   : aPrp.Name.Length == 0 ? string.Empty : aPrp.GetAttributeValue(this.Tok.MDl_O_A_Typ_Nme).DefaultIfEmpty(() => aPrp.Name);
         public virtual CRflTyp GetReturnTyp(CRflProperty aPrp) => aPrp.DeclaringTyp.Model.GetTypByName(GetReturnTypName(aPrp));
-        public virtual bool GetIsEntityObject(CRflTyp aTyp) => GetBase(aTyp).Length > 0;
+        public virtual bool GetIsObject(CRflTyp aTyp) => this.GetIsEnum(aTyp)
+                                                       ? false
+                                                       : this.GetBase(aTyp).Length > 0
+                                                       ? true
+                                                       : this.GetIsBlop(aTyp)
+                                                       ? true
+                                                       : false
+                                                       ;
+        public virtual bool GetGenerate(CRflTyp aTyp) => aTyp.Interpret(() => bool.Parse(aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Generate, () => true.ToString()))); 
+        public virtual bool GetIsBlop(CRflTyp aTyp) => aTyp.Name == nameof(CBlop);
         public virtual string GetInit(CRflTyp aTyo) => aTyo.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Init);
         public virtual string GetInit(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Init).DefaultIfEmpty(() => this.GetInit(this.GetReturnTyp(aPrp)));
         public virtual IEnumerable<CRflAttribute> GetAttributes(CRflProperty aPrp) => aPrp.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomAGen);
-        public virtual CCardinalityEnum GetCardinality(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Crd).DefaultIfEmpty(aCardinalityText => ("R" + aCardinalityText.Replace(":", string.Empty)).ParseEnum<CCardinalityEnum>(), () => this.GetIsEntityObject(this.GetReturnTyp(aPrp)) ? CCardinalityEnum.R1NC : CCardinalityEnum.Skalar);
+        public virtual CCardinalityEnum GetCardinality(CRflProperty aPrp) => aPrp.GetAttributeValue(this.Tok.Mdl_P_A_Nme_Crd).DefaultIfEmpty(aCardinalityText => ("R" + aCardinalityText.Replace(":", string.Empty)).ParseEnum<CCardinalityEnum>(), () => this.GetIsObject(this.GetReturnTyp(aPrp)) ? CCardinalityEnum.R1NC : CCardinalityEnum.Skalar);
         public virtual string GetClassName(CCardinalityEnum aCardinality) => this.Tok.Dom_C_Pfx + aCardinality.ToString() + this.Tok.Dom_C_Ref_Sfx;
         public virtual string GetEntityRefPropertyName(CRflProperty aPrp) => aPrp.Name + this.Tok.Dom_P_Ref_Sfx;
-        public virtual IEnumerable<CRflTyp> GetEntityObjectClasses(CRflModel aMdl) => from aTest in aMdl.Typs where this.GetBase(aTest) == this.Tok.Trg_C_Eno_Nme select aTest;
+        public virtual IEnumerable<CRflTyp> GetEntityObjectTyps(CRflModel aMdl) => from aTest in aMdl.Typs where this.GetBase(aTest) == this.Tok.Trg_C_Eno_Nme select aTest;
+
+     
         public virtual IEnumerable<string> GetClrNamespaces(CRflModel aMdl) => (from aTyp in aMdl.Typs
                                                                           where aTyp.Name.Length > 0
                                                                           select aTyp.GetPropertyAttributeValue(this.Tok.Mdl_T_A_Nme_ClrNs)).Where(aNs => aNs.Length > 0);
@@ -260,6 +276,9 @@ namespace CbOrm.Gen
 
         public IEnumerable<CInclude> GetIncludes(CRflModel aModel) => from aAttribute in aModel.GetAttributes(string.Empty, string.Empty, this.Tok.Mdl_G_A_Include) select new CInclude(aAttribute.Row, new FileInfo(Path.Combine(aModel.FileInfo.Directory.FullName, aAttribute.Value)));
         public CRflModel NewIncludedModel(FileInfo aFileInfo) => CRflModel.NewFromTextFile(this, aFileInfo);
+        public virtual IEnumerable<CRflTyp> GetEnumTyps(CRflModel aModel) => from aTyp in aModel.Typs where this.GetIsEnum(aTyp) select aTyp;
+
+      
     }
 
     public class CCodeDomBuilder
@@ -348,49 +367,6 @@ namespace CbOrm.Gen
         internal string GetTypMetaInfoPropName(string aClassName)=> "_" + aClassName + "_" + "Typ";
         internal string GetTypMetaInfoFieldName(string aClassName) => this.Tok.GetFieldName(this.GetTypMetaInfoPropName(aClassName));
     }
-    internal sealed class CCrossReferenceExpander : CModelExpander
-    {
-        internal CCrossReferenceExpander(CGenModelInterpreter aGenModelInterpreter)
-        {
-            this.ModelInterpreter = aGenModelInterpreter;
-        }
-        private readonly CGenModelInterpreter ModelInterpreter;
-        public override CRflModel Expand(CRflModel aModel)
-        {
-            var aModelInterpreter = this.ModelInterpreter;
-
-            var aTyps = aModel.Typs;
-            var aProperties = from aTyp in aTyps
-                              from aProperty in aTyp.NamedProperties
-                              select aProperty;
-            var aR1NCProperties = from aProperty in aProperties
-                                  where aModelInterpreter.GetCardinality(aProperty) == CCardinalityEnum.R1NC
-                                  select aProperty;
-            var aR1NCFkRows = from aProperty in aR1NCProperties
-                               from aRow in aModelInterpreter.NewR1NCForeignKeyRows(aProperty)
-                               select aRow
-                               ;
-            var aR1NCRevereRows = from aProperty in aR1NCProperties
-                                  from aRow in aModelInterpreter.NewR1NCReverseNavigationRows(aProperty)
-                                  select aRow;
-
-            var aR11CProperties = from aProperty in aProperties
-                                  where aModelInterpreter.GetCardinality(aProperty) == CCardinalityEnum.R11C
-                                  select aProperty;
-            var aR11CFkRows = (from aProperty in aR11CProperties
-                               from aRow in aModelInterpreter.NewR11CForeignKeyRows(aProperty)
-                               select aRow);
-            var aR11CReverseRows = from aProperty in aR11CProperties
-                                   from aRow in aModelInterpreter.NewR11CReverseNavigationRows(aProperty)
-                                   select aRow;
-            var aOrgRows = aModel.Rows;
-            var aNewRows = aR1NCFkRows.Concat(aR1NCRevereRows).Concat(aR11CFkRows).Concat(aR11CReverseRows).Concat(aOrgRows);
-            var aOutModel = new CRflModel(aModelInterpreter, aModel.FileInfo, aNewRows);
-            return aOutModel;
-        }
-    }
-
-
 
     public sealed class CCodeGenerator
     {
@@ -576,7 +552,7 @@ namespace CbOrm.Gen
 
         }
 
-        private CodeTypeDeclaration NewCodeEntityObjectClass(CRflTyp aRflTyp)
+        private CodeTypeDeclaration NewCodeEntityObjectTypeDecl(CRflTyp aRflTyp)
         {
             var aModel = aRflTyp.Model;
             var aSchemaClsNme = this.Tok.GetSchemaClassName(this.ModelInterpreter.GetSchema(aModel));
@@ -678,19 +654,33 @@ namespace CbOrm.Gen
             return aCdTypDecl;
         }
 
+        private CodeTypeDeclaration NewCodeEnumTypeDecl(CRflTyp aEnumTyp)
+        {
+            var aEnumTypName = aEnumTyp.Name;
+            var aCdTypeDecl = new CodeTypeDeclaration(aEnumTypName);
+            aCdTypeDecl.IsEnum = true;
+            var aFields = from aProperty in aEnumTyp.NamedProperties select new CodeMemberField(aEnumTypName, aProperty.Name);
+            aCdTypeDecl.Members.AddRange(aFields.ToArray());
+            return aCdTypeDecl;
+        }
+
         private void GenerateModelOutput()
         {
-            var aMdl = this.Model;
+            var aModel = this.Model;
             var aNamespace = new CodeNamespace();
-            var aEnoClss = this.ModelInterpreter.GetEntityObjectClasses(aMdl);
-            var aEnoTyps = (from aRflClass in aEnoClss select this.NewCodeEntityObjectClass(aRflClass)).ToArray();
-            var aCompileUnit = new CodeCompileUnit();
-            var aSchemaClass = this.NewSchemaClasses(aMdl);
+            var aEntityObjectTyps = this.ModelInterpreter.GetEntityObjectTyps(aModel);
+            var aCdEntityObjectTypeDecls = (from aRflClass in aEntityObjectTyps select this.NewCodeEntityObjectTypeDecl(aRflClass));
+            var aGeneratedEnumTyps = from aEnumTyp in this.ModelInterpreter.GetEnumTyps(aModel) where this.ModelInterpreter.GetGenerate(aEnumTyp) select aEnumTyp;
+            var aCdEnumTypeDecls = from aEnumTyp in aGeneratedEnumTyps select this.NewCodeEnumTypeDecl(aEnumTyp);
 
-            aNamespace.Name = this.ModelInterpreter.GetNamespace(aMdl);
+            var aCompileUnit = new CodeCompileUnit();
+            var aSchemaClass = this.NewSchemaClasses(aModel);
+
+            aNamespace.Name = this.ModelInterpreter.GetNamespace(aModel);
             aCompileUnit.Namespaces.Add(aNamespace);
-            aNamespace.Imports.AddRange((from aNs in this.Tok.Trg_Nsps.Concat(this.ModelInterpreter.GetClrNamespaces(aMdl)).NewWithoutDuplicates() select new CodeNamespaceImport(aNs)).ToArray());
-            aNamespace.Types.AddRange(aEnoTyps);
+            aNamespace.Imports.AddRange((from aNs in this.Tok.Trg_Nsps.Concat(this.ModelInterpreter.GetClrNamespaces(aModel)).NewWithoutDuplicates() select new CodeNamespaceImport(aNs)).ToArray());
+            aNamespace.Types.AddRange(aCdEnumTypeDecls.ToArray());
+            aNamespace.Types.AddRange(aCdEntityObjectTypeDecls.ToArray());
             aNamespace.Types.AddRange(aSchemaClass.ToArray());
 
             var aCodeDomProvider = CodeDomProvider.CreateProvider("CSharp");
@@ -711,12 +701,16 @@ namespace CbOrm.Gen
             }
             // TODO: throw new NotImplementedException();
         }
+
         private CodeStatement NewAddPrototypeStatement(CRflTyp aTyp) => 
             new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.AddTyp_Name, this.CodeDomBuilder.NewTypMetaInfoFieldRefExp(this.ModelInterpreter.GetTypName(aTyp, false))));
-        private CodeConstructor NewSchemaConstructor(CRflModel aMdl)
+        private CodeConstructor NewSchemaConstructor(CRflModel aModel)
         {
             var aCtor = new CodeConstructor();
-            aCtor.Statements.AddRange((from aEnoCls in this.ModelInterpreter.GetEntityObjectClasses(aMdl) select this.NewAddPrototypeStatement(aEnoCls)).ToArray());
+            var aEnumTyps = this.ModelInterpreter.GetEnumTyps(aModel);
+            var aRegisterEnumTypeCalls = from aEnumTyp in aEnumTyps select new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.RegisterEnumType_Name, new CodeTypeOfExpression(this.ModelInterpreter.GetTypName(aEnumTyp, true))));
+            aCtor.Statements.AddRange((from aEnoCls in this.ModelInterpreter.GetEntityObjectTyps(aModel) select this.NewAddPrototypeStatement(aEnoCls)).ToArray());
+            aCtor.Statements.AddRange(aRegisterEnumTypeCalls.ToArray());
             aCtor.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.NameOf_Init));
             return aCtor;
         }
@@ -763,6 +757,7 @@ namespace CbOrm.Gen
             yield return this.NewSchemaConstructor(aModel);
             foreach (var aMember in this.NewSchemaSingletonMembers(aModel, aSchemaClassName))
                 yield return aMember;
+
         }
 
         private IEnumerable<CodeTypeDeclaration> NewSchemaClasses(CRflModel aModel)

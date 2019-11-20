@@ -1,0 +1,5 @@
+﻿+|MyEnum||Base|Enum
++|MyEnum|MyField0
++|MyEnum|MyField1
++|C||Base|CEntityObject
++|C|MyEnumProperty|Typ|MyEnum

@@ -357,7 +357,7 @@ namespace CbOrm.Gen.Test
         {
             // Generate 1:1W Relation (Cardinality 1:1, Weak)
             throw new NotImplementedException();
-        }
+        }        
 
         public void Test_cb9fb56f_38ef_439b_af0c_3df00ba1d611()
         {
@@ -365,6 +365,28 @@ namespace CbOrm.Gen.Test
             // (Tested by generator output only)
         }
 
+        public void Test_3c33e931_2902_4d22_a6f7_05daa01389b7()
+        {
+            // Enums
+            this.Schema = Test3c33e931_2902_4d22_a6f7_05daa01389b7.TestSchema.Singleton;
 
+            this.BeginTest("4f4b7681-32f0-4d0c-8cf8-bf6f92687116");
+            {
+                var aStorage = this.Storage;
+                var aC0 = aStorage.CreateObject<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C>();
+                aC0.MyEnumProperty.Value = Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum.MyField0;
+                var aC1 = aStorage.CreateObject<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C>();
+                aC1.MyEnumProperty.Value = Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum.MyField1;
+                aStorage.Save();
+            }
+
+            this.BeginTest("1d4f190a-ba5d-48e9-9297-1256817cee74");
+            {
+                var aStorage = this.Storage;
+                var aCs = aStorage.LoadObjects<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C>();
+                this.Test((from aC in aCs where aC.MyEnumProperty.Value == Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum.MyField0 select aC).Count() == 1, "193430af-83f3-4f62-a554-061a7f272669");
+                this.Test((from aC in aCs where aC.MyEnumProperty.Value == Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum.MyField1 select aC).Count() == 1, "37302386-278e-47e0-a7f5-6ed9d1e5c50f");
+            }
+        }
     }
 }
