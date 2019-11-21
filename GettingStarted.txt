@@ -1,13 +1,13 @@
 ﻿Note: This tutorial does not work yet. Still under construction.
 
-Step 1: Define a model:
+Step 1: Define a model: 
 
 	<!DOCTYPE CbXdl_V1>
 	#|Class    |Property     |Attribute    |Value                   |NotUsed| Comment	
 	+|         |             |Include      |../DotNet/DotNet.xdl    |       | Include definitions for .NET Framework
 	+|         |             |Include      |../Sys/Sys.xdl			|       | Include definitions for Entity-System
 	+|         |             |ModelName    |MyCbOrmApp              |       | Define the name of the model.
-	+|         |             |Namespace    |MyCbOrmApp              |       | Define the namespace for the model
+	+|         |             |Namespace    |MyCbOrmApp              |       | Define the namespace for the model'S generated source code.
 	+|MyParent |             |Base         |CEntityObject           |       | Define class    'MyParent'   of basetype    'EntityObject'
 	+|MyParent |MyString     |Typ          |String                  |       | Define property 'MyString'   of type        'String'  in class 'MyParent'
 	+|MyParent |MyChildren   |Typ          |MyChild                 |       | Define property 'MyChildren' of type        'MyChild' in class 'MyParent'
@@ -15,6 +15,24 @@ Step 1: Define a model:
 	+|MyParent |MyChild      |Cardinality  |11C                     |       | Define property 'MyChild'    of cardinality '1:1'
 	+|MyChild  |             |Base         |CEntityObject           |       | Define class    'MyChild'    of basetype    'EntityObject'
 	+|MyChild  |MyProperty   |Typ          |Boolean                 |       | Define property 'MyBoolean'  of typ         'Boolean'
+
+	Some words about this Model definition language (MDL):
+
+	You see, the mdl constists of rows and columns, separated by a pipe character '|'. 
+	Actually it's a csv format.
+	Thus It can be easily stored in a database or converted into a small binary file by indexing the identifier strings.
+	By defining columns class, Property, Attribute (MetaProperty) and value it is object oriented and extensible and refers directly to a object model with custom reflection info.
+	The NotUsed column i used for datamapping in another project. However this column is not used in this project but i reserved it.
+	The last column includes a comment and is not processed.
+	Either if the row stars with #| the rest of the row will be ignored. This is inteded to be used for comments
+	Either if the row starts with a -| the rest of the row is ignored. This is intendend to deactivate interpretation of valid row definitions.
+
+	I did it like i did it because it is very compact. My model at office consists of about 10k-20k of such rows. 
+	If i would have keywords or xml tag names in between i would get mad typing all those keywords again and again.
+	I use excel to edit the rows and like this i can easily handle large object models with about 6k-12k fields.
+	And i only need to type what is really necessary - the identifiers.
+
+	But now let's continue to get the sample app to work:
 
 Step 2: Save the model definition in folder CbOrm\App\MyCbOrmApp\GeneratorInput\MyCbOrmApp.xdl
 

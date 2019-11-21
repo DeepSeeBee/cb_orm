@@ -19,6 +19,8 @@ Restrictions:
 - Cache doesnt use weak references. So loaded objects will stay in ram until the objectcontext is closed. (Suitable for WebApplications or DesktopApps using Lifetime per Workflow pattern or less)
 - To avoid name conflicts you should avoid identifiers with underscore ("_") for class names and property names.
 - Your database model should be normalized to allow creation of composed objects, however you can use weak references to break these rule.
+- If you use a database model which is allready defined cb_orm wrapper is not suitable for you.
+- If you want to store your object model in one of the supported databases (or the filesystem) and if you want to have nothing to do with database design and sql and if you can learn a compact modeldefinition language cb_orm is suitable for you.
 
 Realized features:
 - Compact and extendable Model Definition Language
