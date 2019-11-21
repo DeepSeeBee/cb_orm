@@ -79,11 +79,6 @@ namespace CbOrm.FileSys
             return aFileInfo;
         }
 
-        private object GetObjectDirectory(object tableName)
-        {
-            throw new NotImplementedException();
-        }
-
         internal CObject LoadObject(CTyp aType, FileInfo aFileInfo)
         {
             var aObjectId = this.GetGuidFromFileName(aFileInfo);

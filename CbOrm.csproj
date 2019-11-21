@@ -83,11 +83,10 @@
     <None Include="UnitTest\TestCases\d9774a1c-5e45-41d9-b259-9b33f0876267-out-test.cs" />
     <Compile Include="UnitTest\TestCases\f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d-out-ok.cs" />
     <None Include="UnitTest\TestCases\f1c0d6f6-cc10-4afb-bc8f-a3a940b5ac4d-out-test.cs" />
-    <Compile Include="IdGen\IdGen.cs" />
     <Compile Include="Loader\Loader.cs" />
-    <Compile Include="MsSql\id.cs" />
+    <Compile Include="MsSql\MsSql.cs" />
     <Compile Include="Schema\Schema.cs" />
-    <Compile Include="SysDataClient\stor.cs" />
+    <Compile Include="SysDataClient\SysDataClient.cs" />
     <Compile Include="App\Sys\rfl.cs" />
     <Compile Include="Meta\Meta.cs" />
     <Compile Include="Entity\Entity.cs" />
@@ -99,7 +98,7 @@
     <Compile Include="Util\Util.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Gen\gen.cs" />
+    <Compile Include="Gen\Gen.cs" />
     <Compile Include="Xdl\Xdl.cs" />
     <None Include="README.md" />
   </ItemGroup>

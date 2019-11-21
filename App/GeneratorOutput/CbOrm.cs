@@ -16,6 +16,8 @@ namespace CbVoucherApp.Code.Domain
     using CbOrm.Ref;
     using CbOrm.Meta;
     using System.Collections.Generic;
+    using CbOrm.Blop;
+    using CbOrm.App.Sys;
     using CbOrm.App.Web;
     
     
@@ -3559,47 +3561,6 @@ namespace CbVoucherApp.Code.Domain
         {
             aAddProperty.Invoke(Voucher._IsDownloadedMetaInfo);
             aAddProperty.Invoke(Voucher._RecipientMetaInfo);
-        }
-    }
-    
-    public class CbVoucherSchema : CbOrm.Schema.CSchema
-    {
-        
-        public static CbVoucherSchema SingletonM = new CbVoucherSchema();
-        
-        private CbVoucherSchema()
-        {
-            this.AddTyp(Publisher._Publisher_TypM);
-            this.AddTyp(EmailAccount._EmailAccount_TypM);
-            this.AddTyp(Content._Content_TypM);
-            this.AddTyp(Gift._Gift_TypM);
-            this.AddTyp(Subscriber._Subscriber_TypM);
-            this.AddTyp(Newsletter._Newsletter_TypM);
-            this.AddTyp(TextTemplate._TextTemplate_TypM);
-            this.AddTyp(DownloadFormat._DownloadFormat_TypM);
-            this.AddTyp(Campaign._Campaign_TypM);
-            this.AddTyp(VoucherRequest._VoucherRequest_TypM);
-            this.AddTyp(SubscriptionRequest._SubscriptionRequest_TypM);
-            this.AddTyp(VoucherDownload._VoucherDownload_TypM);
-            this.AddTyp(GiftStatistic._GiftStatistic_TypM);
-            this.AddTyp(GiftCounters._GiftCounters_TypM);
-            this.AddTyp(LocationInfo._LocationInfo_TypM);
-            this.AddTyp(Account._Account_TypM);
-            this.AddTyp(Voucher._Voucher_TypM);
-            this.Init();
-        }
-        
-        public static CbVoucherSchema Singleton
-        {
-            get
-            {
-                return CbVoucherSchema.SingletonM;
-            }
-        }
-        
-        public static CbOrm.Schema.CSchema GetSingleton()
-        {
-            return CbVoucherSchema.SingletonM;
         }
     }
 }

@@ -32,14 +32,6 @@ namespace CbOrm.Loader
         }
     }
 
-    public sealed class CNewCrossRefModelExpander : CModelExpander
-    {
-        public override CRflModel Expand(CRflModel Model)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public sealed class CIncludeModelExpander : CModelExpander
     {
         public interface IModelInterpreter
@@ -107,8 +99,6 @@ namespace CbOrm.Loader
             return aTmpModel;
         }
     }
-
-
 
     public sealed class CRowsExpander : CModelExpander
     {
