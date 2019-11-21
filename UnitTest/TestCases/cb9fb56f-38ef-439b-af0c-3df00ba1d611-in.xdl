@@ -1,4 +1,4 @@
 <!DOCTYPE CbXdl_V1>
-+|||Include|../../../App/DotNet/DotNet.xdl
++|||Include|../../App/DotNet/DotNet.xdl
 +|C||Base|CEntityObject
 +|C|P|Typ|String

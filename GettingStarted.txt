@@ -19,7 +19,7 @@ Step 1: Define a model:
 	Some words about this Model definition language (MDL):
 
 	You see, the mdl constists of rows and columns, separated by a pipe character '|'. 
-	Actually it's a csv format.
+	Actually it's a csv format - the mother of all file formats ;-)
 	Thus It can be easily stored in a database or converted into a small binary file by indexing the identifier strings.
 	By defining columns class, Property, Attribute (MetaProperty) and value it is object oriented and extensible and refers directly to a object model with custom reflection info.
 	The NotUsed column i used for datamapping in another project. However this column is not used in this project but i reserved it.

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE CbXdl_V1>
-+|||Include|../../../App/Sys/Sys.xdl
++|||Include|../../App/Sys/Sys.xdl
 +|Guid||ClrNamespace|System
 +|P||Base|CEntityObject
 +|P|B|Typ|CBlop
