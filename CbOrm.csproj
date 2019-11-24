@@ -51,6 +51,7 @@
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="Crypt\Crypt.cs" />
+    <Compile Include="Di\Di.cs" />
     <Compile Include="FileSys\FileSys.cs" />
     <None Include="App\Sys\Blop.xdl" />
     <None Include="App\Sys\Entity.xdl" />

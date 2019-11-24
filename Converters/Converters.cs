@@ -54,7 +54,7 @@ namespace CbOrm.Converters
         public override object ConvertBack(object aValue) => aValue.IsNullRef() ? default(Enum) : ((string)aValue).Length == 0 ? default(Enum) : Enum.Parse(this.EnumType, (string)aValue);
     }
 
-    internal sealed class CXmlConverters : CConverter
+    public sealed class CXmlConverters : CConverter
     {
         private CXmlConverters(Func<object, string> aConvertFunc, Func<string, object> aConvertBackFunc)
         {
@@ -138,7 +138,10 @@ namespace CbOrm.Converters
             }
         }
 
-        internal static string SaveDateTime(object aClrValue)
+        private static string SaveDateTime(object aClrValue)
+            => SaveDateTime((DateTime)aClrValue);
+        
+        public static string SaveDateTime(DateTime aClrValue)
         {
             var aDateTime = (DateTime)aClrValue;
             var aUtcDateTime = aDateTime.ToUniversalTime();

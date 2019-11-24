@@ -1,6 +1,7 @@
 ﻿// This is the runtime for my 2nd generation ORM-Wrapper. (database adapter)
 
 using CbOrm.Blop;
+using CbOrm.Di;
 using CbOrm.Entity;
 using CbOrm.Meta;
 using CbOrm.Schema;
@@ -8,15 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace CbOrm.Storage
 {
     public abstract class CStorage
     {
 
+        public readonly CDiContainer DiContainer = new CDiContainer();
         protected CStorage(CSchema aSchema)
         {
             this.Schema = aSchema;
@@ -102,14 +101,13 @@ namespace CbOrm.Storage
             return (T)this.Schema.Typs.GetBySystemType(typeof(T)).NewObject(this);
         }
 
-        internal T CreateObject<T>() where T : CObject
+        public T CreateObject<T>() where T : CObject
         {
             var aObj = this.NewObject<T>();
             aObj.Create();
             return aObj;
         }
-
-        internal T CreateNullObject<T>() where T : CObject => this.NewObject<T>();
+        public T CreateNullObject<T>() where T : CObject => this.NewObject<T>();
 
         internal abstract long GetBlopLength(CBlop aBlop);
 

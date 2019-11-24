@@ -129,6 +129,7 @@ namespace CbOrm.Entity
             }
         }
 
+        /// Todo - entfernen
         public void SaveAllModifiedObjects()
         {
             this.Storage.Save();
@@ -140,7 +141,7 @@ namespace CbOrm.Entity
             foreach (var aRef in this.Refs)
                 aRef.DeleteCascade();
         }
-        internal void Delete()
+        public void Delete()
         {
             this.DeleteCascade();
             this.IsLocallyDeleted = true;

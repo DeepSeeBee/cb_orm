@@ -78,7 +78,7 @@ namespace CbOrm.Blop
         }
 
         private Stream SaveStreamNullable;
-        internal void SetStream(Stream aStream)
+        public void SetStream(Stream aStream)
         {
             this.SaveStreamNullable = aStream;
             this.Modify();

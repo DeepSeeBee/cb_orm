@@ -161,7 +161,7 @@ namespace CbOrm.Meta
         public readonly PropertyInfo PropertyInfo;
         internal const string ObjectElementName = "Object";
         internal readonly CIdentifier Id;
-        internal CCollection<T> NewCollection<T>() where T : CObject => new CListCollection<T>();
+        internal CCollection<T> NewCollection<T>(CStorage aStorage) where T : CObject => new CListCollection<T>(aStorage);
         public bool IsDefined<TAttribute>() where TAttribute : Attribute => this.PropertyInfo.IsDefined(typeof(TAttribute));
         public TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute => this.PropertyInfo.GetCustomAttributes<TAttribute>().Last();
         internal abstract void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aXmlElement);

@@ -56,15 +56,15 @@ namespace CbOrm.Ref
         internal readonly CRefMetaInfo RefMetaInfo;
         internal readonly CAccessKey WriteKeyNullable;
 
-        public abstract object ValueObj { get; }
+        internal abstract object ValueObj { get; }
         internal T GetValue<T>() => (T)this.ValueObj;
         internal Type ValueType { get=>this.ValueObj.IsNullRef() ? this.DeclaredValueType : this.ValueObj.GetType(); }
         internal abstract Type DeclaredValueType { get; }
-        public abstract Type DeclaredTargetType { get; }
+        internal abstract Type DeclaredTargetType { get; }
 
         internal abstract void SetValueObj(object aModelValue, CAccessKey writeKeyNullable);
-        public CStorage Storage { get => this.ParentEntityObject.Storage; }
-        public CSchema Schema { get => this.Storage.Schema; }
+        internal CStorage Storage { get => this.ParentEntityObject.Storage; }
+        internal CSchema Schema { get => this.Storage.Schema; }
         internal abstract IEnumerable<Guid> TargetGuids { get; }
         internal abstract Guid TargetGuid { get;  }
         internal abstract void Load(IEnumerable<Guid> aGuids);
@@ -100,7 +100,7 @@ namespace CbOrm.Ref
             }
         }
 
-        public virtual void RefreshValue()
+        internal virtual void RefreshValue()
         {
         }
     }
@@ -112,7 +112,7 @@ namespace CbOrm.Ref
 
         }
 
-        public override void RefreshValue()
+        internal override void RefreshValue()
         {
             base.RefreshValue();
             this.ValueM = default(T);
@@ -139,7 +139,7 @@ namespace CbOrm.Ref
             }
         }
         protected virtual void DropValue(T aValue) { }
-        public override object ValueObj => this.Value;
+        internal override object ValueObj => this.Value;
         protected virtual void SetValueBuffer(T aValue)
         {
             if (!object.Equals(aValue, this.ValueM))
@@ -153,7 +153,7 @@ namespace CbOrm.Ref
                 this.OnValueChanged();
             }
         }
-        public void ChangeValue(T aValue, CAccessKey aWriteKeyNullable = null, bool aModify = true)
+        internal void ChangeValue(T aValue, CAccessKey aWriteKeyNullable = null, bool aModify = true)
         {
             this.CheckWriteable(aWriteKeyNullable);
             
@@ -215,10 +215,18 @@ namespace CbOrm.Ref
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
         internal abstract void Load(CStorage aStorage, IEnumerable<Guid> aGuids);
         internal abstract IEnumerable<Guid> Guids { get; }
+        internal abstract T GetItemOrNullObject(Guid aGuid);
+        internal abstract bool Contains(Guid aGuid);
     }
 
     public sealed class CListCollection<T> : CCollection<T> where T :CObject
     {
+        internal CListCollection(CStorage aStorage)
+        {
+            this.Storage = aStorage;
+        }
+        private readonly CStorage Storage;
+
         private readonly List<CObjectProxy<T>> List = new List<CObjectProxy<T>>();
         internal override void Add(T aItem)
         {
@@ -237,6 +245,16 @@ namespace CbOrm.Ref
             }
         }
         internal override IEnumerable<Guid> Guids => from aItem in this.List select aItem.Guid;
+        internal override T GetItemOrNullObject(Guid aGuid)
+        {
+            var aItems = from aTest in this.List
+                         where aTest.Guid == aGuid
+                         select aTest;
+            var aItem = aItems.IsEmpty() ? this.Storage.CreateNullObject<T>() : aItems.Single().Object;
+            return aItem;
+        }
+        internal override bool Contains(Guid aGuid)
+            => this.Guids.Contains(aGuid);
     }
 
 
@@ -248,7 +266,7 @@ namespace CbOrm.Ref
     {
         protected CNRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
         {
-            this.Collection = aRefMetaInfo.NewCollection<TRef>();
+            this.Collection = aRefMetaInfo.NewCollection<TRef>(aParentEntityObject.Storage);
             this.ChangeValue(this.Collection, this.WriteKeyNullable, false);
         }
         protected readonly CCollection<TRef> Collection;
@@ -259,7 +277,7 @@ namespace CbOrm.Ref
         }
         internal override IEnumerable<Guid> TargetGuids => this.Collection.Guids;
         internal override Guid TargetGuid => throw new InvalidOperationException();
-        public override Type DeclaredTargetType => typeof(TRef);
+        internal override Type DeclaredTargetType => typeof(TRef);
 
         private CTyp TargetTypM;
         internal CTyp TargetTyp { get => CLazyLoad.Get(ref this.TargetTypM, () => this.Schema.Typs.GetBySystemType(this.DeclaredTargetType)); }
@@ -282,6 +300,11 @@ namespace CbOrm.Ref
         public virtual bool Contains(TRef aRef)=> this.Collection.Contains(aRef); /// TODO_OPT
         internal override void Load(IEnumerable<Guid> aGuids) => this.Collection.Load(this.ParentEntityObject.Storage, aGuids);
         internal override void Load(Guid aGuid) => throw new InvalidOperationException();
+
+        public TRef GetItemOrNullObject(Guid aGuid)
+            => this.Collection.GetItemOrNullObject(aGuid);
+
+        public bool Contains(Guid aGuid) => this.Collection.Contains(aGuid);/// TODO_OPT
     }
 
     public class CSkalarRef<TParent, TChild>: CRef<TChild>
@@ -291,7 +314,7 @@ namespace CbOrm.Ref
         {
 
         }
-        public override Type DeclaredTargetType => typeof(TChild);
+        internal override Type DeclaredTargetType => typeof(TChild);
         internal override IEnumerable<Guid> TargetGuids => throw new InvalidOperationException();
         internal override Guid TargetGuid => throw new InvalidOperationException();
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
@@ -354,7 +377,7 @@ namespace CbOrm.Ref
         {
             this.ObjectProxy = new CObjectProxy<TChild>(aParentEntityObject.Storage, default(Guid));
         }
-        public override Type DeclaredTargetType => typeof(TChild);
+        internal override Type DeclaredTargetType => typeof(TChild);
         private CObjectProxy<TChild> ObjectProxy;
         protected override TChild LoadValue()
         {
@@ -426,6 +449,16 @@ namespace CbOrm.Ref
             return aObject;
         }
         internal TChild Create() => this.Create<TChild>();
+        public TChild CreateOnDemand()
+            => this.CreateOnDemand<TChild>();
+        public TChild CreateOnDemand<T>() where T :TChild
+        {
+            if(this.TargetGuid == default)
+            {
+                this.Create<T>();
+            }
+            return this.Value;            
+        }
         protected override void DropValue(TChild aValue)
         {
             aValue.Delete();

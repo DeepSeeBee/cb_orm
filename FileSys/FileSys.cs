@@ -22,6 +22,10 @@ namespace CbOrm.FileSys
     {
         public CFileSystemStorage(CSchema aSchema, DirectoryInfo aDirectoryInfo) : base(aSchema)
         {
+            if (aSchema.IsNullRef())
+                throw new ArgumentNullException(nameof(aSchema));
+            if (aDirectoryInfo.IsNullRef())
+                throw new ArgumentNullException(nameof(aDirectoryInfo));
             this.DirectoryInfo = aDirectoryInfo;
         }
 
