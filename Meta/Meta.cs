@@ -183,7 +183,7 @@ namespace CbOrm.Meta
             var aValueType = aRef.ValueType;
             var aSchema = aObject.Schema;
             var aSaveConverter = aSchema.ModelConverterChain; //(aValueType);
-            var aXmlValue = aSaveConverter.Convert<string>(aValue, typeof(string));
+            var aXmlValue = aSaveConverter.Convert<string>(aValue, aValueType);
             var aPropertyName = aProperty.Id.Name;
             aXmlElement.SetAttribute(aPropertyName, aXmlValue.AvoidNullString().ToString());
         }

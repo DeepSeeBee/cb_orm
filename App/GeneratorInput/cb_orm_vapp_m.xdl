@@ -141,8 +141,8 @@
 +|Content|Blop|Typ|CBlop
 +|Content|Blop|Cardinality|11C
 +|ContentKindEnum||Base|Enum
-+|ContentKindEnum|Redirect
 +|ContentKindEnum|Blop
++|ContentKindEnum|Redirect
 +|Publisher|TextTemplates|Typ|TextTemplate
 +|TextTemplate||Base|CEntityObject
 +|TextTemplate|TemplateText|Typ|String

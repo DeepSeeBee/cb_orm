@@ -30,9 +30,9 @@ namespace CbVoucherApp.Code.Domain
     public enum ContentKindEnum
     {
         
-        Redirect,
-        
         Blop,
+        
+        Redirect,
     }
     
     public enum TextFormatEnum
@@ -4475,6 +4475,8 @@ namespace CbVoucherApp.Code.Domain
             this.RegisterEnumType(typeof(CbVoucherApp.Code.Domain.ContentKindEnum));
             this.RegisterEnumType(typeof(CbVoucherApp.Code.Domain.TextFormatEnum));
             this.RegisterEnumType(typeof(CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum));
+            this.RegisterDefaultCalculator(typeof(CbOrm.App.Web.CEmailAdress), ()=>new CEmailAdress());
+            this.RegisterDefaultCalculator(typeof(CbOrm.App.Web.CPassword), ()=>new CPassword());
             this.RegisterDefaultCalculator(typeof(string), ()=>String.Empty);
             this.Init();
         }

@@ -26,7 +26,7 @@ namespace CbOrm.Crypt
         internal string Decrypt(string aEncryptedValue) => this.Encryption.DecryptToString(aEncryptedValue, this.Password, this.BufferSize);
     }
 
-    internal class CEncryption
+    public class CEncryption
     {
         private Rijndael CreateCryptoAlgorithm(string aPassword, byte[] aSalt)
         {
@@ -39,22 +39,14 @@ namespace CbOrm.Crypt
             return aAlgorithm;
         }
 
-        private byte[] DefaultSaltM;
-        private byte[] DefaultSalt { get => CLazyLoad.Get(ref this.DefaultSaltM, () => this.LoadDefaultSalt()); }
-        private byte[] LoadDefaultSalt()
+        private static byte[] DefaultSaltM;
+        public static byte[] DefaultSalt { get => CLazyLoad.Get(ref DefaultSaltM, () => LoadDefaultSalt()); set => DefaultSaltM = value; }
+        private static byte[] LoadDefaultSalt()
         {
-            var aFileInfo = new FileInfo("EncryptionSalt.bin");
-            if (!aFileInfo.Exists)
-            {
-                System.Diagnostics.Debugger.Break();
-                // using default salt
-                var aDefaultSalt = new byte[] { 0xbc, 0x32, 0x82, 0x58, 0x18, 0xf1, 0x49, 0x7c, 0x91, 0x08, 0xde, 0x04, 0xcd, 0xfb, 0xf3, 0x94 };
-                return aDefaultSalt;
-            }
-            else
-            {
-                return File.ReadAllBytes(aFileInfo.FullName);
-            }
+            System.Diagnostics.Debugger.Break();
+            // using default salt
+            var aDefaultSalt = new byte[] { 0xbc, 0x32, 0x82, 0x58, 0x18, 0xf1, 0x49, 0x7c, 0x91, 0x08, 0xde, 0x04, 0xcd, 0xfb, 0xf3, 0x94 };
+            return aDefaultSalt;
         }
 
 

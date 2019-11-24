@@ -498,7 +498,12 @@ namespace CbOrm.Ref
             { get => CLazyLoad.Get(ref this.ForeignKeyMetaInfoM, () => this.ParentEntityObject.Typ.GetforeignKey(this.RefMetaInfo.OwnerType, this.RefMetaInfo.PropertyInfo.Name)); }
         private CRef FkRef { get=> this.ForeignKeyMetaInfo.GetRef(this.ParentEntityObject); }
         protected override void SetForeignKey(Guid aForeignKey) => this.FkRef.SetValueObj(aForeignKey, this.FkRef.WriteKeyNullable);
-        protected override TChild LoadValue() => this.Storage.LoadObject<TChild>(this.FkRef.GetValue<Guid>());
+        protected override TChild LoadValue()
+        {
+            this.Load(this.TargetGuid);
+            return base.LoadValue();
+        }
+        internal override Guid TargetGuid => this.FkRef.GetValue<Guid>();
     }
     public sealed class CR11WRef<TParent, TChild> : CR11Ref<TParent, TChild>
     where TParent : CEntityObject

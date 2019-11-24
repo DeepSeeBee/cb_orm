@@ -1,5 +1,6 @@
 ﻿using CbOrm.Attributes;
 using CbOrm.Converters;
+using CbOrm.Crypt;
 using CbOrm.Util;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,34 @@ namespace CbOrm.App.Web
         }
     }
 
+    public sealed class CPasswordEncryptConverter : CConverter
+    {
+        public CPasswordEncryptConverter()
+        {
+        }
+        private readonly string EncryptPassword = "1a0ed9b7-4ef2-4f72-8b1a-3742c53f0edb";
+
+        public override object Convert(object aValue, Type aTargetType)
+        {
+            var aPassword = (CPassword)aValue;
+            var aPasswordText = aPassword.ToString();
+            var aEncryption = new CEncryption();
+            var aEncryptedString = aEncryption.EncryptToString(aPasswordText, EncryptPassword);
+            return aEncryptedString;
+        }
+
+        public override object ConvertBack(object aValue, Type aTargetType)
+        {
+            var aEncryptedString = (string)aValue;
+            var aEncryption = new CEncryption();
+            var aDecryptedString = aEncryption.DecryptToString(aEncryptedString, EncryptPassword, 128);
+            var aPassword = new CPassword(aDecryptedString);
+            return aPassword;
+        }
+    }
+
     [CSaveAs(typeof(string))]
-    [CSaveConverter(typeof(CStringWrapperConverter<CPassword>))]
+    [CSaveConverter(typeof(CPasswordEncryptConverter))]
     public class CPassword
     {
         public CPassword(string aText)

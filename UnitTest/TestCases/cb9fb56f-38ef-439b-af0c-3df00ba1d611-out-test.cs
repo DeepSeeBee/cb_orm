@@ -48,7 +48,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C))]
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(string))]
         public CSkalarRef<Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C, string> P
         {
             get

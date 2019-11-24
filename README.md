@@ -43,6 +43,9 @@ Supported features:
 - Customizeable Attribute Generation
 - Customizeable Skalar-Field types/Type conversion chain for loading/saving.
 
+Supported features with no unit test:
+- CEmailAdress/CPassword saving/loading.
+
 Planned Features: (~In this sequence)
 - Relation 1:1: Weak: Navigation from Parent to Child ***
 - Encryption (=>Saving passwords)
@@ -75,8 +78,11 @@ Planned Features: (~In this sequence)
 - Compiler/Interpreter for Binary Model
 - Binary Storage
 - Lean and Mean C++ ORM Wrappers optimized for Embedded Systems
-- Protobuf adapter
-- Soap adapter
+- Protobuf to xdl adapter
+- Soap to xdl adapter
+- XML-DTD to xdl adapter
+- C / C++ / C# / VB.NET to xdl adapter 
+
 --------------------
 LAAAAAAAAAAAAAAATER
 - Gui for Model editor

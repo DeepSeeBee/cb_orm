@@ -84,7 +84,14 @@ namespace CbOrm.Converters
         internal static void Register(Action<Type, CConverter> aRegister)
         {
             aRegister(typeof(string), StringConverter);
+            aRegister(typeof(Byte), UInt8Converter);
+            aRegister(typeof(SByte), Int8Converter);
+            aRegister(typeof(UInt16), UInt16Converter);
+            aRegister(typeof(Int16), Int16Converter);
+            aRegister(typeof(UInt32), UInt32Converter);
             aRegister(typeof(Int32), Int32Converter);
+            aRegister(typeof(UInt64), UInt64Converter);
+            aRegister(typeof(Int64), Int64Converter);
             aRegister(typeof(DateTime), DateTimeConverter);
             aRegister(typeof(bool), BoolConverter);
             aRegister(typeof(FileInfo), FileInfoConverter);
@@ -96,7 +103,14 @@ namespace CbOrm.Converters
         private readonly Func<string, object> ConvertBackFunc;
 
         internal static readonly CConverter StringConverter = new CXmlConverters(SaveString, LoadString);
+        internal static readonly CConverter UInt8Converter = new CXmlConverters(SaveUInt8, LoadUInt8);
+        internal static readonly CConverter Int8Converter = new CXmlConverters(SaveInt8, LoadInt8);
+        internal static readonly CConverter UInt16Converter = new CXmlConverters(SaveUInt16, LoadUInt16);
+        internal static readonly CConverter Int16Converter = new CXmlConverters(SaveInt16, LoadInt16);
+        internal static readonly CConverter UInt32Converter = new CXmlConverters(SaveUInt32, LoadUInt32);
         internal static readonly CConverter Int32Converter = new CXmlConverters(SaveInt32, LoadInt32);
+        internal static readonly CConverter UInt64Converter = new CXmlConverters(SaveUInt64, LoadUInt64);
+        internal static readonly CConverter Int64Converter = new CXmlConverters(SaveInt64, LoadInt64);
         internal static readonly CConverter DateTimeConverter = new CXmlConverters(SaveDateTime, LoadDateTime);
         internal static readonly CConverter BoolConverter = new CXmlConverters(SaveBool, LoadBool);
         internal static readonly CConverter FileInfoConverter = new CXmlConverters(SaveFileInfo, LoadFileInfo);
@@ -110,17 +124,87 @@ namespace CbOrm.Converters
         {
             return this.ConvertBackFunc((string)aValue);
         }
+        private static string SaveInt8(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadInt8(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (SByte)0
+                 : (SByte)System.Convert.ToSByte(aXmlValue);
+        }
+        private static string SaveUInt8(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadUInt8(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (Byte)0
+                 : (Byte)System.Convert.ToByte(aXmlValue);
+        }
+        private static string SaveInt16(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadInt16(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (Int16)0
+                 : (Int16)System.Convert.ToInt16(aXmlValue);
+        }
+        private static string SaveUInt16(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadUInt16(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (UInt16)0
+                 : (UInt16)System.Convert.ToUInt16(aXmlValue);
+        }
         private static string SaveInt32(object aClrValue)
         {
             return aClrValue.ToString();
         }
-
         internal static object LoadInt32(string aXmlValue)
         {
             return aXmlValue == null || aXmlValue.Trim().Length == 0
                  ? (Int32)0
                  : (Int32)System.Convert.ToInt32(aXmlValue);
         }
+        private static string SaveUInt32(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadUInt32(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (UInt32)0
+                 : (UInt32)System.Convert.ToUInt32(aXmlValue);
+        }
+        private static string SaveInt64(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadInt64(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (Int64)0
+                 : (Int64)System.Convert.ToInt64(aXmlValue);
+        }
+        private static string SaveUInt64(object aClrValue)
+        {
+            return aClrValue.ToString();
+        }
+        internal static object LoadUInt64(string aXmlValue)
+        {
+            return aXmlValue == null || aXmlValue.Trim().Length == 0
+                 ? (UInt64)0
+                 : (UInt64)System.Convert.ToUInt64(aXmlValue);
+        }
+
 
         private const string UtcSuffix = "(Utc)";
 
@@ -247,7 +331,6 @@ namespace CbOrm.Converters
         public override object Convert(object aValue, Type aTargetType) => ((T)aValue).ToString();
         public override object ConvertBack(object aValue, Type aTargetType) => (T)Activator.CreateInstance(typeof(T), (string)aValue);
     }
-
 
     internal sealed class CModelConverterChain : CConverter
     {
