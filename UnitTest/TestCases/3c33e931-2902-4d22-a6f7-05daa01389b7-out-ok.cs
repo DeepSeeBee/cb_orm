@@ -56,6 +56,7 @@ namespace Test3c33e931_2902_4d22_a6f7_05daa01389b7
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test3c33e931_2902_4d22_a6f7_05daa01389b7.C))]
         public CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum> MyEnumProperty
         {
             get

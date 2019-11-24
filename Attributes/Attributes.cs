@@ -113,4 +113,35 @@ namespace CbOrm.Attributes
             }
         }
     }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+    public sealed class CSaveAsAttribute : Attribute
+    {
+        public CSaveAsAttribute(Type aSaveAsType)
+        {
+            this.SaveAsType = aSaveAsType;
+        }
+        internal readonly Type SaveAsType;
+    }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+    public sealed class CSaveConverterAttribute : Attribute
+    {
+        public CSaveConverterAttribute(Type aConverterType)
+        {
+            this.ConverterType = aConverterType;
+        }
+        internal readonly Type ConverterType;
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public sealed class CTargetTypeAttribute : Attribute
+    {
+        public CTargetTypeAttribute(Type aTargetType)
+        {
+            this.TargetType = aTargetType;
+        }
+        internal readonly Type TargetType;
+    }
+
 }

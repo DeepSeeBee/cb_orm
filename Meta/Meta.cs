@@ -182,10 +182,10 @@ namespace CbOrm.Meta
             var aValue = aRef.ValueObj;
             var aValueType = aRef.ValueType;
             var aSchema = aObject.Schema;
-            var aSaveConverter = aSchema.GetSaveXmlConverter(aValueType);
-            var aXmlValue = aSaveConverter.Convert<string>(aValue);
+            var aSaveConverter = aSchema.ModelConverterChain; //(aValueType);
+            var aXmlValue = aSaveConverter.Convert<string>(aValue, typeof(string));
             var aPropertyName = aProperty.Id.Name;
-            aXmlElement.SetAttribute(aPropertyName, aXmlValue.ToString());
+            aXmlElement.SetAttribute(aPropertyName, aXmlValue.AvoidNullString().ToString());
         }
         internal override void LoadXml(CObject aObject, XmlElement aXmlElement)
         {
@@ -194,9 +194,9 @@ namespace CbOrm.Meta
             var aPropertyName = aProperty.Id.Name;
             var aSchema = aObject.Schema;
             var aValueType = aRef.ValueType;
-            var aSaveConverter = aSchema.GetSaveXmlConverter(aValueType);
+            var aSaveConverter = aSchema.ModelConverterChain; // aSchema.GetSaveXmlConverter(aValueType);
             var aXmlValue = aXmlElement.GetAttribute(aPropertyName);
-            var aModelValue = aSaveConverter.ConvertBack(aXmlValue);
+            var aModelValue = aSaveConverter.ConvertBack(aXmlValue, aValueType);
             aRef.SetValueObj(aModelValue, aRef.WriteKeyNullable);
         }
     }

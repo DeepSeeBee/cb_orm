@@ -311,6 +311,8 @@ namespace CbOrm.Gen
             ? aModelAttributeTypeName
             : aModelInterpreter.GetClrNamespace(aProperty.Model.GetTypByName(aModelAttributeTypeName)) + aModelInterpreter.Tok.Dim_Nsp_Seperator + aModelAttributeTypeName
             ;
+
+
         public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDeclsExist(CRflProperty aProperty, CGenModelInterpreter aModelInterpreter)
             => from aAttribute in aProperty.GetAttributesWithPrefix(this.Tok.Mdl_P_A_Nme_DomA)
                select new CodeAttributeDeclaration              (
@@ -328,9 +330,7 @@ namespace CbOrm.Gen
         }
 
         public virtual IEnumerable<CodeAttributeDeclaration> NewCodeAttributeDecls(CRflProperty aProperty, CGenModelInterpreter aModelInterpreter) =>
-                  //      this.NewCodeAttributeDeclsGen(aProperty, aModelInterpreter)
-                //.Concat(
-                            this.NewCodeAttributeDeclsExist(aProperty, aModelInterpreter)
+                        this.NewCodeAttributeDeclsExist(aProperty, aModelInterpreter)
                 .Concat(this.NewCodeAttributeDeclsExplicit(aProperty));
 
         public virtual Tuple<CodeMemberProperty, CodeMemberField> NewLazyLoadPrperty(CodeTypeReference aCdRetTyp,
@@ -462,73 +462,37 @@ namespace CbOrm.Gen
             string aMtaFldTypNme;
             var aMtaPrpNme = this.Tok.GetRelationyMetaInfoPropertyName(aPrpNme);
             var aMtaPrpRefExp = new CodePropertyReferenceExpression(aCdPTypRefExp, aMtaPrpNme);
-            var aHasRelationObject = true; //this.ModelInterpreter.GetIsEntityObject(aCTyp)
-            CodeMemberProperty aCdPrp;
+            var aCTypRef = this.CodeDomBuilder.NewCodeTypeRef(aCTyp);            
 
-            if (aHasRelationObject)
-            {
-                // Relations-Objects
-                var aCrd = this.ModelInterpreter.GetCardinality(aProperty);
-                var aRelTypName = this.ModelInterpreter.GetClassName(aCrd);
-                var aRelSystemType = CRef.GetRefClass(aCrd);
-                var aCdRTypRef = new CodeTypeReference(aRelTypName, this.CodeDomBuilder.NewCodeTypeRef(aPTyp), this.CodeDomBuilder.NewCodeTypeRef(aCTyp));
-                var aCtorArgs1 = new CodeExpression[] { new CodeThisReferenceExpression(), aMtaPrpRefExp };
-                var aCtorArgsBuildAttribIsDefined = aRelSystemType.IsNullRef() ? false : aRelSystemType.IsDefined(typeof(CGenCtorArgsBuilderAttribute), true);
-                var aWriteOnlyBySystem = aProperty.Interpret(() => bool.Parse(aProperty.GetAttributeValue(this.Tok.Trg_P_A_WriteOnlyBySystem, false.ToString)));
-                var aCtorArgs2 = aWriteOnlyBySystem ? new CodeExpression[] { new CodeObjectCreateExpression(typeof(CAccessKey)) } : new CodeExpression[] { };
-                var aCtorArgBuilderAttrib = aCtorArgsBuildAttribIsDefined ? aRelSystemType.GetCustomAttribute<CGenCtorArgsBuilderAttribute>(true) : default(CGenCtorArgsBuilderAttribute);
-                var aCtorArgs3 = aCtorArgBuilderAttrib.IsNullRef() ? new CodeExpression[] { } : aCtorArgBuilderAttrib.NewCtorArgs(aModelInterpreter, aCodeDomBuilder, aProperty);
-                var aCtorArgs = aCtorArgs1.Concat(aCtorArgs2).Concat(aCtorArgs3);
-                var aNewExp = new CodeObjectCreateExpression(aCdRTypRef, aCtorArgs.ToArray());
-                var aIsClass = true;
-                var aLazyPrp = this.CodeDomBuilder.NewLazyLoadPrperty(aCdRTypRef, aIsClass, this.ModelInterpreter.GetEntityRefPropertyName(aProperty), aNewExp, MemberAttributes.Public | MemberAttributes.Final);
-                aCdTypDcl.Members.Add(aLazyPrp.Item1);
-                aCdTypDcl.Members.Add(aLazyPrp.Item2);
-                aCdPrp = aLazyPrp.Item1;
-                aMtaFldTypNme = this.Tok.GeRelationMetaInfoTypName(aRelTypName);
-            }
-            else
-            {
-                // SkalarFields: "Simple" DataTypes (May be also struct on certain sql servers - support it?)
-                var aPrpTypNme = this.ModelInterpreter.GetTypName(aCTyp, true);
-                var aPrpTyp = new CodeTypeReference(aPrpTypNme);
-                var aCdFldNme = this.Tok.GetFieldName(aPrpNme);
-                var aInit = this.ModelInterpreter.GetInit(aProperty);
-                var aCdFldRefExp = new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), aCdFldNme);
+            // Relations-Objects
+            var aCrd = this.ModelInterpreter.GetCardinality(aProperty);
+            var aRelTypName = this.ModelInterpreter.GetClassName(aCrd);
+            var aRelSystemType = CRef.GetRefClass(aCrd);
+            var aCdRTypRef = new CodeTypeReference(aRelTypName, this.CodeDomBuilder.NewCodeTypeRef(aPTyp), aCTypRef);
+            var aCtorArgs1 = new CodeExpression[] { new CodeThisReferenceExpression(), aMtaPrpRefExp };
+            var aCtorArgsBuildAttribIsDefined = aRelSystemType.IsNullRef() ? false : aRelSystemType.IsDefined(typeof(CGenCtorArgsBuilderAttribute), true);
+            var aWriteOnlyBySystem = aProperty.Interpret(() => bool.Parse(aProperty.GetAttributeValue(this.Tok.Trg_P_A_WriteOnlyBySystem, false.ToString)));
+            var aCtorArgs2 = aWriteOnlyBySystem ? new CodeExpression[] { new CodeObjectCreateExpression(typeof(CAccessKey)) } : new CodeExpression[] { };
+            var aCtorArgBuilderAttrib = aCtorArgsBuildAttribIsDefined ? aRelSystemType.GetCustomAttribute<CGenCtorArgsBuilderAttribute>(true) : default(CGenCtorArgsBuilderAttribute);
+            var aCtorArgs3 = aCtorArgBuilderAttrib.IsNullRef() ? new CodeExpression[] { } : aCtorArgBuilderAttrib.NewCtorArgs(aModelInterpreter, aCodeDomBuilder, aProperty);
+            var aCtorArgs = aCtorArgs1.Concat(aCtorArgs2).Concat(aCtorArgs3);
+            var aNewExp = new CodeObjectCreateExpression(aCdRTypRef, aCtorArgs.ToArray());
+            var aIsClass = true;
+            var aLazyPrp = this.CodeDomBuilder.NewLazyLoadPrperty(aCdRTypRef, aIsClass, this.ModelInterpreter.GetEntityRefPropertyName(aProperty), aNewExp, MemberAttributes.Public | MemberAttributes.Final);
+            aCdTypDcl.Members.Add(aLazyPrp.Item1);
+            aCdTypDcl.Members.Add(aLazyPrp.Item2);
+            var aCdPrp = aLazyPrp.Item1;
+            aMtaFldTypNme = this.Tok.GeRelationMetaInfoTypName(aRelTypName);
 
-                // MemberVar
-                var aCdFld = new CodeMemberField(aPrpTyp, aCdFldNme);
-                aCdFld.InitExpression = aInit.Length > 0 ? new CodeSnippetExpression(aInit) : default(CodeSnippetExpression);
-                aCdTypDcl.Members.Add(aCdFld);
-
-                // Property.Get
-                aCdPrp = new CodeMemberProperty();
-                aCdPrp.Name = aPrpNme;
-                aCdPrp.HasGet = true;
-                aCdPrp.Attributes = MemberAttributes.Public | MemberAttributes.Final;
-                aCdPrp.GetStatements.Add(new CodeMethodReturnStatement(aCdFldRefExp));
-                aCdPrp.Type = aPrpTyp;
-                aCdTypDcl.Members.Add(aCdPrp);
-
-                // Property.Set
-                var aNewValExp = new CodeVariableReferenceExpression(this.ModelInterpreter.Tok.Dom_P_NewValNme);
-                var aEqExp = new CodeMethodInvokeExpression(new CodeTypeReferenceExpression(typeof(object).Name),
-                                                            nameof(object.Equals),
-                                                            aCdFldRefExp,
-                                                            aNewValExp
-                                                            );
-                var aAsgStm = new CodeAssignStatement(aCdFldRefExp, aNewValExp);
-                var aIfExp = new CodeConditionStatement(aEqExp, aAsgStm);
-                aCdPrp.SetStatements.Add(aIfExp);
+            // Property.Attributes from System
+            aCdPrp.CustomAttributes.Add(new CodeAttributeDeclaration( new CodeTypeReference(typeof(CTargetTypeAttribute)), new CodeAttributeArgument(new CodeTypeOfExpression(aCTypRef))));
 
 
-                aMtaFldTypNme = this.Tok.Trg_C_Mta_P_Fld_Nme;
-
-            }
-
-            // Property.Attributes
+            // Property.Attributes from Model
             var aCdAs = this.CodeDomBuilder.NewCodeAttributeDecls(aProperty, this.ModelInterpreter);
             aCdPrp.CustomAttributes.AddRange(aCdAs.ToArray());
+
+            
 
             // Property.NetaInfo.Field
             var aMtaFldNme = this.Tok.GetRelationMetaInfoFieldName(aPrpNme);
@@ -718,8 +682,17 @@ namespace CbOrm.Gen
             var aCtor = new CodeConstructor();
             var aEnumTyps = this.ModelInterpreter.GetEnumTyps(aModel);
             var aRegisterEnumTypeCalls = from aEnumTyp in aEnumTyps select new CodeExpressionStatement(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.RegisterEnumType_Name, new CodeTypeOfExpression(this.ModelInterpreter.GetTypName(aEnumTyp, true))));
+            var aRegisterDefaultCalculatorCalls = from aTyp in aModel.Typs
+                                                  where aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Init).Length > 0
+                                                  select new CodeExpressionStatement(
+                                                      new CodeMethodInvokeExpression(new CodeMethodReferenceExpression(new CodeThisReferenceExpression(), CSchema.NameOf_RegisterDefaultCalculator),
+                                                                                      new CodeTypeOfExpression(this.CodeDomBuilder.NewCodeTypeRef(aTyp)),
+                                                                                        new CodeSnippetExpression("()=>" + aTyp.GetAttributeValue(this.Tok.Mdl_T_A_Nme_Init))
+                                                                                        )
+                                                                                        );
             aCtor.Statements.AddRange((from aEnoCls in this.ModelInterpreter.GetEntityObjectTyps(aModel) select this.NewAddPrototypeStatement(aEnoCls)).ToArray());
             aCtor.Statements.AddRange(aRegisterEnumTypeCalls.ToArray());
+            aCtor.Statements.AddRange(aRegisterDefaultCalculatorCalls.ToArray());
             aCtor.Statements.Add(new CodeMethodInvokeExpression(new CodeThisReferenceExpression(), CSchema.NameOf_Init));
             return aCtor;
         }

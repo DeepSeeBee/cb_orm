@@ -22,7 +22,7 @@ Restrictions:
 - If you use a database model which is allready defined cb_orm wrapper is not suitable for you.
 - If you want to store your object model in one of the supported databases (or the filesystem) and if you want to have nothing to do with database design and sql and if you can learn a compact modeldefinition language cb_orm is suitable for you.
 
-Realized features:
+Supported features:
 - Compact and extendable Model Definition Language
 - Code Generation of Model.
 - Save on demand (only save modified objects)
@@ -40,6 +40,8 @@ Realized features:
 - Optimization for loading 1:N Relations in file system storage
 - Custom Enum Types in mdl by using existing enums.
 - Custom Enum Types in mdl with code generation
+- Customizeable Attribute Generation
+- Customizeable Skalar-Field types/Type conversion chain for loading/saving.
 
 Planned Features: (~In this sequence)
 - Relation 1:1: Weak: Navigation from Parent to Child ***
@@ -52,8 +54,6 @@ Planned Features: (~In this sequence)
 - Polymorphy by MultiTableInheritance
 - ObjectVersioning (Protection against concurrent overwrites of modified data)
 
-- Customizeable Attribute Generation
-- Customizeable Skalar-Field types/Type conversion chain for loading/saving.
 - Storage in MS-SQL Server
 - T-SQL: SQL Code DOM
 - T-SQL: Code Generation for Insert

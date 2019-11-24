@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE CbXdl_V1>
 +|||Include|../Sys/Sys.xdl
++|||Include|../Web/Web.xdl
 +|||Include|../DotNet/DotNet.xdl
 +|||Namespace|CbVoucherApp.Code.Domain
 +|||ModelName|CbVoucher
 +|||EncryptionPassword|9386beb1-f76b-4e09-96fa-de205121d12b
 +|Uri||ClrNamespace|System
-+|CEmailAdress||ClrNamespace|CbOrm.App.Web
 +|Account||Base|CEntityObject
-+|Account|UserName|Typ|String
-+|Account|Password|Typ|String
++|Account|Email|Typ|CEmailAdress
++|Account|Password|Typ|CPassword
 -|Account|Password|Encrypt|true
 +|Account|Publishers|Typ|Publisher
 +|Account|EmailConfirmationCode|Typ|Guid
@@ -16,6 +16,9 @@
 +|Account|EmailConfirmed|Typ|Boolean
 +|Account|Locked|Typ|Boolean
 +|Account|IsAdmin|Typ|Boolean
++|Account|Created|Typ|LocationInfo
++|Account|Created|Cardinality|11C
++|Account|SignupMessage|Typ|String
 +|Publisher||Base|CEntityObject
 +|Publisher|EmailAccount|Cardinality|11C
 +|Publisher|BackgroundImage|Typ|Content

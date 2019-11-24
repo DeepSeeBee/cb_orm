@@ -48,6 +48,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C))]
         public CSkalarRef<Testcb9fb56f_38ef_439b_af0c_3df00ba1d611.C, string> P
         {
             get
@@ -82,6 +83,7 @@ namespace Testcb9fb56f_38ef_439b_af0c_3df00ba1d611
         private TestSchema()
         {
             this.AddTyp(C._C_TypM);
+            this.RegisterDefaultCalculator(typeof(string), ()=>String.Empty);
             this.Init();
         }
         

@@ -54,6 +54,7 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("B")]
         public CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid> BGuid
@@ -76,6 +77,7 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P))]
         public CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop> B
         {
             get

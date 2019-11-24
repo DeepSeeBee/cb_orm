@@ -319,6 +319,8 @@ namespace CbOrm.Ref
         internal override Guid TargetGuid => throw new InvalidOperationException();
         internal override void Load(IEnumerable<Guid> aGuids) => throw new InvalidOperationException();
         internal override void Load(Guid aGuid) => throw new InvalidOperationException();
+        protected override TChild LoadValue()=> this.Schema.GetDefaultCalculator<TChild>()();
+        public override string ToString() => this.Value.IsNullRef() ? string.Empty : this.Value.ToString();
     }
     public class CR1NCRef<TParent, TChild> : CNRef<TChild>
     where TParent : CEntityObject

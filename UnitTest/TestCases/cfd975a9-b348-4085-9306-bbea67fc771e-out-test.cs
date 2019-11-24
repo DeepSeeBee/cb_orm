@@ -54,6 +54,7 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Testcfd975a9_b348_4085_9306_bbea67fc771e.C))]
         [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("C")]
         public CSkalarRef<Testcfd975a9_b348_4085_9306_bbea67fc771e.C, System.Guid> Parent_P_CGuid
@@ -76,6 +77,7 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Testcfd975a9_b348_4085_9306_bbea67fc771e.C))]
         public CR1NPRef<Testcfd975a9_b348_4085_9306_bbea67fc771e.C, Testcfd975a9_b348_4085_9306_bbea67fc771e.P> Parent_P_C
         {
             get
@@ -133,6 +135,7 @@ namespace Testcfd975a9_b348_4085_9306_bbea67fc771e
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Testcfd975a9_b348_4085_9306_bbea67fc771e.P))]
         public CR1NCRef<Testcfd975a9_b348_4085_9306_bbea67fc771e.P, Testcfd975a9_b348_4085_9306_bbea67fc771e.C> C
         {
             get

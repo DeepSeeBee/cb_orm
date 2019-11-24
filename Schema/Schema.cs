@@ -2,6 +2,7 @@
 using CbOrm.Attributes;
 using CbOrm.Blop;
 using CbOrm.Converters;
+using CbOrm.Di;
 using CbOrm.Entity;
 using CbOrm.Meta;
 using CbOrm.Util;
@@ -13,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace CbOrm.Schema
 {
+
+
+
     public abstract class CSchema
     {
         protected CSchema()
@@ -38,6 +42,28 @@ namespace CbOrm.Schema
         {
             if (!this.TypsM.IsNullRef())
                 throw new InvalidOperationException();
+
+            {
+                var aProperties0 = aTyp.Properties.OfType<CSkalarRefMetaInfo>();
+                var aProperties1 = from aTest in aProperties0
+                                   where aTest.IsDefined<CTargetTypeAttribute>()
+                                   select new Tuple<CSkalarRefMetaInfo, CTargetTypeAttribute>(aTest, aTest.GetAttribute<CTargetTypeAttribute>())
+                                   ;
+                var aProperties2 = from aTest in aProperties1
+                                   where aTest.Item2.TargetType.IsDefined(typeof(CSaveConverterAttribute), true)
+                                   select new Tuple<CSkalarRefMetaInfo, CTargetTypeAttribute, CSaveConverterAttribute>
+                                   (aTest.Item1, aTest.Item2, aTest.Item2.TargetType.GetCustomAttribute<CSaveConverterAttribute>(true))
+                                   ;
+                var aProperties = aProperties2;
+                foreach(var aProperty in aProperties)
+                {
+                    var aTargetTypeAttribute = aProperty.Item2;
+                    var aSaveConverterAtttribute = aProperty.Item3;
+                    var aSaveConverter = (CConverter)Activator.CreateInstance(aSaveConverterAtttribute.ConverterType);
+                    this.ModelConverterChain.Ly1WrapConverters.Register(aTargetTypeAttribute.TargetType, aSaveConverter);
+                }
+            }
+
             this.TypList.Add(aTyp);
         }
 
@@ -51,7 +77,7 @@ namespace CbOrm.Schema
             this.TypsM = aTyps;
             this.PersistentProperties = this.CalcPersistentProperties(aTyps);
             this.TypList = null;
-            CXmlConverters.Register(this.SaveXmlValueConverters.Register);
+            CXmlConverters.Register(this.ModelConverterChain.Ly0XmlConverters.Register);
         }
 
 
@@ -61,7 +87,7 @@ namespace CbOrm.Schema
 
         protected void RegisterEnumType(Type aEnumType)
         {
-            this.SaveXmlValueConverters.Register(aEnumType, new CSaveXmlEnumConverter(aEnumType));
+            this.ModelConverterChain.Ly0XmlConverters.Register(aEnumType, new CSaveXmlEnumConverter(aEnumType));
         }
 
         private CTyp CalcBaseTypNullable(CTyp aTyp)
@@ -127,11 +153,51 @@ namespace CbOrm.Schema
         internal IEnumerable<CRefMetaInfo> GetPersistentProperties(CTyp aTyp)=>this.PersistentProperties[aTyp];
         internal IEnumerable<CTyp> GetHirarchy(CTyp aTyp) => this.CalcHirarchy(aTyp); //// TODO-Opt
 
-        private readonly CConverters SaveXmlValueConverters = new CConverters();
-        internal CConverter GetSaveXmlConverter(Type aValueType)
+        internal readonly CModelConverterChain  ModelConverterChain = new CModelConverterChain();
+        //internal CConverter GetSaveXmlConverter(Type aValueType)
+        //{
+        //    return this.SaveXmlValueConverters.GetConverter(aValueType);
+        //}
+
+        public readonly CDiContainer DefaultCalculators = new CDiContainer();
+
+        internal const string NameOf_RegisterDefaultCalculator = "RegisterDefaultCalculator";
+        protected void RegisterDefaultCalculator(Type aType, Func<object> aCreateDefault)
         {
-            return this.SaveXmlValueConverters.GetConverter(aValueType);
+            var aDefaultCalculatorType = typeof(CDefaultCalculator<object>).GetGenericTypeDefinition().MakeGenericType(aType);
+            var aDefaultCaluclator = (CDefaultCalculator)Activator.CreateInstance(aDefaultCalculatorType, aCreateDefault);
+            aDefaultCaluclator.Register(this.DefaultCalculators);
+        }
+
+        internal Func<T> GetDefaultCalculator<T>()
+        {
+            var aCalculator = this.DefaultCalculators.GetNullable<CDefaultCalculator<T>>();
+            var aDefault = aCalculator.IsNullRef()
+                         ? new Func<T>(() => default(T))
+                         : new Func<T>(()=> aCalculator.CalcDefaultFunc())
+                         ;
+            return aDefault;
+        }
+
+        internal abstract class CDefaultCalculator
+        {
+            internal abstract void Register(CDiContainer aDiContainer);
+        }
+        internal sealed class CDefaultCalculator<T> : CDefaultCalculator
+        {
+            public CDefaultCalculator(Func<object> aCalcDefaultFunc)
+            {
+                this.CalcDefaultFunc = new Func<T>(() => (T)aCalcDefaultFunc());
+            }
+            internal readonly Func<T> CalcDefaultFunc;
+            internal override void Register(CDiContainer aDiContainer)
+            {
+                aDiContainer.Add < CDefaultCalculator<T>>(() => this);
+            }
+
         }
 
     }
+
+
 }

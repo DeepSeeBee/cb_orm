@@ -10,15 +10,22 @@ namespace CbOrm.Converters
 {
     public abstract class CConverter
     {
-        public abstract object Convert(object aValue);
-        public abstract object ConvertBack(object aValue);
+        public abstract object Convert(object aValue, Type aTargetType);
+        public abstract object ConvertBack(object aValue, Type aTargetType);
 
-        public T Convert<T>(object aValue) => (T)this.Convert(aValue);
-        public T ConvertBack<T>(object aValue) => (T)this.ConvertBack(aValue);
+        public T Convert<T>(object aValue, Type aTargetType) => (T)this.Convert(aValue, aTargetType);
+        public T ConvertBack<T>(object aValue, Type aTargetType) => (T)this.ConvertBack(aValue, aTargetType);
 
     }
 
-    internal sealed class CConverters 
+    public sealed class CNullConverter : CConverter
+    {
+        public static readonly CNullConverter Singleton = new CNullConverter();
+        public override object Convert(object aValue, Type aTargetType) => aValue;
+        public override object ConvertBack(object aValue, Type aTargetType) => aValue;
+    }
+
+    internal sealed class CConverters : CConverter
     {
         private Dictionary<Type, CConverter> Dic = new Dictionary<Type, CConverter>();
         internal void Register(Type aType, CConverter aValueConverter)
@@ -39,7 +46,20 @@ namespace CbOrm.Converters
                 aTmpType = aTmpType.BaseType;
             }
             while (aTmpType != null);
-            throw new Exception("No converter found for Type '" + aType.FullName + "'.");
+            return CNullConverter.Singleton;
+        }
+
+        public override object Convert(object aValue, Type aTargetType)
+        {
+            var aConverter = this.GetConverter(aTargetType);
+            var aConvertedValue = aConverter.Convert(aValue, aTargetType);
+            return aConvertedValue;
+        }
+        public override object ConvertBack(object aValue, Type aTargetType)
+        {
+            var aConverter = this.GetConverter(aTargetType);
+            var aConvertedValue = aConverter.ConvertBack(aValue, aTargetType);
+            return aConvertedValue;
         }
 
     }
@@ -50,8 +70,8 @@ namespace CbOrm.Converters
         {
             this.EnumType = aEnumType;
         }
-        public override object Convert(object aValue) => aValue.ToString();
-        public override object ConvertBack(object aValue) => aValue.IsNullRef() ? default(Enum) : ((string)aValue).Length == 0 ? default(Enum) : Enum.Parse(this.EnumType, (string)aValue);
+        public override object Convert(object aValue, Type aTargetType) => aValue.ToString();
+        public override object ConvertBack(object aValue, Type aTargetType) => aValue.IsNullRef() ? default(Enum) : ((string)aValue).Length == 0 ? default(Enum) : Enum.Parse(this.EnumType, (string)aValue);
     }
 
     public sealed class CXmlConverters : CConverter
@@ -82,11 +102,11 @@ namespace CbOrm.Converters
         internal static readonly CConverter FileInfoConverter = new CXmlConverters(SaveFileInfo, LoadFileInfo);
         internal static readonly CConverter GuidConverter = new CXmlConverters(SaveGuid, LoadGuid);
 
-        public override object Convert(object aValue)
+        public override object Convert(object aValue, Type aTargetType)
         {
             return this.ConvertFunc(aValue);
         }
-        public override object ConvertBack(object aValue)
+        public override object ConvertBack(object aValue, Type aTargetType)
         {
             return this.ConvertBackFunc((string)aValue);
         }
@@ -218,4 +238,46 @@ namespace CbOrm.Converters
                  ;
         }
     }
+
+    public sealed class CStringWrapperConverter<T> : CConverter
+    {
+        public CStringWrapperConverter()
+        {
+        }
+        public override object Convert(object aValue, Type aTargetType) => ((T)aValue).ToString();
+        public override object ConvertBack(object aValue, Type aTargetType) => (T)Activator.CreateInstance(typeof(T), (string)aValue);
+    }
+
+
+    internal sealed class CModelConverterChain : CConverter
+    {
+        public readonly CConverters Ly0XmlConverters = new CConverters();
+        public readonly CConverters Ly1WrapConverters = new CConverters();
+
+        private IEnumerable<CConverter> Chain;
+        internal CModelConverterChain()
+        {
+            this.Chain = new CConverters[] { this.Ly1WrapConverters, this.Ly0XmlConverters };
+        }
+        public override object Convert(object aValue, Type aTargetType)
+        {
+            var aTmpVal = aValue;
+            foreach (var aConverter in this.Chain)
+            {
+                aTmpVal = aConverter.Convert(aTmpVal, aTargetType);
+            }
+            return aTmpVal;
+        }
+
+        public override object ConvertBack(object aValue, Type aTargetType)
+        {
+            var aTmpVal = aValue;
+            foreach (var aConverter in this.Chain.Reverse())
+            {
+                aTmpVal = aConverter.ConvertBack(aTmpVal, aTargetType);
+            }
+            return aTmpVal;
+        }
+    }
+
 }

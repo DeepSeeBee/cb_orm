@@ -25,6 +25,8 @@ namespace CbOrm.Storage
 
         internal readonly Dictionary<Guid, CObject> Cache = new Dictionary<Guid, CObject>();
 
+        public abstract UInt64 GetObjectCount<T>() where T : CObject;
+
         internal abstract bool R1NCContainsChildList { get; }
 
         public int Save()

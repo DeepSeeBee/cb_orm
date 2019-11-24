@@ -50,7 +50,6 @@ namespace CbOrm.FileSys
         protected override CBlopOutputStream NewBlopOutputStream(CBlop aBlop)
         {
             var aFileInfo = this.GetObjectFileInfo(aBlop);
-            aFileInfo.Directory.Create();
             var aStream = File.OpenWrite(aFileInfo.FullName);
             var aBlopOutputStream = new CFileSystemBlopOutputStream(aStream);
             return aBlopOutputStream;
@@ -71,13 +70,29 @@ namespace CbOrm.FileSys
             return this.LoadObject(aType, this.GetObjectFileInfo(aType, aGuid));
         }
 
-        private FileInfo GetObjectFileInfo(CTyp aType, Guid aGuid)
+        public override UInt64 GetObjectCount<T>()
         {
-            var aIsBlop = aType.SystemType.Equals(typeof(CBlop));
+            var aTyp = this.Schema.Typs.GetBySystemType(typeof(T));
+            var aDir = this.GetObjectDirectory(aTyp);
+            var aExtension = this.GetExtension(aTyp);
+            var aFiles = aDir.GetFiles("*" + aExtension);
+            var aCount = aFiles.Count();
+            return (UInt64)aCount;
+        }
+
+        private string GetExtension(CTyp aTyp)
+        {
+            var aIsBlop = aTyp.SystemType.Equals(typeof(CBlop));
             var aExtension = aIsBlop
                            ? ".bin"
                            : ".xml"
                            ;
+            return aExtension;
+        }
+
+        private FileInfo GetObjectFileInfo(CTyp aType, Guid aGuid)
+        {
+            var aExtension = this.GetExtension(aType);
             var aDirectory = this.GetObjectDirectory(aType);
             var aFileInfo = new FileInfo(Path.Combine(aDirectory.FullName, aGuid.ToString() + aExtension));
             return aFileInfo;
@@ -124,7 +139,9 @@ namespace CbOrm.FileSys
         }
         private DirectoryInfo GetObjectDirectory(string aObjectTypeName)
         {
-            return new DirectoryInfo(Path.Combine(this.DirectoryInfo.FullName, aObjectTypeName));
+            var aDir = new DirectoryInfo(Path.Combine(this.DirectoryInfo.FullName, aObjectTypeName));
+            aDir.Create();
+            return aDir;
         }
         internal DirectoryInfo GetObjectDirectory(CTyp aType)
         {
@@ -153,7 +170,6 @@ namespace CbOrm.FileSys
             {
                 var aPersistentProperties = this.Schema.GetPersistentProperties(aAspect);
                 var aXmlDocument = aEntityObject.NewXmlDocument(aPersistentProperties);
-                aFileInfo.Directory.Create();
                 aXmlDocument.Save(aFileInfo.FullName);
             }
         }

@@ -12,6 +12,8 @@ namespace CbOrm.Di
 
         public void Add<T>(Func<T> aGet) => this.Dic.Add(typeof(T), new Func<object>(() => aGet()));
         public T Get<T>() => (T)this.Dic[typeof(T)]();
+        public T GetNullable<T>() => this.Dic.ContainsKey(typeof(T)) ? this.Get<T>() : default(T);
+
 
     }
 }

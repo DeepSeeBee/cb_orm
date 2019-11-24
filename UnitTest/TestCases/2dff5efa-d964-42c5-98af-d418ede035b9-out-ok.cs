@@ -62,6 +62,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Ac")]
         public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> AcGuid
@@ -84,6 +85,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(P))]
         [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Nc")]
         public CSkalarRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, System.Guid> NcGuid
@@ -106,6 +108,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P))]
         public CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> Ac
         {
             get
@@ -126,6 +129,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.P))]
         [CbOrm.App.Sys.CAutoCreateAttribute(false)]
         public CR11CRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.P, Test2dff5efa_d964_42c5_98af_d418ede035b9.C> Nc
         {
@@ -190,6 +194,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.C))]
         public CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_Ac
         {
             get
@@ -210,6 +215,7 @@ namespace Test2dff5efa_d964_42c5_98af_d418ede035b9
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(Test2dff5efa_d964_42c5_98af_d418ede035b9.C))]
         public CR11PRef<Test2dff5efa_d964_42c5_98af_d418ede035b9.C, Test2dff5efa_d964_42c5_98af_d418ede035b9.P> Parent_P_Nc
         {
             get

@@ -1,1 +1,4 @@
-﻿-|||Include|..\Sys\Sys.xdl
+﻿<!DOCTYPE CbXdl_V1>
+-|||Include|..\Sys\Sys.xdl
++|CEmailAdress||ClrNamespace|CbOrm.App.Web
++|CPassword||ClrNamespace|CbOrm.App.Web
