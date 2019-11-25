@@ -639,11 +639,11 @@ namespace CbVoucherApp.Code.Domain
         
         private static CSkalarRefMetaInfo _ListMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(List));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri> ListenUrlM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> ListenUrlM;
         
         private static CSkalarRefMetaInfo _ListenUrlMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ListenUrl));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri> BuyUrlM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> BuyUrlM;
         
         private static CSkalarRefMetaInfo _BuyUrlMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BuyUrl));
         
@@ -1088,14 +1088,14 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Uri))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri> ListenUrl
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbOrm.App.Web.CUri))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> ListenUrl
         {
             get
             {
                 if (Object.ReferenceEquals(this.ListenUrlM, null))
                 {
-                    this.ListenUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri>(this, CbVoucherApp.Code.Domain.Gift._ListenUrlMetaInfo);
+                    this.ListenUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._ListenUrlMetaInfo);
                 }
                 return this.ListenUrlM;
             }
@@ -1109,14 +1109,14 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Uri))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri> BuyUrl
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbOrm.App.Web.CUri))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> BuyUrl
         {
             get
             {
                 if (Object.ReferenceEquals(this.BuyUrlM, null))
                 {
-                    this.BuyUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Uri>(this, CbVoucherApp.Code.Domain.Gift._BuyUrlMetaInfo);
+                    this.BuyUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._BuyUrlMetaInfo);
                 }
                 return this.BuyUrlM;
             }
@@ -2086,7 +2086,7 @@ namespace CbVoucherApp.Code.Domain
         
         private static CSkalarRefMetaInfo _VoucherGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(VoucherGuid));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri> WebSiteM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> WebSiteM;
         
         private static CSkalarRefMetaInfo _WebSiteMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(WebSite));
         
@@ -2098,7 +2098,7 @@ namespace CbVoucherApp.Code.Domain
         
         private static CSkalarRefMetaInfo _PresentingPlatformNameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformName));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri> PresentingPlatformWebsiteM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> PresentingPlatformWebsiteM;
         
         private static CSkalarRefMetaInfo _PresentingPlatformWebsiteMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformWebsite));
         
@@ -2218,14 +2218,14 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Uri))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri> WebSite
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbOrm.App.Web.CUri))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> WebSite
         {
             get
             {
                 if (Object.ReferenceEquals(this.WebSiteM, null))
                 {
-                    this.WebSiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri>(this, CbVoucherApp.Code.Domain.VoucherRequest._WebSiteMetaInfo);
+                    this.WebSiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._WebSiteMetaInfo);
                 }
                 return this.WebSiteM;
             }
@@ -2281,14 +2281,14 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Uri))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri> PresentingPlatformWebsite
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbOrm.App.Web.CUri))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> PresentingPlatformWebsite
         {
             get
             {
                 if (Object.ReferenceEquals(this.PresentingPlatformWebsiteM, null))
                 {
-                    this.PresentingPlatformWebsiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Uri>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsiteMetaInfo);
+                    this.PresentingPlatformWebsiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsiteMetaInfo);
                 }
                 return this.PresentingPlatformWebsiteM;
             }
@@ -4477,6 +4477,7 @@ namespace CbVoucherApp.Code.Domain
             this.RegisterEnumType(typeof(CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum));
             this.RegisterDefaultCalculator(typeof(CbOrm.App.Web.CEmailAdress), ()=>new CEmailAdress());
             this.RegisterDefaultCalculator(typeof(CbOrm.App.Web.CPassword), ()=>new CPassword());
+            this.RegisterDefaultCalculator(typeof(CbOrm.App.Web.CUri), ()=>new CUri());
             this.RegisterDefaultCalculator(typeof(string), ()=>String.Empty);
             this.Init();
         }

@@ -11,6 +11,23 @@ using System.Threading.Tasks;
 namespace CbOrm.App.Web
 {
 
+    [CSaveConverter(typeof(CStringWrapperConverter<CUri>))]
+    public class CUri
+    {
+        public CUri(string aText)
+        {
+            this.Text = aText.AvoidNullString().Trim();
+        }
+        public CUri()
+        {
+            this.Text = string.Empty;
+        }
+        private readonly string Text;
+
+        public Uri ToSystemUri() => new Uri(this.Text);
+        public override string ToString()=> this.Text;
+    }
+
     [CSaveAs(typeof(string))]
     [CSaveConverter(typeof(CStringWrapperConverter<CEmailAdress>))]
     public class CEmailAdress

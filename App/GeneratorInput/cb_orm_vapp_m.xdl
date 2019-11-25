@@ -5,7 +5,6 @@
 +|||Namespace|CbVoucherApp.Code.Domain
 +|||ModelName|CbVoucher
 +|||EncryptionPassword|9386beb1-f76b-4e09-96fa-de205121d12b
-+|Uri||ClrNamespace|System
 +|Account||Base|CEntityObject
 +|Account|Email|Typ|CEmailAdress
 +|Account|Password|Typ|CPassword
@@ -65,8 +64,8 @@
 +|Gift|BackgroundImage|Typ|Content
 +|Gift|BackgroundImage|Cardinality|11C
 +|Gift|List|Typ|Boolean
-+|Gift|ListenUrl|Typ|Uri
-+|Gift|BuyUrl|Typ|Uri
++|Gift|ListenUrl|Typ|CUri
++|Gift|BuyUrl|Typ|CUri
 +|Gift|Campaigns|Typ|Campaign
 +|Gift|VoucherRequests|Typ|VoucherRequest
 +|GiftStatistic||Base|CEntityObject
@@ -81,10 +80,10 @@
 +|GiftCounters||Base|CEntityObject
 +|GiftCounters|AutoGrantCountCur|Typ|UInt64
 +|VoucherRequest||Base|CEntityObject
-+|VoucherRequest|WebSite|Typ|Uri
++|VoucherRequest|WebSite|Typ|CUri
 +|VoucherRequest|Email|Typ|CEmailAdress
 +|VoucherRequest|PresentingPlatformName|Typ|String
-+|VoucherRequest|PresentingPlatformWebsite|Typ|Uri
++|VoucherRequest|PresentingPlatformWebsite|Typ|CUri
 +|VoucherRequest|Message|Typ|String
 +|VoucherRequest|AutoGranted|Typ|Boolean
 +|VoucherRequest|AutoBlocked|Typ|Boolean

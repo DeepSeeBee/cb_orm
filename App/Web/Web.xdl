@@ -4,3 +4,5 @@
 +|CEmailAdress||Init|new CEmailAdress()
 +|CPassword||ClrNamespace|CbOrm.App.Web
 +|CPassword||Init|new CPassword()
++|CUri||ClrNamespace|CbOrm.App.Web
++|CUri||Init|new CUri()
