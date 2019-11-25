@@ -292,6 +292,10 @@ namespace CbOrm.Ref
             var aForeignKeyMetaInfo = aRef.ForeignKeyMetaInfo;
             var aForeignKeyRef = aForeignKeyMetaInfo.GetRef(aObject);
             aForeignKeyRef.SetValueObj(aForeignKey, aForeignKeyRef.WriteKeyNullable);
+            if(this.Storage.R1NCContainsChildList)
+            {
+                this.ParentEntityObject.Modify();
+            }
         }
 
         public IEnumerator<TRef> GetEnumerator() => this.Collection.GetEnumerator();
