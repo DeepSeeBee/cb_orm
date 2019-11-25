@@ -265,7 +265,7 @@ namespace CbOrm.Entity
         public static CSkalarRefMetaInfo _TypNameMetaInfo { get => _TypNameMetaInfoM; }
         private readonly CAccessKey TypNameWriteKey = new CAccessKey();
         private CSkalarRef<CEntityObject, string> TypNameM;
-        [CSpreadAcrossTables(true)]
+        //[CSpreadAcrossTables(true)]
         public CSkalarRef<CEntityObject, string> TypName
         {
             get => CLazyLoad.Get(ref this.TypNameM, () => new CSkalarRef<CEntityObject, string>(this, _TypNameMetaInfo, TypNameWriteKey));
