@@ -438,7 +438,7 @@ namespace CbOrm.Ref
         }
         internal override void DeleteCascade()
         {
-            if (!this.Value.GuidIsNull)
+            if (!this.Value.IsNull)
             {
                 this.ChangeValue(this.Storage.CreateNullObject<TChild>(), this.WriteKeyNullable);
             }
@@ -446,7 +446,7 @@ namespace CbOrm.Ref
         }
         internal T Create<T>() where T : TChild
         {
-            if (!this.Value.GuidIsNull)
+            if (!this.Value.IsNull)
             {
                 throw new InvalidOperationException();
             }

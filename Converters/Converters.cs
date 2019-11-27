@@ -71,7 +71,9 @@ namespace CbOrm.Converters
             this.EnumType = aEnumType;
         }
         public override object Convert(object aValue, Type aTargetType) => aValue.ToString();
-        public override object ConvertBack(object aValue, Type aTargetType) => aValue.IsNullRef() ? default(Enum) : ((string)aValue).Length == 0 ? default(Enum) : Enum.Parse(this.EnumType, (string)aValue);
+
+        private Enum GetDefault() => Enum.GetValues(this.EnumType).Cast<Enum>().First();
+        public override object ConvertBack(object aValue, Type aTargetType) => aValue.IsNullRef() ? this.GetDefault() : ((string)aValue).Length == 0 ? this.GetDefault() : Enum.Parse(this.EnumType, (string)aValue);
     }
 
     public sealed class CXmlConverters : CConverter

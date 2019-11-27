@@ -67,7 +67,7 @@ namespace CbOrm.Entity
                 this.LoadTemplate();
                 this.Unmodify();
             }
-            if(this.GuidIsNull)
+            if(this.IsNull)
             {
                 this.Seal();
             }
@@ -152,11 +152,11 @@ namespace CbOrm.Entity
             this.CheckNotCached();
             this.GuidValue = this.Storage.NewObjectId();
         }
-        public bool GuidIsNull { get => this.GuidValue == new Guid(); }
+        public bool IsNull { get => this.GuidValue == new Guid(); }
         public bool IsRemoteDeleted { get => this.GuidValue == DeletedObjectGuid; }
         internal void CheckNotGuidIsNull()
         {
-            if (this.GuidIsNull)
+            if (this.IsNull)
             {
                 throw new Exception(this.StaticTypName + " not found.");
             }
@@ -164,7 +164,7 @@ namespace CbOrm.Entity
 
         internal void CreateGuidOnDemand()
         {
-            if (this.GuidIsNull)
+            if (this.IsNull)
             {
                 this.CreateGuid();
             }
@@ -177,7 +177,7 @@ namespace CbOrm.Entity
         internal void Create()
         {
             this.CheckNotSealed();
-            if (this.GuidIsNull)
+            if (this.IsNull)
             {
                 this.TypNameValue = this.StaticTypName;
                 this.CreateGuid();

@@ -253,7 +253,7 @@ namespace CbOrm.Gen.Test
                 var aP = aStorage.LoadObjects<Testcfd975a9_b348_4085_9306_bbea67fc771e.P>().Single();
                 var aC1 = aP.C.GetByGuid(aChild1Id);
                 aP.C.Remove(aC1);
-                this.Test(aC1.Parent_P_C.Value.GuidIsNull, "661fc07c-6236-48f9-acdc-0258094f287b");
+                this.Test(aC1.Parent_P_C.Value.IsNull, "661fc07c-6236-48f9-acdc-0258094f287b");
                 var aSaved = aStorage.Save();
                 var aExpectedSaveCount = aStorage.R1NCContainsChildList ? 2 : 1;
                 this.Test(aSaved == aExpectedSaveCount, "09e639fd-7382-46d0-b5c7-3e2117102fc0"); 
@@ -277,7 +277,7 @@ namespace CbOrm.Gen.Test
             {
                 var aStorage = this.Storage;
                 var aP = aStorage.CreateObject<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>();
-                this.Test(!aP.Ac.Value.GuidIsNull, "954514b4-08a0-4add-b96c-ad5c8897b207");
+                this.Test(!aP.Ac.Value.IsNull, "954514b4-08a0-4add-b96c-ad5c8897b207");
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 2, "08408d70-c405-40d7-b015-afdc5455a6f5");
 
@@ -289,9 +289,9 @@ namespace CbOrm.Gen.Test
             {
                 var aStorage = this.Storage;
                 var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
-                this.Test(!aP.Ac.Value.GuidIsNull, "4564ea44-2c07-4f5a-9371-e509f4614179");
+                this.Test(!aP.Ac.Value.IsNull, "4564ea44-2c07-4f5a-9371-e509f4614179");
                 var aNc = aP.Nc.Value;
-                this.Test(aNc.GuidIsNull, "32d4d01d-f060-447c-b209-548f2e0f02a9");
+                this.Test(aNc.IsNull, "32d4d01d-f060-447c-b209-548f2e0f02a9");
                 this.TestThrows<Exception>(() => aP.Nc.Value.Create(), "ede296b2-6513-4f7a-a6a1-e4195e53ebea");
             }
             this.BeginTest("08004494-e473-4e31-a873-a4fc6f1d68ee");
@@ -325,7 +325,7 @@ namespace CbOrm.Gen.Test
             {
                 var aStorage = this.Storage;
                 var aP = aStorage.CreateObject<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P>();
-                this.Test(!aP.B.Value.GuidIsNull, "034e78c4-e94f-4cbd-80bb-e503e4d0b60a");
+                this.Test(!aP.B.Value.IsNull, "034e78c4-e94f-4cbd-80bb-e503e4d0b60a");
                 aBlopGuid = aP.B.Value.GuidValue;
                 aP.B.Value.SetByteArray(aTestData.ToByteArray());
                 var aSaved = aStorage.Save();

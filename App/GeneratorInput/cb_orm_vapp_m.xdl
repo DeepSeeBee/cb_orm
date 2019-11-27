@@ -5,6 +5,10 @@
 +|||Namespace|CbVoucherApp.Code.Domain
 +|||ModelName|CbVoucher
 +|||EncryptionPassword|9386beb1-f76b-4e09-96fa-de205121d12b
++|Site||Base|CEntityObject
++|Site|Accounts|Typ|Account
++|Site|EmailAccount|Typ|EmailAccount
++|Site|EmailAccount|Cardinality|11C
 +|Account||Base|CEntityObject
 +|Account|Email|Typ|CEmailAdress
 +|Account|Password|Typ|CPassword
@@ -14,12 +18,13 @@
 +|Account|EmailConfirmationSent|Typ|Boolean
 +|Account|EmailConfirmed|Typ|Boolean
 +|Account|Locked|Typ|Boolean
++|Account|Banned|Typ|Boolean
 +|Account|IsAdmin|Typ|Boolean
 +|Account|Created|Typ|LocationInfo
 +|Account|Created|Cardinality|11C
 +|Account|SignupMessage|Typ|String
 +|Publisher||Base|CEntityObject
-+|Publisher|EmailAccount|Cardinality|11C
+-|Publisher|EmailAccount|Cardinality|11C
 +|Publisher|BackgroundImage|Typ|Content
 +|Publisher|BackgroundImage|Cardinality|11C
 +|Publisher|BluredBackgroundImage|Typ|Content
@@ -53,7 +58,6 @@
 +|Gift|Statistic|Typ|GiftStatistic
 +|Gift|Statistic|Cardinality|11C
 +|Gift|DownloadFormats|Typ|DownloadFormat
-+|Gift|NotificationEmail|Typ|CEmailAdress
 +|Gift|AutoGrantMaxCountIsDefined|Typ|Boolean
 +|Gift|AutoGrantMaxCount|Typ|UInt64
 +|Gift|ReleaseNewsletter|Typ|Newsletter
