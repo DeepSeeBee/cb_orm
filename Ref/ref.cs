@@ -41,8 +41,7 @@ namespace CbOrm.Ref
         internal virtual void DeleteCascade()
         {    
         }
-
-
+        internal abstract bool IsCardinalityToParent { get; }
         protected void CheckWriteable(CAccessKey aWriteKey)
         {
             if(!this.WriteKeyNullable.IsNullRef()
@@ -101,6 +100,10 @@ namespace CbOrm.Ref
         }
 
         internal virtual void RefreshValue()
+        {
+        }
+
+        internal virtual void CreateRelationsOnDemand()
         {
         }
     }
@@ -318,6 +321,7 @@ namespace CbOrm.Ref
         {
 
         }
+        internal override bool IsCardinalityToParent => false;
         internal override Type DeclaredTargetType => typeof(TChild);
         internal override IEnumerable<Guid> TargetGuids => throw new InvalidOperationException();
         internal override Guid TargetGuid => throw new InvalidOperationException();
@@ -335,6 +339,7 @@ namespace CbOrm.Ref
         {
 
         }
+        internal override bool IsCardinalityToParent => false;
         public TChild Add() => this.Add<TChild>();
         public T Add<T>() where T : TChild
         {
@@ -370,36 +375,36 @@ namespace CbOrm.Ref
 
         public CR1NWRef(CEntityObject aParentEntityObject, CR1NWRefMetaInfo aSkalarRefMetaInfo) : base(aParentEntityObject, aSkalarRefMetaInfo)
         {
-
         }
+        internal override bool IsCardinalityToParent => false;
     }
-    public abstract class CRx1Ref<TParent, TChild> 
+    public abstract class CRx1Ref<TOwner, TTarget> 
     : 
-        CRef<TChild>
-        where TParent : CEntityObject
-        where TChild : CObject
+        CRef<TTarget>
+        where TOwner : CEntityObject
+        where TTarget : CObject
     {
         public CRx1Ref(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CAccessKey aWriteKeyNullable = null) : base(aParentEntityObject, aRefMetaInfo, aWriteKeyNullable)
         {
-            this.ObjectProxy = new CObjectProxy<TChild>(aParentEntityObject.Storage, default(Guid));
+            this.ObjectProxy = new CObjectProxy<TTarget>(aParentEntityObject.Storage, default(Guid));
         }
-        internal override Type DeclaredTargetType => typeof(TChild);
-        private CObjectProxy<TChild> ObjectProxy;
-        protected override TChild LoadValue()
+        internal override Type DeclaredTargetType => typeof(TTarget);
+        private CObjectProxy<TTarget> ObjectProxy;
+        protected override TTarget LoadValue()
         {
-            return this.ObjectProxy.IsNullRef() ? default(TChild) : this.ObjectProxy.Object;
+            return this.ObjectProxy.IsNullRef() ? default(TTarget) : this.ObjectProxy.Object;
         }
 
         internal override void Load(Guid aGuid)
         {
-            this.ObjectProxy = new CObjectProxy<TChild>(this.ParentEntityObject.Storage, aGuid);
+            this.ObjectProxy = new CObjectProxy<TTarget>(this.ParentEntityObject.Storage, aGuid);
             this.RefreshValue();
         }
         protected abstract void SetForeignKey(Guid aForeignKey);
-        protected override void SetValueBuffer(TChild aValue)
+        protected override void SetValueBuffer(TTarget aValue)
         {
             base.SetValueBuffer(aValue);
-            this.ObjectProxy = new CObjectProxy<TChild>(aValue);
+            this.ObjectProxy = new CObjectProxy<TTarget>(aValue);
             this.SetForeignKey(aValue.GuidValue);
         }
         internal override Guid TargetGuid => this.ObjectProxy.IsNullRef() ? default(Guid) : this.ObjectProxy.Guid;
@@ -416,11 +421,20 @@ namespace CbOrm.Ref
             this.ReverseNaviRefMetaInfoNullable = aReverseNaviRefNullable;
         }
         private CR11PRefMetaInfo ReverseNaviRefMetaInfoNullable;
+        internal override bool IsCardinalityToParent => false;
         private bool IsAutoCreateEnabled
         {
             get => this.RefMetaInfo.IsDefined<CAutoCreateAttribute>()
                  ? this.RefMetaInfo.GetAttribute<CAutoCreateAttribute>().Value
                  : true;
+        }
+        internal override void CreateRelationsOnDemand()
+        {
+            base.CreateRelationsOnDemand();
+            if(this.IsAutoCreateEnabled)
+            {
+                this.CreateOnDemand();
+            }
         }
         internal override void CreateCascade()
         {
@@ -517,6 +531,7 @@ namespace CbOrm.Ref
         {
 
         }
+        internal override bool IsCardinalityToParent => false;
         protected override void SetForeignKey(Guid aForeignKey)
         {
             throw new NotImplementedException();
@@ -530,7 +545,7 @@ namespace CbOrm.Ref
         where TChild : CEntityObject
         where TParent : CEntityObject
     {
-        public CRx1PRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
+        public CRx1PRef(CEntityObject aParentEntityObject, CRefMetaInfo aRefMetaInfo) : base(aParentEntityObject, aRefMetaInfo, new CAccessKey())
         {
 
         }
@@ -546,12 +561,13 @@ namespace CbOrm.Ref
         where TParent : CEntityObject
     {
         public CR1NPRef(CEntityObject aParentEntityObject, CR1NPRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo) 
-            : base(aParentEntityObject, aRefMetaInfo, aFkRefMetaInfo)
+            : base(aParentEntityObject, aRefMetaInfo)
         {
             this.FkRefMetaInfo = aFkRefMetaInfo;
             this.FkRef = aFkRefMetaInfo.GetRef(aParentEntityObject);
             this.FkRef.ValueChanged += this.OnFkRefValueChanged;
         }
+        internal override bool IsCardinalityToParent => true;
         private readonly CSkalarRefMetaInfo FkRefMetaInfo;
         private readonly CRef FkRef;
         private void OnFkRefValueChanged(object aSender, EventArgs aArgs)
@@ -577,16 +593,28 @@ namespace CbOrm.Ref
         where TParent : CEntityObject
     {
         public CR11PRef(CEntityObject aParentEntityObject, CR11PRefMetaInfo aRefMetaInfo, CSkalarRefMetaInfo aFkRefMetaInfo)
-            : base(aParentEntityObject, aRefMetaInfo, aFkRefMetaInfo)
+            : base(aParentEntityObject, aRefMetaInfo)
         {
-
+            this.FkRefMetaInfo = aFkRefMetaInfo;
+            this.FkRef = (CSkalarRef<TChild, Guid>)aFkRefMetaInfo.GetRef(aParentEntityObject);
+            this.FkRef.ValueChanged += this.OnFkRefValueChanged;
+            this.Load(this.FkRef.Value);
         }
+        internal override bool IsCardinalityToParent => true;
+        private readonly CSkalarRefMetaInfo FkRefMetaInfo;
+        private readonly CSkalarRef<TChild, Guid> FkRef;
         protected override void SetForeignKey(Guid aForeignKey)
         {
+            this.FkRef.Value = aForeignKey;
         }
         private void OnFkRefValueChanged(object aSender, EventArgs aArgs)
         {
+            this.Load(this.FkRef.Value);
             this.RefreshValue();
+        }
+        protected override TParent LoadValue()
+        {
+            return base.LoadValue();
         }
     }
 

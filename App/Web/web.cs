@@ -87,7 +87,7 @@ namespace CbOrm.App.Web
     {
         public CPassword(string aText)
         {
-            this.Text = aText.Trim();
+            this.Text = aText;
         }
         public CPassword()
         {
@@ -98,7 +98,6 @@ namespace CbOrm.App.Web
         public static bool operator ==(CPassword lhs, CPassword rhs) => lhs.Text.ToLower() == rhs.Text.ToLower();
         public static bool operator !=(CPassword lhs, CPassword rhs) => !(lhs == rhs);
         public override bool Equals(object obj) => obj is CPassword ? (this == (CPassword)obj) : false;
-
         public override string ToString()
         {
             return this.Text;

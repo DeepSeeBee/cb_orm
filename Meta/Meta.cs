@@ -167,6 +167,10 @@ namespace CbOrm.Meta
         internal abstract void SaveXml(CObject aObject, XmlDocument aXmlDocument, XmlElement aXmlElement);
         internal CRef GetRef(CObject aObject) => (CRef)this.PropertyInfo.GetValue(aObject);
         internal abstract void LoadXml(CObject aObject, XmlElement aXmlElement);
+
+        internal virtual void CreateRelationOnDemand()
+        {
+        }
     }
     public sealed class CSkalarRefMetaInfo : CRefMetaInfo
     {
@@ -236,6 +240,7 @@ namespace CbOrm.Meta
         internal override void LoadXml(CObject aObject, XmlElement aXmlElement)
         {
         }
+
     }
     public sealed class CR11WRefMetaInfo : CRefMetaInfo
     {

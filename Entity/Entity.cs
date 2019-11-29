@@ -189,6 +189,9 @@ namespace CbOrm.Entity
                 throw new InvalidOperationException();
             }
         }
+        internal virtual void CreateRelationsOnDemand()
+        {
+        }
 
         internal virtual bool SaveIsOk { get => true; }
 
@@ -203,6 +206,35 @@ namespace CbOrm.Entity
                 return aRefs;
             }
         }
+    }
+
+    public static class CEntityObjectUtil
+    {
+        public static void StoreNewRelationsOnDemand(CEntityObject aEntityObject)
+        {
+            aEntityObject.CreateRelationsOnDemand();
+            if(aEntityObject.IsModified)
+            {
+                aEntityObject.Storage.Save();
+            }
+        }
+
+        public static CEntityObject GetParentNullable(CEntityObject aEntityObject)
+            => (from aRef in aEntityObject.Refs
+                         where aRef.IsCardinalityToParent
+                         where !((CEntityObject)aRef.ValueObj).IsNull
+                         select ((CEntityObject)aRef.ValueObj)).SingleOrDefault();
+        public static IEnumerable<CEntityObject> GetPath(CEntityObject aEntityObject)
+        {
+            var aParent = GetParentNullable(aEntityObject);
+            if(!aParent.IsNullRef())
+                foreach (var aParentPathItem in GetPath(aParent))
+                    yield return aParentPathItem;
+            yield return aEntityObject;
+            
+        }
+        public static T FindParentInPath<T>(this CEntityObject aEntityObject) where T : CEntityObject
+            => GetPath(aEntityObject).OfType<T>().Last();
     }
 
     public abstract class CEntityObject 
@@ -242,6 +274,15 @@ namespace CbOrm.Entity
         public virtual CSchema GetSchema()
         {
             throw new NotImplementedException();
+        }
+
+        internal override void CreateRelationsOnDemand()
+        {
+            base.CreateRelationsOnDemand();
+            foreach(var aRef in this.Refs)
+            {
+                aRef.CreateRelationsOnDemand();
+            }
         }
 
         #region Guid

@@ -27,11 +27,11 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
         
         private CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid> BGuidM;
         
-        private static CSkalarRefMetaInfo _BGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(BGuid));
+        private static CSkalarRefMetaInfo _BGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(BGuid));
         
         private CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop> BM;
         
-        private static CR11CRefMetaInfo _BMetaInfoM = new CR11CRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(B));
+        private static CR11CRefMetaInfo _B_MetaInfoM = new CR11CRefMetaInfo(typeof(Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P), nameof(B));
         
         public P(CStorage aStorage) : 
                 base(aStorage)
@@ -63,17 +63,17 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
             {
                 if (Object.ReferenceEquals(this.BGuidM, null))
                 {
-                    this.BGuidM = new CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuidMetaInfo);
+                    this.BGuidM = new CSkalarRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, System.Guid>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuid_MetaInfo);
                 }
                 return this.BGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BGuidMetaInfo
+        public static CSkalarRefMetaInfo _BGuid_MetaInfo
         {
             get
             {
-                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuidMetaInfoM;
+                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BGuid_MetaInfoM;
             }
         }
         
@@ -84,24 +84,24 @@ namespace Test4aabaf80_96d2_40c4_9b46_99e5a445919c
             {
                 if (Object.ReferenceEquals(this.BM, null))
                 {
-                    this.BM = new CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BMetaInfo);
+                    this.BM = new CR11CRef<Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P, CbOrm.Blop.CBlop>(this, Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._B_MetaInfo);
                 }
                 return this.BM;
             }
         }
         
-        public static CR11CRefMetaInfo _BMetaInfo
+        public static CR11CRefMetaInfo _B_MetaInfo
         {
             get
             {
-                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._BMetaInfoM;
+                return Test4aabaf80_96d2_40c4_9b46_99e5a445919c.P._B_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(P._BGuidMetaInfo);
-            aAddProperty.Invoke(P._BMetaInfo);
+            aAddProperty.Invoke(P._BGuid_MetaInfo);
+            aAddProperty.Invoke(P._B_MetaInfo);
         }
     }
     

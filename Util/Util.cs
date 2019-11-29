@@ -98,7 +98,15 @@ namespace CbOrm.Util
                    select aTest
                  ;
         }
-
+        public static bool IsTypeCompatible(this Type aChildType, Type aBaseType)
+            => aChildType.Equals(aBaseType) || (!aChildType.BaseType.IsNullRef() && aChildType.BaseType.IsTypeCompatible(aBaseType));
+        public static IEnumerable<Type> GetHirarchy(this Type aType)
+        {
+            if(!aType.BaseType.IsNullRef())
+                foreach (var aBaseType in aType.BaseType.GetHirarchy())
+                    yield return aBaseType;
+            yield return aType;
+        }
         public static dynamic Dyn<T>(this T aObj) => (dynamic)aObj;
 
         public static void DeleteRecursive(this DirectoryInfo aDirectory)
@@ -126,7 +134,7 @@ namespace CbOrm.Util
         public static TAttribute GetCustomAttribute<TAttribute>(this Type aType, bool aInherit = false) where TAttribute : Attribute
             => aType.GetCustomAttributes(typeof(TAttribute), aInherit).Cast<TAttribute>().Last();
 
-        public static bool IsEmpty(this IEnumerable<object> aItems)
+        public static bool IsEmpty<T>(this IEnumerable<T> aItems)
         {
             var aEnumerator = aItems.GetEnumerator();
             return !aEnumerator.MoveNext();

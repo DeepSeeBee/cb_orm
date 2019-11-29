@@ -32,7 +32,15 @@ namespace CbOrm.FileSys
         public readonly DirectoryInfo DirectoryInfo;
         internal override Guid NewObjectId() => Guid.NewGuid();
         private Guid GetGuidFromFileName(FileInfo aFileInfo) => new Guid(aFileInfo.Name.TrimEnd(aFileInfo.Extension));
-
+        protected override CTyp GetObjectTyp(Guid aObjectId)
+        {
+            var aFileInfo = this.GetObjectFileInfo(this.Schema.Typs.GetBySystemType(typeof(CEntityObject)), aObjectId);
+            var aXmlDocument = new XmlDocument();
+            aXmlDocument.Load(aFileInfo.FullName);
+            var aTypName = aXmlDocument.DocumentElement.GetAttribute(nameof(CEntityObject.TypName));
+            var aTyp = this.Schema.Typs.GetByName(aTypName);
+            return aTyp;
+        }
         internal override Stream NewBlopInputStream(CBlop aBlop)
         {
             var aFileInfo = this.GetObjectFileInfo(aBlop);
@@ -111,7 +119,6 @@ namespace CbOrm.FileSys
                                     }
                             );
         }
-
         protected override void Load(CEntityObject aEntityObject, CTyp aAspect)
         {
             var aStorage = this;

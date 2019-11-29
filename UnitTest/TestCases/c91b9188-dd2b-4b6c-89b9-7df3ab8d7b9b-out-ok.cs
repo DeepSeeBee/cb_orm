@@ -25,7 +25,7 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
         
         private CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string> PM;
         
-        private static CSkalarRefMetaInfo _PMetaInfoM = new CSkalarRefMetaInfo(typeof(Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C), nameof(P));
+        private static CSkalarRefMetaInfo _P_MetaInfoM = new CSkalarRefMetaInfo(typeof(Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C), nameof(P));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -55,23 +55,23 @@ namespace Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b
             {
                 if (Object.ReferenceEquals(this.PM, null))
                 {
-                    this.PM = new CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string>(this, Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._PMetaInfo);
+                    this.PM = new CSkalarRef<Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C, string>(this, Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._P_MetaInfo);
                 }
                 return this.PM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PMetaInfo
+        public static CSkalarRefMetaInfo _P_MetaInfo
         {
             get
             {
-                return Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._PMetaInfoM;
+                return Testc91b9188_dd2b_4b6c_89b9_7df3ab8d7b9b.C._P_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(C._PMetaInfo);
+            aAddProperty.Invoke(C._P_MetaInfo);
         }
     }
     

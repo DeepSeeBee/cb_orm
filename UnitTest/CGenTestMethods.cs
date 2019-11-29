@@ -270,7 +270,7 @@ namespace CbOrm.Gen.Test
 
         public void Test_2dff5efa_d964_42c5_98af_d418ede035b9()
         {
-            // Generate 1:1C Relation (Cardinality 1:1, Parent->Child)
+            // Generate 1:1C Relation (Cardinality 1:1)
             this.Schema = Test2dff5efa_d964_42c5_98af_d418ede035b9.TestSchema.Singleton;
 
             this.BeginTest("7af6fcec-4568-4a30-84ab-f53250dc039a");
@@ -283,6 +283,9 @@ namespace CbOrm.Gen.Test
 
                 this.Test(object.ReferenceEquals(aP.Ac.Value.Parent_P_Ac.Value, aP), "cb3891e3-6e71-433a-9927-2ce0cb20420a");
 
+                var aAc = aP.Ac.Value;
+                this.Test(object.ReferenceEquals(aAc.Parent_P_Ac.Value, aP), "c8f840ac-f113-4051-ae95-afb8ce7ae0b8");
+
             }
 
             this.BeginTest("8df9df94-cdb8-4f24-8915-6509d8f781ad");
@@ -293,6 +296,8 @@ namespace CbOrm.Gen.Test
                 var aNc = aP.Nc.Value;
                 this.Test(aNc.IsNull, "32d4d01d-f060-447c-b209-548f2e0f02a9");
                 this.TestThrows<Exception>(() => aP.Nc.Value.Create(), "ede296b2-6513-4f7a-a6a1-e4195e53ebea");
+                var aAc = aP.Ac.Value;
+                this.Test(object.ReferenceEquals(aAc.Parent_P_Ac.Value, aP), "4f8d9280-e847-46b4-b44e-02aac03336da");
             }
             this.BeginTest("08004494-e473-4e31-a873-a4fc6f1d68ee");
             {
@@ -304,6 +309,17 @@ namespace CbOrm.Gen.Test
                 var aSaved = aStorage.Save();
                 this.Test(aSaved == 2, "0e189f15-6b20-476d-a093-c10744caaaef");
             }
+
+            this.BeginTest("fc0255f3-fa42-41ff-a178-55a0d32a948f");
+            {
+                var aStorage = this.Storage;
+                var aP = aStorage.LoadObjects<Test2dff5efa_d964_42c5_98af_d418ede035b9.P>().Single();
+                var aNc = aP.Nc.Value;
+                this.Test(object.ReferenceEquals(aNc.Parent_P_Nc.Value, aP), "54ffe240-b7cc-4318-800b-90edf5d50285");
+                var aAc = aP.Ac.Value;
+                this.Test(object.ReferenceEquals(aAc.Parent_P_Ac.Value, aP), "9796cbb4-2890-43b9-a0c2-309920126f88");
+            }
+
             this.BeginTest("0e1a4716-de01-49d5-9777-14d28392de09");
             {
                 var aStorage = this.Storage;

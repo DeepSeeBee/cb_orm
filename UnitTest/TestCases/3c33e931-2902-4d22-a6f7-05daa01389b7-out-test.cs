@@ -33,7 +33,7 @@ namespace Test3c33e931_2902_4d22_a6f7_05daa01389b7
         
         private CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum> MyEnumPropertyM;
         
-        private static CSkalarRefMetaInfo _MyEnumPropertyMetaInfoM = new CSkalarRefMetaInfo(typeof(Test3c33e931_2902_4d22_a6f7_05daa01389b7.C), nameof(MyEnumProperty));
+        private static CSkalarRefMetaInfo _MyEnumProperty_MetaInfoM = new CSkalarRefMetaInfo(typeof(Test3c33e931_2902_4d22_a6f7_05daa01389b7.C), nameof(MyEnumProperty));
         
         public C(CStorage aStorage) : 
                 base(aStorage)
@@ -63,23 +63,23 @@ namespace Test3c33e931_2902_4d22_a6f7_05daa01389b7
             {
                 if (Object.ReferenceEquals(this.MyEnumPropertyM, null))
                 {
-                    this.MyEnumPropertyM = new CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum>(this, Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumPropertyMetaInfo);
+                    this.MyEnumPropertyM = new CSkalarRef<Test3c33e931_2902_4d22_a6f7_05daa01389b7.C, Test3c33e931_2902_4d22_a6f7_05daa01389b7.MyEnum>(this, Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumProperty_MetaInfo);
                 }
                 return this.MyEnumPropertyM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MyEnumPropertyMetaInfo
+        public static CSkalarRefMetaInfo _MyEnumProperty_MetaInfo
         {
             get
             {
-                return Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumPropertyMetaInfoM;
+                return Test3c33e931_2902_4d22_a6f7_05daa01389b7.C._MyEnumProperty_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(C._MyEnumPropertyMetaInfo);
+            aAddProperty.Invoke(C._MyEnumProperty_MetaInfo);
         }
     }
     

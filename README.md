@@ -42,6 +42,7 @@ Supported features:
 - Custom Enum Types in mdl with code generation
 - Customizeable Attribute Generation
 - Customizeable Skalar-Field types/Type conversion chain for loading/saving.
+- Polymorph by MultiTableInheritance
 
 Supported features with no unit test:
 - CEmailAdress/CPassword saving/loading.
@@ -54,7 +55,6 @@ Planned Features: (~In this sequence)
 - Relation 1:1: Weak: Navigation from Child to Parent
 - Relation 1:N: Weak: Navigation from Parent to Child
 - Relation 1:N: Weak: Navigation from Child to Parent
-- Polymorphy by MultiTableInheritance
 - ObjectVersioning (Protection against concurrent overwrites of modified data)
 
 - Storage in MS-SQL Server

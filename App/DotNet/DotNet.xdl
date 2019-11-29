@@ -8,7 +8,7 @@
 +|UInt16||ClrNamespace|System
 +|Int32||ClrNamespace|System
 +|UInt32||ClrNamespace|System
-+|IInt64||ClrNamespace|System
++|Int64||ClrNamespace|System
 +|UInt64||ClrNamespace|System
 +|DateTime||ClrNamespace|System
 +|Guid||ClrNamespace|System

@@ -82,59 +82,71 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> Parent_Site_AccountsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Site_AccountsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Parent_Site_AccountsGuid));
+        private static CSkalarRefMetaInfo _Parent_Site_AccountsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Parent_Site_AccountsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Site> Parent_Site_AccountsM;
         
-        private static CR1NPRefMetaInfo _Parent_Site_AccountsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Parent_Site_Accounts));
+        private static CR1NPRefMetaInfo _Parent_Site_Accounts_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Parent_Site_Accounts));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationGuidM;
+        
+        private static CSkalarRefMetaInfo _EmailConfirmationGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmationGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> CreatedGuidM;
         
-        private static CSkalarRefMetaInfo _CreatedGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(CreatedGuid));
+        private static CSkalarRefMetaInfo _CreatedGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(CreatedGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailAccountGuidM;
+        
+        private static CSkalarRefMetaInfo _EmailAccountGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailAccountGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> TextTemplatesGuidM;
+        
+        private static CSkalarRefMetaInfo _TextTemplatesGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(TextTemplatesGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, long> WebspaceM;
+        
+        private static CSkalarRefMetaInfo _Webspace_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Webspace));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CEmailAdress> EmailM;
         
-        private static CSkalarRefMetaInfo _EmailMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Email));
+        private static CSkalarRefMetaInfo _Email_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Email));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CPassword> PasswordM;
         
-        private static CSkalarRefMetaInfo _PasswordMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Password));
+        private static CSkalarRefMetaInfo _Password_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Password));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Publisher> PublishersM;
         
-        private static CR1NCRefMetaInfo _PublishersMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Publishers));
+        private static CR1NCRefMetaInfo _Publishers_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Publishers));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationCodeM;
+        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation> EmailConfirmationM;
         
-        private static CSkalarRefMetaInfo _EmailConfirmationCodeMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmationCode));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> EmailConfirmationSentM;
-        
-        private static CSkalarRefMetaInfo _EmailConfirmationSentMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmationSent));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> EmailConfirmedM;
-        
-        private static CSkalarRefMetaInfo _EmailConfirmedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmed));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> LockedM;
-        
-        private static CSkalarRefMetaInfo _LockedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Locked));
+        private static CR11CRefMetaInfo _EmailConfirmation_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmation));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> BannedM;
         
-        private static CSkalarRefMetaInfo _BannedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Banned));
+        private static CSkalarRefMetaInfo _Banned_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Banned));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> IsAdminM;
         
-        private static CSkalarRefMetaInfo _IsAdminMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(IsAdmin));
+        private static CSkalarRefMetaInfo _IsAdmin_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(IsAdmin));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.LocationInfo> CreatedM;
         
-        private static CR11CRefMetaInfo _CreatedMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Created));
+        private static CR11CRefMetaInfo _Created_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Created));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, string> SignupMessageM;
         
-        private static CSkalarRefMetaInfo _SignupMessageMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(SignupMessage));
+        private static CSkalarRefMetaInfo _SignupMessage_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(SignupMessage));
+        
+        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailAccount> EmailAccountM;
+        
+        private static CR11CRefMetaInfo _EmailAccount_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailAccount));
+        
+        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.TextTemplates> TextTemplatesM;
+        
+        private static CR11CRefMetaInfo _TextTemplates_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(TextTemplates));
         
         public Account(CStorage aStorage) : 
                 base(aStorage)
@@ -166,17 +178,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Site_AccountsGuidM, null))
                 {
-                    this.Parent_Site_AccountsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Site_AccountsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Site_AccountsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Site_AccountsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Site_AccountsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsGuid_MetaInfoM;
             }
         }
         
@@ -187,17 +199,40 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Site_AccountsM, null))
                 {
-                    this.Parent_Site_AccountsM = new CR1NPRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Site>(this, CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsMetaInfo, Account._Parent_Site_AccountsGuidMetaInfo);
+                    this.Parent_Site_AccountsM = new CR1NPRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Site>(this, CbVoucherApp.Code.Domain.Account._Parent_Site_Accounts_MetaInfo, Account._Parent_Site_AccountsGuid_MetaInfo);
                 }
                 return this.Parent_Site_AccountsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Site_AccountsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Site_Accounts_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._Parent_Site_AccountsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Parent_Site_Accounts_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("EmailConfirmation")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.EmailConfirmationGuidM, null))
+                {
+                    this.EmailConfirmationGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmationGuid_MetaInfo);
+                }
+                return this.EmailConfirmationGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _EmailConfirmationGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._EmailConfirmationGuid_MetaInfoM;
             }
         }
         
@@ -210,17 +245,84 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CreatedGuidM, null))
                 {
-                    this.CreatedGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._CreatedGuidMetaInfo);
+                    this.CreatedGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._CreatedGuid_MetaInfo);
                 }
                 return this.CreatedGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _CreatedGuidMetaInfo
+        public static CSkalarRefMetaInfo _CreatedGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._CreatedGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._CreatedGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("EmailAccount")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailAccountGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.EmailAccountGuidM, null))
+                {
+                    this.EmailAccountGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._EmailAccountGuid_MetaInfo);
+                }
+                return this.EmailAccountGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _EmailAccountGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._EmailAccountGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("TextTemplates")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> TextTemplatesGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.TextTemplatesGuidM, null))
+                {
+                    this.TextTemplatesGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._TextTemplatesGuid_MetaInfo);
+                }
+                return this.TextTemplatesGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _TextTemplatesGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._TextTemplatesGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(long))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, long> Webspace
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.WebspaceM, null))
+                {
+                    this.WebspaceM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, long>(this, CbVoucherApp.Code.Domain.Account._Webspace_MetaInfo);
+                }
+                return this.WebspaceM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Webspace_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._Webspace_MetaInfoM;
             }
         }
         
@@ -231,17 +333,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
                 {
-                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Account._EmailMetaInfo);
+                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Account._Email_MetaInfo);
                 }
                 return this.EmailM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailMetaInfo
+        public static CSkalarRefMetaInfo _Email_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._EmailMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Email_MetaInfoM;
             }
         }
         
@@ -252,17 +354,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PasswordM, null))
                 {
-                    this.PasswordM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CPassword>(this, CbVoucherApp.Code.Domain.Account._PasswordMetaInfo);
+                    this.PasswordM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, CbOrm.App.Web.CPassword>(this, CbVoucherApp.Code.Domain.Account._Password_MetaInfo);
                 }
                 return this.PasswordM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PasswordMetaInfo
+        public static CSkalarRefMetaInfo _Password_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._PasswordMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Password_MetaInfoM;
             }
         }
         
@@ -273,101 +375,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PublishersM, null))
                 {
-                    this.PublishersM = new CR1NCRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Account._PublishersMetaInfo);
+                    this.PublishersM = new CR1NCRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Account._Publishers_MetaInfo);
                 }
                 return this.PublishersM;
             }
         }
         
-        public static CR1NCRefMetaInfo _PublishersMetaInfo
+        public static CR1NCRefMetaInfo _Publishers_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._PublishersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Publishers_MetaInfoM;
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationCode
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.EmailConfirmation))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation> EmailConfirmation
         {
             get
             {
-                if (Object.ReferenceEquals(this.EmailConfirmationCodeM, null))
+                if (Object.ReferenceEquals(this.EmailConfirmationM, null))
                 {
-                    this.EmailConfirmationCodeM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmationCodeMetaInfo);
+                    this.EmailConfirmationM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmation_MetaInfo, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo);
                 }
-                return this.EmailConfirmationCodeM;
+                return this.EmailConfirmationM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailConfirmationCodeMetaInfo
+        public static CR11CRefMetaInfo _EmailConfirmation_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._EmailConfirmationCodeMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> EmailConfirmationSent
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.EmailConfirmationSentM, null))
-                {
-                    this.EmailConfirmationSentM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmationSentMetaInfo);
-                }
-                return this.EmailConfirmationSentM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _EmailConfirmationSentMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.Account._EmailConfirmationSentMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> EmailConfirmed
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.EmailConfirmedM, null))
-                {
-                    this.EmailConfirmedM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmedMetaInfo);
-                }
-                return this.EmailConfirmedM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _EmailConfirmedMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.Account._EmailConfirmedMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> Locked
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.LockedM, null))
-                {
-                    this.LockedM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._LockedMetaInfo);
-                }
-                return this.LockedM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _LockedMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.Account._LockedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._EmailConfirmation_MetaInfoM;
             }
         }
         
@@ -378,17 +417,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BannedM, null))
                 {
-                    this.BannedM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._BannedMetaInfo);
+                    this.BannedM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._Banned_MetaInfo);
                 }
                 return this.BannedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BannedMetaInfo
+        public static CSkalarRefMetaInfo _Banned_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._BannedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Banned_MetaInfoM;
             }
         }
         
@@ -399,17 +438,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.IsAdminM, null))
                 {
-                    this.IsAdminM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._IsAdminMetaInfo);
+                    this.IsAdminM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._IsAdmin_MetaInfo);
                 }
                 return this.IsAdminM;
             }
         }
         
-        public static CSkalarRefMetaInfo _IsAdminMetaInfo
+        public static CSkalarRefMetaInfo _IsAdmin_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._IsAdminMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._IsAdmin_MetaInfoM;
             }
         }
         
@@ -420,17 +459,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CreatedM, null))
                 {
-                    this.CreatedM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.LocationInfo>(this, CbVoucherApp.Code.Domain.Account._CreatedMetaInfo, CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_CreatedMetaInfo);
+                    this.CreatedM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.LocationInfo>(this, CbVoucherApp.Code.Domain.Account._Created_MetaInfo, CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_Created_MetaInfo);
                 }
                 return this.CreatedM;
             }
         }
         
-        public static CR11CRefMetaInfo _CreatedMetaInfo
+        public static CR11CRefMetaInfo _Created_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._CreatedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._Created_MetaInfoM;
             }
         }
         
@@ -441,36 +480,81 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SignupMessageM, null))
                 {
-                    this.SignupMessageM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, string>(this, CbVoucherApp.Code.Domain.Account._SignupMessageMetaInfo);
+                    this.SignupMessageM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, string>(this, CbVoucherApp.Code.Domain.Account._SignupMessage_MetaInfo);
                 }
                 return this.SignupMessageM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SignupMessageMetaInfo
+        public static CSkalarRefMetaInfo _SignupMessage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._SignupMessageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._SignupMessage_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.EmailAccount))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailAccount> EmailAccount
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.EmailAccountM, null))
+                {
+                    this.EmailAccountM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailAccount>(this, CbVoucherApp.Code.Domain.Account._EmailAccount_MetaInfo, CbVoucherApp.Code.Domain.EmailAccount._Parent_Account_EmailAccount_MetaInfo);
+                }
+                return this.EmailAccountM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _EmailAccount_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._EmailAccount_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplates))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.TextTemplates> TextTemplates
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.TextTemplatesM, null))
+                {
+                    this.TextTemplatesM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.TextTemplates>(this, CbVoucherApp.Code.Domain.Account._TextTemplates_MetaInfo, CbVoucherApp.Code.Domain.TextTemplates._Parent_Account_TextTemplates_MetaInfo);
+                }
+                return this.TextTemplatesM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _TextTemplates_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._TextTemplates_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Account._Parent_Site_AccountsGuidMetaInfo);
-            aAddProperty.Invoke(Account._Parent_Site_AccountsMetaInfo);
-            aAddProperty.Invoke(Account._CreatedGuidMetaInfo);
-            aAddProperty.Invoke(Account._EmailMetaInfo);
-            aAddProperty.Invoke(Account._PasswordMetaInfo);
-            aAddProperty.Invoke(Account._PublishersMetaInfo);
-            aAddProperty.Invoke(Account._EmailConfirmationCodeMetaInfo);
-            aAddProperty.Invoke(Account._EmailConfirmationSentMetaInfo);
-            aAddProperty.Invoke(Account._EmailConfirmedMetaInfo);
-            aAddProperty.Invoke(Account._LockedMetaInfo);
-            aAddProperty.Invoke(Account._BannedMetaInfo);
-            aAddProperty.Invoke(Account._IsAdminMetaInfo);
-            aAddProperty.Invoke(Account._CreatedMetaInfo);
-            aAddProperty.Invoke(Account._SignupMessageMetaInfo);
+            aAddProperty.Invoke(Account._Parent_Site_AccountsGuid_MetaInfo);
+            aAddProperty.Invoke(Account._Parent_Site_Accounts_MetaInfo);
+            aAddProperty.Invoke(Account._EmailConfirmationGuid_MetaInfo);
+            aAddProperty.Invoke(Account._CreatedGuid_MetaInfo);
+            aAddProperty.Invoke(Account._EmailAccountGuid_MetaInfo);
+            aAddProperty.Invoke(Account._TextTemplatesGuid_MetaInfo);
+            aAddProperty.Invoke(Account._Webspace_MetaInfo);
+            aAddProperty.Invoke(Account._Email_MetaInfo);
+            aAddProperty.Invoke(Account._Password_MetaInfo);
+            aAddProperty.Invoke(Account._Publishers_MetaInfo);
+            aAddProperty.Invoke(Account._EmailConfirmation_MetaInfo);
+            aAddProperty.Invoke(Account._Banned_MetaInfo);
+            aAddProperty.Invoke(Account._IsAdmin_MetaInfo);
+            aAddProperty.Invoke(Account._Created_MetaInfo);
+            aAddProperty.Invoke(Account._SignupMessage_MetaInfo);
+            aAddProperty.Invoke(Account._EmailAccount_MetaInfo);
+            aAddProperty.Invoke(Account._TextTemplates_MetaInfo);
         }
     }
     
@@ -481,63 +565,59 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid> Parent_Account_PublishersGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Account_PublishersGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Parent_Account_PublishersGuid));
+        private static CSkalarRefMetaInfo _Parent_Account_PublishersGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Parent_Account_PublishersGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Account> Parent_Account_PublishersM;
         
-        private static CR1NPRefMetaInfo _Parent_Account_PublishersMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Parent_Account_Publishers));
+        private static CR1NPRefMetaInfo _Parent_Account_Publishers_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Parent_Account_Publishers));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid> BackgroundImageGuidM;
         
-        private static CSkalarRefMetaInfo _BackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BackgroundImageGuid));
+        private static CSkalarRefMetaInfo _BackgroundImageGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BackgroundImageGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid> BluredBackgroundImageGuidM;
         
-        private static CSkalarRefMetaInfo _BluredBackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BluredBackgroundImageGuid));
+        private static CSkalarRefMetaInfo _BluredBackgroundImageGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BluredBackgroundImageGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid> PreviewImageGuidM;
         
-        private static CSkalarRefMetaInfo _PreviewImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(PreviewImageGuid));
+        private static CSkalarRefMetaInfo _PreviewImageGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(PreviewImageGuid));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content> BackgroundImageM;
         
-        private static CR11CRefMetaInfo _BackgroundImageMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BackgroundImage));
+        private static CR11CRefMetaInfo _BackgroundImage_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BackgroundImage));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content> BluredBackgroundImageM;
         
-        private static CR11CRefMetaInfo _BluredBackgroundImageMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BluredBackgroundImage));
+        private static CR11CRefMetaInfo _BluredBackgroundImage_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(BluredBackgroundImage));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content> PreviewImageM;
         
-        private static CR11CRefMetaInfo _PreviewImageMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(PreviewImage));
+        private static CR11CRefMetaInfo _PreviewImage_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(PreviewImage));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, bool> ListM;
         
-        private static CSkalarRefMetaInfo _ListMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(List));
+        private static CSkalarRefMetaInfo _List_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(List));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Gift> GiftsM;
         
-        private static CR1NCRefMetaInfo _GiftsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Gifts));
+        private static CR1NCRefMetaInfo _Gifts_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Gifts));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string> ShareThisPropertyIdM;
         
-        private static CSkalarRefMetaInfo _ShareThisPropertyIdMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(ShareThisPropertyId));
+        private static CSkalarRefMetaInfo _ShareThisPropertyId_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(ShareThisPropertyId));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Subscriber> SubscribersM;
         
-        private static CR1NCRefMetaInfo _SubscribersMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Subscribers));
+        private static CR1NCRefMetaInfo _Subscribers_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Subscribers));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Newsletter> NewslettersM;
         
-        private static CR1NCRefMetaInfo _NewslettersMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Newsletters));
+        private static CR1NCRefMetaInfo _Newsletters_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Newsletters));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string> NameM;
         
-        private static CSkalarRefMetaInfo _NameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Name));
-        
-        private CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.TextTemplate> TextTemplatesM;
-        
-        private static CR1NCRefMetaInfo _TextTemplatesMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(TextTemplates));
+        private static CSkalarRefMetaInfo _Name_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Publisher), nameof(Name));
         
         public Publisher(CStorage aStorage) : 
                 base(aStorage)
@@ -569,17 +649,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Account_PublishersGuidM, null))
                 {
-                    this.Parent_Account_PublishersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Account_PublishersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Account_PublishersGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Account_PublishersGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Account_PublishersGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersGuid_MetaInfoM;
             }
         }
         
@@ -590,17 +670,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Account_PublishersM, null))
                 {
-                    this.Parent_Account_PublishersM = new CR1NPRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersMetaInfo, Publisher._Parent_Account_PublishersGuidMetaInfo);
+                    this.Parent_Account_PublishersM = new CR1NPRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.Publisher._Parent_Account_Publishers_MetaInfo, Publisher._Parent_Account_PublishersGuid_MetaInfo);
                 }
                 return this.Parent_Account_PublishersM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Account_PublishersMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Account_Publishers_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._Parent_Account_PublishersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Parent_Account_Publishers_MetaInfoM;
             }
         }
         
@@ -613,17 +693,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BackgroundImageGuidM, null))
                 {
-                    this.BackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._BackgroundImageGuidMetaInfo);
+                    this.BackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._BackgroundImageGuid_MetaInfo);
                 }
                 return this.BackgroundImageGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BackgroundImageGuidMetaInfo
+        public static CSkalarRefMetaInfo _BackgroundImageGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._BackgroundImageGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._BackgroundImageGuid_MetaInfoM;
             }
         }
         
@@ -636,17 +716,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BluredBackgroundImageGuidM, null))
                 {
-                    this.BluredBackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageGuidMetaInfo);
+                    this.BluredBackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageGuid_MetaInfo);
                 }
                 return this.BluredBackgroundImageGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BluredBackgroundImageGuidMetaInfo
+        public static CSkalarRefMetaInfo _BluredBackgroundImageGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageGuid_MetaInfoM;
             }
         }
         
@@ -659,17 +739,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PreviewImageGuidM, null))
                 {
-                    this.PreviewImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._PreviewImageGuidMetaInfo);
+                    this.PreviewImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, System.Guid>(this, CbVoucherApp.Code.Domain.Publisher._PreviewImageGuid_MetaInfo);
                 }
                 return this.PreviewImageGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PreviewImageGuidMetaInfo
+        public static CSkalarRefMetaInfo _PreviewImageGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._PreviewImageGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._PreviewImageGuid_MetaInfoM;
             }
         }
         
@@ -680,17 +760,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BackgroundImageM, null))
                 {
-                    this.BackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._BackgroundImageMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImageMetaInfo);
+                    this.BackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._BackgroundImage_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImage_MetaInfo);
                 }
                 return this.BackgroundImageM;
             }
         }
         
-        public static CR11CRefMetaInfo _BackgroundImageMetaInfo
+        public static CR11CRefMetaInfo _BackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._BackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._BackgroundImage_MetaInfoM;
             }
         }
         
@@ -701,17 +781,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BluredBackgroundImageM, null))
                 {
-                    this.BluredBackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImageMetaInfo);
+                    this.BluredBackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImage_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImage_MetaInfo);
                 }
                 return this.BluredBackgroundImageM;
             }
         }
         
-        public static CR11CRefMetaInfo _BluredBackgroundImageMetaInfo
+        public static CR11CRefMetaInfo _BluredBackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._BluredBackgroundImage_MetaInfoM;
             }
         }
         
@@ -722,17 +802,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PreviewImageM, null))
                 {
-                    this.PreviewImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._PreviewImageMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImageMetaInfo);
+                    this.PreviewImageM = new CR11CRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Publisher._PreviewImage_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImage_MetaInfo);
                 }
                 return this.PreviewImageM;
             }
         }
         
-        public static CR11CRefMetaInfo _PreviewImageMetaInfo
+        public static CR11CRefMetaInfo _PreviewImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._PreviewImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._PreviewImage_MetaInfoM;
             }
         }
         
@@ -743,17 +823,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ListM, null))
                 {
-                    this.ListM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, bool>(this, CbVoucherApp.Code.Domain.Publisher._ListMetaInfo);
+                    this.ListM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, bool>(this, CbVoucherApp.Code.Domain.Publisher._List_MetaInfo);
                 }
                 return this.ListM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ListMetaInfo
+        public static CSkalarRefMetaInfo _List_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._ListMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._List_MetaInfoM;
             }
         }
         
@@ -764,17 +844,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.GiftsM, null))
                 {
-                    this.GiftsM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Publisher._GiftsMetaInfo);
+                    this.GiftsM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Publisher._Gifts_MetaInfo);
                 }
                 return this.GiftsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _GiftsMetaInfo
+        public static CR1NCRefMetaInfo _Gifts_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._GiftsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Gifts_MetaInfoM;
             }
         }
         
@@ -785,17 +865,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ShareThisPropertyIdM, null))
                 {
-                    this.ShareThisPropertyIdM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string>(this, CbVoucherApp.Code.Domain.Publisher._ShareThisPropertyIdMetaInfo);
+                    this.ShareThisPropertyIdM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string>(this, CbVoucherApp.Code.Domain.Publisher._ShareThisPropertyId_MetaInfo);
                 }
                 return this.ShareThisPropertyIdM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ShareThisPropertyIdMetaInfo
+        public static CSkalarRefMetaInfo _ShareThisPropertyId_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._ShareThisPropertyIdMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._ShareThisPropertyId_MetaInfoM;
             }
         }
         
@@ -806,17 +886,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SubscribersM, null))
                 {
-                    this.SubscribersM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Subscriber>(this, CbVoucherApp.Code.Domain.Publisher._SubscribersMetaInfo);
+                    this.SubscribersM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Subscriber>(this, CbVoucherApp.Code.Domain.Publisher._Subscribers_MetaInfo);
                 }
                 return this.SubscribersM;
             }
         }
         
-        public static CR1NCRefMetaInfo _SubscribersMetaInfo
+        public static CR1NCRefMetaInfo _Subscribers_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._SubscribersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Subscribers_MetaInfoM;
             }
         }
         
@@ -827,17 +907,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NewslettersM, null))
                 {
-                    this.NewslettersM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Newsletter>(this, CbVoucherApp.Code.Domain.Publisher._NewslettersMetaInfo);
+                    this.NewslettersM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.Newsletter>(this, CbVoucherApp.Code.Domain.Publisher._Newsletters_MetaInfo);
                 }
                 return this.NewslettersM;
             }
         }
         
-        public static CR1NCRefMetaInfo _NewslettersMetaInfo
+        public static CR1NCRefMetaInfo _Newsletters_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._NewslettersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Newsletters_MetaInfoM;
             }
         }
         
@@ -848,58 +928,36 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string>(this, CbVoucherApp.Code.Domain.Publisher._NameMetaInfo);
+                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Publisher, string>(this, CbVoucherApp.Code.Domain.Publisher._Name_MetaInfo);
                 }
                 return this.NameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _NameMetaInfo
+        public static CSkalarRefMetaInfo _Name_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Publisher._NameMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplate))]
-        public CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.TextTemplate> TextTemplates
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.TextTemplatesM, null))
-                {
-                    this.TextTemplatesM = new CR1NCRef<CbVoucherApp.Code.Domain.Publisher, CbVoucherApp.Code.Domain.TextTemplate>(this, CbVoucherApp.Code.Domain.Publisher._TextTemplatesMetaInfo);
-                }
-                return this.TextTemplatesM;
-            }
-        }
-        
-        public static CR1NCRefMetaInfo _TextTemplatesMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.Publisher._TextTemplatesMetaInfoM;
+                return CbVoucherApp.Code.Domain.Publisher._Name_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Publisher._Parent_Account_PublishersGuidMetaInfo);
-            aAddProperty.Invoke(Publisher._Parent_Account_PublishersMetaInfo);
-            aAddProperty.Invoke(Publisher._BackgroundImageGuidMetaInfo);
-            aAddProperty.Invoke(Publisher._BluredBackgroundImageGuidMetaInfo);
-            aAddProperty.Invoke(Publisher._PreviewImageGuidMetaInfo);
-            aAddProperty.Invoke(Publisher._BackgroundImageMetaInfo);
-            aAddProperty.Invoke(Publisher._BluredBackgroundImageMetaInfo);
-            aAddProperty.Invoke(Publisher._PreviewImageMetaInfo);
-            aAddProperty.Invoke(Publisher._ListMetaInfo);
-            aAddProperty.Invoke(Publisher._GiftsMetaInfo);
-            aAddProperty.Invoke(Publisher._ShareThisPropertyIdMetaInfo);
-            aAddProperty.Invoke(Publisher._SubscribersMetaInfo);
-            aAddProperty.Invoke(Publisher._NewslettersMetaInfo);
-            aAddProperty.Invoke(Publisher._NameMetaInfo);
-            aAddProperty.Invoke(Publisher._TextTemplatesMetaInfo);
+            aAddProperty.Invoke(Publisher._Parent_Account_PublishersGuid_MetaInfo);
+            aAddProperty.Invoke(Publisher._Parent_Account_Publishers_MetaInfo);
+            aAddProperty.Invoke(Publisher._BackgroundImageGuid_MetaInfo);
+            aAddProperty.Invoke(Publisher._BluredBackgroundImageGuid_MetaInfo);
+            aAddProperty.Invoke(Publisher._PreviewImageGuid_MetaInfo);
+            aAddProperty.Invoke(Publisher._BackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Publisher._BluredBackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Publisher._PreviewImage_MetaInfo);
+            aAddProperty.Invoke(Publisher._List_MetaInfo);
+            aAddProperty.Invoke(Publisher._Gifts_MetaInfo);
+            aAddProperty.Invoke(Publisher._ShareThisPropertyId_MetaInfo);
+            aAddProperty.Invoke(Publisher._Subscribers_MetaInfo);
+            aAddProperty.Invoke(Publisher._Newsletters_MetaInfo);
+            aAddProperty.Invoke(Publisher._Name_MetaInfo);
         }
     }
     
@@ -910,91 +968,91 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> Parent_Publisher_GiftsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Publisher_GiftsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Parent_Publisher_GiftsGuid));
+        private static CSkalarRefMetaInfo _Parent_Publisher_GiftsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Parent_Publisher_GiftsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_GiftsM;
         
-        private static CR1NPRefMetaInfo _Parent_Publisher_GiftsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Parent_Publisher_Gifts));
+        private static CR1NPRefMetaInfo _Parent_Publisher_Gifts_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Parent_Publisher_Gifts));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> CoverGuidM;
         
-        private static CSkalarRefMetaInfo _CoverGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(CoverGuid));
+        private static CSkalarRefMetaInfo _CoverGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(CoverGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> StatisticGuidM;
         
-        private static CSkalarRefMetaInfo _StatisticGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(StatisticGuid));
+        private static CSkalarRefMetaInfo _StatisticGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(StatisticGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> ReleaseNewsletterGuidM;
         
-        private static CSkalarRefMetaInfo _ReleaseNewsletterGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ReleaseNewsletterGuid));
+        private static CSkalarRefMetaInfo _ReleaseNewsletterGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ReleaseNewsletterGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> CountersGuidM;
         
-        private static CSkalarRefMetaInfo _CountersGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(CountersGuid));
+        private static CSkalarRefMetaInfo _CountersGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(CountersGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid> BackgroundImageGuidM;
         
-        private static CSkalarRefMetaInfo _BackgroundImageGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BackgroundImageGuid));
+        private static CSkalarRefMetaInfo _BackgroundImageGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BackgroundImageGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, string> NameM;
         
-        private static CSkalarRefMetaInfo _NameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Name));
+        private static CSkalarRefMetaInfo _Name_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Name));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, string> HashtagM;
         
-        private static CSkalarRefMetaInfo _HashtagMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Hashtag));
+        private static CSkalarRefMetaInfo _Hashtag_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Hashtag));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content> CoverM;
         
-        private static CR11CRefMetaInfo _CoverMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Cover));
+        private static CR11CRefMetaInfo _Cover_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Cover));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftStatistic> StatisticM;
         
-        private static CR11CRefMetaInfo _StatisticMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Statistic));
+        private static CR11CRefMetaInfo _Statistic_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Statistic));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.DownloadFormat> DownloadFormatsM;
         
-        private static CR1NCRefMetaInfo _DownloadFormatsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(DownloadFormats));
+        private static CR1NCRefMetaInfo _DownloadFormats_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(DownloadFormats));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool> AutoGrantMaxCountIsDefinedM;
         
-        private static CSkalarRefMetaInfo _AutoGrantMaxCountIsDefinedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(AutoGrantMaxCountIsDefined));
+        private static CSkalarRefMetaInfo _AutoGrantMaxCountIsDefined_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(AutoGrantMaxCountIsDefined));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, ulong> AutoGrantMaxCountM;
         
-        private static CSkalarRefMetaInfo _AutoGrantMaxCountMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(AutoGrantMaxCount));
+        private static CSkalarRefMetaInfo _AutoGrantMaxCount_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(AutoGrantMaxCount));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Newsletter> ReleaseNewsletterM;
         
-        private static CR11CRefMetaInfo _ReleaseNewsletterMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ReleaseNewsletter));
+        private static CR11CRefMetaInfo _ReleaseNewsletter_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ReleaseNewsletter));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftCounters> CountersM;
         
-        private static CR11CRefMetaInfo _CountersMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Counters));
+        private static CR11CRefMetaInfo _Counters_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Counters));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content> BackgroundImageM;
         
-        private static CR11CRefMetaInfo _BackgroundImageMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BackgroundImage));
+        private static CR11CRefMetaInfo _BackgroundImage_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BackgroundImage));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool> ListM;
         
-        private static CSkalarRefMetaInfo _ListMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(List));
+        private static CSkalarRefMetaInfo _List_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(List));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> ListenUrlM;
         
-        private static CSkalarRefMetaInfo _ListenUrlMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ListenUrl));
+        private static CSkalarRefMetaInfo _ListenUrl_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(ListenUrl));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri> BuyUrlM;
         
-        private static CSkalarRefMetaInfo _BuyUrlMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BuyUrl));
+        private static CSkalarRefMetaInfo _BuyUrl_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(BuyUrl));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Campaign> CampaignsM;
         
-        private static CR1NCRefMetaInfo _CampaignsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Campaigns));
+        private static CR1NCRefMetaInfo _Campaigns_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(Campaigns));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.VoucherRequest> VoucherRequestsM;
         
-        private static CR1NCRefMetaInfo _VoucherRequestsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(VoucherRequests));
+        private static CR1NCRefMetaInfo _VoucherRequests_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Gift), nameof(VoucherRequests));
         
         public Gift(CStorage aStorage) : 
                 base(aStorage)
@@ -1026,17 +1084,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_GiftsGuidM, null))
                 {
-                    this.Parent_Publisher_GiftsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Publisher_GiftsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_GiftsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Publisher_GiftsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Publisher_GiftsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsGuid_MetaInfoM;
             }
         }
         
@@ -1047,17 +1105,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_GiftsM, null))
                 {
-                    this.Parent_Publisher_GiftsM = new CR1NPRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsMetaInfo, Gift._Parent_Publisher_GiftsGuidMetaInfo);
+                    this.Parent_Publisher_GiftsM = new CR1NPRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Gift._Parent_Publisher_Gifts_MetaInfo, Gift._Parent_Publisher_GiftsGuid_MetaInfo);
                 }
                 return this.Parent_Publisher_GiftsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Publisher_GiftsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Publisher_Gifts_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._Parent_Publisher_GiftsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Parent_Publisher_Gifts_MetaInfoM;
             }
         }
         
@@ -1070,17 +1128,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CoverGuidM, null))
                 {
-                    this.CoverGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._CoverGuidMetaInfo);
+                    this.CoverGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._CoverGuid_MetaInfo);
                 }
                 return this.CoverGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _CoverGuidMetaInfo
+        public static CSkalarRefMetaInfo _CoverGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._CoverGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._CoverGuid_MetaInfoM;
             }
         }
         
@@ -1093,17 +1151,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.StatisticGuidM, null))
                 {
-                    this.StatisticGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._StatisticGuidMetaInfo);
+                    this.StatisticGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._StatisticGuid_MetaInfo);
                 }
                 return this.StatisticGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _StatisticGuidMetaInfo
+        public static CSkalarRefMetaInfo _StatisticGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._StatisticGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._StatisticGuid_MetaInfoM;
             }
         }
         
@@ -1116,17 +1174,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ReleaseNewsletterGuidM, null))
                 {
-                    this.ReleaseNewsletterGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterGuidMetaInfo);
+                    this.ReleaseNewsletterGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterGuid_MetaInfo);
                 }
                 return this.ReleaseNewsletterGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ReleaseNewsletterGuidMetaInfo
+        public static CSkalarRefMetaInfo _ReleaseNewsletterGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterGuid_MetaInfoM;
             }
         }
         
@@ -1139,17 +1197,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CountersGuidM, null))
                 {
-                    this.CountersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._CountersGuidMetaInfo);
+                    this.CountersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._CountersGuid_MetaInfo);
                 }
                 return this.CountersGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _CountersGuidMetaInfo
+        public static CSkalarRefMetaInfo _CountersGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._CountersGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._CountersGuid_MetaInfoM;
             }
         }
         
@@ -1162,17 +1220,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BackgroundImageGuidM, null))
                 {
-                    this.BackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._BackgroundImageGuidMetaInfo);
+                    this.BackgroundImageGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, System.Guid>(this, CbVoucherApp.Code.Domain.Gift._BackgroundImageGuid_MetaInfo);
                 }
                 return this.BackgroundImageGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BackgroundImageGuidMetaInfo
+        public static CSkalarRefMetaInfo _BackgroundImageGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._BackgroundImageGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._BackgroundImageGuid_MetaInfoM;
             }
         }
         
@@ -1183,17 +1241,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, string>(this, CbVoucherApp.Code.Domain.Gift._NameMetaInfo);
+                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, string>(this, CbVoucherApp.Code.Domain.Gift._Name_MetaInfo);
                 }
                 return this.NameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _NameMetaInfo
+        public static CSkalarRefMetaInfo _Name_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._NameMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Name_MetaInfoM;
             }
         }
         
@@ -1204,17 +1262,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.HashtagM, null))
                 {
-                    this.HashtagM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, string>(this, CbVoucherApp.Code.Domain.Gift._HashtagMetaInfo);
+                    this.HashtagM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, string>(this, CbVoucherApp.Code.Domain.Gift._Hashtag_MetaInfo);
                 }
                 return this.HashtagM;
             }
         }
         
-        public static CSkalarRefMetaInfo _HashtagMetaInfo
+        public static CSkalarRefMetaInfo _Hashtag_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._HashtagMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Hashtag_MetaInfoM;
             }
         }
         
@@ -1225,17 +1283,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CoverM, null))
                 {
-                    this.CoverM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Gift._CoverMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Gift_CoverMetaInfo);
+                    this.CoverM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Gift._Cover_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Gift_Cover_MetaInfo);
                 }
                 return this.CoverM;
             }
         }
         
-        public static CR11CRefMetaInfo _CoverMetaInfo
+        public static CR11CRefMetaInfo _Cover_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._CoverMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Cover_MetaInfoM;
             }
         }
         
@@ -1246,17 +1304,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.StatisticM, null))
                 {
-                    this.StatisticM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftStatistic>(this, CbVoucherApp.Code.Domain.Gift._StatisticMetaInfo, CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_StatisticMetaInfo);
+                    this.StatisticM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftStatistic>(this, CbVoucherApp.Code.Domain.Gift._Statistic_MetaInfo, CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_Statistic_MetaInfo);
                 }
                 return this.StatisticM;
             }
         }
         
-        public static CR11CRefMetaInfo _StatisticMetaInfo
+        public static CR11CRefMetaInfo _Statistic_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._StatisticMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Statistic_MetaInfoM;
             }
         }
         
@@ -1267,17 +1325,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownloadFormatsM, null))
                 {
-                    this.DownloadFormatsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.Gift._DownloadFormatsMetaInfo);
+                    this.DownloadFormatsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.Gift._DownloadFormats_MetaInfo);
                 }
                 return this.DownloadFormatsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _DownloadFormatsMetaInfo
+        public static CR1NCRefMetaInfo _DownloadFormats_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._DownloadFormatsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._DownloadFormats_MetaInfoM;
             }
         }
         
@@ -1288,17 +1346,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoGrantMaxCountIsDefinedM, null))
                 {
-                    this.AutoGrantMaxCountIsDefinedM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool>(this, CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountIsDefinedMetaInfo);
+                    this.AutoGrantMaxCountIsDefinedM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool>(this, CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountIsDefined_MetaInfo);
                 }
                 return this.AutoGrantMaxCountIsDefinedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _AutoGrantMaxCountIsDefinedMetaInfo
+        public static CSkalarRefMetaInfo _AutoGrantMaxCountIsDefined_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountIsDefinedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountIsDefined_MetaInfoM;
             }
         }
         
@@ -1309,17 +1367,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoGrantMaxCountM, null))
                 {
-                    this.AutoGrantMaxCountM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, ulong>(this, CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountMetaInfo);
+                    this.AutoGrantMaxCountM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, ulong>(this, CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCount_MetaInfo);
                 }
                 return this.AutoGrantMaxCountM;
             }
         }
         
-        public static CSkalarRefMetaInfo _AutoGrantMaxCountMetaInfo
+        public static CSkalarRefMetaInfo _AutoGrantMaxCount_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCountMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._AutoGrantMaxCount_MetaInfoM;
             }
         }
         
@@ -1331,17 +1389,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ReleaseNewsletterM, null))
                 {
-                    this.ReleaseNewsletterM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Newsletter>(this, CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterMetaInfo, CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletterMetaInfo);
+                    this.ReleaseNewsletterM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Newsletter>(this, CbVoucherApp.Code.Domain.Gift._ReleaseNewsletter_MetaInfo, CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletter_MetaInfo);
                 }
                 return this.ReleaseNewsletterM;
             }
         }
         
-        public static CR11CRefMetaInfo _ReleaseNewsletterMetaInfo
+        public static CR11CRefMetaInfo _ReleaseNewsletter_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._ReleaseNewsletterMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._ReleaseNewsletter_MetaInfoM;
             }
         }
         
@@ -1352,17 +1410,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CountersM, null))
                 {
-                    this.CountersM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftCounters>(this, CbVoucherApp.Code.Domain.Gift._CountersMetaInfo, CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_CountersMetaInfo);
+                    this.CountersM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.GiftCounters>(this, CbVoucherApp.Code.Domain.Gift._Counters_MetaInfo, CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_Counters_MetaInfo);
                 }
                 return this.CountersM;
             }
         }
         
-        public static CR11CRefMetaInfo _CountersMetaInfo
+        public static CR11CRefMetaInfo _Counters_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._CountersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Counters_MetaInfoM;
             }
         }
         
@@ -1373,17 +1431,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BackgroundImageM, null))
                 {
-                    this.BackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Gift._BackgroundImageMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImageMetaInfo);
+                    this.BackgroundImageM = new CR11CRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.Gift._BackgroundImage_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImage_MetaInfo);
                 }
                 return this.BackgroundImageM;
             }
         }
         
-        public static CR11CRefMetaInfo _BackgroundImageMetaInfo
+        public static CR11CRefMetaInfo _BackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._BackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._BackgroundImage_MetaInfoM;
             }
         }
         
@@ -1394,17 +1452,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ListM, null))
                 {
-                    this.ListM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool>(this, CbVoucherApp.Code.Domain.Gift._ListMetaInfo);
+                    this.ListM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, bool>(this, CbVoucherApp.Code.Domain.Gift._List_MetaInfo);
                 }
                 return this.ListM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ListMetaInfo
+        public static CSkalarRefMetaInfo _List_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._ListMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._List_MetaInfoM;
             }
         }
         
@@ -1415,17 +1473,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ListenUrlM, null))
                 {
-                    this.ListenUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._ListenUrlMetaInfo);
+                    this.ListenUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._ListenUrl_MetaInfo);
                 }
                 return this.ListenUrlM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ListenUrlMetaInfo
+        public static CSkalarRefMetaInfo _ListenUrl_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._ListenUrlMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._ListenUrl_MetaInfoM;
             }
         }
         
@@ -1436,17 +1494,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BuyUrlM, null))
                 {
-                    this.BuyUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._BuyUrlMetaInfo);
+                    this.BuyUrlM = new CSkalarRef<CbVoucherApp.Code.Domain.Gift, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.Gift._BuyUrl_MetaInfo);
                 }
                 return this.BuyUrlM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BuyUrlMetaInfo
+        public static CSkalarRefMetaInfo _BuyUrl_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._BuyUrlMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._BuyUrl_MetaInfoM;
             }
         }
         
@@ -1457,17 +1515,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CampaignsM, null))
                 {
-                    this.CampaignsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Campaign>(this, CbVoucherApp.Code.Domain.Gift._CampaignsMetaInfo);
+                    this.CampaignsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.Campaign>(this, CbVoucherApp.Code.Domain.Gift._Campaigns_MetaInfo);
                 }
                 return this.CampaignsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _CampaignsMetaInfo
+        public static CR1NCRefMetaInfo _Campaigns_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._CampaignsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._Campaigns_MetaInfoM;
             }
         }
         
@@ -1478,44 +1536,44 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherRequestsM, null))
                 {
-                    this.VoucherRequestsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.VoucherRequest>(this, CbVoucherApp.Code.Domain.Gift._VoucherRequestsMetaInfo);
+                    this.VoucherRequestsM = new CR1NCRef<CbVoucherApp.Code.Domain.Gift, CbVoucherApp.Code.Domain.VoucherRequest>(this, CbVoucherApp.Code.Domain.Gift._VoucherRequests_MetaInfo);
                 }
                 return this.VoucherRequestsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _VoucherRequestsMetaInfo
+        public static CR1NCRefMetaInfo _VoucherRequests_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Gift._VoucherRequestsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Gift._VoucherRequests_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Gift._Parent_Publisher_GiftsGuidMetaInfo);
-            aAddProperty.Invoke(Gift._Parent_Publisher_GiftsMetaInfo);
-            aAddProperty.Invoke(Gift._CoverGuidMetaInfo);
-            aAddProperty.Invoke(Gift._StatisticGuidMetaInfo);
-            aAddProperty.Invoke(Gift._ReleaseNewsletterGuidMetaInfo);
-            aAddProperty.Invoke(Gift._CountersGuidMetaInfo);
-            aAddProperty.Invoke(Gift._BackgroundImageGuidMetaInfo);
-            aAddProperty.Invoke(Gift._NameMetaInfo);
-            aAddProperty.Invoke(Gift._HashtagMetaInfo);
-            aAddProperty.Invoke(Gift._CoverMetaInfo);
-            aAddProperty.Invoke(Gift._StatisticMetaInfo);
-            aAddProperty.Invoke(Gift._DownloadFormatsMetaInfo);
-            aAddProperty.Invoke(Gift._AutoGrantMaxCountIsDefinedMetaInfo);
-            aAddProperty.Invoke(Gift._AutoGrantMaxCountMetaInfo);
-            aAddProperty.Invoke(Gift._ReleaseNewsletterMetaInfo);
-            aAddProperty.Invoke(Gift._CountersMetaInfo);
-            aAddProperty.Invoke(Gift._BackgroundImageMetaInfo);
-            aAddProperty.Invoke(Gift._ListMetaInfo);
-            aAddProperty.Invoke(Gift._ListenUrlMetaInfo);
-            aAddProperty.Invoke(Gift._BuyUrlMetaInfo);
-            aAddProperty.Invoke(Gift._CampaignsMetaInfo);
-            aAddProperty.Invoke(Gift._VoucherRequestsMetaInfo);
+            aAddProperty.Invoke(Gift._Parent_Publisher_GiftsGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._Parent_Publisher_Gifts_MetaInfo);
+            aAddProperty.Invoke(Gift._CoverGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._StatisticGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._ReleaseNewsletterGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._CountersGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._BackgroundImageGuid_MetaInfo);
+            aAddProperty.Invoke(Gift._Name_MetaInfo);
+            aAddProperty.Invoke(Gift._Hashtag_MetaInfo);
+            aAddProperty.Invoke(Gift._Cover_MetaInfo);
+            aAddProperty.Invoke(Gift._Statistic_MetaInfo);
+            aAddProperty.Invoke(Gift._DownloadFormats_MetaInfo);
+            aAddProperty.Invoke(Gift._AutoGrantMaxCountIsDefined_MetaInfo);
+            aAddProperty.Invoke(Gift._AutoGrantMaxCount_MetaInfo);
+            aAddProperty.Invoke(Gift._ReleaseNewsletter_MetaInfo);
+            aAddProperty.Invoke(Gift._Counters_MetaInfo);
+            aAddProperty.Invoke(Gift._BackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Gift._List_MetaInfo);
+            aAddProperty.Invoke(Gift._ListenUrl_MetaInfo);
+            aAddProperty.Invoke(Gift._BuyUrl_MetaInfo);
+            aAddProperty.Invoke(Gift._Campaigns_MetaInfo);
+            aAddProperty.Invoke(Gift._VoucherRequests_MetaInfo);
         }
     }
     
@@ -1526,23 +1584,23 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, System.Guid> Parent_Publisher_SubscribersGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Publisher_SubscribersGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Parent_Publisher_SubscribersGuid));
+        private static CSkalarRefMetaInfo _Parent_Publisher_SubscribersGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Parent_Publisher_SubscribersGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_SubscribersM;
         
-        private static CR1NPRefMetaInfo _Parent_Publisher_SubscribersMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Parent_Publisher_Subscribers));
+        private static CR1NPRefMetaInfo _Parent_Publisher_Subscribers_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Parent_Publisher_Subscribers));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, CbOrm.App.Web.CEmailAdress> EmailM;
         
-        private static CSkalarRefMetaInfo _EmailMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Email));
+        private static CSkalarRefMetaInfo _Email_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Email));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, bool> SubscribedM;
         
-        private static CSkalarRefMetaInfo _SubscribedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Subscribed));
+        private static CSkalarRefMetaInfo _Subscribed_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(Subscribed));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.SubscriptionRequest> SubscriptionRequestsM;
         
-        private static CR1NCRefMetaInfo _SubscriptionRequestsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(SubscriptionRequests));
+        private static CR1NCRefMetaInfo _SubscriptionRequests_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Subscriber), nameof(SubscriptionRequests));
         
         public Subscriber(CStorage aStorage) : 
                 base(aStorage)
@@ -1574,17 +1632,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_SubscribersGuidM, null))
                 {
-                    this.Parent_Publisher_SubscribersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, System.Guid>(this, CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Publisher_SubscribersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, System.Guid>(this, CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_SubscribersGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Publisher_SubscribersGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Publisher_SubscribersGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersGuid_MetaInfoM;
             }
         }
         
@@ -1595,17 +1653,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_SubscribersM, null))
                 {
-                    this.Parent_Publisher_SubscribersM = new CR1NPRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersMetaInfo, Subscriber._Parent_Publisher_SubscribersGuidMetaInfo);
+                    this.Parent_Publisher_SubscribersM = new CR1NPRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_Subscribers_MetaInfo, Subscriber._Parent_Publisher_SubscribersGuid_MetaInfo);
                 }
                 return this.Parent_Publisher_SubscribersM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Publisher_SubscribersMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Publisher_Subscribers_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_SubscribersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Subscriber._Parent_Publisher_Subscribers_MetaInfoM;
             }
         }
         
@@ -1616,17 +1674,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
                 {
-                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Subscriber._EmailMetaInfo);
+                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Subscriber._Email_MetaInfo);
                 }
                 return this.EmailM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailMetaInfo
+        public static CSkalarRefMetaInfo _Email_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Subscriber._EmailMetaInfoM;
+                return CbVoucherApp.Code.Domain.Subscriber._Email_MetaInfoM;
             }
         }
         
@@ -1637,17 +1695,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SubscribedM, null))
                 {
-                    this.SubscribedM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, bool>(this, CbVoucherApp.Code.Domain.Subscriber._SubscribedMetaInfo);
+                    this.SubscribedM = new CSkalarRef<CbVoucherApp.Code.Domain.Subscriber, bool>(this, CbVoucherApp.Code.Domain.Subscriber._Subscribed_MetaInfo);
                 }
                 return this.SubscribedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SubscribedMetaInfo
+        public static CSkalarRefMetaInfo _Subscribed_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Subscriber._SubscribedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Subscriber._Subscribed_MetaInfoM;
             }
         }
         
@@ -1658,27 +1716,27 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SubscriptionRequestsM, null))
                 {
-                    this.SubscriptionRequestsM = new CR1NCRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.SubscriptionRequest>(this, CbVoucherApp.Code.Domain.Subscriber._SubscriptionRequestsMetaInfo);
+                    this.SubscriptionRequestsM = new CR1NCRef<CbVoucherApp.Code.Domain.Subscriber, CbVoucherApp.Code.Domain.SubscriptionRequest>(this, CbVoucherApp.Code.Domain.Subscriber._SubscriptionRequests_MetaInfo);
                 }
                 return this.SubscriptionRequestsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _SubscriptionRequestsMetaInfo
+        public static CR1NCRefMetaInfo _SubscriptionRequests_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Subscriber._SubscriptionRequestsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Subscriber._SubscriptionRequests_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Subscriber._Parent_Publisher_SubscribersGuidMetaInfo);
-            aAddProperty.Invoke(Subscriber._Parent_Publisher_SubscribersMetaInfo);
-            aAddProperty.Invoke(Subscriber._EmailMetaInfo);
-            aAddProperty.Invoke(Subscriber._SubscribedMetaInfo);
-            aAddProperty.Invoke(Subscriber._SubscriptionRequestsMetaInfo);
+            aAddProperty.Invoke(Subscriber._Parent_Publisher_SubscribersGuid_MetaInfo);
+            aAddProperty.Invoke(Subscriber._Parent_Publisher_Subscribers_MetaInfo);
+            aAddProperty.Invoke(Subscriber._Email_MetaInfo);
+            aAddProperty.Invoke(Subscriber._Subscribed_MetaInfo);
+            aAddProperty.Invoke(Subscriber._SubscriptionRequests_MetaInfo);
         }
     }
     
@@ -1689,31 +1747,35 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid> Parent_Publisher_NewslettersGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Publisher_NewslettersGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Publisher_NewslettersGuid));
+        private static CSkalarRefMetaInfo _Parent_Publisher_NewslettersGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Publisher_NewslettersGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_NewslettersM;
         
-        private static CR1NPRefMetaInfo _Parent_Publisher_NewslettersMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Publisher_Newsletters));
+        private static CR1NPRefMetaInfo _Parent_Publisher_Newsletters_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Publisher_Newsletters));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid> Parent_Gift_ReleaseNewsletter_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Gift_ReleaseNewsletter_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Gift_ReleaseNewsletter_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Gift> Parent_Gift_ReleaseNewsletterM;
         
-        private static CR11PRefMetaInfo _Parent_Gift_ReleaseNewsletterMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Gift_ReleaseNewsletter));
+        private static CR11PRefMetaInfo _Parent_Gift_ReleaseNewsletter_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Parent_Gift_ReleaseNewsletter));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.DateTime> MomentM;
         
-        private static CSkalarRefMetaInfo _MomentMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Moment));
+        private static CSkalarRefMetaInfo _Moment_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Moment));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string> HeadM;
         
-        private static CSkalarRefMetaInfo _HeadMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Head));
+        private static CSkalarRefMetaInfo _Head_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Head));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string> BodyM;
         
-        private static CSkalarRefMetaInfo _BodyMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Body));
+        private static CSkalarRefMetaInfo _Body_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Body));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, bool> SentM;
         
-        private static CSkalarRefMetaInfo _SentMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Sent));
+        private static CSkalarRefMetaInfo _Sent_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Newsletter), nameof(Sent));
         
         public Newsletter(CStorage aStorage) : 
                 base(aStorage)
@@ -1745,17 +1807,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_NewslettersGuidM, null))
                 {
-                    this.Parent_Publisher_NewslettersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Publisher_NewslettersGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Publisher_NewslettersGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Publisher_NewslettersGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Publisher_NewslettersGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersGuid_MetaInfoM;
             }
         }
         
@@ -1766,17 +1828,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_NewslettersM, null))
                 {
-                    this.Parent_Publisher_NewslettersM = new CR1NPRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersMetaInfo, Newsletter._Parent_Publisher_NewslettersGuidMetaInfo);
+                    this.Parent_Publisher_NewslettersM = new CR1NPRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_Newsletters_MetaInfo, Newsletter._Parent_Publisher_NewslettersGuid_MetaInfo);
                 }
                 return this.Parent_Publisher_NewslettersM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Publisher_NewslettersMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Publisher_Newsletters_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_NewslettersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Parent_Publisher_Newsletters_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid> Parent_Gift_ReleaseNewsletter_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Gift_ReleaseNewsletter_GuidM, null))
+                {
+                    this.Parent_Gift_ReleaseNewsletter_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.Guid>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletter_Guid_MetaInfo);
+                }
+                return this.Parent_Gift_ReleaseNewsletter_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Gift_ReleaseNewsletter_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletter_Guid_MetaInfoM;
             }
         }
         
@@ -1787,17 +1870,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_ReleaseNewsletterM, null))
                 {
-                    this.Parent_Gift_ReleaseNewsletterM = new CR11PRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletterMetaInfo, Gift._ReleaseNewsletterGuidMetaInfo);
+                    this.Parent_Gift_ReleaseNewsletterM = new CR11PRef<CbVoucherApp.Code.Domain.Newsletter, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletter_MetaInfo, Newsletter._Parent_Gift_ReleaseNewsletter_Guid_MetaInfo);
                 }
                 return this.Parent_Gift_ReleaseNewsletterM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Gift_ReleaseNewsletterMetaInfo
+        public static CR11PRefMetaInfo _Parent_Gift_ReleaseNewsletter_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletterMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Parent_Gift_ReleaseNewsletter_MetaInfoM;
             }
         }
         
@@ -1808,17 +1891,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MomentM, null))
                 {
-                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.DateTime>(this, CbVoucherApp.Code.Domain.Newsletter._MomentMetaInfo);
+                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, System.DateTime>(this, CbVoucherApp.Code.Domain.Newsletter._Moment_MetaInfo);
                 }
                 return this.MomentM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MomentMetaInfo
+        public static CSkalarRefMetaInfo _Moment_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._MomentMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Moment_MetaInfoM;
             }
         }
         
@@ -1829,17 +1912,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.HeadM, null))
                 {
-                    this.HeadM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string>(this, CbVoucherApp.Code.Domain.Newsletter._HeadMetaInfo);
+                    this.HeadM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string>(this, CbVoucherApp.Code.Domain.Newsletter._Head_MetaInfo);
                 }
                 return this.HeadM;
             }
         }
         
-        public static CSkalarRefMetaInfo _HeadMetaInfo
+        public static CSkalarRefMetaInfo _Head_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._HeadMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Head_MetaInfoM;
             }
         }
         
@@ -1850,17 +1933,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BodyM, null))
                 {
-                    this.BodyM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string>(this, CbVoucherApp.Code.Domain.Newsletter._BodyMetaInfo);
+                    this.BodyM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, string>(this, CbVoucherApp.Code.Domain.Newsletter._Body_MetaInfo);
                 }
                 return this.BodyM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BodyMetaInfo
+        public static CSkalarRefMetaInfo _Body_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._BodyMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Body_MetaInfoM;
             }
         }
         
@@ -1871,192 +1954,30 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SentM, null))
                 {
-                    this.SentM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, bool>(this, CbVoucherApp.Code.Domain.Newsletter._SentMetaInfo);
+                    this.SentM = new CSkalarRef<CbVoucherApp.Code.Domain.Newsletter, bool>(this, CbVoucherApp.Code.Domain.Newsletter._Sent_MetaInfo);
                 }
                 return this.SentM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SentMetaInfo
+        public static CSkalarRefMetaInfo _Sent_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Newsletter._SentMetaInfoM;
+                return CbVoucherApp.Code.Domain.Newsletter._Sent_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Newsletter._Parent_Publisher_NewslettersGuidMetaInfo);
-            aAddProperty.Invoke(Newsletter._Parent_Publisher_NewslettersMetaInfo);
-            aAddProperty.Invoke(Newsletter._Parent_Gift_ReleaseNewsletterMetaInfo);
-            aAddProperty.Invoke(Newsletter._MomentMetaInfo);
-            aAddProperty.Invoke(Newsletter._HeadMetaInfo);
-            aAddProperty.Invoke(Newsletter._BodyMetaInfo);
-            aAddProperty.Invoke(Newsletter._SentMetaInfo);
-        }
-    }
-    
-    public class TextTemplate : CEntityObject
-    {
-        
-        public static CbOrm.Meta.CTyp _TextTemplate_TypM = new CbOrm.Meta.CTyp(typeof(TextTemplate), new System.Guid("00000000-0000-0000-0000-000000000000"), TextTemplate._GetProperties);
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid> Parent_Publisher_TextTemplatesGuidM;
-        
-        private static CSkalarRefMetaInfo _Parent_Publisher_TextTemplatesGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(Parent_Publisher_TextTemplatesGuid));
-        
-        private CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_TextTemplatesM;
-        
-        private static CR1NPRefMetaInfo _Parent_Publisher_TextTemplatesMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(Parent_Publisher_TextTemplates));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string> TemplateTextM;
-        
-        private static CSkalarRefMetaInfo _TemplateTextMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(TemplateText));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum> FormatEnumM;
-        
-        private static CSkalarRefMetaInfo _FormatEnumMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(FormatEnum));
-        
-        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum> UseCaseM;
-        
-        private static CSkalarRefMetaInfo _UseCaseMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(UseCase));
-        
-        public TextTemplate(CStorage aStorage) : 
-                base(aStorage)
-        {
-        }
-        
-        public static CbOrm.Meta.CTyp _TextTemplate_Typ
-        {
-            get
-            {
-                return TextTemplate._TextTemplate_TypM;
-            }
-        }
-        
-        public override CbOrm.Meta.CTyp Typ
-        {
-            get
-            {
-                return TextTemplate._TextTemplate_Typ;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
-        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Publisher))]
-        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("TextTemplates")]
-        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid> Parent_Publisher_TextTemplatesGuid
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.Parent_Publisher_TextTemplatesGuidM, null))
-                {
-                    this.Parent_Publisher_TextTemplatesGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid>(this, CbVoucherApp.Code.Domain.TextTemplate._Parent_Publisher_TextTemplatesGuidMetaInfo, new CbOrm.Ref.CAccessKey());
-                }
-                return this.Parent_Publisher_TextTemplatesGuidM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _Parent_Publisher_TextTemplatesGuidMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.TextTemplate._Parent_Publisher_TextTemplatesGuidMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Publisher))]
-        public CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_TextTemplates
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.Parent_Publisher_TextTemplatesM, null))
-                {
-                    this.Parent_Publisher_TextTemplatesM = new CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.TextTemplate._Parent_Publisher_TextTemplatesMetaInfo, TextTemplate._Parent_Publisher_TextTemplatesGuidMetaInfo);
-                }
-                return this.Parent_Publisher_TextTemplatesM;
-            }
-        }
-        
-        public static CR1NPRefMetaInfo _Parent_Publisher_TextTemplatesMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.TextTemplate._Parent_Publisher_TextTemplatesMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(string))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string> TemplateText
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.TemplateTextM, null))
-                {
-                    this.TemplateTextM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string>(this, CbVoucherApp.Code.Domain.TextTemplate._TemplateTextMetaInfo);
-                }
-                return this.TemplateTextM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _TemplateTextMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.TextTemplate._TemplateTextMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextFormatEnum))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum> FormatEnum
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.FormatEnumM, null))
-                {
-                    this.FormatEnumM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum>(this, CbVoucherApp.Code.Domain.TextTemplate._FormatEnumMetaInfo);
-                }
-                return this.FormatEnumM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _FormatEnumMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.TextTemplate._FormatEnumMetaInfoM;
-            }
-        }
-        
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum> UseCase
-        {
-            get
-            {
-                if (Object.ReferenceEquals(this.UseCaseM, null))
-                {
-                    this.UseCaseM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum>(this, CbVoucherApp.Code.Domain.TextTemplate._UseCaseMetaInfo);
-                }
-                return this.UseCaseM;
-            }
-        }
-        
-        public static CSkalarRefMetaInfo _UseCaseMetaInfo
-        {
-            get
-            {
-                return CbVoucherApp.Code.Domain.TextTemplate._UseCaseMetaInfoM;
-            }
-        }
-        
-        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
-        {
-            aAddProperty.Invoke(TextTemplate._Parent_Publisher_TextTemplatesGuidMetaInfo);
-            aAddProperty.Invoke(TextTemplate._Parent_Publisher_TextTemplatesMetaInfo);
-            aAddProperty.Invoke(TextTemplate._TemplateTextMetaInfo);
-            aAddProperty.Invoke(TextTemplate._FormatEnumMetaInfo);
-            aAddProperty.Invoke(TextTemplate._UseCaseMetaInfo);
+            aAddProperty.Invoke(Newsletter._Parent_Publisher_NewslettersGuid_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Parent_Publisher_Newsletters_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Parent_Gift_ReleaseNewsletter_Guid_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Parent_Gift_ReleaseNewsletter_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Moment_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Head_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Body_MetaInfo);
+            aAddProperty.Invoke(Newsletter._Sent_MetaInfo);
         }
     }
     
@@ -2067,23 +1988,23 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid> Parent_Gift_DownloadFormatsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Gift_DownloadFormatsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Parent_Gift_DownloadFormatsGuid));
+        private static CSkalarRefMetaInfo _Parent_Gift_DownloadFormatsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Parent_Gift_DownloadFormatsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Gift> Parent_Gift_DownloadFormatsM;
         
-        private static CR1NPRefMetaInfo _Parent_Gift_DownloadFormatsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Parent_Gift_DownloadFormats));
+        private static CR1NPRefMetaInfo _Parent_Gift_DownloadFormats_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Parent_Gift_DownloadFormats));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid> ContentGuidM;
         
-        private static CSkalarRefMetaInfo _ContentGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(ContentGuid));
+        private static CSkalarRefMetaInfo _ContentGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(ContentGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, string> NameM;
         
-        private static CSkalarRefMetaInfo _NameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Name));
+        private static CSkalarRefMetaInfo _Name_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Name));
         
         private CR11CRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Content> ContentM;
         
-        private static CR11CRefMetaInfo _ContentMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Content));
+        private static CR11CRefMetaInfo _Content_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.DownloadFormat), nameof(Content));
         
         public DownloadFormat(CStorage aStorage) : 
                 base(aStorage)
@@ -2115,17 +2036,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_DownloadFormatsGuidM, null))
                 {
-                    this.Parent_Gift_DownloadFormatsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid>(this, CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Gift_DownloadFormatsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid>(this, CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Gift_DownloadFormatsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Gift_DownloadFormatsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Gift_DownloadFormatsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsGuid_MetaInfoM;
             }
         }
         
@@ -2136,17 +2057,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_DownloadFormatsM, null))
                 {
-                    this.Parent_Gift_DownloadFormatsM = new CR1NPRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsMetaInfo, DownloadFormat._Parent_Gift_DownloadFormatsGuidMetaInfo);
+                    this.Parent_Gift_DownloadFormatsM = new CR1NPRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormats_MetaInfo, DownloadFormat._Parent_Gift_DownloadFormatsGuid_MetaInfo);
                 }
                 return this.Parent_Gift_DownloadFormatsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Gift_DownloadFormatsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Gift_DownloadFormats_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormatsMetaInfoM;
+                return CbVoucherApp.Code.Domain.DownloadFormat._Parent_Gift_DownloadFormats_MetaInfoM;
             }
         }
         
@@ -2159,17 +2080,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ContentGuidM, null))
                 {
-                    this.ContentGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid>(this, CbVoucherApp.Code.Domain.DownloadFormat._ContentGuidMetaInfo);
+                    this.ContentGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, System.Guid>(this, CbVoucherApp.Code.Domain.DownloadFormat._ContentGuid_MetaInfo);
                 }
                 return this.ContentGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ContentGuidMetaInfo
+        public static CSkalarRefMetaInfo _ContentGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.DownloadFormat._ContentGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.DownloadFormat._ContentGuid_MetaInfoM;
             }
         }
         
@@ -2180,17 +2101,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, string>(this, CbVoucherApp.Code.Domain.DownloadFormat._NameMetaInfo);
+                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.DownloadFormat, string>(this, CbVoucherApp.Code.Domain.DownloadFormat._Name_MetaInfo);
                 }
                 return this.NameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _NameMetaInfo
+        public static CSkalarRefMetaInfo _Name_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.DownloadFormat._NameMetaInfoM;
+                return CbVoucherApp.Code.Domain.DownloadFormat._Name_MetaInfoM;
             }
         }
         
@@ -2201,27 +2122,27 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ContentM, null))
                 {
-                    this.ContentM = new CR11CRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.DownloadFormat._ContentMetaInfo, CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_ContentMetaInfo);
+                    this.ContentM = new CR11CRef<CbVoucherApp.Code.Domain.DownloadFormat, CbVoucherApp.Code.Domain.Content>(this, CbVoucherApp.Code.Domain.DownloadFormat._Content_MetaInfo, CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_Content_MetaInfo);
                 }
                 return this.ContentM;
             }
         }
         
-        public static CR11CRefMetaInfo _ContentMetaInfo
+        public static CR11CRefMetaInfo _Content_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.DownloadFormat._ContentMetaInfoM;
+                return CbVoucherApp.Code.Domain.DownloadFormat._Content_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(DownloadFormat._Parent_Gift_DownloadFormatsGuidMetaInfo);
-            aAddProperty.Invoke(DownloadFormat._Parent_Gift_DownloadFormatsMetaInfo);
-            aAddProperty.Invoke(DownloadFormat._ContentGuidMetaInfo);
-            aAddProperty.Invoke(DownloadFormat._NameMetaInfo);
-            aAddProperty.Invoke(DownloadFormat._ContentMetaInfo);
+            aAddProperty.Invoke(DownloadFormat._Parent_Gift_DownloadFormatsGuid_MetaInfo);
+            aAddProperty.Invoke(DownloadFormat._Parent_Gift_DownloadFormats_MetaInfo);
+            aAddProperty.Invoke(DownloadFormat._ContentGuid_MetaInfo);
+            aAddProperty.Invoke(DownloadFormat._Name_MetaInfo);
+            aAddProperty.Invoke(DownloadFormat._Content_MetaInfo);
         }
     }
     
@@ -2232,23 +2153,23 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Campaign, System.Guid> Parent_Gift_CampaignsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Gift_CampaignsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Parent_Gift_CampaignsGuid));
+        private static CSkalarRefMetaInfo _Parent_Gift_CampaignsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Parent_Gift_CampaignsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Gift> Parent_Gift_CampaignsM;
         
-        private static CR1NPRefMetaInfo _Parent_Gift_CampaignsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Parent_Gift_Campaigns));
+        private static CR1NPRefMetaInfo _Parent_Gift_Campaigns_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Parent_Gift_Campaigns));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Campaign, string> NameM;
         
-        private static CSkalarRefMetaInfo _NameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Name));
+        private static CSkalarRefMetaInfo _Name_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Name));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Campaign, int> VoucherCountM;
         
-        private static CSkalarRefMetaInfo _VoucherCountMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(VoucherCount));
+        private static CSkalarRefMetaInfo _VoucherCount_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(VoucherCount));
         
         private CR1NWRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Voucher> VouchersM;
         
-        private static CR1NWRefMetaInfo _VouchersMetaInfoM = new CR1NWRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Vouchers));
+        private static CR1NWRefMetaInfo _Vouchers_MetaInfoM = new CR1NWRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Campaign), nameof(Vouchers));
         
         public Campaign(CStorage aStorage) : 
                 base(aStorage)
@@ -2280,17 +2201,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_CampaignsGuidM, null))
                 {
-                    this.Parent_Gift_CampaignsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, System.Guid>(this, CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Gift_CampaignsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, System.Guid>(this, CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Gift_CampaignsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Gift_CampaignsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Gift_CampaignsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsGuid_MetaInfoM;
             }
         }
         
@@ -2301,17 +2222,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_CampaignsM, null))
                 {
-                    this.Parent_Gift_CampaignsM = new CR1NPRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsMetaInfo, Campaign._Parent_Gift_CampaignsGuidMetaInfo);
+                    this.Parent_Gift_CampaignsM = new CR1NPRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Campaign._Parent_Gift_Campaigns_MetaInfo, Campaign._Parent_Gift_CampaignsGuid_MetaInfo);
                 }
                 return this.Parent_Gift_CampaignsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Gift_CampaignsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Gift_Campaigns_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Campaign._Parent_Gift_CampaignsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Campaign._Parent_Gift_Campaigns_MetaInfoM;
             }
         }
         
@@ -2322,17 +2243,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NameM, null))
                 {
-                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, string>(this, CbVoucherApp.Code.Domain.Campaign._NameMetaInfo);
+                    this.NameM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, string>(this, CbVoucherApp.Code.Domain.Campaign._Name_MetaInfo);
                 }
                 return this.NameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _NameMetaInfo
+        public static CSkalarRefMetaInfo _Name_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Campaign._NameMetaInfoM;
+                return CbVoucherApp.Code.Domain.Campaign._Name_MetaInfoM;
             }
         }
         
@@ -2343,17 +2264,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherCountM, null))
                 {
-                    this.VoucherCountM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, int>(this, CbVoucherApp.Code.Domain.Campaign._VoucherCountMetaInfo);
+                    this.VoucherCountM = new CSkalarRef<CbVoucherApp.Code.Domain.Campaign, int>(this, CbVoucherApp.Code.Domain.Campaign._VoucherCount_MetaInfo);
                 }
                 return this.VoucherCountM;
             }
         }
         
-        public static CSkalarRefMetaInfo _VoucherCountMetaInfo
+        public static CSkalarRefMetaInfo _VoucherCount_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Campaign._VoucherCountMetaInfoM;
+                return CbVoucherApp.Code.Domain.Campaign._VoucherCount_MetaInfoM;
             }
         }
         
@@ -2364,27 +2285,27 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VouchersM, null))
                 {
-                    this.VouchersM = new CR1NWRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.Campaign._VouchersMetaInfo);
+                    this.VouchersM = new CR1NWRef<CbVoucherApp.Code.Domain.Campaign, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.Campaign._Vouchers_MetaInfo);
                 }
                 return this.VouchersM;
             }
         }
         
-        public static CR1NWRefMetaInfo _VouchersMetaInfo
+        public static CR1NWRefMetaInfo _Vouchers_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Campaign._VouchersMetaInfoM;
+                return CbVoucherApp.Code.Domain.Campaign._Vouchers_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Campaign._Parent_Gift_CampaignsGuidMetaInfo);
-            aAddProperty.Invoke(Campaign._Parent_Gift_CampaignsMetaInfo);
-            aAddProperty.Invoke(Campaign._NameMetaInfo);
-            aAddProperty.Invoke(Campaign._VoucherCountMetaInfo);
-            aAddProperty.Invoke(Campaign._VouchersMetaInfo);
+            aAddProperty.Invoke(Campaign._Parent_Gift_CampaignsGuid_MetaInfo);
+            aAddProperty.Invoke(Campaign._Parent_Gift_Campaigns_MetaInfo);
+            aAddProperty.Invoke(Campaign._Name_MetaInfo);
+            aAddProperty.Invoke(Campaign._VoucherCount_MetaInfo);
+            aAddProperty.Invoke(Campaign._Vouchers_MetaInfo);
         }
     }
     
@@ -2395,59 +2316,59 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid> Parent_Gift_VoucherRequestsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Gift_VoucherRequestsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Parent_Gift_VoucherRequestsGuid));
+        private static CSkalarRefMetaInfo _Parent_Gift_VoucherRequestsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Parent_Gift_VoucherRequestsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Gift> Parent_Gift_VoucherRequestsM;
         
-        private static CR1NPRefMetaInfo _Parent_Gift_VoucherRequestsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Parent_Gift_VoucherRequests));
+        private static CR1NPRefMetaInfo _Parent_Gift_VoucherRequests_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Parent_Gift_VoucherRequests));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid> VoucherGuidM;
         
-        private static CSkalarRefMetaInfo _VoucherGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(VoucherGuid));
+        private static CSkalarRefMetaInfo _VoucherGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(VoucherGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> WebSiteM;
         
-        private static CSkalarRefMetaInfo _WebSiteMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(WebSite));
+        private static CSkalarRefMetaInfo _WebSite_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(WebSite));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CEmailAdress> EmailM;
         
-        private static CSkalarRefMetaInfo _EmailMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Email));
+        private static CSkalarRefMetaInfo _Email_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Email));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string> PresentingPlatformNameM;
         
-        private static CSkalarRefMetaInfo _PresentingPlatformNameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformName));
+        private static CSkalarRefMetaInfo _PresentingPlatformName_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformName));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri> PresentingPlatformWebsiteM;
         
-        private static CSkalarRefMetaInfo _PresentingPlatformWebsiteMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformWebsite));
+        private static CSkalarRefMetaInfo _PresentingPlatformWebsite_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(PresentingPlatformWebsite));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string> MessageM;
         
-        private static CSkalarRefMetaInfo _MessageMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Message));
+        private static CSkalarRefMetaInfo _Message_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Message));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool> AutoGrantedM;
         
-        private static CSkalarRefMetaInfo _AutoGrantedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(AutoGranted));
+        private static CSkalarRefMetaInfo _AutoGranted_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(AutoGranted));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool> AutoBlockedM;
         
-        private static CSkalarRefMetaInfo _AutoBlockedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(AutoBlocked));
+        private static CSkalarRefMetaInfo _AutoBlocked_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(AutoBlocked));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool> ManuallyGrantedM;
         
-        private static CSkalarRefMetaInfo _ManuallyGrantedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(ManuallyGranted));
+        private static CSkalarRefMetaInfo _ManuallyGranted_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(ManuallyGranted));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool> ManuallyBlockedM;
         
-        private static CSkalarRefMetaInfo _ManuallyBlockedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(ManuallyBlocked));
+        private static CSkalarRefMetaInfo _ManuallyBlocked_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(ManuallyBlocked));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool> SubscribeM;
         
-        private static CSkalarRefMetaInfo _SubscribeMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Subscribe));
+        private static CSkalarRefMetaInfo _Subscribe_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Subscribe));
         
         private CR11CRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Voucher> VoucherM;
         
-        private static CR11CRefMetaInfo _VoucherMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Voucher));
+        private static CR11CRefMetaInfo _Voucher_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherRequest), nameof(Voucher));
         
         public VoucherRequest(CStorage aStorage) : 
                 base(aStorage)
@@ -2479,17 +2400,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_VoucherRequestsGuidM, null))
                 {
-                    this.Parent_Gift_VoucherRequestsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Gift_VoucherRequestsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Gift_VoucherRequestsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Gift_VoucherRequestsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Gift_VoucherRequestsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsGuid_MetaInfoM;
             }
         }
         
@@ -2500,17 +2421,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_VoucherRequestsM, null))
                 {
-                    this.Parent_Gift_VoucherRequestsM = new CR1NPRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsMetaInfo, VoucherRequest._Parent_Gift_VoucherRequestsGuidMetaInfo);
+                    this.Parent_Gift_VoucherRequestsM = new CR1NPRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequests_MetaInfo, VoucherRequest._Parent_Gift_VoucherRequestsGuid_MetaInfo);
                 }
                 return this.Parent_Gift_VoucherRequestsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Gift_VoucherRequestsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Gift_VoucherRequests_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequestsMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Parent_Gift_VoucherRequests_MetaInfoM;
             }
         }
         
@@ -2523,17 +2444,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherGuidM, null))
                 {
-                    this.VoucherGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherRequest._VoucherGuidMetaInfo);
+                    this.VoucherGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherRequest._VoucherGuid_MetaInfo);
                 }
                 return this.VoucherGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _VoucherGuidMetaInfo
+        public static CSkalarRefMetaInfo _VoucherGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._VoucherGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._VoucherGuid_MetaInfoM;
             }
         }
         
@@ -2544,17 +2465,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.WebSiteM, null))
                 {
-                    this.WebSiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._WebSiteMetaInfo);
+                    this.WebSiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._WebSite_MetaInfo);
                 }
                 return this.WebSiteM;
             }
         }
         
-        public static CSkalarRefMetaInfo _WebSiteMetaInfo
+        public static CSkalarRefMetaInfo _WebSite_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._WebSiteMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._WebSite_MetaInfoM;
             }
         }
         
@@ -2565,17 +2486,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
                 {
-                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.VoucherRequest._EmailMetaInfo);
+                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.VoucherRequest._Email_MetaInfo);
                 }
                 return this.EmailM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailMetaInfo
+        public static CSkalarRefMetaInfo _Email_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._EmailMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Email_MetaInfoM;
             }
         }
         
@@ -2586,17 +2507,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PresentingPlatformNameM, null))
                 {
-                    this.PresentingPlatformNameM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformNameMetaInfo);
+                    this.PresentingPlatformNameM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformName_MetaInfo);
                 }
                 return this.PresentingPlatformNameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PresentingPlatformNameMetaInfo
+        public static CSkalarRefMetaInfo _PresentingPlatformName_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformNameMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformName_MetaInfoM;
             }
         }
         
@@ -2607,17 +2528,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PresentingPlatformWebsiteM, null))
                 {
-                    this.PresentingPlatformWebsiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsiteMetaInfo);
+                    this.PresentingPlatformWebsiteM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, CbOrm.App.Web.CUri>(this, CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsite_MetaInfo);
                 }
                 return this.PresentingPlatformWebsiteM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PresentingPlatformWebsiteMetaInfo
+        public static CSkalarRefMetaInfo _PresentingPlatformWebsite_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsiteMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._PresentingPlatformWebsite_MetaInfoM;
             }
         }
         
@@ -2628,17 +2549,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MessageM, null))
                 {
-                    this.MessageM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string>(this, CbVoucherApp.Code.Domain.VoucherRequest._MessageMetaInfo);
+                    this.MessageM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, string>(this, CbVoucherApp.Code.Domain.VoucherRequest._Message_MetaInfo);
                 }
                 return this.MessageM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MessageMetaInfo
+        public static CSkalarRefMetaInfo _Message_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._MessageMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Message_MetaInfoM;
             }
         }
         
@@ -2649,17 +2570,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoGrantedM, null))
                 {
-                    this.AutoGrantedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._AutoGrantedMetaInfo);
+                    this.AutoGrantedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._AutoGranted_MetaInfo);
                 }
                 return this.AutoGrantedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _AutoGrantedMetaInfo
+        public static CSkalarRefMetaInfo _AutoGranted_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._AutoGrantedMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._AutoGranted_MetaInfoM;
             }
         }
         
@@ -2670,17 +2591,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoBlockedM, null))
                 {
-                    this.AutoBlockedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._AutoBlockedMetaInfo);
+                    this.AutoBlockedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._AutoBlocked_MetaInfo);
                 }
                 return this.AutoBlockedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _AutoBlockedMetaInfo
+        public static CSkalarRefMetaInfo _AutoBlocked_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._AutoBlockedMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._AutoBlocked_MetaInfoM;
             }
         }
         
@@ -2691,17 +2612,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ManuallyGrantedM, null))
                 {
-                    this.ManuallyGrantedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._ManuallyGrantedMetaInfo);
+                    this.ManuallyGrantedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._ManuallyGranted_MetaInfo);
                 }
                 return this.ManuallyGrantedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ManuallyGrantedMetaInfo
+        public static CSkalarRefMetaInfo _ManuallyGranted_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._ManuallyGrantedMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._ManuallyGranted_MetaInfoM;
             }
         }
         
@@ -2712,17 +2633,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ManuallyBlockedM, null))
                 {
-                    this.ManuallyBlockedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._ManuallyBlockedMetaInfo);
+                    this.ManuallyBlockedM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._ManuallyBlocked_MetaInfo);
                 }
                 return this.ManuallyBlockedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ManuallyBlockedMetaInfo
+        public static CSkalarRefMetaInfo _ManuallyBlocked_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._ManuallyBlockedMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._ManuallyBlocked_MetaInfoM;
             }
         }
         
@@ -2733,17 +2654,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SubscribeM, null))
                 {
-                    this.SubscribeM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._SubscribeMetaInfo);
+                    this.SubscribeM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherRequest, bool>(this, CbVoucherApp.Code.Domain.VoucherRequest._Subscribe_MetaInfo);
                 }
                 return this.SubscribeM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SubscribeMetaInfo
+        public static CSkalarRefMetaInfo _Subscribe_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._SubscribeMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Subscribe_MetaInfoM;
             }
         }
         
@@ -2754,36 +2675,36 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherM, null))
                 {
-                    this.VoucherM = new CR11CRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.VoucherRequest._VoucherMetaInfo, CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_VoucherMetaInfo);
+                    this.VoucherM = new CR11CRef<CbVoucherApp.Code.Domain.VoucherRequest, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.VoucherRequest._Voucher_MetaInfo, CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_Voucher_MetaInfo);
                 }
                 return this.VoucherM;
             }
         }
         
-        public static CR11CRefMetaInfo _VoucherMetaInfo
+        public static CR11CRefMetaInfo _Voucher_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherRequest._VoucherMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherRequest._Voucher_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(VoucherRequest._Parent_Gift_VoucherRequestsGuidMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._Parent_Gift_VoucherRequestsMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._VoucherGuidMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._WebSiteMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._EmailMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._PresentingPlatformNameMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._PresentingPlatformWebsiteMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._MessageMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._AutoGrantedMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._AutoBlockedMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._ManuallyGrantedMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._ManuallyBlockedMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._SubscribeMetaInfo);
-            aAddProperty.Invoke(VoucherRequest._VoucherMetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Parent_Gift_VoucherRequestsGuid_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Parent_Gift_VoucherRequests_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._VoucherGuid_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._WebSite_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Email_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._PresentingPlatformName_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._PresentingPlatformWebsite_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Message_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._AutoGranted_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._AutoBlocked_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._ManuallyGranted_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._ManuallyBlocked_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Subscribe_MetaInfo);
+            aAddProperty.Invoke(VoucherRequest._Voucher_MetaInfo);
         }
     }
     
@@ -2794,19 +2715,19 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.Guid> Parent_Subscriber_SubscriptionRequestsGuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Subscriber_SubscriptionRequestsGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Parent_Subscriber_SubscriptionRequestsGuid));
+        private static CSkalarRefMetaInfo _Parent_Subscriber_SubscriptionRequestsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Parent_Subscriber_SubscriptionRequestsGuid));
         
         private CR1NPRef<CbVoucherApp.Code.Domain.SubscriptionRequest, CbVoucherApp.Code.Domain.Subscriber> Parent_Subscriber_SubscriptionRequestsM;
         
-        private static CR1NPRefMetaInfo _Parent_Subscriber_SubscriptionRequestsMetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Parent_Subscriber_SubscriptionRequests));
+        private static CR1NPRefMetaInfo _Parent_Subscriber_SubscriptionRequests_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Parent_Subscriber_SubscriptionRequests));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.DateTime> MomentM;
         
-        private static CSkalarRefMetaInfo _MomentMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Moment));
+        private static CSkalarRefMetaInfo _Moment_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Moment));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, string> MessageM;
         
-        private static CSkalarRefMetaInfo _MessageMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Message));
+        private static CSkalarRefMetaInfo _Message_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.SubscriptionRequest), nameof(Message));
         
         public SubscriptionRequest(CStorage aStorage) : 
                 base(aStorage)
@@ -2838,17 +2759,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Subscriber_SubscriptionRequestsGuidM, null))
                 {
-                    this.Parent_Subscriber_SubscriptionRequestsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.Guid>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuidMetaInfo, new CbOrm.Ref.CAccessKey());
+                    this.Parent_Subscriber_SubscriptionRequestsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.Guid>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
                 }
                 return this.Parent_Subscriber_SubscriptionRequestsGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Subscriber_SubscriptionRequestsGuidMetaInfo
+        public static CSkalarRefMetaInfo _Parent_Subscriber_SubscriptionRequestsGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuid_MetaInfoM;
             }
         }
         
@@ -2859,17 +2780,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Subscriber_SubscriptionRequestsM, null))
                 {
-                    this.Parent_Subscriber_SubscriptionRequestsM = new CR1NPRef<CbVoucherApp.Code.Domain.SubscriptionRequest, CbVoucherApp.Code.Domain.Subscriber>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsMetaInfo, SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuidMetaInfo);
+                    this.Parent_Subscriber_SubscriptionRequestsM = new CR1NPRef<CbVoucherApp.Code.Domain.SubscriptionRequest, CbVoucherApp.Code.Domain.Subscriber>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequests_MetaInfo, SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuid_MetaInfo);
                 }
                 return this.Parent_Subscriber_SubscriptionRequestsM;
             }
         }
         
-        public static CR1NPRefMetaInfo _Parent_Subscriber_SubscriptionRequestsMetaInfo
+        public static CR1NPRefMetaInfo _Parent_Subscriber_SubscriptionRequests_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsMetaInfoM;
+                return CbVoucherApp.Code.Domain.SubscriptionRequest._Parent_Subscriber_SubscriptionRequests_MetaInfoM;
             }
         }
         
@@ -2880,17 +2801,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MomentM, null))
                 {
-                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.DateTime>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._MomentMetaInfo);
+                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, System.DateTime>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Moment_MetaInfo);
                 }
                 return this.MomentM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MomentMetaInfo
+        public static CSkalarRefMetaInfo _Moment_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.SubscriptionRequest._MomentMetaInfoM;
+                return CbVoucherApp.Code.Domain.SubscriptionRequest._Moment_MetaInfoM;
             }
         }
         
@@ -2901,26 +2822,189 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MessageM, null))
                 {
-                    this.MessageM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, string>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._MessageMetaInfo);
+                    this.MessageM = new CSkalarRef<CbVoucherApp.Code.Domain.SubscriptionRequest, string>(this, CbVoucherApp.Code.Domain.SubscriptionRequest._Message_MetaInfo);
                 }
                 return this.MessageM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MessageMetaInfo
+        public static CSkalarRefMetaInfo _Message_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.SubscriptionRequest._MessageMetaInfoM;
+                return CbVoucherApp.Code.Domain.SubscriptionRequest._Message_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuidMetaInfo);
-            aAddProperty.Invoke(SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsMetaInfo);
-            aAddProperty.Invoke(SubscriptionRequest._MomentMetaInfo);
-            aAddProperty.Invoke(SubscriptionRequest._MessageMetaInfo);
+            aAddProperty.Invoke(SubscriptionRequest._Parent_Subscriber_SubscriptionRequestsGuid_MetaInfo);
+            aAddProperty.Invoke(SubscriptionRequest._Parent_Subscriber_SubscriptionRequests_MetaInfo);
+            aAddProperty.Invoke(SubscriptionRequest._Moment_MetaInfo);
+            aAddProperty.Invoke(SubscriptionRequest._Message_MetaInfo);
+        }
+    }
+    
+    public class TextTemplate : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _TextTemplate_TypM = new CbOrm.Meta.CTyp(typeof(TextTemplate), new System.Guid("00000000-0000-0000-0000-000000000000"), TextTemplate._GetProperties);
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid> Parent_TextTemplates_ItemsGuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_TextTemplates_ItemsGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(Parent_TextTemplates_ItemsGuid));
+        
+        private CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplates> Parent_TextTemplates_ItemsM;
+        
+        private static CR1NPRefMetaInfo _Parent_TextTemplates_Items_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(Parent_TextTemplates_Items));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string> TemplateTextM;
+        
+        private static CSkalarRefMetaInfo _TemplateText_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(TemplateText));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum> FormatEnumM;
+        
+        private static CSkalarRefMetaInfo _FormatEnum_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(FormatEnum));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum> UseCaseM;
+        
+        private static CSkalarRefMetaInfo _UseCase_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplate), nameof(UseCase));
+        
+        public TextTemplate(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _TextTemplate_Typ
+        {
+            get
+            {
+                return TextTemplate._TextTemplate_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return TextTemplate._TextTemplate_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(TextTemplates))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("Items")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid> Parent_TextTemplates_ItemsGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_TextTemplates_ItemsGuidM, null))
+                {
+                    this.Parent_TextTemplates_ItemsGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, System.Guid>(this, CbVoucherApp.Code.Domain.TextTemplate._Parent_TextTemplates_ItemsGuid_MetaInfo, new CbOrm.Ref.CAccessKey());
+                }
+                return this.Parent_TextTemplates_ItemsGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_TextTemplates_ItemsGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplate._Parent_TextTemplates_ItemsGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplates))]
+        public CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplates> Parent_TextTemplates_Items
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_TextTemplates_ItemsM, null))
+                {
+                    this.Parent_TextTemplates_ItemsM = new CR1NPRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplates>(this, CbVoucherApp.Code.Domain.TextTemplate._Parent_TextTemplates_Items_MetaInfo, TextTemplate._Parent_TextTemplates_ItemsGuid_MetaInfo);
+                }
+                return this.Parent_TextTemplates_ItemsM;
+            }
+        }
+        
+        public static CR1NPRefMetaInfo _Parent_TextTemplates_Items_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplate._Parent_TextTemplates_Items_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(string))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string> TemplateText
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.TemplateTextM, null))
+                {
+                    this.TemplateTextM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, string>(this, CbVoucherApp.Code.Domain.TextTemplate._TemplateText_MetaInfo);
+                }
+                return this.TemplateTextM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _TemplateText_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplate._TemplateText_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextFormatEnum))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum> FormatEnum
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.FormatEnumM, null))
+                {
+                    this.FormatEnumM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextFormatEnum>(this, CbVoucherApp.Code.Domain.TextTemplate._FormatEnum_MetaInfo);
+                }
+                return this.FormatEnumM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _FormatEnum_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplate._FormatEnum_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum> UseCase
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.UseCaseM, null))
+                {
+                    this.UseCaseM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplate, CbVoucherApp.Code.Domain.TextTemplateUseCaseEnum>(this, CbVoucherApp.Code.Domain.TextTemplate._UseCase_MetaInfo);
+                }
+                return this.UseCaseM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _UseCase_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplate._UseCase_MetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(TextTemplate._Parent_TextTemplates_ItemsGuid_MetaInfo);
+            aAddProperty.Invoke(TextTemplate._Parent_TextTemplates_Items_MetaInfo);
+            aAddProperty.Invoke(TextTemplate._TemplateText_MetaInfo);
+            aAddProperty.Invoke(TextTemplate._FormatEnum_MetaInfo);
+            aAddProperty.Invoke(TextTemplate._UseCase_MetaInfo);
         }
     }
     
@@ -2931,15 +3015,27 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid> EmailAccountGuidM;
         
-        private static CSkalarRefMetaInfo _EmailAccountGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(EmailAccountGuid));
+        private static CSkalarRefMetaInfo _EmailAccountGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(EmailAccountGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid> TextTemplatesGuidM;
+        
+        private static CSkalarRefMetaInfo _TextTemplatesGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(TextTemplatesGuid));
         
         private CR1NCRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.Account> AccountsM;
         
-        private static CR1NCRefMetaInfo _AccountsMetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(Accounts));
+        private static CR1NCRefMetaInfo _Accounts_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(Accounts));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.EmailAccount> EmailAccountM;
         
-        private static CR11CRefMetaInfo _EmailAccountMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(EmailAccount));
+        private static CR11CRefMetaInfo _EmailAccount_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(EmailAccount));
+        
+        private CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.TextTemplates> TextTemplatesM;
+        
+        private static CR11CRefMetaInfo _TextTemplates_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(TextTemplates));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Site, long> InitialAccountWebspaceM;
+        
+        private static CSkalarRefMetaInfo _InitialAccountWebspace_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Site), nameof(InitialAccountWebspace));
         
         public Site(CStorage aStorage) : 
                 base(aStorage)
@@ -2971,17 +3067,40 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailAccountGuidM, null))
                 {
-                    this.EmailAccountGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid>(this, CbVoucherApp.Code.Domain.Site._EmailAccountGuidMetaInfo);
+                    this.EmailAccountGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid>(this, CbVoucherApp.Code.Domain.Site._EmailAccountGuid_MetaInfo);
                 }
                 return this.EmailAccountGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailAccountGuidMetaInfo
+        public static CSkalarRefMetaInfo _EmailAccountGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Site._EmailAccountGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Site._EmailAccountGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Site))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("TextTemplates")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid> TextTemplatesGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.TextTemplatesGuidM, null))
+                {
+                    this.TextTemplatesGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Site, System.Guid>(this, CbVoucherApp.Code.Domain.Site._TextTemplatesGuid_MetaInfo);
+                }
+                return this.TextTemplatesGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _TextTemplatesGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Site._TextTemplatesGuid_MetaInfoM;
             }
         }
         
@@ -2992,17 +3111,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AccountsM, null))
                 {
-                    this.AccountsM = new CR1NCRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.Site._AccountsMetaInfo);
+                    this.AccountsM = new CR1NCRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.Site._Accounts_MetaInfo);
                 }
                 return this.AccountsM;
             }
         }
         
-        public static CR1NCRefMetaInfo _AccountsMetaInfo
+        public static CR1NCRefMetaInfo _Accounts_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Site._AccountsMetaInfoM;
+                return CbVoucherApp.Code.Domain.Site._Accounts_MetaInfoM;
             }
         }
         
@@ -3013,25 +3132,70 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailAccountM, null))
                 {
-                    this.EmailAccountM = new CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.EmailAccount>(this, CbVoucherApp.Code.Domain.Site._EmailAccountMetaInfo, CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccountMetaInfo);
+                    this.EmailAccountM = new CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.EmailAccount>(this, CbVoucherApp.Code.Domain.Site._EmailAccount_MetaInfo, CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccount_MetaInfo);
                 }
                 return this.EmailAccountM;
             }
         }
         
-        public static CR11CRefMetaInfo _EmailAccountMetaInfo
+        public static CR11CRefMetaInfo _EmailAccount_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Site._EmailAccountMetaInfoM;
+                return CbVoucherApp.Code.Domain.Site._EmailAccount_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplates))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.TextTemplates> TextTemplates
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.TextTemplatesM, null))
+                {
+                    this.TextTemplatesM = new CR11CRef<CbVoucherApp.Code.Domain.Site, CbVoucherApp.Code.Domain.TextTemplates>(this, CbVoucherApp.Code.Domain.Site._TextTemplates_MetaInfo, CbVoucherApp.Code.Domain.TextTemplates._Parent_Site_TextTemplates_MetaInfo);
+                }
+                return this.TextTemplatesM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _TextTemplates_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Site._TextTemplates_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(long))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Site, long> InitialAccountWebspace
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.InitialAccountWebspaceM, null))
+                {
+                    this.InitialAccountWebspaceM = new CSkalarRef<CbVoucherApp.Code.Domain.Site, long>(this, CbVoucherApp.Code.Domain.Site._InitialAccountWebspace_MetaInfo);
+                }
+                return this.InitialAccountWebspaceM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _InitialAccountWebspace_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Site._InitialAccountWebspace_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Site._EmailAccountGuidMetaInfo);
-            aAddProperty.Invoke(Site._AccountsMetaInfo);
-            aAddProperty.Invoke(Site._EmailAccountMetaInfo);
+            aAddProperty.Invoke(Site._EmailAccountGuid_MetaInfo);
+            aAddProperty.Invoke(Site._TextTemplatesGuid_MetaInfo);
+            aAddProperty.Invoke(Site._Accounts_MetaInfo);
+            aAddProperty.Invoke(Site._EmailAccount_MetaInfo);
+            aAddProperty.Invoke(Site._TextTemplates_MetaInfo);
+            aAddProperty.Invoke(Site._InitialAccountWebspace_MetaInfo);
         }
     }
     
@@ -3042,23 +3206,27 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid> VoucherDownloadGuidM;
         
-        private static CSkalarRefMetaInfo _VoucherDownloadGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(VoucherDownloadGuid));
+        private static CSkalarRefMetaInfo _VoucherDownloadGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(VoucherDownloadGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid> Parent_VoucherRequest_Voucher_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_VoucherRequest_Voucher_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(Parent_VoucherRequest_Voucher_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherRequest> Parent_VoucherRequest_VoucherM;
         
-        private static CR11PRefMetaInfo _Parent_VoucherRequest_VoucherMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(Parent_VoucherRequest_Voucher));
+        private static CR11PRefMetaInfo _Parent_VoucherRequest_Voucher_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(Parent_VoucherRequest_Voucher));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Voucher, bool> IsDownloadedM;
         
-        private static CSkalarRefMetaInfo _IsDownloadedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(IsDownloaded));
+        private static CSkalarRefMetaInfo _IsDownloaded_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(IsDownloaded));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Voucher, CbOrm.App.Web.CEmailAdress> RecipientM;
         
-        private static CSkalarRefMetaInfo _RecipientMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(Recipient));
+        private static CSkalarRefMetaInfo _Recipient_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(Recipient));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherDownload> VoucherDownloadM;
         
-        private static CR11CRefMetaInfo _VoucherDownloadMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(VoucherDownload));
+        private static CR11CRefMetaInfo _VoucherDownload_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Voucher), nameof(VoucherDownload));
         
         public Voucher(CStorage aStorage) : 
                 base(aStorage)
@@ -3090,17 +3258,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherDownloadGuidM, null))
                 {
-                    this.VoucherDownloadGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid>(this, CbVoucherApp.Code.Domain.Voucher._VoucherDownloadGuidMetaInfo);
+                    this.VoucherDownloadGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid>(this, CbVoucherApp.Code.Domain.Voucher._VoucherDownloadGuid_MetaInfo);
                 }
                 return this.VoucherDownloadGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _VoucherDownloadGuidMetaInfo
+        public static CSkalarRefMetaInfo _VoucherDownloadGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Voucher._VoucherDownloadGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Voucher._VoucherDownloadGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid> Parent_VoucherRequest_Voucher_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_VoucherRequest_Voucher_GuidM, null))
+                {
+                    this.Parent_VoucherRequest_Voucher_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, System.Guid>(this, CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_Voucher_Guid_MetaInfo);
+                }
+                return this.Parent_VoucherRequest_Voucher_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_VoucherRequest_Voucher_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_Voucher_Guid_MetaInfoM;
             }
         }
         
@@ -3111,17 +3300,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_VoucherRequest_VoucherM, null))
                 {
-                    this.Parent_VoucherRequest_VoucherM = new CR11PRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherRequest>(this, CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_VoucherMetaInfo, VoucherRequest._VoucherGuidMetaInfo);
+                    this.Parent_VoucherRequest_VoucherM = new CR11PRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherRequest>(this, CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_Voucher_MetaInfo, Voucher._Parent_VoucherRequest_Voucher_Guid_MetaInfo);
                 }
                 return this.Parent_VoucherRequest_VoucherM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_VoucherRequest_VoucherMetaInfo
+        public static CR11PRefMetaInfo _Parent_VoucherRequest_Voucher_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_VoucherMetaInfoM;
+                return CbVoucherApp.Code.Domain.Voucher._Parent_VoucherRequest_Voucher_MetaInfoM;
             }
         }
         
@@ -3132,17 +3321,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.IsDownloadedM, null))
                 {
-                    this.IsDownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, bool>(this, CbVoucherApp.Code.Domain.Voucher._IsDownloadedMetaInfo);
+                    this.IsDownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, bool>(this, CbVoucherApp.Code.Domain.Voucher._IsDownloaded_MetaInfo);
                 }
                 return this.IsDownloadedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _IsDownloadedMetaInfo
+        public static CSkalarRefMetaInfo _IsDownloaded_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Voucher._IsDownloadedMetaInfoM;
+                return CbVoucherApp.Code.Domain.Voucher._IsDownloaded_MetaInfoM;
             }
         }
         
@@ -3153,17 +3342,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.RecipientM, null))
                 {
-                    this.RecipientM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Voucher._RecipientMetaInfo);
+                    this.RecipientM = new CSkalarRef<CbVoucherApp.Code.Domain.Voucher, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.Voucher._Recipient_MetaInfo);
                 }
                 return this.RecipientM;
             }
         }
         
-        public static CSkalarRefMetaInfo _RecipientMetaInfo
+        public static CSkalarRefMetaInfo _Recipient_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Voucher._RecipientMetaInfoM;
+                return CbVoucherApp.Code.Domain.Voucher._Recipient_MetaInfoM;
             }
         }
         
@@ -3174,27 +3363,28 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.VoucherDownloadM, null))
                 {
-                    this.VoucherDownloadM = new CR11CRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherDownload>(this, CbVoucherApp.Code.Domain.Voucher._VoucherDownloadMetaInfo, CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownloadMetaInfo);
+                    this.VoucherDownloadM = new CR11CRef<CbVoucherApp.Code.Domain.Voucher, CbVoucherApp.Code.Domain.VoucherDownload>(this, CbVoucherApp.Code.Domain.Voucher._VoucherDownload_MetaInfo, CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownload_MetaInfo);
                 }
                 return this.VoucherDownloadM;
             }
         }
         
-        public static CR11CRefMetaInfo _VoucherDownloadMetaInfo
+        public static CR11CRefMetaInfo _VoucherDownload_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Voucher._VoucherDownloadMetaInfoM;
+                return CbVoucherApp.Code.Domain.Voucher._VoucherDownload_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Voucher._VoucherDownloadGuidMetaInfo);
-            aAddProperty.Invoke(Voucher._Parent_VoucherRequest_VoucherMetaInfo);
-            aAddProperty.Invoke(Voucher._IsDownloadedMetaInfo);
-            aAddProperty.Invoke(Voucher._RecipientMetaInfo);
-            aAddProperty.Invoke(Voucher._VoucherDownloadMetaInfo);
+            aAddProperty.Invoke(Voucher._VoucherDownloadGuid_MetaInfo);
+            aAddProperty.Invoke(Voucher._Parent_VoucherRequest_Voucher_Guid_MetaInfo);
+            aAddProperty.Invoke(Voucher._Parent_VoucherRequest_Voucher_MetaInfo);
+            aAddProperty.Invoke(Voucher._IsDownloaded_MetaInfo);
+            aAddProperty.Invoke(Voucher._Recipient_MetaInfo);
+            aAddProperty.Invoke(Voucher._VoucherDownload_MetaInfo);
         }
     }
     
@@ -3205,23 +3395,27 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid> LocationInfoGuidM;
         
-        private static CSkalarRefMetaInfo _LocationInfoGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(LocationInfoGuid));
+        private static CSkalarRefMetaInfo _LocationInfoGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(LocationInfoGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid> Parent_Voucher_VoucherDownload_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Voucher_VoucherDownload_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(Parent_Voucher_VoucherDownload_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.Voucher> Parent_Voucher_VoucherDownloadM;
         
-        private static CR11PRefMetaInfo _Parent_Voucher_VoucherDownloadMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(Parent_Voucher_VoucherDownload));
+        private static CR11PRefMetaInfo _Parent_Voucher_VoucherDownload_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(Parent_Voucher_VoucherDownload));
         
         private CR11WRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.DownloadFormat> DownloadFormatM;
         
-        private static CR11WRefMetaInfo _DownloadFormatMetaInfoM = new CR11WRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(DownloadFormat));
+        private static CR11WRefMetaInfo _DownloadFormat_MetaInfoM = new CR11WRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(DownloadFormat));
         
         private CR11CRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.LocationInfo> LocationInfoM;
         
-        private static CR11CRefMetaInfo _LocationInfoMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(LocationInfo));
+        private static CR11CRefMetaInfo _LocationInfo_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(LocationInfo));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, string> DownloadFormatTextM;
         
-        private static CSkalarRefMetaInfo _DownloadFormatTextMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(DownloadFormatText));
+        private static CSkalarRefMetaInfo _DownloadFormatText_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.VoucherDownload), nameof(DownloadFormatText));
         
         public VoucherDownload(CStorage aStorage) : 
                 base(aStorage)
@@ -3253,17 +3447,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.LocationInfoGuidM, null))
                 {
-                    this.LocationInfoGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoGuidMetaInfo);
+                    this.LocationInfoGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoGuid_MetaInfo);
                 }
                 return this.LocationInfoGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _LocationInfoGuidMetaInfo
+        public static CSkalarRefMetaInfo _LocationInfoGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid> Parent_Voucher_VoucherDownload_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Voucher_VoucherDownload_GuidM, null))
+                {
+                    this.Parent_Voucher_VoucherDownload_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, System.Guid>(this, CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownload_Guid_MetaInfo);
+                }
+                return this.Parent_Voucher_VoucherDownload_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Voucher_VoucherDownload_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownload_Guid_MetaInfoM;
             }
         }
         
@@ -3274,17 +3489,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Voucher_VoucherDownloadM, null))
                 {
-                    this.Parent_Voucher_VoucherDownloadM = new CR11PRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownloadMetaInfo, Voucher._VoucherDownloadGuidMetaInfo);
+                    this.Parent_Voucher_VoucherDownloadM = new CR11PRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.Voucher>(this, CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownload_MetaInfo, VoucherDownload._Parent_Voucher_VoucherDownload_Guid_MetaInfo);
                 }
                 return this.Parent_Voucher_VoucherDownloadM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Voucher_VoucherDownloadMetaInfo
+        public static CR11PRefMetaInfo _Parent_Voucher_VoucherDownload_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownloadMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherDownload._Parent_Voucher_VoucherDownload_MetaInfoM;
             }
         }
         
@@ -3295,17 +3510,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownloadFormatM, null))
                 {
-                    this.DownloadFormatM = new CR11WRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatMetaInfo);
+                    this.DownloadFormatM = new CR11WRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormat_MetaInfo);
                 }
                 return this.DownloadFormatM;
             }
         }
         
-        public static CR11WRefMetaInfo _DownloadFormatMetaInfo
+        public static CR11WRefMetaInfo _DownloadFormat_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormat_MetaInfoM;
             }
         }
         
@@ -3316,17 +3531,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.LocationInfoM, null))
                 {
-                    this.LocationInfoM = new CR11CRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.LocationInfo>(this, CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoMetaInfo, CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfoMetaInfo);
+                    this.LocationInfoM = new CR11CRef<CbVoucherApp.Code.Domain.VoucherDownload, CbVoucherApp.Code.Domain.LocationInfo>(this, CbVoucherApp.Code.Domain.VoucherDownload._LocationInfo_MetaInfo, CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfo_MetaInfo);
                 }
                 return this.LocationInfoM;
             }
         }
         
-        public static CR11CRefMetaInfo _LocationInfoMetaInfo
+        public static CR11CRefMetaInfo _LocationInfo_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherDownload._LocationInfoMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherDownload._LocationInfo_MetaInfoM;
             }
         }
         
@@ -3337,27 +3552,28 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownloadFormatTextM, null))
                 {
-                    this.DownloadFormatTextM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, string>(this, CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatTextMetaInfo);
+                    this.DownloadFormatTextM = new CSkalarRef<CbVoucherApp.Code.Domain.VoucherDownload, string>(this, CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatText_MetaInfo);
                 }
                 return this.DownloadFormatTextM;
             }
         }
         
-        public static CSkalarRefMetaInfo _DownloadFormatTextMetaInfo
+        public static CSkalarRefMetaInfo _DownloadFormatText_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatTextMetaInfoM;
+                return CbVoucherApp.Code.Domain.VoucherDownload._DownloadFormatText_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(VoucherDownload._LocationInfoGuidMetaInfo);
-            aAddProperty.Invoke(VoucherDownload._Parent_Voucher_VoucherDownloadMetaInfo);
-            aAddProperty.Invoke(VoucherDownload._DownloadFormatMetaInfo);
-            aAddProperty.Invoke(VoucherDownload._LocationInfoMetaInfo);
-            aAddProperty.Invoke(VoucherDownload._DownloadFormatTextMetaInfo);
+            aAddProperty.Invoke(VoucherDownload._LocationInfoGuid_MetaInfo);
+            aAddProperty.Invoke(VoucherDownload._Parent_Voucher_VoucherDownload_Guid_MetaInfo);
+            aAddProperty.Invoke(VoucherDownload._Parent_Voucher_VoucherDownload_MetaInfo);
+            aAddProperty.Invoke(VoucherDownload._DownloadFormat_MetaInfo);
+            aAddProperty.Invoke(VoucherDownload._LocationInfo_MetaInfo);
+            aAddProperty.Invoke(VoucherDownload._DownloadFormatText_MetaInfo);
         }
     }
     
@@ -3368,47 +3584,71 @@ namespace CbVoucherApp.Code.Domain
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> BlopGuidM;
         
-        private static CSkalarRefMetaInfo _BlopGuidMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(BlopGuid));
+        private static CSkalarRefMetaInfo _BlopGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(BlopGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BackgroundImage_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Publisher_BackgroundImage_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BackgroundImage_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_BackgroundImageM;
         
-        private static CR11PRefMetaInfo _Parent_Publisher_BackgroundImageMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BackgroundImage));
+        private static CR11PRefMetaInfo _Parent_Publisher_BackgroundImage_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BackgroundImage));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BluredBackgroundImage_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Publisher_BluredBackgroundImage_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BluredBackgroundImage_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_BluredBackgroundImageM;
         
-        private static CR11PRefMetaInfo _Parent_Publisher_BluredBackgroundImageMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BluredBackgroundImage));
+        private static CR11PRefMetaInfo _Parent_Publisher_BluredBackgroundImage_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_BluredBackgroundImage));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_PreviewImage_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Publisher_PreviewImage_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_PreviewImage_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher> Parent_Publisher_PreviewImageM;
         
-        private static CR11PRefMetaInfo _Parent_Publisher_PreviewImageMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_PreviewImage));
+        private static CR11PRefMetaInfo _Parent_Publisher_PreviewImage_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Publisher_PreviewImage));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Gift_Cover_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Gift_Cover_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_Cover_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift> Parent_Gift_CoverM;
         
-        private static CR11PRefMetaInfo _Parent_Gift_CoverMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_Cover));
+        private static CR11PRefMetaInfo _Parent_Gift_Cover_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_Cover));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Gift_BackgroundImage_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Gift_BackgroundImage_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_BackgroundImage_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift> Parent_Gift_BackgroundImageM;
         
-        private static CR11PRefMetaInfo _Parent_Gift_BackgroundImageMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_BackgroundImage));
+        private static CR11PRefMetaInfo _Parent_Gift_BackgroundImage_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_Gift_BackgroundImage));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_DownloadFormat_Content_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_DownloadFormat_Content_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_DownloadFormat_Content_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.DownloadFormat> Parent_DownloadFormat_ContentM;
         
-        private static CR11PRefMetaInfo _Parent_DownloadFormat_ContentMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_DownloadFormat_Content));
+        private static CR11PRefMetaInfo _Parent_DownloadFormat_Content_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Parent_DownloadFormat_Content));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Content, string> FileNameM;
         
-        private static CSkalarRefMetaInfo _FileNameMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(FileName));
+        private static CSkalarRefMetaInfo _FileName_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(FileName));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.ContentKindEnum> ContentKindM;
         
-        private static CSkalarRefMetaInfo _ContentKindMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(ContentKind));
+        private static CSkalarRefMetaInfo _ContentKind_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(ContentKind));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Content, string> RedirectTargetM;
         
-        private static CSkalarRefMetaInfo _RedirectTargetMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(RedirectTarget));
+        private static CSkalarRefMetaInfo _RedirectTarget_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(RedirectTarget));
         
         private CR11CRef<CbVoucherApp.Code.Domain.Content, CbOrm.Blop.CBlop> BlopM;
         
-        private static CR11CRefMetaInfo _BlopMetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Blop));
+        private static CR11CRefMetaInfo _Blop_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Content), nameof(Blop));
         
         public Content(CStorage aStorage) : 
                 base(aStorage)
@@ -3440,17 +3680,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BlopGuidM, null))
                 {
-                    this.BlopGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._BlopGuidMetaInfo);
+                    this.BlopGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._BlopGuid_MetaInfo);
                 }
                 return this.BlopGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _BlopGuidMetaInfo
+        public static CSkalarRefMetaInfo _BlopGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._BlopGuidMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._BlopGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BackgroundImage_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Publisher_BackgroundImage_GuidM, null))
+                {
+                    this.Parent_Publisher_BackgroundImage_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImage_Guid_MetaInfo);
+                }
+                return this.Parent_Publisher_BackgroundImage_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Publisher_BackgroundImage_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImage_Guid_MetaInfoM;
             }
         }
         
@@ -3461,17 +3722,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_BackgroundImageM, null))
                 {
-                    this.Parent_Publisher_BackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImageMetaInfo, Publisher._BackgroundImageGuidMetaInfo);
+                    this.Parent_Publisher_BackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImage_MetaInfo, Content._Parent_Publisher_BackgroundImage_Guid_MetaInfo);
                 }
                 return this.Parent_Publisher_BackgroundImageM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Publisher_BackgroundImageMetaInfo
+        public static CR11PRefMetaInfo _Parent_Publisher_BackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BackgroundImage_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_BluredBackgroundImage_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Publisher_BluredBackgroundImage_GuidM, null))
+                {
+                    this.Parent_Publisher_BluredBackgroundImage_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImage_Guid_MetaInfo);
+                }
+                return this.Parent_Publisher_BluredBackgroundImage_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Publisher_BluredBackgroundImage_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImage_Guid_MetaInfoM;
             }
         }
         
@@ -3482,17 +3764,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_BluredBackgroundImageM, null))
                 {
-                    this.Parent_Publisher_BluredBackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImageMetaInfo, Publisher._BluredBackgroundImageGuidMetaInfo);
+                    this.Parent_Publisher_BluredBackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImage_MetaInfo, Content._Parent_Publisher_BluredBackgroundImage_Guid_MetaInfo);
                 }
                 return this.Parent_Publisher_BluredBackgroundImageM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Publisher_BluredBackgroundImageMetaInfo
+        public static CR11PRefMetaInfo _Parent_Publisher_BluredBackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_BluredBackgroundImage_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Publisher_PreviewImage_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Publisher_PreviewImage_GuidM, null))
+                {
+                    this.Parent_Publisher_PreviewImage_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImage_Guid_MetaInfo);
+                }
+                return this.Parent_Publisher_PreviewImage_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Publisher_PreviewImage_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImage_Guid_MetaInfoM;
             }
         }
         
@@ -3503,17 +3806,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Publisher_PreviewImageM, null))
                 {
-                    this.Parent_Publisher_PreviewImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImageMetaInfo, Publisher._PreviewImageGuidMetaInfo);
+                    this.Parent_Publisher_PreviewImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Publisher>(this, CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImage_MetaInfo, Content._Parent_Publisher_PreviewImage_Guid_MetaInfo);
                 }
                 return this.Parent_Publisher_PreviewImageM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Publisher_PreviewImageMetaInfo
+        public static CR11PRefMetaInfo _Parent_Publisher_PreviewImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_Publisher_PreviewImage_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Gift_Cover_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Gift_Cover_GuidM, null))
+                {
+                    this.Parent_Gift_Cover_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_Cover_Guid_MetaInfo);
+                }
+                return this.Parent_Gift_Cover_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Gift_Cover_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_Gift_Cover_Guid_MetaInfoM;
             }
         }
         
@@ -3524,17 +3848,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_CoverM, null))
                 {
-                    this.Parent_Gift_CoverM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_CoverMetaInfo, Gift._CoverGuidMetaInfo);
+                    this.Parent_Gift_CoverM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_Cover_MetaInfo, Content._Parent_Gift_Cover_Guid_MetaInfo);
                 }
                 return this.Parent_Gift_CoverM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Gift_CoverMetaInfo
+        public static CR11PRefMetaInfo _Parent_Gift_Cover_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_Gift_CoverMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_Gift_Cover_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_Gift_BackgroundImage_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Gift_BackgroundImage_GuidM, null))
+                {
+                    this.Parent_Gift_BackgroundImage_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImage_Guid_MetaInfo);
+                }
+                return this.Parent_Gift_BackgroundImage_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Gift_BackgroundImage_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImage_Guid_MetaInfoM;
             }
         }
         
@@ -3545,17 +3890,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_BackgroundImageM, null))
                 {
-                    this.Parent_Gift_BackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImageMetaInfo, Gift._BackgroundImageGuidMetaInfo);
+                    this.Parent_Gift_BackgroundImageM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImage_MetaInfo, Content._Parent_Gift_BackgroundImage_Guid_MetaInfo);
                 }
                 return this.Parent_Gift_BackgroundImageM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Gift_BackgroundImageMetaInfo
+        public static CR11PRefMetaInfo _Parent_Gift_BackgroundImage_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImageMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_Gift_BackgroundImage_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid> Parent_DownloadFormat_Content_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_DownloadFormat_Content_GuidM, null))
+                {
+                    this.Parent_DownloadFormat_Content_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, System.Guid>(this, CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_Content_Guid_MetaInfo);
+                }
+                return this.Parent_DownloadFormat_Content_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_DownloadFormat_Content_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_Content_Guid_MetaInfoM;
             }
         }
         
@@ -3566,17 +3932,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_DownloadFormat_ContentM, null))
                 {
-                    this.Parent_DownloadFormat_ContentM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_ContentMetaInfo, DownloadFormat._ContentGuidMetaInfo);
+                    this.Parent_DownloadFormat_ContentM = new CR11PRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.DownloadFormat>(this, CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_Content_MetaInfo, Content._Parent_DownloadFormat_Content_Guid_MetaInfo);
                 }
                 return this.Parent_DownloadFormat_ContentM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_DownloadFormat_ContentMetaInfo
+        public static CR11PRefMetaInfo _Parent_DownloadFormat_Content_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_ContentMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Parent_DownloadFormat_Content_MetaInfoM;
             }
         }
         
@@ -3587,17 +3953,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.FileNameM, null))
                 {
-                    this.FileNameM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, string>(this, CbVoucherApp.Code.Domain.Content._FileNameMetaInfo);
+                    this.FileNameM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, string>(this, CbVoucherApp.Code.Domain.Content._FileName_MetaInfo);
                 }
                 return this.FileNameM;
             }
         }
         
-        public static CSkalarRefMetaInfo _FileNameMetaInfo
+        public static CSkalarRefMetaInfo _FileName_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._FileNameMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._FileName_MetaInfoM;
             }
         }
         
@@ -3608,17 +3974,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.ContentKindM, null))
                 {
-                    this.ContentKindM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.ContentKindEnum>(this, CbVoucherApp.Code.Domain.Content._ContentKindMetaInfo);
+                    this.ContentKindM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, CbVoucherApp.Code.Domain.ContentKindEnum>(this, CbVoucherApp.Code.Domain.Content._ContentKind_MetaInfo);
                 }
                 return this.ContentKindM;
             }
         }
         
-        public static CSkalarRefMetaInfo _ContentKindMetaInfo
+        public static CSkalarRefMetaInfo _ContentKind_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._ContentKindMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._ContentKind_MetaInfoM;
             }
         }
         
@@ -3629,17 +3995,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.RedirectTargetM, null))
                 {
-                    this.RedirectTargetM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, string>(this, CbVoucherApp.Code.Domain.Content._RedirectTargetMetaInfo);
+                    this.RedirectTargetM = new CSkalarRef<CbVoucherApp.Code.Domain.Content, string>(this, CbVoucherApp.Code.Domain.Content._RedirectTarget_MetaInfo);
                 }
                 return this.RedirectTargetM;
             }
         }
         
-        public static CSkalarRefMetaInfo _RedirectTargetMetaInfo
+        public static CSkalarRefMetaInfo _RedirectTarget_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._RedirectTargetMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._RedirectTarget_MetaInfoM;
             }
         }
         
@@ -3650,33 +4016,39 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.BlopM, null))
                 {
-                    this.BlopM = new CR11CRef<CbVoucherApp.Code.Domain.Content, CbOrm.Blop.CBlop>(this, CbVoucherApp.Code.Domain.Content._BlopMetaInfo);
+                    this.BlopM = new CR11CRef<CbVoucherApp.Code.Domain.Content, CbOrm.Blop.CBlop>(this, CbVoucherApp.Code.Domain.Content._Blop_MetaInfo);
                 }
                 return this.BlopM;
             }
         }
         
-        public static CR11CRefMetaInfo _BlopMetaInfo
+        public static CR11CRefMetaInfo _Blop_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Content._BlopMetaInfoM;
+                return CbVoucherApp.Code.Domain.Content._Blop_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(Content._BlopGuidMetaInfo);
-            aAddProperty.Invoke(Content._Parent_Publisher_BackgroundImageMetaInfo);
-            aAddProperty.Invoke(Content._Parent_Publisher_BluredBackgroundImageMetaInfo);
-            aAddProperty.Invoke(Content._Parent_Publisher_PreviewImageMetaInfo);
-            aAddProperty.Invoke(Content._Parent_Gift_CoverMetaInfo);
-            aAddProperty.Invoke(Content._Parent_Gift_BackgroundImageMetaInfo);
-            aAddProperty.Invoke(Content._Parent_DownloadFormat_ContentMetaInfo);
-            aAddProperty.Invoke(Content._FileNameMetaInfo);
-            aAddProperty.Invoke(Content._ContentKindMetaInfo);
-            aAddProperty.Invoke(Content._RedirectTargetMetaInfo);
-            aAddProperty.Invoke(Content._BlopMetaInfo);
+            aAddProperty.Invoke(Content._BlopGuid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_BackgroundImage_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_BackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_BluredBackgroundImage_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_BluredBackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_PreviewImage_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Publisher_PreviewImage_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Gift_Cover_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Gift_Cover_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Gift_BackgroundImage_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_Gift_BackgroundImage_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_DownloadFormat_Content_Guid_MetaInfo);
+            aAddProperty.Invoke(Content._Parent_DownloadFormat_Content_MetaInfo);
+            aAddProperty.Invoke(Content._FileName_MetaInfo);
+            aAddProperty.Invoke(Content._ContentKind_MetaInfo);
+            aAddProperty.Invoke(Content._RedirectTarget_MetaInfo);
+            aAddProperty.Invoke(Content._Blop_MetaInfo);
         }
     }
     
@@ -3685,45 +4057,61 @@ namespace CbVoucherApp.Code.Domain
         
         public static CbOrm.Meta.CTyp _EmailAccount_TypM = new CbOrm.Meta.CTyp(typeof(EmailAccount), new System.Guid("00000000-0000-0000-0000-000000000000"), EmailAccount._GetProperties);
         
+        private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid> Parent_Site_EmailAccount_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Site_EmailAccount_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Parent_Site_EmailAccount_Guid));
+        
         private CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Site> Parent_Site_EmailAccountM;
         
-        private static CR11PRefMetaInfo _Parent_Site_EmailAccountMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Parent_Site_EmailAccount));
+        private static CR11PRefMetaInfo _Parent_Site_EmailAccount_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Parent_Site_EmailAccount));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid> Parent_Account_EmailAccount_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Account_EmailAccount_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Parent_Account_EmailAccount_Guid));
+        
+        private CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailAccountM;
+        
+        private static CR11PRefMetaInfo _Parent_Account_EmailAccount_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Parent_Account_EmailAccount));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool> OverrideM;
+        
+        private static CSkalarRefMetaInfo _Override_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Override));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string> UserM;
         
-        private static CSkalarRefMetaInfo _UserMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(User));
+        private static CSkalarRefMetaInfo _User_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(User));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbOrm.App.Web.CEmailAdress> EmailM;
         
-        private static CSkalarRefMetaInfo _EmailMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Email));
+        private static CSkalarRefMetaInfo _Email_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Email));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string> PasswordM;
         
-        private static CSkalarRefMetaInfo _PasswordMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Password));
+        private static CSkalarRefMetaInfo _Password_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Password));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string> SmtpHostM;
         
-        private static CSkalarRefMetaInfo _SmtpHostMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SmtpHost));
+        private static CSkalarRefMetaInfo _SmtpHost_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SmtpHost));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint> SmtpPortM;
         
-        private static CSkalarRefMetaInfo _SmtpPortMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SmtpPort));
+        private static CSkalarRefMetaInfo _SmtpPort_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SmtpPort));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string> Pop3HostM;
         
-        private static CSkalarRefMetaInfo _Pop3HostMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Pop3Host));
+        private static CSkalarRefMetaInfo _Pop3Host_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Pop3Host));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint> Pop3PortM;
         
-        private static CSkalarRefMetaInfo _Pop3PortMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Pop3Port));
+        private static CSkalarRefMetaInfo _Pop3Port_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(Pop3Port));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool> UseSslM;
         
-        private static CSkalarRefMetaInfo _UseSslMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(UseSsl));
+        private static CSkalarRefMetaInfo _UseSsl_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(UseSsl));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.EmailSendStrategyEnum> SendStrategyEnumM;
         
-        private static CSkalarRefMetaInfo _SendStrategyEnumMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SendStrategyEnum));
+        private static CSkalarRefMetaInfo _SendStrategyEnum_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailAccount), nameof(SendStrategyEnum));
         
         public EmailAccount(CStorage aStorage) : 
                 base(aStorage)
@@ -3746,6 +4134,27 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid> Parent_Site_EmailAccount_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Site_EmailAccount_GuidM, null))
+                {
+                    this.Parent_Site_EmailAccount_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid>(this, CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccount_Guid_MetaInfo);
+                }
+                return this.Parent_Site_EmailAccount_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Site_EmailAccount_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccount_Guid_MetaInfoM;
+            }
+        }
+        
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Site))]
         public CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Site> Parent_Site_EmailAccount
         {
@@ -3753,17 +4162,80 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Site_EmailAccountM, null))
                 {
-                    this.Parent_Site_EmailAccountM = new CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Site>(this, CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccountMetaInfo, Site._EmailAccountGuidMetaInfo);
+                    this.Parent_Site_EmailAccountM = new CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Site>(this, CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccount_MetaInfo, EmailAccount._Parent_Site_EmailAccount_Guid_MetaInfo);
                 }
                 return this.Parent_Site_EmailAccountM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Site_EmailAccountMetaInfo
+        public static CR11PRefMetaInfo _Parent_Site_EmailAccount_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccountMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._Parent_Site_EmailAccount_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid> Parent_Account_EmailAccount_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_EmailAccount_GuidM, null))
+                {
+                    this.Parent_Account_EmailAccount_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, System.Guid>(this, CbVoucherApp.Code.Domain.EmailAccount._Parent_Account_EmailAccount_Guid_MetaInfo);
+                }
+                return this.Parent_Account_EmailAccount_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Account_EmailAccount_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailAccount._Parent_Account_EmailAccount_Guid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
+        public CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailAccount
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_EmailAccountM, null))
+                {
+                    this.Parent_Account_EmailAccountM = new CR11PRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.EmailAccount._Parent_Account_EmailAccount_MetaInfo, EmailAccount._Parent_Account_EmailAccount_Guid_MetaInfo);
+                }
+                return this.Parent_Account_EmailAccountM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_Account_EmailAccount_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailAccount._Parent_Account_EmailAccount_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool> Override
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.OverrideM, null))
+                {
+                    this.OverrideM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool>(this, CbVoucherApp.Code.Domain.EmailAccount._Override_MetaInfo);
+                }
+                return this.OverrideM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Override_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailAccount._Override_MetaInfoM;
             }
         }
         
@@ -3774,17 +4246,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.UserM, null))
                 {
-                    this.UserM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._UserMetaInfo);
+                    this.UserM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._User_MetaInfo);
                 }
                 return this.UserM;
             }
         }
         
-        public static CSkalarRefMetaInfo _UserMetaInfo
+        public static CSkalarRefMetaInfo _User_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._UserMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._User_MetaInfoM;
             }
         }
         
@@ -3795,17 +4267,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.EmailM, null))
                 {
-                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.EmailAccount._EmailMetaInfo);
+                    this.EmailM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbOrm.App.Web.CEmailAdress>(this, CbVoucherApp.Code.Domain.EmailAccount._Email_MetaInfo);
                 }
                 return this.EmailM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailMetaInfo
+        public static CSkalarRefMetaInfo _Email_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._EmailMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._Email_MetaInfoM;
             }
         }
         
@@ -3816,17 +4288,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PasswordM, null))
                 {
-                    this.PasswordM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._PasswordMetaInfo);
+                    this.PasswordM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._Password_MetaInfo);
                 }
                 return this.PasswordM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PasswordMetaInfo
+        public static CSkalarRefMetaInfo _Password_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._PasswordMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._Password_MetaInfoM;
             }
         }
         
@@ -3837,17 +4309,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SmtpHostM, null))
                 {
-                    this.SmtpHostM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._SmtpHostMetaInfo);
+                    this.SmtpHostM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._SmtpHost_MetaInfo);
                 }
                 return this.SmtpHostM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SmtpHostMetaInfo
+        public static CSkalarRefMetaInfo _SmtpHost_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._SmtpHostMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._SmtpHost_MetaInfoM;
             }
         }
         
@@ -3858,17 +4330,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SmtpPortM, null))
                 {
-                    this.SmtpPortM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint>(this, CbVoucherApp.Code.Domain.EmailAccount._SmtpPortMetaInfo);
+                    this.SmtpPortM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint>(this, CbVoucherApp.Code.Domain.EmailAccount._SmtpPort_MetaInfo);
                 }
                 return this.SmtpPortM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SmtpPortMetaInfo
+        public static CSkalarRefMetaInfo _SmtpPort_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._SmtpPortMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._SmtpPort_MetaInfoM;
             }
         }
         
@@ -3879,17 +4351,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Pop3HostM, null))
                 {
-                    this.Pop3HostM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._Pop3HostMetaInfo);
+                    this.Pop3HostM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, string>(this, CbVoucherApp.Code.Domain.EmailAccount._Pop3Host_MetaInfo);
                 }
                 return this.Pop3HostM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Pop3HostMetaInfo
+        public static CSkalarRefMetaInfo _Pop3Host_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._Pop3HostMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._Pop3Host_MetaInfoM;
             }
         }
         
@@ -3900,17 +4372,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Pop3PortM, null))
                 {
-                    this.Pop3PortM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint>(this, CbVoucherApp.Code.Domain.EmailAccount._Pop3PortMetaInfo);
+                    this.Pop3PortM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, uint>(this, CbVoucherApp.Code.Domain.EmailAccount._Pop3Port_MetaInfo);
                 }
                 return this.Pop3PortM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Pop3PortMetaInfo
+        public static CSkalarRefMetaInfo _Pop3Port_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._Pop3PortMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._Pop3Port_MetaInfoM;
             }
         }
         
@@ -3921,17 +4393,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.UseSslM, null))
                 {
-                    this.UseSslM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool>(this, CbVoucherApp.Code.Domain.EmailAccount._UseSslMetaInfo);
+                    this.UseSslM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, bool>(this, CbVoucherApp.Code.Domain.EmailAccount._UseSsl_MetaInfo);
                 }
                 return this.UseSslM;
             }
         }
         
-        public static CSkalarRefMetaInfo _UseSslMetaInfo
+        public static CSkalarRefMetaInfo _UseSsl_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._UseSslMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._UseSsl_MetaInfoM;
             }
         }
         
@@ -3942,32 +4414,306 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.SendStrategyEnumM, null))
                 {
-                    this.SendStrategyEnumM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.EmailSendStrategyEnum>(this, CbVoucherApp.Code.Domain.EmailAccount._SendStrategyEnumMetaInfo);
+                    this.SendStrategyEnumM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailAccount, CbVoucherApp.Code.Domain.EmailSendStrategyEnum>(this, CbVoucherApp.Code.Domain.EmailAccount._SendStrategyEnum_MetaInfo);
                 }
                 return this.SendStrategyEnumM;
             }
         }
         
-        public static CSkalarRefMetaInfo _SendStrategyEnumMetaInfo
+        public static CSkalarRefMetaInfo _SendStrategyEnum_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailAccount._SendStrategyEnumMetaInfoM;
+                return CbVoucherApp.Code.Domain.EmailAccount._SendStrategyEnum_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(EmailAccount._Parent_Site_EmailAccountMetaInfo);
-            aAddProperty.Invoke(EmailAccount._UserMetaInfo);
-            aAddProperty.Invoke(EmailAccount._EmailMetaInfo);
-            aAddProperty.Invoke(EmailAccount._PasswordMetaInfo);
-            aAddProperty.Invoke(EmailAccount._SmtpHostMetaInfo);
-            aAddProperty.Invoke(EmailAccount._SmtpPortMetaInfo);
-            aAddProperty.Invoke(EmailAccount._Pop3HostMetaInfo);
-            aAddProperty.Invoke(EmailAccount._Pop3PortMetaInfo);
-            aAddProperty.Invoke(EmailAccount._UseSslMetaInfo);
-            aAddProperty.Invoke(EmailAccount._SendStrategyEnumMetaInfo);
+            aAddProperty.Invoke(EmailAccount._Parent_Site_EmailAccount_Guid_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Parent_Site_EmailAccount_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Parent_Account_EmailAccount_Guid_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Parent_Account_EmailAccount_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Override_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._User_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Email_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Password_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._SmtpHost_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._SmtpPort_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Pop3Host_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._Pop3Port_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._UseSsl_MetaInfo);
+            aAddProperty.Invoke(EmailAccount._SendStrategyEnum_MetaInfo);
+        }
+    }
+    
+    public class TextTemplates : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _TextTemplates_TypM = new CbOrm.Meta.CTyp(typeof(TextTemplates), new System.Guid("00000000-0000-0000-0000-000000000000"), TextTemplates._GetProperties);
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid> Parent_Site_TextTemplates_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Site_TextTemplates_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplates), nameof(Parent_Site_TextTemplates_Guid));
+        
+        private CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Site> Parent_Site_TextTemplatesM;
+        
+        private static CR11PRefMetaInfo _Parent_Site_TextTemplates_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplates), nameof(Parent_Site_TextTemplates));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid> Parent_Account_TextTemplates_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Account_TextTemplates_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplates), nameof(Parent_Account_TextTemplates_Guid));
+        
+        private CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Account> Parent_Account_TextTemplatesM;
+        
+        private static CR11PRefMetaInfo _Parent_Account_TextTemplates_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplates), nameof(Parent_Account_TextTemplates));
+        
+        private CR1NCRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.TextTemplate> ItemsM;
+        
+        private static CR1NCRefMetaInfo _Items_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.TextTemplates), nameof(Items));
+        
+        public TextTemplates(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _TextTemplates_Typ
+        {
+            get
+            {
+                return TextTemplates._TextTemplates_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return TextTemplates._TextTemplates_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid> Parent_Site_TextTemplates_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Site_TextTemplates_GuidM, null))
+                {
+                    this.Parent_Site_TextTemplates_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid>(this, CbVoucherApp.Code.Domain.TextTemplates._Parent_Site_TextTemplates_Guid_MetaInfo);
+                }
+                return this.Parent_Site_TextTemplates_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Site_TextTemplates_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplates._Parent_Site_TextTemplates_Guid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Site))]
+        public CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Site> Parent_Site_TextTemplates
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Site_TextTemplatesM, null))
+                {
+                    this.Parent_Site_TextTemplatesM = new CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Site>(this, CbVoucherApp.Code.Domain.TextTemplates._Parent_Site_TextTemplates_MetaInfo, TextTemplates._Parent_Site_TextTemplates_Guid_MetaInfo);
+                }
+                return this.Parent_Site_TextTemplatesM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_Site_TextTemplates_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplates._Parent_Site_TextTemplates_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid> Parent_Account_TextTemplates_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_TextTemplates_GuidM, null))
+                {
+                    this.Parent_Account_TextTemplates_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.TextTemplates, System.Guid>(this, CbVoucherApp.Code.Domain.TextTemplates._Parent_Account_TextTemplates_Guid_MetaInfo);
+                }
+                return this.Parent_Account_TextTemplates_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Account_TextTemplates_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplates._Parent_Account_TextTemplates_Guid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
+        public CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Account> Parent_Account_TextTemplates
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_TextTemplatesM, null))
+                {
+                    this.Parent_Account_TextTemplatesM = new CR11PRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.TextTemplates._Parent_Account_TextTemplates_MetaInfo, TextTemplates._Parent_Account_TextTemplates_Guid_MetaInfo);
+                }
+                return this.Parent_Account_TextTemplatesM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_Account_TextTemplates_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplates._Parent_Account_TextTemplates_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.TextTemplate))]
+        public CR1NCRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.TextTemplate> Items
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.ItemsM, null))
+                {
+                    this.ItemsM = new CR1NCRef<CbVoucherApp.Code.Domain.TextTemplates, CbVoucherApp.Code.Domain.TextTemplate>(this, CbVoucherApp.Code.Domain.TextTemplates._Items_MetaInfo);
+                }
+                return this.ItemsM;
+            }
+        }
+        
+        public static CR1NCRefMetaInfo _Items_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.TextTemplates._Items_MetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(TextTemplates._Parent_Site_TextTemplates_Guid_MetaInfo);
+            aAddProperty.Invoke(TextTemplates._Parent_Site_TextTemplates_MetaInfo);
+            aAddProperty.Invoke(TextTemplates._Parent_Account_TextTemplates_Guid_MetaInfo);
+            aAddProperty.Invoke(TextTemplates._Parent_Account_TextTemplates_MetaInfo);
+            aAddProperty.Invoke(TextTemplates._Items_MetaInfo);
+        }
+    }
+    
+    public class EmailConfirmation : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _EmailConfirmation_TypM = new CbOrm.Meta.CTyp(typeof(EmailConfirmation), new System.Guid("00000000-0000-0000-0000-000000000000"), EmailConfirmation._GetProperties);
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid> Parent_Account_EmailConfirmation_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Account_EmailConfirmation_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Parent_Account_EmailConfirmation_Guid));
+        
+        private CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailConfirmationM;
+        
+        private static CR11PRefMetaInfo _Parent_Account_EmailConfirmation_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Parent_Account_EmailConfirmation));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool> ConfirmedM;
+        
+        private static CSkalarRefMetaInfo _Confirmed_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Confirmed));
+        
+        public EmailConfirmation(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _EmailConfirmation_Typ
+        {
+            get
+            {
+                return EmailConfirmation._EmailConfirmation_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return EmailConfirmation._EmailConfirmation_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid> Parent_Account_EmailConfirmation_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_EmailConfirmation_GuidM, null))
+                {
+                    this.Parent_Account_EmailConfirmation_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
+                }
+                return this.Parent_Account_EmailConfirmation_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Account_EmailConfirmation_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
+        public CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailConfirmation
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_EmailConfirmationM, null))
+                {
+                    this.Parent_Account_EmailConfirmationM = new CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo, EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
+                }
+                return this.Parent_Account_EmailConfirmationM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_Account_EmailConfirmation_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool> Confirmed
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.ConfirmedM, null))
+                {
+                    this.ConfirmedM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Confirmed_MetaInfo);
+                }
+                return this.ConfirmedM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Confirmed_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.EmailConfirmation._Confirmed_MetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
+            aAddProperty.Invoke(EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo);
+            aAddProperty.Invoke(EmailConfirmation._Confirmed_MetaInfo);
         }
     }
     
@@ -3976,49 +4722,57 @@ namespace CbVoucherApp.Code.Domain
         
         public static CbOrm.Meta.CTyp _LocationInfo_TypM = new CbOrm.Meta.CTyp(typeof(LocationInfo), new System.Guid("00000000-0000-0000-0000-000000000000"), LocationInfo._GetProperties);
         
+        private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid> Parent_Account_Created_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Account_Created_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_Account_Created_Guid));
+        
         private CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.Account> Parent_Account_CreatedM;
         
-        private static CR11PRefMetaInfo _Parent_Account_CreatedMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_Account_Created));
+        private static CR11PRefMetaInfo _Parent_Account_Created_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_Account_Created));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid> Parent_VoucherDownload_LocationInfo_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_VoucherDownload_LocationInfo_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_VoucherDownload_LocationInfo_Guid));
         
         private CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.VoucherDownload> Parent_VoucherDownload_LocationInfoM;
         
-        private static CR11PRefMetaInfo _Parent_VoucherDownload_LocationInfoMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_VoucherDownload_LocationInfo));
+        private static CR11PRefMetaInfo _Parent_VoucherDownload_LocationInfo_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Parent_VoucherDownload_LocationInfo));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.DateTime> MomentM;
         
-        private static CSkalarRefMetaInfo _MomentMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Moment));
+        private static CSkalarRefMetaInfo _Moment_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Moment));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> IpAdressM;
         
-        private static CSkalarRefMetaInfo _IpAdressMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(IpAdress));
+        private static CSkalarRefMetaInfo _IpAdress_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(IpAdress));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> TimezoneM;
         
-        private static CSkalarRefMetaInfo _TimezoneMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Timezone));
+        private static CSkalarRefMetaInfo _Timezone_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Timezone));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> CountryM;
         
-        private static CSkalarRefMetaInfo _CountryMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Country));
+        private static CSkalarRefMetaInfo _Country_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Country));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> RegionM;
         
-        private static CSkalarRefMetaInfo _RegionMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Region));
+        private static CSkalarRefMetaInfo _Region_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Region));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> PostalM;
         
-        private static CSkalarRefMetaInfo _PostalMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Postal));
+        private static CSkalarRefMetaInfo _Postal_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Postal));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> CityM;
         
-        private static CSkalarRefMetaInfo _CityMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(City));
+        private static CSkalarRefMetaInfo _City_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(City));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> OrganisationM;
         
-        private static CSkalarRefMetaInfo _OrganisationMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Organisation));
+        private static CSkalarRefMetaInfo _Organisation_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Organisation));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string> LocationM;
         
-        private static CSkalarRefMetaInfo _LocationMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Location));
+        private static CSkalarRefMetaInfo _Location_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.LocationInfo), nameof(Location));
         
         public LocationInfo(CStorage aStorage) : 
                 base(aStorage)
@@ -4041,6 +4795,27 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid> Parent_Account_Created_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_Created_GuidM, null))
+                {
+                    this.Parent_Account_Created_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_Created_Guid_MetaInfo);
+                }
+                return this.Parent_Account_Created_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Account_Created_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_Created_Guid_MetaInfoM;
+            }
+        }
+        
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
         public CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.Account> Parent_Account_Created
         {
@@ -4048,17 +4823,38 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Account_CreatedM, null))
                 {
-                    this.Parent_Account_CreatedM = new CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_CreatedMetaInfo, Account._CreatedGuidMetaInfo);
+                    this.Parent_Account_CreatedM = new CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_Created_MetaInfo, LocationInfo._Parent_Account_Created_Guid_MetaInfo);
                 }
                 return this.Parent_Account_CreatedM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Account_CreatedMetaInfo
+        public static CR11PRefMetaInfo _Parent_Account_Created_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_CreatedMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Parent_Account_Created_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid> Parent_VoucherDownload_LocationInfo_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_VoucherDownload_LocationInfo_GuidM, null))
+                {
+                    this.Parent_VoucherDownload_LocationInfo_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.Guid>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfo_Guid_MetaInfo);
+                }
+                return this.Parent_VoucherDownload_LocationInfo_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_VoucherDownload_LocationInfo_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfo_Guid_MetaInfoM;
             }
         }
         
@@ -4069,17 +4865,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_VoucherDownload_LocationInfoM, null))
                 {
-                    this.Parent_VoucherDownload_LocationInfoM = new CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.VoucherDownload>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfoMetaInfo, VoucherDownload._LocationInfoGuidMetaInfo);
+                    this.Parent_VoucherDownload_LocationInfoM = new CR11PRef<CbVoucherApp.Code.Domain.LocationInfo, CbVoucherApp.Code.Domain.VoucherDownload>(this, CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfo_MetaInfo, LocationInfo._Parent_VoucherDownload_LocationInfo_Guid_MetaInfo);
                 }
                 return this.Parent_VoucherDownload_LocationInfoM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_VoucherDownload_LocationInfoMetaInfo
+        public static CR11PRefMetaInfo _Parent_VoucherDownload_LocationInfo_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfoMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Parent_VoucherDownload_LocationInfo_MetaInfoM;
             }
         }
         
@@ -4090,17 +4886,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.MomentM, null))
                 {
-                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.DateTime>(this, CbVoucherApp.Code.Domain.LocationInfo._MomentMetaInfo);
+                    this.MomentM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, System.DateTime>(this, CbVoucherApp.Code.Domain.LocationInfo._Moment_MetaInfo);
                 }
                 return this.MomentM;
             }
         }
         
-        public static CSkalarRefMetaInfo _MomentMetaInfo
+        public static CSkalarRefMetaInfo _Moment_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._MomentMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Moment_MetaInfoM;
             }
         }
         
@@ -4111,17 +4907,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.IpAdressM, null))
                 {
-                    this.IpAdressM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._IpAdressMetaInfo);
+                    this.IpAdressM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._IpAdress_MetaInfo);
                 }
                 return this.IpAdressM;
             }
         }
         
-        public static CSkalarRefMetaInfo _IpAdressMetaInfo
+        public static CSkalarRefMetaInfo _IpAdress_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._IpAdressMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._IpAdress_MetaInfoM;
             }
         }
         
@@ -4132,17 +4928,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.TimezoneM, null))
                 {
-                    this.TimezoneM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._TimezoneMetaInfo);
+                    this.TimezoneM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Timezone_MetaInfo);
                 }
                 return this.TimezoneM;
             }
         }
         
-        public static CSkalarRefMetaInfo _TimezoneMetaInfo
+        public static CSkalarRefMetaInfo _Timezone_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._TimezoneMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Timezone_MetaInfoM;
             }
         }
         
@@ -4153,17 +4949,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CountryM, null))
                 {
-                    this.CountryM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._CountryMetaInfo);
+                    this.CountryM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Country_MetaInfo);
                 }
                 return this.CountryM;
             }
         }
         
-        public static CSkalarRefMetaInfo _CountryMetaInfo
+        public static CSkalarRefMetaInfo _Country_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._CountryMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Country_MetaInfoM;
             }
         }
         
@@ -4174,17 +4970,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.RegionM, null))
                 {
-                    this.RegionM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._RegionMetaInfo);
+                    this.RegionM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Region_MetaInfo);
                 }
                 return this.RegionM;
             }
         }
         
-        public static CSkalarRefMetaInfo _RegionMetaInfo
+        public static CSkalarRefMetaInfo _Region_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._RegionMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Region_MetaInfoM;
             }
         }
         
@@ -4195,17 +4991,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.PostalM, null))
                 {
-                    this.PostalM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._PostalMetaInfo);
+                    this.PostalM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Postal_MetaInfo);
                 }
                 return this.PostalM;
             }
         }
         
-        public static CSkalarRefMetaInfo _PostalMetaInfo
+        public static CSkalarRefMetaInfo _Postal_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._PostalMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Postal_MetaInfoM;
             }
         }
         
@@ -4216,17 +5012,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.CityM, null))
                 {
-                    this.CityM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._CityMetaInfo);
+                    this.CityM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._City_MetaInfo);
                 }
                 return this.CityM;
             }
         }
         
-        public static CSkalarRefMetaInfo _CityMetaInfo
+        public static CSkalarRefMetaInfo _City_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._CityMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._City_MetaInfoM;
             }
         }
         
@@ -4237,17 +5033,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.OrganisationM, null))
                 {
-                    this.OrganisationM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._OrganisationMetaInfo);
+                    this.OrganisationM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Organisation_MetaInfo);
                 }
                 return this.OrganisationM;
             }
         }
         
-        public static CSkalarRefMetaInfo _OrganisationMetaInfo
+        public static CSkalarRefMetaInfo _Organisation_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._OrganisationMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Organisation_MetaInfoM;
             }
         }
         
@@ -4258,33 +5054,35 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.LocationM, null))
                 {
-                    this.LocationM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._LocationMetaInfo);
+                    this.LocationM = new CSkalarRef<CbVoucherApp.Code.Domain.LocationInfo, string>(this, CbVoucherApp.Code.Domain.LocationInfo._Location_MetaInfo);
                 }
                 return this.LocationM;
             }
         }
         
-        public static CSkalarRefMetaInfo _LocationMetaInfo
+        public static CSkalarRefMetaInfo _Location_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.LocationInfo._LocationMetaInfoM;
+                return CbVoucherApp.Code.Domain.LocationInfo._Location_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(LocationInfo._Parent_Account_CreatedMetaInfo);
-            aAddProperty.Invoke(LocationInfo._Parent_VoucherDownload_LocationInfoMetaInfo);
-            aAddProperty.Invoke(LocationInfo._MomentMetaInfo);
-            aAddProperty.Invoke(LocationInfo._IpAdressMetaInfo);
-            aAddProperty.Invoke(LocationInfo._TimezoneMetaInfo);
-            aAddProperty.Invoke(LocationInfo._CountryMetaInfo);
-            aAddProperty.Invoke(LocationInfo._RegionMetaInfo);
-            aAddProperty.Invoke(LocationInfo._PostalMetaInfo);
-            aAddProperty.Invoke(LocationInfo._CityMetaInfo);
-            aAddProperty.Invoke(LocationInfo._OrganisationMetaInfo);
-            aAddProperty.Invoke(LocationInfo._LocationMetaInfo);
+            aAddProperty.Invoke(LocationInfo._Parent_Account_Created_Guid_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Parent_Account_Created_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Parent_VoucherDownload_LocationInfo_Guid_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Parent_VoucherDownload_LocationInfo_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Moment_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._IpAdress_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Timezone_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Country_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Region_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Postal_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._City_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Organisation_MetaInfo);
+            aAddProperty.Invoke(LocationInfo._Location_MetaInfo);
         }
     }
     
@@ -4293,29 +5091,33 @@ namespace CbVoucherApp.Code.Domain
         
         public static CbOrm.Meta.CTyp _GiftStatistic_TypM = new CbOrm.Meta.CTyp(typeof(GiftStatistic), new System.Guid("00000000-0000-0000-0000-000000000000"), GiftStatistic._GetProperties);
         
+        private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.Guid> Parent_Gift_Statistic_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Gift_Statistic_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(Parent_Gift_Statistic_Guid));
+        
         private CR11PRef<CbVoucherApp.Code.Domain.GiftStatistic, CbVoucherApp.Code.Domain.Gift> Parent_Gift_StatisticM;
         
-        private static CR11PRefMetaInfo _Parent_Gift_StatisticMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(Parent_Gift_Statistic));
+        private static CR11PRefMetaInfo _Parent_Gift_Statistic_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(Parent_Gift_Statistic));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.DateTime> LastUpdateM;
         
-        private static CSkalarRefMetaInfo _LastUpdateMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(LastUpdate));
+        private static CSkalarRefMetaInfo _LastUpdate_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(LastUpdate));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong> DownloadedM;
         
-        private static CSkalarRefMetaInfo _DownloadedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(Downloaded));
+        private static CSkalarRefMetaInfo _Downloaded_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(Downloaded));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong> NotDownloadedM;
         
-        private static CSkalarRefMetaInfo _NotDownloadedMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(NotDownloaded));
+        private static CSkalarRefMetaInfo _NotDownloaded_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(NotDownloaded));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong> OpenRequestsM;
         
-        private static CSkalarRefMetaInfo _OpenRequestsMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(OpenRequests));
+        private static CSkalarRefMetaInfo _OpenRequests_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(OpenRequests));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong> GrantedRequestM;
         
-        private static CSkalarRefMetaInfo _GrantedRequestMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(GrantedRequest));
+        private static CSkalarRefMetaInfo _GrantedRequest_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftStatistic), nameof(GrantedRequest));
         
         public GiftStatistic(CStorage aStorage) : 
                 base(aStorage)
@@ -4338,6 +5140,27 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.Guid> Parent_Gift_Statistic_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Gift_Statistic_GuidM, null))
+                {
+                    this.Parent_Gift_Statistic_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.Guid>(this, CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_Statistic_Guid_MetaInfo);
+                }
+                return this.Parent_Gift_Statistic_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Gift_Statistic_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_Statistic_Guid_MetaInfoM;
+            }
+        }
+        
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Gift))]
         public CR11PRef<CbVoucherApp.Code.Domain.GiftStatistic, CbVoucherApp.Code.Domain.Gift> Parent_Gift_Statistic
         {
@@ -4345,17 +5168,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_StatisticM, null))
                 {
-                    this.Parent_Gift_StatisticM = new CR11PRef<CbVoucherApp.Code.Domain.GiftStatistic, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_StatisticMetaInfo, Gift._StatisticGuidMetaInfo);
+                    this.Parent_Gift_StatisticM = new CR11PRef<CbVoucherApp.Code.Domain.GiftStatistic, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_Statistic_MetaInfo, GiftStatistic._Parent_Gift_Statistic_Guid_MetaInfo);
                 }
                 return this.Parent_Gift_StatisticM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Gift_StatisticMetaInfo
+        public static CR11PRefMetaInfo _Parent_Gift_Statistic_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_StatisticMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._Parent_Gift_Statistic_MetaInfoM;
             }
         }
         
@@ -4366,17 +5189,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.LastUpdateM, null))
                 {
-                    this.LastUpdateM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.DateTime>(this, CbVoucherApp.Code.Domain.GiftStatistic._LastUpdateMetaInfo);
+                    this.LastUpdateM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, System.DateTime>(this, CbVoucherApp.Code.Domain.GiftStatistic._LastUpdate_MetaInfo);
                 }
                 return this.LastUpdateM;
             }
         }
         
-        public static CSkalarRefMetaInfo _LastUpdateMetaInfo
+        public static CSkalarRefMetaInfo _LastUpdate_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._LastUpdateMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._LastUpdate_MetaInfoM;
             }
         }
         
@@ -4387,17 +5210,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.DownloadedM, null))
                 {
-                    this.DownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._DownloadedMetaInfo);
+                    this.DownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._Downloaded_MetaInfo);
                 }
                 return this.DownloadedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _DownloadedMetaInfo
+        public static CSkalarRefMetaInfo _Downloaded_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._DownloadedMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._Downloaded_MetaInfoM;
             }
         }
         
@@ -4408,17 +5231,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.NotDownloadedM, null))
                 {
-                    this.NotDownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._NotDownloadedMetaInfo);
+                    this.NotDownloadedM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._NotDownloaded_MetaInfo);
                 }
                 return this.NotDownloadedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _NotDownloadedMetaInfo
+        public static CSkalarRefMetaInfo _NotDownloaded_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._NotDownloadedMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._NotDownloaded_MetaInfoM;
             }
         }
         
@@ -4429,17 +5252,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.OpenRequestsM, null))
                 {
-                    this.OpenRequestsM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._OpenRequestsMetaInfo);
+                    this.OpenRequestsM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._OpenRequests_MetaInfo);
                 }
                 return this.OpenRequestsM;
             }
         }
         
-        public static CSkalarRefMetaInfo _OpenRequestsMetaInfo
+        public static CSkalarRefMetaInfo _OpenRequests_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._OpenRequestsMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._OpenRequests_MetaInfoM;
             }
         }
         
@@ -4450,28 +5273,29 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.GrantedRequestM, null))
                 {
-                    this.GrantedRequestM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._GrantedRequestMetaInfo);
+                    this.GrantedRequestM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftStatistic, ulong>(this, CbVoucherApp.Code.Domain.GiftStatistic._GrantedRequest_MetaInfo);
                 }
                 return this.GrantedRequestM;
             }
         }
         
-        public static CSkalarRefMetaInfo _GrantedRequestMetaInfo
+        public static CSkalarRefMetaInfo _GrantedRequest_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftStatistic._GrantedRequestMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftStatistic._GrantedRequest_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(GiftStatistic._Parent_Gift_StatisticMetaInfo);
-            aAddProperty.Invoke(GiftStatistic._LastUpdateMetaInfo);
-            aAddProperty.Invoke(GiftStatistic._DownloadedMetaInfo);
-            aAddProperty.Invoke(GiftStatistic._NotDownloadedMetaInfo);
-            aAddProperty.Invoke(GiftStatistic._OpenRequestsMetaInfo);
-            aAddProperty.Invoke(GiftStatistic._GrantedRequestMetaInfo);
+            aAddProperty.Invoke(GiftStatistic._Parent_Gift_Statistic_Guid_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._Parent_Gift_Statistic_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._LastUpdate_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._Downloaded_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._NotDownloaded_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._OpenRequests_MetaInfo);
+            aAddProperty.Invoke(GiftStatistic._GrantedRequest_MetaInfo);
         }
     }
     
@@ -4480,13 +5304,17 @@ namespace CbVoucherApp.Code.Domain
         
         public static CbOrm.Meta.CTyp _GiftCounters_TypM = new CbOrm.Meta.CTyp(typeof(GiftCounters), new System.Guid("00000000-0000-0000-0000-000000000000"), GiftCounters._GetProperties);
         
+        private CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, System.Guid> Parent_Gift_Counters_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Gift_Counters_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftCounters), nameof(Parent_Gift_Counters_Guid));
+        
         private CR11PRef<CbVoucherApp.Code.Domain.GiftCounters, CbVoucherApp.Code.Domain.Gift> Parent_Gift_CountersM;
         
-        private static CR11PRefMetaInfo _Parent_Gift_CountersMetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftCounters), nameof(Parent_Gift_Counters));
+        private static CR11PRefMetaInfo _Parent_Gift_Counters_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftCounters), nameof(Parent_Gift_Counters));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, ulong> AutoGrantCountCurM;
         
-        private static CSkalarRefMetaInfo _AutoGrantCountCurMetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftCounters), nameof(AutoGrantCountCur));
+        private static CSkalarRefMetaInfo _AutoGrantCountCur_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.GiftCounters), nameof(AutoGrantCountCur));
         
         public GiftCounters(CStorage aStorage) : 
                 base(aStorage)
@@ -4509,6 +5337,27 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, System.Guid> Parent_Gift_Counters_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Gift_Counters_GuidM, null))
+                {
+                    this.Parent_Gift_Counters_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, System.Guid>(this, CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_Counters_Guid_MetaInfo);
+                }
+                return this.Parent_Gift_Counters_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Gift_Counters_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_Counters_Guid_MetaInfoM;
+            }
+        }
+        
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Gift))]
         public CR11PRef<CbVoucherApp.Code.Domain.GiftCounters, CbVoucherApp.Code.Domain.Gift> Parent_Gift_Counters
         {
@@ -4516,17 +5365,17 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.Parent_Gift_CountersM, null))
                 {
-                    this.Parent_Gift_CountersM = new CR11PRef<CbVoucherApp.Code.Domain.GiftCounters, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_CountersMetaInfo, Gift._CountersGuidMetaInfo);
+                    this.Parent_Gift_CountersM = new CR11PRef<CbVoucherApp.Code.Domain.GiftCounters, CbVoucherApp.Code.Domain.Gift>(this, CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_Counters_MetaInfo, GiftCounters._Parent_Gift_Counters_Guid_MetaInfo);
                 }
                 return this.Parent_Gift_CountersM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Gift_CountersMetaInfo
+        public static CR11PRefMetaInfo _Parent_Gift_Counters_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_CountersMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftCounters._Parent_Gift_Counters_MetaInfoM;
             }
         }
         
@@ -4537,24 +5386,25 @@ namespace CbVoucherApp.Code.Domain
             {
                 if (Object.ReferenceEquals(this.AutoGrantCountCurM, null))
                 {
-                    this.AutoGrantCountCurM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, ulong>(this, CbVoucherApp.Code.Domain.GiftCounters._AutoGrantCountCurMetaInfo);
+                    this.AutoGrantCountCurM = new CSkalarRef<CbVoucherApp.Code.Domain.GiftCounters, ulong>(this, CbVoucherApp.Code.Domain.GiftCounters._AutoGrantCountCur_MetaInfo);
                 }
                 return this.AutoGrantCountCurM;
             }
         }
         
-        public static CSkalarRefMetaInfo _AutoGrantCountCurMetaInfo
+        public static CSkalarRefMetaInfo _AutoGrantCountCur_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.GiftCounters._AutoGrantCountCurMetaInfoM;
+                return CbVoucherApp.Code.Domain.GiftCounters._AutoGrantCountCur_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(GiftCounters._Parent_Gift_CountersMetaInfo);
-            aAddProperty.Invoke(GiftCounters._AutoGrantCountCurMetaInfo);
+            aAddProperty.Invoke(GiftCounters._Parent_Gift_Counters_Guid_MetaInfo);
+            aAddProperty.Invoke(GiftCounters._Parent_Gift_Counters_MetaInfo);
+            aAddProperty.Invoke(GiftCounters._AutoGrantCountCur_MetaInfo);
         }
     }
     
@@ -4570,16 +5420,18 @@ namespace CbVoucherApp.Code.Domain
             this.AddTyp(Gift._Gift_TypM);
             this.AddTyp(Subscriber._Subscriber_TypM);
             this.AddTyp(Newsletter._Newsletter_TypM);
-            this.AddTyp(TextTemplate._TextTemplate_TypM);
             this.AddTyp(DownloadFormat._DownloadFormat_TypM);
             this.AddTyp(Campaign._Campaign_TypM);
             this.AddTyp(VoucherRequest._VoucherRequest_TypM);
             this.AddTyp(SubscriptionRequest._SubscriptionRequest_TypM);
+            this.AddTyp(TextTemplate._TextTemplate_TypM);
             this.AddTyp(Site._Site_TypM);
             this.AddTyp(Voucher._Voucher_TypM);
             this.AddTyp(VoucherDownload._VoucherDownload_TypM);
             this.AddTyp(Content._Content_TypM);
             this.AddTyp(EmailAccount._EmailAccount_TypM);
+            this.AddTyp(TextTemplates._TextTemplates_TypM);
+            this.AddTyp(EmailConfirmation._EmailConfirmation_TypM);
             this.AddTyp(LocationInfo._LocationInfo_TypM);
             this.AddTyp(GiftStatistic._GiftStatistic_TypM);
             this.AddTyp(GiftCounters._GiftCounters_TypM);

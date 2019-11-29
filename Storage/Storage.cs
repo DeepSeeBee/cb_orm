@@ -72,11 +72,16 @@ namespace CbOrm.Storage
             }
         }
         public T LoadObject<T>(Guid aGuid) where T : CObject
+            => this.LoadObject<T>(aGuid, typeof(T).IsAbstract);
+        public T LoadObject<T>(Guid aGuid, bool aPolymorph) where T : CObject
         {
             return (T)this.LoadOnDemand(aGuid,
                 () =>
                 {
-                    var aObject = this.NewObject<T>();
+                    var aObject = aPolymorph
+                                ? this.NewObject<T>(aGuid)
+                                : this.NewObject<T>()
+                                ;
                     aObject.GuidValue = aGuid;
                     aObject.Load();
                     return aObject;
@@ -99,9 +104,12 @@ namespace CbOrm.Storage
         }
 
         internal T NewObject<T>() where T : CObject
-        {
-            return (T)this.Schema.Typs.GetBySystemType(typeof(T)).NewObject(this);
-        }
+            => (T)this.Schema.Typs.GetBySystemType(typeof(T)).NewObject(this);
+
+        protected abstract CTyp GetObjectTyp(Guid aObjectId);
+
+        internal T NewObject<T>(Guid aGuid) where T : CObject
+            => (T)this.GetObjectTyp(aGuid).NewObject(this);
 
         public T CreateObject<T>() where T : CObject
         {

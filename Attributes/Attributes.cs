@@ -74,7 +74,7 @@ namespace CbOrm.Attributes
             var aCTypNme = aModelInterpreter.GetTypName(aCTyp,false);
             var aCdTypRef = new CodeTypeReference(aCTypNme);
             var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
-            var aFldNme = aModelInterpreter.Tok.Trg_C_Mta_Pfx + aProperty.Name + aModelInterpreter.Tok.Trg_C_Fk_P_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
+            var aFldNme = aModelInterpreter.Tok.Trg_C_Mta_Pfx + aProperty.Name + aModelInterpreter.Tok.Trg_P_Fk_Sfx + aModelInterpreter.Tok.Dom_F_Mta_P_Sfx;
             var aFldRefExp = new CodeFieldReferenceExpression(aCdTypRefExp, aFldNme);
             yield return aFldRefExp;
         }
@@ -86,11 +86,13 @@ namespace CbOrm.Attributes
         }
         public override IEnumerable<CodeExpression> NewCtorArgs(CGenModelInterpreter aModelInterpreter, CCodeDomBuilder aDomBuilder, CRflProperty aProperty)
         {
-            var aCTyp = aModelInterpreter.GetReturnTyp(aProperty);
-            var aCTypNme = aModelInterpreter.GetTypName(aCTyp, false);
+            var aPTyp = aModelInterpreter.GetReturnTyp(aProperty);
+            var aPTypNme = aModelInterpreter.GetTypName(aPTyp, false);
+            var aCTyp = aProperty.DeclaringTyp;
+            var aCTypNme = aCTyp.Name;
             var aCdTypRef = new CodeTypeReference(aCTypNme);
             var aCdTypRefExp = new CodeTypeReferenceExpression(aCdTypRef);
-            var aFldNme = aProperty.Name.TrimStart(aModelInterpreter.Tok.Trg_P_Parent_Pfx).TrimStart(aCTypNme) + aModelInterpreter.Tok.Trg_C_Fk_P_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
+            var aFldNme = "_" + aProperty.Name + "_" + aModelInterpreter.Tok.Trg_P_Fk_Sfx  + aModelInterpreter.Tok.Dom_F_Mta_P_Sfx; //aProperty.Name.TrimStart(aModelInterpreter.Tok.Trg_P_Parent_Pfx).TrimStart(aPTypNme) + aModelInterpreter.Tok.Trg_P_Fk_Sfx + aModelInterpreter.Tok.Trg_C_Mta_P_Rel_Sfx;
             var aFldRefExp = new CodeFieldReferenceExpression(aCdTypRefExp, aFldNme);
             yield return aFldRefExp;
         }
