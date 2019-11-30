@@ -129,12 +129,6 @@ namespace CbOrm.Entity
             }
         }
 
-        /// Todo - entfernen
-        public void SaveAllModifiedObjects()
-        {
-            this.Storage.Save();
-        }
-
         internal bool IsLocallyDeleted { get; private set; }
         private void DeleteCascade()
         {
@@ -234,7 +228,14 @@ namespace CbOrm.Entity
             
         }
         public static T FindParentInPath<T>(this CEntityObject aEntityObject) where T : CEntityObject
-            => GetPath(aEntityObject).OfType<T>().Last();
+        {
+            var aPath = GetPath(aEntityObject).OfType<T>();
+            var aParent = aPath.IsEmpty()
+                        ? aEntityObject.Storage.CreateNullObject<T>()
+                        : aPath.Last()
+                        ;
+            return aParent;
+        }
     }
 
     public abstract class CEntityObject 
