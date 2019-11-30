@@ -469,6 +469,22 @@ namespace CbOrm.Ref
             return aObject;
         }
         internal TChild Create() => this.Create<TChild>();
+        public TChild Recreate()
+            => this.Recreate<TChild>();
+        public T Recreate<T>() where T : TChild
+        {
+            var aObject = this.Storage.CreateObject<T>();
+            try
+            {
+                this.Value = aObject;
+            }
+            catch(Exception)
+            {
+                aObject.Delete();
+                throw;
+            }
+            return aObject;            
+        }
         public TChild CreateOnDemand()
             => this.CreateOnDemand<TChild>();
         public TChild CreateOnDemand<T>() where T :TChild

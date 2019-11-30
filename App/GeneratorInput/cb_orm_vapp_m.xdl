@@ -10,15 +10,16 @@
 +|Site|EmailAccount|Cardinality|11C
 +|Site|TextTemplates|Cardinality|11C
 +|Site|InitialAccountWebspace|Typ|Int64
-+|EmailConfirmation||Base|CEntityObject
-+|EmailConfirmation|Confirmed|Typ|Boolean
++|AccountVerification||Base|CEntityObject
++|AccountVerification|Verified|Typ|Boolean
++|PasswordReset||Base|CEntityObject
 +|Account||Base|CEntityObject
 +|Account|Webspace|Typ|Int64
 +|Account|Email|Typ|CEmailAdress
 +|Account|Password|Typ|CPassword
 -|Account|Password|Encrypt|true
 +|Account|Publishers|Typ|Publisher
-+|Account|EmailConfirmation|Cardinality|11C
++|Account|AccountVerification|Cardinality|11C
 +|Account|Banned|Typ|Boolean
 +|Account|IsAdmin|Typ|Boolean
 +|Account|Created|Typ|LocationInfo
@@ -26,6 +27,7 @@
 +|Account|SignupMessage|Typ|String
 +|Account|EmailAccount|Cardinality|11C
 +|Account|TextTemplates|Cardinality|11C
++|Account|PasswordReset|Cardinality|11C
 +|Publisher||Base|CEntityObject
 +|Publisher|BackgroundImage|Typ|Content
 +|Publisher|BackgroundImage|Cardinality|11C
@@ -173,3 +175,7 @@
 +|TextTemplateUseCaseEnum|Newsletter
 +|TextTemplateUseCaseEnum|GiftReleaseNewsletterHead
 +|TextTemplateUseCaseEnum|GiftReleaseNewsletterBody
++|TextTemplateUseCaseEnum|AccountVerificationHead
++|TextTemplateUseCaseEnum|AccountVerificationBody
++|TextTemplateUseCaseEnum|ResetPasswordHead
++|TextTemplateUseCaseEnum|ResetPasswordBody

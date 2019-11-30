@@ -140,6 +140,21 @@ namespace CbOrm.Util
             return !aEnumerator.MoveNext();
         }
 
+        public static bool ContainsOneElement<T>(this IEnumerable<T> aItems)
+        {
+            var aEnumerator = aItems.GetEnumerator();
+            return aEnumerator.MoveNext()
+                && !aEnumerator.MoveNext();
+        }
+
+        public static bool ContainsMoreThanOneElement<T>(this IEnumerable<T> aItems)
+        {
+            var aEnumerator = aItems.GetEnumerator();
+            return aEnumerator.MoveNext()
+                && aEnumerator.MoveNext();
+
+        }
+
         public static T Interpret<T>(this FileInfo aFileInfo, Func<T> aFunc)
         {
             try

@@ -73,6 +73,14 @@ namespace CbVoucherApp.Code.Domain
         GiftReleaseNewsletterHead,
         
         GiftReleaseNewsletterBody,
+        
+        AccountVerificationHead,
+        
+        AccountVerificationBody,
+        
+        ResetPasswordHead,
+        
+        ResetPasswordBody,
     }
     
     public class Account : CEntityObject
@@ -88,9 +96,9 @@ namespace CbVoucherApp.Code.Domain
         
         private static CR1NPRefMetaInfo _Parent_Site_Accounts_MetaInfoM = new CR1NPRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Parent_Site_Accounts));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationGuidM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> AccountVerificationGuidM;
         
-        private static CSkalarRefMetaInfo _EmailConfirmationGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmationGuid));
+        private static CSkalarRefMetaInfo _AccountVerificationGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(AccountVerificationGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> CreatedGuidM;
         
@@ -103,6 +111,10 @@ namespace CbVoucherApp.Code.Domain
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> TextTemplatesGuidM;
         
         private static CSkalarRefMetaInfo _TextTemplatesGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(TextTemplatesGuid));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> PasswordResetGuidM;
+        
+        private static CSkalarRefMetaInfo _PasswordResetGuid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(PasswordResetGuid));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, long> WebspaceM;
         
@@ -120,9 +132,9 @@ namespace CbVoucherApp.Code.Domain
         
         private static CR1NCRefMetaInfo _Publishers_MetaInfoM = new CR1NCRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(Publishers));
         
-        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation> EmailConfirmationM;
+        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.AccountVerification> AccountVerificationM;
         
-        private static CR11CRefMetaInfo _EmailConfirmation_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(EmailConfirmation));
+        private static CR11CRefMetaInfo _AccountVerification_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(AccountVerification));
         
         private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> BannedM;
         
@@ -147,6 +159,10 @@ namespace CbVoucherApp.Code.Domain
         private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.TextTemplates> TextTemplatesM;
         
         private static CR11CRefMetaInfo _TextTemplates_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(TextTemplates));
+        
+        private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.PasswordReset> PasswordResetM;
+        
+        private static CR11CRefMetaInfo _PasswordReset_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(PasswordReset));
         
         public Account(CStorage aStorage) : 
                 base(aStorage)
@@ -215,24 +231,24 @@ namespace CbVoucherApp.Code.Domain
         
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
         [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
-        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("EmailConfirmation")]
-        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> EmailConfirmationGuid
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("AccountVerification")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> AccountVerificationGuid
         {
             get
             {
-                if (Object.ReferenceEquals(this.EmailConfirmationGuidM, null))
+                if (Object.ReferenceEquals(this.AccountVerificationGuidM, null))
                 {
-                    this.EmailConfirmationGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmationGuid_MetaInfo);
+                    this.AccountVerificationGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._AccountVerificationGuid_MetaInfo);
                 }
-                return this.EmailConfirmationGuidM;
+                return this.AccountVerificationGuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _EmailConfirmationGuid_MetaInfo
+        public static CSkalarRefMetaInfo _AccountVerificationGuid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._EmailConfirmationGuid_MetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._AccountVerificationGuid_MetaInfoM;
             }
         }
         
@@ -302,6 +318,29 @@ namespace CbVoucherApp.Code.Domain
             get
             {
                 return CbVoucherApp.Code.Domain.Account._TextTemplatesGuid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartTypeAttribute(typeof(Account))]
+        [CbOrm.App.Sys.CForeignKeyCounterpartPropertyNameAttribute("PasswordReset")]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid> PasswordResetGuid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.PasswordResetGuidM, null))
+                {
+                    this.PasswordResetGuidM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, System.Guid>(this, CbVoucherApp.Code.Domain.Account._PasswordResetGuid_MetaInfo);
+                }
+                return this.PasswordResetGuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _PasswordResetGuid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._PasswordResetGuid_MetaInfoM;
             }
         }
         
@@ -389,24 +428,24 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
-        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.EmailConfirmation))]
-        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation> EmailConfirmation
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.AccountVerification))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.AccountVerification> AccountVerification
         {
             get
             {
-                if (Object.ReferenceEquals(this.EmailConfirmationM, null))
+                if (Object.ReferenceEquals(this.AccountVerificationM, null))
                 {
-                    this.EmailConfirmationM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.EmailConfirmation>(this, CbVoucherApp.Code.Domain.Account._EmailConfirmation_MetaInfo, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo);
+                    this.AccountVerificationM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.AccountVerification>(this, CbVoucherApp.Code.Domain.Account._AccountVerification_MetaInfo, CbVoucherApp.Code.Domain.AccountVerification._Parent_Account_AccountVerification_MetaInfo);
                 }
-                return this.EmailConfirmationM;
+                return this.AccountVerificationM;
             }
         }
         
-        public static CR11CRefMetaInfo _EmailConfirmation_MetaInfo
+        public static CR11CRefMetaInfo _AccountVerification_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.Account._EmailConfirmation_MetaInfoM;
+                return CbVoucherApp.Code.Domain.Account._AccountVerification_MetaInfoM;
             }
         }
         
@@ -536,25 +575,48 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.PasswordReset))]
+        public CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.PasswordReset> PasswordReset
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.PasswordResetM, null))
+                {
+                    this.PasswordResetM = new CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.PasswordReset>(this, CbVoucherApp.Code.Domain.Account._PasswordReset_MetaInfo, CbVoucherApp.Code.Domain.PasswordReset._Parent_Account_PasswordReset_MetaInfo);
+                }
+                return this.PasswordResetM;
+            }
+        }
+        
+        public static CR11CRefMetaInfo _PasswordReset_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._PasswordReset_MetaInfoM;
+            }
+        }
+        
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
             aAddProperty.Invoke(Account._Parent_Site_AccountsGuid_MetaInfo);
             aAddProperty.Invoke(Account._Parent_Site_Accounts_MetaInfo);
-            aAddProperty.Invoke(Account._EmailConfirmationGuid_MetaInfo);
+            aAddProperty.Invoke(Account._AccountVerificationGuid_MetaInfo);
             aAddProperty.Invoke(Account._CreatedGuid_MetaInfo);
             aAddProperty.Invoke(Account._EmailAccountGuid_MetaInfo);
             aAddProperty.Invoke(Account._TextTemplatesGuid_MetaInfo);
+            aAddProperty.Invoke(Account._PasswordResetGuid_MetaInfo);
             aAddProperty.Invoke(Account._Webspace_MetaInfo);
             aAddProperty.Invoke(Account._Email_MetaInfo);
             aAddProperty.Invoke(Account._Password_MetaInfo);
             aAddProperty.Invoke(Account._Publishers_MetaInfo);
-            aAddProperty.Invoke(Account._EmailConfirmation_MetaInfo);
+            aAddProperty.Invoke(Account._AccountVerification_MetaInfo);
             aAddProperty.Invoke(Account._Banned_MetaInfo);
             aAddProperty.Invoke(Account._IsAdmin_MetaInfo);
             aAddProperty.Invoke(Account._Created_MetaInfo);
             aAddProperty.Invoke(Account._SignupMessage_MetaInfo);
             aAddProperty.Invoke(Account._EmailAccount_MetaInfo);
             aAddProperty.Invoke(Account._TextTemplates_MetaInfo);
+            aAddProperty.Invoke(Account._PasswordReset_MetaInfo);
         }
     }
     
@@ -4608,33 +4670,33 @@ namespace CbVoucherApp.Code.Domain
         }
     }
     
-    public class EmailConfirmation : CEntityObject
+    public class AccountVerification : CEntityObject
     {
         
-        public static CbOrm.Meta.CTyp _EmailConfirmation_TypM = new CbOrm.Meta.CTyp(typeof(EmailConfirmation), new System.Guid("00000000-0000-0000-0000-000000000000"), EmailConfirmation._GetProperties);
+        public static CbOrm.Meta.CTyp _AccountVerification_TypM = new CbOrm.Meta.CTyp(typeof(AccountVerification), new System.Guid("00000000-0000-0000-0000-000000000000"), AccountVerification._GetProperties);
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid> Parent_Account_EmailConfirmation_GuidM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, System.Guid> Parent_Account_AccountVerification_GuidM;
         
-        private static CSkalarRefMetaInfo _Parent_Account_EmailConfirmation_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Parent_Account_EmailConfirmation_Guid));
+        private static CSkalarRefMetaInfo _Parent_Account_AccountVerification_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.AccountVerification), nameof(Parent_Account_AccountVerification_Guid));
         
-        private CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailConfirmationM;
+        private CR11PRef<CbVoucherApp.Code.Domain.AccountVerification, CbVoucherApp.Code.Domain.Account> Parent_Account_AccountVerificationM;
         
-        private static CR11PRefMetaInfo _Parent_Account_EmailConfirmation_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Parent_Account_EmailConfirmation));
+        private static CR11PRefMetaInfo _Parent_Account_AccountVerification_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.AccountVerification), nameof(Parent_Account_AccountVerification));
         
-        private CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool> ConfirmedM;
+        private CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, bool> VerifiedM;
         
-        private static CSkalarRefMetaInfo _Confirmed_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.EmailConfirmation), nameof(Confirmed));
+        private static CSkalarRefMetaInfo _Verified_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.AccountVerification), nameof(Verified));
         
-        public EmailConfirmation(CStorage aStorage) : 
+        public AccountVerification(CStorage aStorage) : 
                 base(aStorage)
         {
         }
         
-        public static CbOrm.Meta.CTyp _EmailConfirmation_Typ
+        public static CbOrm.Meta.CTyp _AccountVerification_Typ
         {
             get
             {
-                return EmailConfirmation._EmailConfirmation_TypM;
+                return AccountVerification._AccountVerification_TypM;
             }
         }
         
@@ -4642,78 +4704,78 @@ namespace CbVoucherApp.Code.Domain
         {
             get
             {
-                return EmailConfirmation._EmailConfirmation_Typ;
+                return AccountVerification._AccountVerification_Typ;
             }
         }
         
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid> Parent_Account_EmailConfirmation_Guid
+        public CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, System.Guid> Parent_Account_AccountVerification_Guid
         {
             get
             {
-                if (Object.ReferenceEquals(this.Parent_Account_EmailConfirmation_GuidM, null))
+                if (Object.ReferenceEquals(this.Parent_Account_AccountVerification_GuidM, null))
                 {
-                    this.Parent_Account_EmailConfirmation_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, System.Guid>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
+                    this.Parent_Account_AccountVerification_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, System.Guid>(this, CbVoucherApp.Code.Domain.AccountVerification._Parent_Account_AccountVerification_Guid_MetaInfo);
                 }
-                return this.Parent_Account_EmailConfirmation_GuidM;
+                return this.Parent_Account_AccountVerification_GuidM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Parent_Account_EmailConfirmation_Guid_MetaInfo
+        public static CSkalarRefMetaInfo _Parent_Account_AccountVerification_Guid_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfoM;
+                return CbVoucherApp.Code.Domain.AccountVerification._Parent_Account_AccountVerification_Guid_MetaInfoM;
             }
         }
         
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
-        public CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account> Parent_Account_EmailConfirmation
+        public CR11PRef<CbVoucherApp.Code.Domain.AccountVerification, CbVoucherApp.Code.Domain.Account> Parent_Account_AccountVerification
         {
             get
             {
-                if (Object.ReferenceEquals(this.Parent_Account_EmailConfirmationM, null))
+                if (Object.ReferenceEquals(this.Parent_Account_AccountVerificationM, null))
                 {
-                    this.Parent_Account_EmailConfirmationM = new CR11PRef<CbVoucherApp.Code.Domain.EmailConfirmation, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo, EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
+                    this.Parent_Account_AccountVerificationM = new CR11PRef<CbVoucherApp.Code.Domain.AccountVerification, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.AccountVerification._Parent_Account_AccountVerification_MetaInfo, AccountVerification._Parent_Account_AccountVerification_Guid_MetaInfo);
                 }
-                return this.Parent_Account_EmailConfirmationM;
+                return this.Parent_Account_AccountVerificationM;
             }
         }
         
-        public static CR11PRefMetaInfo _Parent_Account_EmailConfirmation_MetaInfo
+        public static CR11PRefMetaInfo _Parent_Account_AccountVerification_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfoM;
+                return CbVoucherApp.Code.Domain.AccountVerification._Parent_Account_AccountVerification_MetaInfoM;
             }
         }
         
         [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
-        public CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool> Confirmed
+        public CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, bool> Verified
         {
             get
             {
-                if (Object.ReferenceEquals(this.ConfirmedM, null))
+                if (Object.ReferenceEquals(this.VerifiedM, null))
                 {
-                    this.ConfirmedM = new CSkalarRef<CbVoucherApp.Code.Domain.EmailConfirmation, bool>(this, CbVoucherApp.Code.Domain.EmailConfirmation._Confirmed_MetaInfo);
+                    this.VerifiedM = new CSkalarRef<CbVoucherApp.Code.Domain.AccountVerification, bool>(this, CbVoucherApp.Code.Domain.AccountVerification._Verified_MetaInfo);
                 }
-                return this.ConfirmedM;
+                return this.VerifiedM;
             }
         }
         
-        public static CSkalarRefMetaInfo _Confirmed_MetaInfo
+        public static CSkalarRefMetaInfo _Verified_MetaInfo
         {
             get
             {
-                return CbVoucherApp.Code.Domain.EmailConfirmation._Confirmed_MetaInfoM;
+                return CbVoucherApp.Code.Domain.AccountVerification._Verified_MetaInfoM;
             }
         }
         
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
-            aAddProperty.Invoke(EmailConfirmation._Parent_Account_EmailConfirmation_Guid_MetaInfo);
-            aAddProperty.Invoke(EmailConfirmation._Parent_Account_EmailConfirmation_MetaInfo);
-            aAddProperty.Invoke(EmailConfirmation._Confirmed_MetaInfo);
+            aAddProperty.Invoke(AccountVerification._Parent_Account_AccountVerification_Guid_MetaInfo);
+            aAddProperty.Invoke(AccountVerification._Parent_Account_AccountVerification_MetaInfo);
+            aAddProperty.Invoke(AccountVerification._Verified_MetaInfo);
         }
     }
     
@@ -5086,6 +5148,89 @@ namespace CbVoucherApp.Code.Domain
         }
     }
     
+    public class PasswordReset : CEntityObject
+    {
+        
+        public static CbOrm.Meta.CTyp _PasswordReset_TypM = new CbOrm.Meta.CTyp(typeof(PasswordReset), new System.Guid("00000000-0000-0000-0000-000000000000"), PasswordReset._GetProperties);
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.PasswordReset, System.Guid> Parent_Account_PasswordReset_GuidM;
+        
+        private static CSkalarRefMetaInfo _Parent_Account_PasswordReset_Guid_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.PasswordReset), nameof(Parent_Account_PasswordReset_Guid));
+        
+        private CR11PRef<CbVoucherApp.Code.Domain.PasswordReset, CbVoucherApp.Code.Domain.Account> Parent_Account_PasswordResetM;
+        
+        private static CR11PRefMetaInfo _Parent_Account_PasswordReset_MetaInfoM = new CR11PRefMetaInfo(typeof(CbVoucherApp.Code.Domain.PasswordReset), nameof(Parent_Account_PasswordReset));
+        
+        public PasswordReset(CStorage aStorage) : 
+                base(aStorage)
+        {
+        }
+        
+        public static CbOrm.Meta.CTyp _PasswordReset_Typ
+        {
+            get
+            {
+                return PasswordReset._PasswordReset_TypM;
+            }
+        }
+        
+        public override CbOrm.Meta.CTyp Typ
+        {
+            get
+            {
+                return PasswordReset._PasswordReset_Typ;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(System.Guid))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.PasswordReset, System.Guid> Parent_Account_PasswordReset_Guid
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_PasswordReset_GuidM, null))
+                {
+                    this.Parent_Account_PasswordReset_GuidM = new CSkalarRef<CbVoucherApp.Code.Domain.PasswordReset, System.Guid>(this, CbVoucherApp.Code.Domain.PasswordReset._Parent_Account_PasswordReset_Guid_MetaInfo);
+                }
+                return this.Parent_Account_PasswordReset_GuidM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _Parent_Account_PasswordReset_Guid_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.PasswordReset._Parent_Account_PasswordReset_Guid_MetaInfoM;
+            }
+        }
+        
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(CbVoucherApp.Code.Domain.Account))]
+        public CR11PRef<CbVoucherApp.Code.Domain.PasswordReset, CbVoucherApp.Code.Domain.Account> Parent_Account_PasswordReset
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.Parent_Account_PasswordResetM, null))
+                {
+                    this.Parent_Account_PasswordResetM = new CR11PRef<CbVoucherApp.Code.Domain.PasswordReset, CbVoucherApp.Code.Domain.Account>(this, CbVoucherApp.Code.Domain.PasswordReset._Parent_Account_PasswordReset_MetaInfo, PasswordReset._Parent_Account_PasswordReset_Guid_MetaInfo);
+                }
+                return this.Parent_Account_PasswordResetM;
+            }
+        }
+        
+        public static CR11PRefMetaInfo _Parent_Account_PasswordReset_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.PasswordReset._Parent_Account_PasswordReset_MetaInfoM;
+            }
+        }
+        
+        private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
+        {
+            aAddProperty.Invoke(PasswordReset._Parent_Account_PasswordReset_Guid_MetaInfo);
+            aAddProperty.Invoke(PasswordReset._Parent_Account_PasswordReset_MetaInfo);
+        }
+    }
+    
     public class GiftStatistic : CEntityObject
     {
         
@@ -5431,8 +5576,9 @@ namespace CbVoucherApp.Code.Domain
             this.AddTyp(Content._Content_TypM);
             this.AddTyp(EmailAccount._EmailAccount_TypM);
             this.AddTyp(TextTemplates._TextTemplates_TypM);
-            this.AddTyp(EmailConfirmation._EmailConfirmation_TypM);
+            this.AddTyp(AccountVerification._AccountVerification_TypM);
             this.AddTyp(LocationInfo._LocationInfo_TypM);
+            this.AddTyp(PasswordReset._PasswordReset_TypM);
             this.AddTyp(GiftStatistic._GiftStatistic_TypM);
             this.AddTyp(GiftCounters._GiftCounters_TypM);
             this.RegisterEnumType(typeof(CbVoucherApp.Code.Domain.EmailSendStrategyEnum));
