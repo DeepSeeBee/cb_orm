@@ -30,9 +30,9 @@ namespace CbVoucherApp.Code.Domain
     public enum ContentKindEnum
     {
         
-        Blop,
+        DirectDownload,
         
-        Redirect,
+        ExternalLink,
     }
     
     public enum TextFormatEnum
@@ -163,6 +163,10 @@ namespace CbVoucherApp.Code.Domain
         private CR11CRef<CbVoucherApp.Code.Domain.Account, CbVoucherApp.Code.Domain.PasswordReset> PasswordResetM;
         
         private static CR11CRefMetaInfo _PasswordReset_MetaInfoM = new CR11CRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(PasswordReset));
+        
+        private CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> ExternalContentEnabledM;
+        
+        private static CSkalarRefMetaInfo _ExternalContentEnabled_MetaInfoM = new CSkalarRefMetaInfo(typeof(CbVoucherApp.Code.Domain.Account), nameof(ExternalContentEnabled));
         
         public Account(CStorage aStorage) : 
                 base(aStorage)
@@ -596,6 +600,27 @@ namespace CbVoucherApp.Code.Domain
             }
         }
         
+        [CbOrm.Attributes.CTargetTypeAttribute(typeof(bool))]
+        public CSkalarRef<CbVoucherApp.Code.Domain.Account, bool> ExternalContentEnabled
+        {
+            get
+            {
+                if (Object.ReferenceEquals(this.ExternalContentEnabledM, null))
+                {
+                    this.ExternalContentEnabledM = new CSkalarRef<CbVoucherApp.Code.Domain.Account, bool>(this, CbVoucherApp.Code.Domain.Account._ExternalContentEnabled_MetaInfo);
+                }
+                return this.ExternalContentEnabledM;
+            }
+        }
+        
+        public static CSkalarRefMetaInfo _ExternalContentEnabled_MetaInfo
+        {
+            get
+            {
+                return CbVoucherApp.Code.Domain.Account._ExternalContentEnabled_MetaInfoM;
+            }
+        }
+        
         private static void _GetProperties(System.Action<CbOrm.Meta.CRefMetaInfo> aAddProperty)
         {
             aAddProperty.Invoke(Account._Parent_Site_AccountsGuid_MetaInfo);
@@ -617,6 +642,7 @@ namespace CbVoucherApp.Code.Domain
             aAddProperty.Invoke(Account._EmailAccount_MetaInfo);
             aAddProperty.Invoke(Account._TextTemplates_MetaInfo);
             aAddProperty.Invoke(Account._PasswordReset_MetaInfo);
+            aAddProperty.Invoke(Account._ExternalContentEnabled_MetaInfo);
         }
     }
     

@@ -28,6 +28,7 @@
 +|Account|EmailAccount|Cardinality|11C
 +|Account|TextTemplates|Cardinality|11C
 +|Account|PasswordReset|Cardinality|11C
++|Account|ExternalContentEnabled|Typ|Boolean
 +|Publisher||Base|CEntityObject
 +|Publisher|BackgroundImage|Typ|Content
 +|Publisher|BackgroundImage|Cardinality|11C
@@ -149,8 +150,8 @@
 +|Content|Blop|Typ|CBlop
 +|Content|Blop|Cardinality|11C
 +|ContentKindEnum||Base|Enum
-+|ContentKindEnum|Blop
-+|ContentKindEnum|Redirect
++|ContentKindEnum|DirectDownload
++|ContentKindEnum|ExternalLink
 +|TextTemplates||Base|CEntityObject
 +|TextTemplates|Items|Typ|TextTemplate
 +|TextTemplate||Base|CEntityObject
