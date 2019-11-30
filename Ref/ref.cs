@@ -147,7 +147,7 @@ namespace CbOrm.Ref
         {
             if (!object.Equals(aValue, this.ValueM))
             {
-                if (!this.ValueM.IsNullRef())
+                if (!this.Value.IsNullRef())
                 { 
                     this.DropValue(this.ValueM);
                 }
