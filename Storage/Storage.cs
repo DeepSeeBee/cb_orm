@@ -163,4 +163,38 @@ namespace CbOrm.Storage
     {
 
     }
+
+    public sealed class CNullStorage : CStorage
+    {
+        public CNullStorage(CSchema aSchema):base(aSchema)
+        {
+        }
+        internal override Guid NewObjectId()
+            => Guid.NewGuid();
+        public override void Load(CBlop aBlop)
+           => throw new InvalidOperationException();
+        public override CStorage CloneStorage(bool aConnect)
+            => new CNullStorage(this.Schema);
+        protected override void Delete(CBlop aBlop)
+            => throw new InvalidOperationException();
+        internal override long GetBlopLength(CBlop aBlop)
+            => 0;
+        public override ulong GetObjectCount<T>()
+            => 0;
+        protected override void Load(CEntityObject aEntityObject, CTyp aAspect)
+            => throw new InvalidOperationException();
+        protected override CTyp GetObjectTyp(Guid aObjectId)
+            => throw new InvalidOperationException();
+        public override CObject LoadObject(CTyp aType, Guid aGuid)
+            => throw new InvalidOperationException();
+        internal override Stream NewBlopInputStream(CBlop aBlop)
+            => Stream.Null;
+        protected override CBlopOutputStream NewBlopOutputStream(CBlop aBlop)
+            => throw new InvalidOperationException();
+        public override IEnumerable<CObject> LoadObjects(CTyp aType)
+            => new CObject[] { };
+        internal override bool R1NCContainsChildList => false;
+        protected override void Save(CEntityObject aEntityObject, CTyp aAspect)
+            => throw new InvalidOperationException();
+    }
 }

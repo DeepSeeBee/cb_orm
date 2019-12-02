@@ -25,7 +25,23 @@ namespace CbOrm.App.Web
         private readonly string Text;
 
         public Uri ToSystemUri() => new Uri(this.Text);
-        public override string ToString()=> this.Text;
+
+        private string ToUriText()
+        {
+            if (this.Text.StartsWith("www"))
+                return "http://" + this.Text;
+            else
+                return this.Text;
+        }
+
+        public override string ToString()
+        {
+            Uri aUri;
+            if (Uri.TryCreate(this.ToUriText(), UriKind.Absolute, out aUri))
+                return aUri.ToString();
+            else
+                return this.Text;
+        }
     }
 
     [CSaveAs(typeof(string))]

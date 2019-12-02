@@ -9,7 +9,8 @@
 +|Site|Accounts|Typ|Account
 +|Site|EmailAccount|Cardinality|11C
 +|Site|TextTemplates|Cardinality|11C
-+|Site|InitialAccountWebspace|Typ|Int64
++|Site|AccountWebspaceDefault|Typ|Int64
++|Site|AccountPublishersCountMaxDefault|Typ|Int32
 +|AccountVerification||Base|CEntityObject
 +|AccountVerification|Verified|Typ|Boolean
 +|PasswordReset||Base|CEntityObject
@@ -28,7 +29,9 @@
 +|Account|EmailAccount|Cardinality|11C
 +|Account|TextTemplates|Cardinality|11C
 +|Account|PasswordReset|Cardinality|11C
-+|Account|ExternalContentEnabled|Typ|Boolean
++|Account|ExternalContentIsEnabled|Typ|Boolean
++|Account|ExternalContentIsAllowed|Typ|Boolean
++|Account|PublisherCountMax|Typ|Int32
 +|Publisher||Base|CEntityObject
 +|Publisher|BackgroundImage|Typ|Content
 +|Publisher|BackgroundImage|Cardinality|11C
@@ -100,9 +103,9 @@
 +|VoucherRequest|ManuallyGranted|Typ|Boolean
 +|VoucherRequest|ManuallyBlocked|Typ|Boolean
 +|VoucherRequest|Subscribe|Typ|Boolean
++|VoucherRequest|LocationInfo|Cardinality|11C
 +|VoucherRequest|Voucher|Cardinality|11C
 +|Voucher||Base|CEntityObject
-+|Voucher|IsDownloaded|Typ|Boolean
 +|Voucher|Recipient|Typ|CEmailAdress
 +|Voucher|VoucherDownload|Cardinality|11C
 +|VoucherDownload||Base|CEntityObject
@@ -110,6 +113,7 @@
 -|VoucherDownload|SubscriptionRequest|Cardinality|11C
 +|VoucherDownload|LocationInfo|Cardinality|11C
 +|VoucherDownload|DownloadFormatText|Typ|String
++|VoucherDownload|IsDownloaded|Typ|Boolean
 +|LocationInfo||Base|CEntityObject
 +|LocationInfo|Moment|Typ|DateTime
 +|LocationInfo|IpAdress|Typ|String

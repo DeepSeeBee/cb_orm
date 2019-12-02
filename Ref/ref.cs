@@ -51,8 +51,8 @@ namespace CbOrm.Ref
             }
         }
 
-        internal readonly CEntityObject ParentEntityObject;
-        internal readonly CRefMetaInfo RefMetaInfo;
+        public readonly CEntityObject ParentEntityObject;
+        public readonly CRefMetaInfo RefMetaInfo;
         internal readonly CAccessKey WriteKeyNullable;
 
         internal abstract object ValueObj { get; }
@@ -312,6 +312,11 @@ namespace CbOrm.Ref
             => this.Collection.GetItemOrNullObject(aGuid);
 
         public bool Contains(Guid aGuid) => this.Collection.Contains(aGuid);/// TODO_OPT
+
+        public int GetCount()
+        {
+            return this.Count(); //// TOOD_OPT
+        }
     }
 
     public class CSkalarRef<TParent, TChild>: CRef<TChild>
